@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f3ee">
+  <title>고멤 아카데미 생활기록부</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Hahmlet:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+
+<body>
+
+  <!-- 내비게이션 바 -->
+  <header class="topbar">
+    <nav class="nav-container">
+      <button class="nav-btn is-active" data-section="home">HOME</button>
+      <button class="nav-btn" data-section="members">MEMBERS</button>
+      <button class="nav-btn" data-section="pair">PAIR</button>
+      <button class="nav-btn" data-section="song">SONG</button>
+      <button class="nav-btn" data-section="gallery">GALLERY</button>
+      <button class="nav-btn" data-section="links">LINKS</button>
+    </nav>
+    <button class="menu-toggle" aria-expanded="false">☰</button>
+  </header>
+
+  <!-- 뷰포트 -->
+  <main class="viewport" id="viewport">
+
+    <!-- HOME -->
+    <section class="page-section home-section is-current" id="home" data-page="home">
+      <div class="home-grid">
+
+        <!-- 좌측 텍스트 -->
+        <div class="home-copy">
+          <div class="micro-text"><span>WAKTAVERSE UNOFFICIAL WEBSITE</span></div>
+          <h1>GOMEM<br><em>ACADEMY</em></h1>
+          <p class="home-description">왁타버스 고멤 아카데미 비공식 홈페이지</p>
+          <div class="home-meta">
+            <div><small>마지막 업데이트</small><strong>2026. 10. 00.</strong></div>
+          </div>
+        </div>
+
+        <!-- 우측 사진 -->
+        <div class="home-visual">
+          <div class="photo-frame group-photo" role="img">
+            <div class="photo-placeholder"></div>
+          </div>
+          <div class="home-sticker sticker-bottom"><img src="images/logo.png"></div>
+        </div>
+        <div class="home-footer"></div>
+      </div>
+    </section>
+
+    <!-- MEMBERS -->
+    <section class="page-section members-section" id="members" data-page="members" aria-label="Members">
+      <div class="section-topline"><span>01 / 멤버 목록</span></div>
+
+      <div class="member-rail-wrap">
+        <div class="member-rail" id="member-rail" aria-label="Member list"></div>
+      </div>
+      <div class="section-footer"></div>
+    </section>
+
+    <!-- PAIR -->
+    <section class="page-section pair-section" id="pair" data-page="pair" aria-label="Pairs">
+      <div class="section-topline"><span>02 / 페어 목록</span></div>
+      <div class="pair-filter" id="pair-filter"></div>
+      <div class="pair-layout">
+        <div class="pair-scroll">
+          <div class="pair-list" id="pair-list"></div>
+        </div>
+      </div>
+      <div class="section-footer"></div>
+    </section>
+
+    <!-- SONG -->
+    <section class="page-section song-section" id="song" data-page="song" aria-label="Songs">
+      <div class="section-topline"><span>03 / 노래 목록</span></div>
+      <div class="song-layout">
+              
+        <!-- 좌측 턴테이블 -->
+        <aside class="song-sidebar">
+          <div class="turntable">
+            <div class="turntable-base">
+              <div class="turntable-platter">
+                <div class="record-disc" aria-hidden="true">
+                  <div class="record-sheen"></div>
+                  <div class="record-label">
+                    <span>G.A.</span>
+                    <small>RECORDS</small>
+                    <i class="label-hole"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tonearm-base">
+                <div class="tonearm-joint"></div>
+              </div>
+              <div class="tonearm">
+                <div class="tonearm-head"></div>
+              </div>
+
+              <div class="turntable-controls">
+                <span class="control-label">START</span>
+                <button class="turntable-knob" aria-label="재생">
+                  <span></span>
+                </button>
+                <span class="control-label">SPEED</span>
+                <div class="speed-knob"></div>
+              </div>
+
+              <div class="turntable-brand">G.A. <small>RECORD PLAYER</small></div>
+            </div>
+          </div>
+          <div class="song-now">
+            <span class="song-now-caption">SELECTED RECORD</span>
+            <strong id="song-selected-title">NO TRACK SELECTED</strong>
+            <span id="song-selected-artist">Choose an album cover</span>
+          </div>
+        </aside>
+
+      <!-- 우측 앨범 진열대 -->
+        <div class="record-shelf">
+          <div class="shelf-toolbar"><strong>PLAYLIST</strong><div><button class="song-filter is-active" data-kind="all">ALL</button><button class="song-filter" data-kind="original">ORIGINAL</button><button class="song-filter" data-kind="cover">COVER</button></div></div>
+          <div class="record-scroll" id="record-scroll">
+            <div class="record-grid" id="record-grid"></div>
+          </div>
+          <div class="shelf-footer"><span>HANDLE WITH CARE</span><span>40+ TRACKS / SCROLL TO EXPLORE ↓</span></div>
+        </div>
+      </div>
+      <div class="section-footer"></div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="page-section gallery-section" id="gallery" data-page="gallery" aria-label="Gallery">
+      <div class="section-topline"><span>04 / 갤러리</span></div>
+      <div class="gallery-container">
+        <div class="gallery-scroll" id="gallery-scroll"><div class="gallery-grid" id="gallery-grid"></div></div>
+        <div class="gallery-bottom"><span>← 가로로 스크롤 →</span></div>
+      </div>
+      <div class="section-footer"></div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="page-section links-section" id="links" data-page="links" aria-label="Links">
+      <div class="section-topline"><span>05 / 링크트리</span></div>
+      <div class="links-layout">
+        <a class="links-title" href="https://youtube.com"><h2>왁물원</h2><p>우왁굳&왁타버스 공식 카페</p></a>
+        <div class="link-container" id="link-container"></div>
+      </div>
+      <div class="section-footer"></div>
+    </section>
+  </main>
+
+  <!-- MEMBERS 프로필 오버레이 -->
+  <div class="profile-overlay" id="profile-overlay" aria-hidden="true">
+    <div class="profile-topbar"><button id="close-profile" class="close-profile">← 돌아가기</button></div>
+    <div class="profile-sheet">
+      <div class="profile-main">
+        <div class="profile-portrait-wrap">
+          <div class="profile-portrait" id="profile-portrait"><span>PORTRAIT IMAGE</span></div>
+        </div>
+        <div class="profile-notes">
+          <div class="profile-name-block">
+            <h2 id="profile-name">MEMBER NAME</h2>
+            <span class="profile-engname" id="profile-engname">MEMBER ENG NAME</span>
+            <span class="name-underline"></span></div>
+          <div class="profile-quote" id="profile-description">A record waiting to be written.</div>
+          <div class="profile-data">
+            <div><small>BIRTHDAY</small><strong id="profile-birthday">—</strong></div>
+            <div><small>MBTI</small><strong id="profile-mbti">—</strong></div>
+            <div><small>FANDOM</small><strong id="profile-fandom">—</strong></div>
+            <div><small>JAPANESE PRONOUNS</small><strong id="profile-jappronouns">—</strong></div>
+            <div><small>GENERATION</small><strong id="profile-generation">—</strong></div>
+            <div><small>CHANNEL</small><strong id="profile-channel">—</strong></div>
+          </div>
+          <div class="profile-memo"><span>NOTE</span><p id="profile-memo">No additional notes recorded.</p></div>
+          <div class="profile-profile-bottom"></div>
+        </div>
+      </div>
+    </div>
+    <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

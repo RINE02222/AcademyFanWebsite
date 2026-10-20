@@ -1,0 +1,302 @@
+/* =========================================================
+   GOMEM ACADEMY ARCHIVE
+   Edit the data below to replace placeholder names and images.
+   Use local paths such as "images/member-01.jpg" or full URLs.
+   ========================================================= */
+
+const members = [
+  { id: 1, name: "닌닌", engname: "Ninnin", generation: "1기", birthday: "2005. 05. 12.", mbti: "ENTP", fandom: "조무래기", jappronouns: "私", channel: "SOOP", color: "#7150CE", image: "images/profile/test.png", portrait: "", description: "난 쿠노이치(가 될) 닌닌이다!", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 2, name: "미스 발렌타인", engname: "Miss Valentine", generation: "1기", birthday: "비공개", mbti: "ESTP", fandom: "미녀 ・ 미남", jappronouns: "私", channel: "SOOP", color: "#F5F5DC", image: "images/profile/test.png", portrait: "images/portrait/02.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 3, name: "보디가드 불독", engname: "Bodyguard Bulldog", generation: "1기", birthday: "2000. 05. 31", mbti: "INTP-T", fandom: "아가씨", jappronouns: "僕", channel: "SOOP", color: "#000000", image: "images/profile/test.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 4, name: "시리안 레인", engname: "Sirian Rain", generation: "1기", birthday: "07. 28.", mbti: "ISTJ", fandom: "도넛단", jappronouns: "私", channel: "SOOP", color: "#2D4BC1", image: "images/profile/test.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 5, name: "아마데우스최", engname: "Amadeus Choi", generation: "1기", birthday: "03. 13", mbti: "ENTJ", fandom: "아사단", jappronouns: "僕 ・ 私", channel: "SOOP", color: "#6B2929", image: "images/profile/test.png", portrait: "images/portrait/05.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 6, name: "진희", engname: "Jinhe", generation: "1기", birthday: "05. 01.", mbti: "ENTP", fandom: "진미채", jappronouns: "オレ", channel: "SOOP", color: "#AAC484", image: "images/profile/test.png", portrait: "images/portrait/06.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 7, name: "캡틴 설리반", engname: "Captain Sullivan", generation: "1기", birthday: "09. 27.", mbti: "ENTP", fandom: "-", jappronouns: "俺 ・ 船長", channel: "SOOP", color: "#BB1111", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 8, name: "사랑전도사 젠투", engname: "Love Missionary Jentoo", generation: "2기", birthday: "02. 23.", mbti: "ESFP", fandom: "젠크리트", jappronouns: "僕 ・ 私", channel: "SOOP", color: "#FF80E6", image: "", portrait: "images/portrait/08.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 9, name: "수셈이", engname: "Soosemi", generation: "2기", birthday: "03. 02.", mbti: "ISTJ", fandom: "고기세제비실벌벌쫄보카피바라단", jappronouns: "僕", channel: "SOOP", color: "#425342", image: "", portrait: "images/portrait/09.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 10, name: "철도왕 길버트", engname: "Vanderbilt Gilbert", generation: "2기", birthday: "1801. 06. 27.", mbti: "INTP", fandom: "전쟁고멤 ・ 석탄단 ・ 철도단", jappronouns: "俺", channel: "SOOP", color: "#343F7E", image: "", portrait: "images/portrait/10.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "08. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", channel: "SOOP", color: "#ABCDEC", image: "", portrait: "images/portrait/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 12, name: "빅토리", engname: "Victory", generation: "3기", birthday: "2001. 02. 19.", mbti: "ESFP", fandom: "빅타민", jappronouns: "私", channel: "SOOP", color: "#FFC15C", image: "", portrait: "images/portrait/12.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 13, name: "데스해머쵸로키", engname: "Death Hammer Chouloky", generation: "4기", birthday: "2004. 07. 17.", mbti: "ISFP", fandom: "허접구리", jappronouns: "あたし", channel: "SOOP", color: "#6AA937", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 14, name: "아이 쓰께끼", engname: "I Cekkekki", generation: "4기", birthday: "꼬깔단", mbti: "-", fandom: "06. 29.", jappronouns: "ボク", channel: "SOOP", color: "#A7E6F0", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 15, name: "크리즈", engname: "Kreaze", generation: "4기", birthday: "비공개", mbti: "-", fandom: "-", jappronouns: "我", channel: "SOOP", color: "#787878", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 16, name: "버터우스 3세", engname: "Butterus III", generation: "5기", birthday: "05. 10.", mbti: "ENTJ", fandom: "백성단", jappronouns: "余", channel: "SOOP", color: "#C2A46E", image: "", portrait: "images/portrait/16.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 17, name: "성기사 샬롯", engname: "Castle Knight Charlotte", generation: "5기", birthday: "07. 15.", mbti: "INTP", fandom: "때지", jappronouns: "私", channel: "SOOP", color: "#B41432", image: "", portrait: "images/portrait/17.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 18, name: "메카 맹기산", engname: "Mecha Maeng Gisan", generation: "6기", birthday: "11. 24.", mbti: "-", fandom: "-", jappronouns: "オレ", channel: "SOOP", color: "#8C6B4B", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." }
+];
+
+const pairs = [
+  { id: "1", title: "1기즈", members: [1, 2, 3, 4, 5, 6, 7], image: "", category: ["기수별"], description: "이 조합의 관계성이나 대표적인 장면을 기록하세요." },
+  { id: "2", title: "2기즈", members: [8, 9, 10], image: "images/pair/2nd.png", category: ["기수별", "남성"], description: "“근데 전 오히려 2기즈를 보고 싶어요”" },
+  { id: "3", title: "3기즈 (용토리)", members: [11, 12], image: "images/pair/3rd.png", category: ["기수별", "여성"], description: "이 조합의 관계성이나 대표적인 장면을 기록하세요." },
+  { id: "4", title: "4기즈", members: [13, 14, 15], image: "", category: ["기수별"], description: "이 조합의 관계성이나 대표적인 장면을 기록하세요." },
+  { id: "5", title: "5기즈 (버샬)", members: [16, 17], image: "", category: ["기수별"], description: "이 조합의 관계성이나 대표적인 장면을 기록하세요." },
+  { id: "6", title: "배틀크루져", members: [6, 8, 10, 16], image: "images/pair/battlecruiser.png", category: ["남성"], description: "모두 우릴 쳐다봐, 거함 배틀크루져!" },
+  { id: "7", title: "여카데미", members: [1, 2, 4, 11, 12, 13, 17], image: "", category: ["여성"], description: "최대 7명까지 멤버를 등록할 수 있습니다." },
+  { id: "8", title: "남카데미", members: [3, 5, 6, 7, 8, 9, 10, 14, 15, 16, 18], image: "", category: ["남성"], description: "아카데미 반기를 올려" }
+];
+
+const songs = [
+  { id: 1, title: "종천지모", artist: "사랑전도사 젠투", kind: "original", cover: "images/album/jongchunjimo.jpg", year: "2025" },
+  { id: 2, title: "Wander", artist: "수셈이", kind: "original", cover: "images/album/wander.png", year: "2025" },
+  { id: 3, title: "MONO DRAMA (feat. 성기사 샬롯)", artist: "철도왕 길버트", kind: "original", cover: "images/album/monodrama.png", year: "2025" }
+]
+
+const galleryItems = [
+  { id: 1, title: "2023 우왁굳 생일", date: "2000. 00. 00.", image: "images/gallery/01_wgbirth.png" },
+  { id: 2, title: "제목", date: "2000. 00. 00.", image: "images/gallery/02_soccer.jpg" },
+  { id: 3, title: "제목", date: "2000. 00. 00.", image: "images/gallery/03_gomemhill.jpg" },
+  { id: 4, title: "제목", date: "2000. 00. 00.", image: "images/gallery/04_school.png" },
+  { id: 5, title: "제목", date: "2000. 00. 00.", image: "images/gallery/05_family.png" },
+  { id: 6, title: "제목", date: "2000. 00. 00.", image: "images/gallery/06_endofyear.png" },
+  { id: 7, title: "제목", date: "2000. 00. 00.", image: "images/gallery/07_popvirus.png" },
+  { id: 8, title: "제목", date: "2000. 00. 00.", image: "images/gallery/08_mibal.jpg" },
+  { id: 9, title: "제목", date: "2000. 00. 00.", image: "images/gallery/09_princess.png" },
+  { id: 10, title: "제목", date: "2000. 00. 00.", image: "images/gallery/10_wander.jpg" },
+  { id: 11, title: "제목", date: "2000. 00. 00.", image: "images/gallery/11_roki.png" },
+  { id: 12, title: "제목", date: "2000. 00. 00.", image: "images/gallery/12_newyear.png" },
+  { id: 13, title: "제목", date: "2000. 00. 00.", image: "images/gallery/13_baseball1.png" },
+  { id: 14, title: "제목", date: "2000. 00. 00.", image: "images/gallery/14_baseball2.png" },
+  { id: 15, title: "제목", date: "2000. 00. 00.", image: "images/gallery/15_summer.png" },
+]
+
+const links = [
+  { title: "우왁굳의 게임 방송", description: "공식 팬카페 및 커뮤니티", label: "유튜브", icon: "N", url: "https://cafe.naver.com/" },
+  { title: "우왁굳", description: "영상과 다시보기 기록", label: "SOOP", icon: "▶", url: "https://www.youtube.com/" },
+  { title: "WAKTAVERSE", description: "방송국 바로가기", label: "유튜브", icon: "S", url: "https://www.sooplive.co.kr/" },
+  { title: "Waktaverse ZERO", description: "정보와 참고 자료 모음", label: "유튜브", icon: "↗", url: "#" },
+  { title: "패러블 엔터테인먼트", description: "팬아트와 창작물", label: "홈페이지", icon: "✳", url: "#" },
+  { title: "고카 상사", description: "그 외의 연결된 기록들", label: "홈페이지", icon: "+", url: "#" }
+];
+
+/* ---------- Shared helpers ---------- */
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+let selectedMemberId = members[0]?.id ?? null;
+let activePairFilter = "전체";
+let activeSongFilter = "all";
+
+function escapeHTML(value = "") {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[char]);
+}
+
+function memberById(id) {
+  return members.find(member => member.id === Number(id));
+}
+
+function imageMarkup(src, alt, fallbackClass = "") {
+  if (!src) return `<span class="image-fallback ${fallbackClass}">${escapeHTML(alt)}</span>`;
+  return `<img src="${escapeHTML(src)}" alt="${escapeHTML(alt)}" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'image-fallback',textContent:'IMAGE NOT FOUND'}))">`;
+}
+
+function setAccent(color = "#A9DCCB") {
+  document.documentElement.style.setProperty("--accent", color);
+  const hex = color.replace("#", "");
+  const normalized = hex.length === 3 ? hex.split("").map(ch => ch + ch).join("") : hex;
+  const rgb = normalized.match(/.{2}/g)?.map(value => parseInt(value, 16)) || [169, 220, 203];
+  document.documentElement.style.setProperty("--accent-rgb", rgb.join(","));
+}
+
+function navigateTo(sectionId) {
+  const target = $(`[data-page="${sectionId}"]`);
+  if (!target) return;
+  $$(".page-section").forEach(section => section.classList.toggle("is-current", section === target));
+  $$(".nav-btn").forEach(link => link.classList.toggle("is-active", link.dataset.section === sectionId));
+  $(".nav-container").classList.remove("is-open");
+  $(".menu-toggle").setAttribute("aria-expanded", "false");
+  $("#profile-overlay").classList.remove("is-open");
+  $("#profile-overlay").setAttribute("aria-hidden", "true");
+  setAccent("#A9DCCB");
+}
+
+function renderMembers() {
+
+  $("#member-rail").innerHTML = members.map(member => `
+    <button
+      id="member-${member.id}"
+      class="member-card ${member.id === selectedMemberId ? "is-selected" : ""}"
+      data-member-id="${member.id}"
+      style="--member-accent:${member.color}"
+      aria-pressed="${member.id === selectedMemberId}"
+    >
+      <div class="member-thumb">
+        ${imageMarkup(member.image, `MEMBER ${String(member.id).padStart(2, "0")}`)}
+      </div>
+
+      <span class="member-card-num">
+        NO. ${String(member.id).padStart(2, "0")}
+      </span>
+
+      <span class="member-card-name">
+        ${escapeHTML(member.name)}
+      </span>
+    </button>
+  `).join("");
+}
+
+$("#member-rail").addEventListener("click", event => {
+  const card = event.target.closest("[data-member-id]");
+  if (!card) return;
+
+  const clickedMemberId = Number(card.dataset.memberId);
+
+  if (clickedMemberId === selectedMemberId) {
+    openProfile();
+    return;
+  }
+
+  selectMember(clickedMemberId);
+});
+
+function selectMember(id) {
+  const member = memberById(id);
+  if (!member) return;
+  selectedMemberId = member.id;
+  setAccent(member.color);
+  renderMembers(); // 선택된 카드의 클래스 업데이트
+}
+
+function openProfile() {
+  const member = memberById(selectedMemberId);
+  if (!member) return;
+  setAccent(member.color);
+  $("#profile-name").textContent = member.name;
+  $("#profile-engname").textContent = member.engname;
+  $("#profile-description").textContent = member.description || "A record waiting to be written.";
+  $("#profile-birthday").textContent = member.birthday || "—";
+  $("#profile-mbti").textContent = member.mbti || "—";
+  $("#profile-fandom").textContent = member.fandom || "—";
+  $("#profile-jappronouns").textContent = member.jappronouns || "—";
+  $("#profile-generation").textContent = member.generation || "—";
+  $("#profile-channel").textContent = member.channel || "—";
+  $("#profile-memo").textContent = member.memo || "No additional notes recorded.";
+  $("#profile-portrait").innerHTML = imageMarkup(member.image, `PORTRAIT / ${member.name}`);
+  $("#profile-position").textContent = `${String(members.findIndex(item => item.id === member.id) + 1).padStart(2, "0")} / ${String(members.length).padStart(2, "0")}`;
+  $("#profile-overlay").classList.add("is-open");
+  $("#profile-overlay").setAttribute("aria-hidden", "false");
+}
+function closeProfile() {
+  $("#profile-overlay").classList.remove("is-open");
+  $("#profile-overlay").setAttribute("aria-hidden", "true");
+  setAccent("#A9DCCB");
+}
+function stepProfile(direction) {
+  const index = members.findIndex(item => item.id === selectedMemberId);
+  const next = (index + direction + members.length) % members.length;
+  selectMember(members[next].id);
+  openProfile();
+}
+
+function renderPairs() {
+  const filters = ["전체", "기수별", "여성", "남성", "그룹"]; // 필요한 필터 추가 가능
+
+  // 1. 버튼 렌더링
+  $("#pair-filter").innerHTML = filters.map(filter =>
+    `<button class="${activePairFilter === filter ? "is-active" : ""}" data-pair-filter="${filter}">${filter}</button>`
+  ).join("");
+
+  // 2. 여러 카테고리를 지원하는 리스트 필터링
+  $("#pair-list").innerHTML = pairs.filter(pair => {
+    // "전체"이거나 activePairFilter가 지정되지 않았으면 모든 카드 통과
+    if (activePairFilter === "전체" || !activePairFilter) return true;
+
+    // category가 배열이므로, 선택된 필터가 배열에 포함되어 있는지 확인 (.includes)
+    return Array.isArray(pair.category) && pair.category.includes(activePairFilter);
+  }).map(pair => {
+    // 💡 카드 헤드에 여러 카테고리를 보기 좋게 쉼표(,) 등으로 이어 붙여 출력할 수도 있습니다.
+    const categoryText = Array.isArray(pair.category) ? pair.category.join(", ") : pair.category;
+    const people = pair.members.slice(0, 11).map(id => memberById(id)).filter(Boolean);
+
+    return `<article class="pair-card">
+      <h3>${escapeHTML(pair.title)}</h3>
+      <div class="pair-image"><img src="${escapeHTML(pair.image)}" alt=""></div>
+      <div class="pair-members">${people.map(member => `<div class="pair-person">${member.portrait ? `<img src="${escapeHTML(member.portrait)}" alt="">` : `<span class="pair-avatar-fallback" style="display:grid;place-items:center;font:9px var(--mono)">${String(member.id).padStart(2, "0")}</span>`}</div>`).join("")}</div>
+      <p>${escapeHTML(pair.description)}</p>
+      <div class="pair-card-foot"><span>${people.length} MEMBER${people.length === 1 ? "" : "S"}</span></div>
+    </article>`;
+  }).join("") || `<p class="empty-state">NO RECORDS IN THIS CATEGORY.</p>`;
+}
+
+function renderSongs() {
+  renderSongGrid();
+}
+function renderSongGrid() {
+  const filtered = songs.filter(song => activeSongFilter === "all" || song.kind === activeSongFilter);
+  $("#record-grid").innerHTML = filtered.map(song => `
+    <button class="record-item" data-song-id="${song.id}">
+      <span class="album-cover">${song.cover ? `<img src="${escapeHTML(song.cover)}" alt="${escapeHTML(song.title)}" loading="lazy">` : `<span class="album-placeholder">G.A.<br>RECORDS</span>`}</span>
+      <span class="record-title">${escapeHTML(song.title)}</span>
+      <span class="record-artist">${escapeHTML(song.artist)}</span>
+    </button>
+  `).join("");
+}
+function selectSong(id) {
+  const song = songs.find(item => item.id === Number(id));
+  if (!song) return;
+  $$(".record-item").forEach(item => item.classList.toggle("is-selected", Number(item.dataset.songId) === song.id));
+  $("#song-selected-title").textContent = song.title;
+  $("#song-selected-artist").textContent = `${song.artist} / ${song.kind.toUpperCase()} / ${song.year}`;
+}
+
+function renderGallery() {
+  $("#gallery-grid").innerHTML = galleryItems.map(item => `
+    <article class="gallery-item" style="--tilt:${(item.id % 3 - 1) * .5}deg">
+      <div class="gallery-image">${imageMarkup(item.image, `PHOTO ${String(item.id).padStart(3, "0")}`)}</div>
+      <div class="gallery-caption"><span>${escapeHTML(item.title)}</span><span>${escapeHTML(item.date)}</span></div>
+    </article>
+  `).join("");
+}
+
+function renderLinks() {
+  $("#link-container").innerHTML = links.map((link, index) => `
+    <a class="link-card" href="${escapeHTML(link.url)}" ${link.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""}>
+      <span class="link-card-icon">${escapeHTML(link.icon)}</span>
+      <strong>${escapeHTML(link.title)}</strong>
+      <p>${escapeHTML(link.description)}</p>
+      <span class="link-out">${escapeHTML(link.label)} ↗</span>
+    </a>
+  `).join("");
+}
+
+/* ---------- Events ---------- */
+$$(".nav-btn").forEach(button => button.addEventListener("click", () => navigateTo(button.dataset.section)));
+$(".menu-toggle").addEventListener("click", () => {
+  const nav = $(".nav-container");
+  const open = nav.classList.toggle("is-open");
+  $(".menu-toggle").setAttribute("aria-expanded", String(open));
+});
+$("#close-profile").addEventListener("click", closeProfile);
+$("#profile-prev").addEventListener("click", () => stepProfile(-1));
+$("#profile-next").addEventListener("click", () => stepProfile(1));
+$("#pair-filter").addEventListener("click", event => {
+  const button = event.target.closest("[data-pair-filter]");
+  if (!button) return;
+  activePairFilter = button.dataset.pairFilter;
+  renderPairs();
+});
+$("#record-grid").addEventListener("click", event => {
+  const item = event.target.closest("[data-song-id]");
+  if (item) selectSong(item.dataset.songId);
+});
+$$(".song-filter").forEach(button => button.addEventListener("click", () => {
+  activeSongFilter = button.dataset.kind;
+  $$(".song-filter").forEach(item => item.classList.toggle("is-active", item === button));
+  renderSongGrid();
+}));
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeProfile();
+  if ($("#profile-overlay").classList.contains("is-open")) {
+    if (event.key === "ArrowLeft") stepProfile(-1);
+    if (event.key === "ArrowRight") stepProfile(1);
+  }
+});
+
+/* ---------- Initial render ---------- */
+renderMembers();
+renderPairs();
+renderSongs();
+renderGallery();
+renderLinks();
+selectSong(songs[0]?.id);
