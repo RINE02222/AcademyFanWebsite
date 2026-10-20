@@ -64,7 +64,7 @@
       <div class="member-rail-wrap">
         <div class="member-rail" id="member-rail" aria-label="Member list"></div>
       </div>
-      <div class="section-footer"></div>
+      
     </section>
 
     <!-- PAIR -->
@@ -76,7 +76,7 @@
           <div class="pair-list" id="pair-list"></div>
         </div>
       </div>
-      <div class="section-footer"></div>
+      
     </section>
 
     <!-- SONG -->
@@ -134,7 +134,7 @@
           <div class="shelf-footer"><span>HANDLE WITH CARE</span><span>40+ TRACKS / SCROLL TO EXPLORE ↓</span></div>
         </div>
       </div>
-      <div class="section-footer"></div>
+      
     </section>
 
     <!-- GALLERY -->
@@ -144,7 +144,7 @@
         <div class="gallery-scroll" id="gallery-scroll"><div class="gallery-grid" id="gallery-grid"></div></div>
         <div class="gallery-bottom"><span>← 가로로 스크롤 →</span></div>
       </div>
-      <div class="section-footer"></div>
+      
     </section>
 
     <!-- LINKS -->
@@ -154,7 +154,7 @@
         <a class="links-title" href="https://youtube.com"><h2>왁물원</h2><p>우왁굳&왁타버스 공식 카페</p></a>
         <div class="link-container" id="link-container"></div>
       </div>
-      <div class="section-footer"></div>
+      
     </section>
   </main>
 
@@ -187,6 +187,50 @@
     </div>
     <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
   </div>
+
+
+  <!-- 하단 고정 뮤직 플레이어 -->
+  <aside class="music-dock" id="music-dock" aria-label="뮤직 플레이어">
+    <div class="music-track">
+      <img id="music-cover" src="images/album/jongchunjimo.jpg" alt="앨범 커버">
+
+      <div class="music-info">
+        <span class="music-label">NOW PLAYING</span>
+        <strong id="music-title">종천지모</strong>
+        <span id="music-artist">사랑전도사 젠투</span>
+      </div>
+    </div>
+
+    <div class="music-center">
+      <div class="music-controls">
+        <button id="music-prev" type="button" aria-label="이전 곡">|◀</button>
+        <button id="music-play" type="button" aria-label="재생">
+          <span id="music-play-icon">▶</span>
+        </button>
+        <button id="music-next" type="button" aria-label="다음 곡">▶|</button>
+        <button id="music-repeat" type="button" aria-label="반복 모드">
+          <span id="music-repeat-icon">↻</span>
+          <small id="music-repeat-label">ALL</small>
+        </button>
+      </div>
+
+      <div class="music-progress">
+        <span id="music-current-time">0:00</span>
+        <input
+          id="music-seek"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          step="0.1"
+          aria-label="음악 재생 위치"
+        >
+        <span id="music-duration">0:00</span>
+      </div>
+    </div>
+
+    <audio id="music-audio" preload="metadata"></audio>
+  </aside>
 
   <script src="script.js"></script>
 </body>

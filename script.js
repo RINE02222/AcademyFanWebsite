@@ -37,10 +37,34 @@ const pairs = [
 ];
 
 const songs = [
-  { id: 1, title: "종천지모", artist: "사랑전도사 젠투", kind: "original", cover: "images/album/jongchunjimo.jpg", year: "2025" },
-  { id: 2, title: "Wander", artist: "수셈이", kind: "original", cover: "images/album/wander.png", year: "2025" },
-  { id: 3, title: "MONO DRAMA (feat. 성기사 샬롯)", artist: "철도왕 길버트", kind: "original", cover: "images/album/monodrama.png", year: "2025" }
-]
+  {
+    id: 1,
+    title: "종천지모",
+    artist: "사랑전도사 젠투",
+    kind: "original",
+    cover: "images/album/jongchunjimo.jpg",
+    audio: "audio/jongchunjimo.wav",
+    year: "2025"
+  },
+  {
+    id: 2,
+    title: "Wander",
+    artist: "수셈이",
+    kind: "original",
+    cover: "images/album/wander.png",
+    audio: "audio/wander.mp3",
+    year: "2025"
+  },
+  {
+    id: 3,
+    title: "MONO DRAMA (feat. 성기사 샬롯)",
+    artist: "철도왕 길버트",
+    kind: "original",
+    cover: "images/album/monodrama.png",
+    audio: "audio/monodrama.wav",
+    year: "2025"
+  }
+];
 
 const galleryItems = [
   { id: 1, title: "2023 우왁굳 생일", date: "2000. 00. 00.", image: "images/gallery/01_wgbirth.png" },
@@ -75,6 +99,8 @@ const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 let selectedMemberId = members[0]?.id ?? null;
 let activePairFilter = "전체";
 let activeSongFilter = "all";
+let currentSongId = null;
+let repeatMode = "all"; // all → one → none
 
 function escapeHTML(value = "") {
   return String(value).replace(/[&<>"']/g, char => ({
@@ -232,13 +258,170 @@ function renderSongGrid() {
     </button>
   `).join("");
 }
-function selectSong(id) {
+
+
+function selectSong(id, autoplay = false) {
   const song = songs.find(item => item.id === Number(id));
   if (!song) return;
-  $$(".record-item").forEach(item => item.classList.toggle("is-selected", Number(item.dataset.songId) === song.id));
+
+  const audio = $("#music-audio");
+  currentSongId = song.id;
+
+  // 앨범 목록의 선택 상태 갱신
+  $$(".record-item").forEach(item => {
+    item.classList.toggle(
+      "is-selected",
+      Number(item.dataset.songId) === song.id
+    );
+  });
+
+  // SONG 페이지의 선택 곡 정보
   $("#song-selected-title").textContent = song.title;
-  $("#song-selected-artist").textContent = `${song.artist} / ${song.kind.toUpperCase()} / ${song.year}`;
+  $("#song-selected-artist").textContent =
+    `${song.artist} / ${song.kind.toUpperCase()} / ${song.year}`;
+
+  // 하단 플레이어 정보
+  $("#music-title").textContent = song.title;
+  $("#music-artist").textContent = song.artist;
+  $("#music-cover").src = song.cover || "";
+  $("#music-cover").alt = `${song.title} 앨범 커버`;
+
+  // 다른 곡을 선택했을 때만 음원 교체
+  if (audio.getAttribute("src") !== song.audio) {
+    audio.src = song.audio;
+    audio.load();
+  }
+
+  audio.loop = repeatMode === "one";
+  updateProgress();
+
+  if (autoplay) {
+    playMusic();
+  }
 }
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00";
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+
+  return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
+}
+
+function updatePlayButton(isPlaying) {
+  $("#music-play-icon").textContent = isPlaying ? "Ⅱ" : "▶";
+  $("#music-play").setAttribute(
+    "aria-label",
+    isPlaying ? "일시정지" : "재생"
+  );
+}
+
+function updateProgress() {
+  const audio = $("#music-audio");
+  const currentTime = audio.currentTime || 0;
+  const duration = audio.duration;
+
+  $("#music-current-time").textContent = formatTime(currentTime);
+  $("#music-duration").textContent = formatTime(duration);
+
+  $("#music-seek").value =
+    Number.isFinite(duration) && duration > 0
+      ? (currentTime / duration) * 100
+      : 0;
+}
+
+async function playMusic() {
+  const audio = $("#music-audio");
+
+  try {
+    await audio.play();
+    updatePlayButton(true);
+  } catch (error) {
+    updatePlayButton(false);
+    console.warn("음원을 재생할 수 없습니다.", error);
+  }
+}
+
+function toggleMusicPlayback() {
+  const audio = $("#music-audio");
+
+  if (audio.paused) {
+    playMusic();
+  } else {
+    audio.pause();
+  }
+}
+
+function playPreviousSong() {
+  const currentIndex = songs.findIndex(
+    song => song.id === currentSongId
+  );
+
+  if (currentIndex < 0 || songs.length === 0) return;
+
+  const previousIndex =
+    (currentIndex - 1 + songs.length) % songs.length;
+
+  selectSong(songs[previousIndex].id, true);
+}
+
+function playNextSong(automatic = false) {
+  const currentIndex = songs.findIndex(
+    song => song.id === currentSongId
+  );
+
+  if (currentIndex < 0 || songs.length === 0) return;
+
+  const isLastSong = currentIndex === songs.length - 1;
+
+  // 반복 없음: 마지막 곡이 끝나면 재생을 멈춤
+  if (automatic && isLastSong && repeatMode === "none") {
+    const audio = $("#music-audio");
+    audio.pause();
+    audio.currentTime = 0;
+    updatePlayButton(false);
+    updateProgress();
+    return;
+  }
+
+  const nextIndex = isLastSong ? 0 : currentIndex + 1;
+  selectSong(songs[nextIndex].id, true);
+}
+
+function toggleRepeatMode() {
+  const modes = ["all", "one", "none"];
+  const currentIndex = modes.indexOf(repeatMode);
+
+  repeatMode = modes[(currentIndex + 1) % modes.length];
+
+  const audio = $("#music-audio");
+  audio.loop = repeatMode === "one";
+
+  const labels = {
+    all: "ALL",
+    one: "ONE",
+    none: "OFF"
+  };
+
+  $("#music-repeat-label").textContent = labels[repeatMode];
+  $("#music-repeat").classList.toggle(
+    "is-active",
+    repeatMode !== "none"
+  );
+
+  $("#music-repeat").setAttribute(
+    "aria-label",
+    `반복 모드: ${
+      repeatMode === "all"
+        ? "플레이리스트 반복"
+        : repeatMode === "one"
+          ? "한 곡 반복"
+          : "반복 없음"
+    }`
+  );
+}
+
 
 function renderGallery() {
   $("#gallery-grid").innerHTML = galleryItems.map(item => `
@@ -278,7 +461,7 @@ $("#pair-filter").addEventListener("click", event => {
 });
 $("#record-grid").addEventListener("click", event => {
   const item = event.target.closest("[data-song-id]");
-  if (item) selectSong(item.dataset.songId);
+  if (item) selectSong(item.dataset.songId, true);
 });
 $$(".song-filter").forEach(button => button.addEventListener("click", () => {
   activeSongFilter = button.dataset.kind;
@@ -293,10 +476,52 @@ document.addEventListener("keydown", event => {
   }
 });
 
+
+/* ---------- Music Player Events ---------- */
+
+$("#music-play").addEventListener("click", toggleMusicPlayback);
+
+$("#music-prev").addEventListener("click", playPreviousSong);
+
+$("#music-next").addEventListener("click", () => {
+  playNextSong(false);
+});
+
+$("#music-repeat").addEventListener("click", toggleRepeatMode);
+
+// 재생 시간과 프로그레스 바 갱신
+$("#music-audio").addEventListener("timeupdate", updateProgress);
+$("#music-audio").addEventListener("loadedmetadata", updateProgress);
+$("#music-audio").addEventListener("durationchange", updateProgress);
+
+// 프로그레스 바를 움직이면 해당 위치부터 재생
+$("#music-seek").addEventListener("input", event => {
+  const audio = $("#music-audio");
+
+  if (Number.isFinite(audio.duration) && audio.duration > 0) {
+    audio.currentTime =
+      (Number(event.target.value) / 100) * audio.duration;
+  }
+});
+
+// 곡이 끝났을 때 다음 곡으로 이동
+$("#music-audio").addEventListener("ended", () => {
+  updatePlayButton(false);
+  playNextSong(true);
+});
+
+// 브라우저가 파일을 불러오지 못한 경우
+$("#music-audio").addEventListener("error", () => {
+  updatePlayButton(false);
+  console.warn("음원 파일을 불러오지 못했습니다. 파일 경로를 확인해 주세요.");
+});
+
+
 /* ---------- Initial render ---------- */
 renderMembers();
 renderPairs();
 renderSongs();
 renderGallery();
 renderLinks();
-selectSong(songs[0]?.id);
+selectSong(songs[0]?.id, false);
+$("#music-repeat").classList.add("is-active");
