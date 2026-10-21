@@ -57,16 +57,13 @@ a {
 }
 
 button { cursor: pointer; }
-
 a { text-decoration: none; }
 
 /* ==========================================================================
    텍스트
    ========================================================================== */
 
-.mono {
-  font-family: var(--mono);
-}
+.mono { font-family: var(--mono); }
 
 h2 {
   font: 600 clamp(36px, 5vw, 72px)/.92 var(--display);
@@ -127,7 +124,7 @@ h2 {
   transform: scaleX(1);
 }
 
-/* (반응형) 내비게이션 토글 버튼 */
+/* 반응형 대응 - 내비게이션 토글 버튼 */
 .menu-toggle {
   display: none;
   border: 1px solid var(--ink);
@@ -237,7 +234,7 @@ h2 {
   font-size: 12px;
 }
 
-/* 쪼끄만 설명 */
+/* 마지막 업데이트 */
 .home-meta {
   display: flex;
   gap: 28px;
@@ -315,16 +312,13 @@ h2 {
    MEMBERS
    ========================================================================== */
 
-
-/* 멤버 스크롤 */
-.member-rail-wrap {
+.member-scroll {
   flex: 1;
   align-items: center;
   padding: 2.5vh 0;
   overflow-x: auto;
 }
 
-/* 멤버 레일 */
 .member-rail {
   display: flex;
   gap: 6px;
@@ -334,6 +328,7 @@ h2 {
   height: 100%;
 }
 
+/* 멤버 카드 */
 .member-card {
   flex: 0 0 clamp(90px, 9.1vw, 132px);
   border: none;
@@ -353,7 +348,7 @@ h2 {
   outline: solid 2px var(--accent);
 }
 
-/* 이미지 */
+/* 멤버 이미지 */
 .member-thumb {
   display: flex;
   overflow: hidden;
@@ -381,7 +376,7 @@ h2 {
   padding: 8px;
 }
 
-/* 번호 / 이름 */
+/* 멤버 번호 이름 */
 .member-card-num {
   position: absolute;
   top: -2.5%;
@@ -398,7 +393,7 @@ h2 {
 }
 
 /* ==========================================================================
-   PAIR (갈아엎어야 함)
+   PAIR
    ========================================================================== */
 
 .pair-layout {
@@ -417,19 +412,7 @@ h2 {
   scrollbar-color: var(--accent) var(--paper-deep);
 }
 
-.song-sidebar h2,
-.links-title h2 {
-  margin: 15px 0;
-}
-
-.song-sidebar,
-.links-title {
-  font-size: 12px;
-  line-height: 1.8;
-  color: #555;
-  max-width: 90%;
-}
-
+/* 필터 */
 .pair-filter {
   display: flex;
   gap: 6px;
@@ -450,7 +433,7 @@ h2 {
   border-color: var(--ink);
 }
 
-.pair-list {
+.pair-rail {
   height: 100%;
   min-width: max-content;
   display: grid;
@@ -461,6 +444,7 @@ h2 {
   padding: 2px 2px 12px;
 }
 
+/* 페어 카드 */
 .pair-card {
   position: relative;
   min-width: 0;
@@ -472,6 +456,12 @@ h2 {
   gap: 10px;
 }
 
+.pair-card h3 {
+  font: 600 22px var(--display);
+  margin: 0;
+}
+
+/* 페어 이미지 */
 .pair-image {
   width: 100%;
   height: 100%;
@@ -484,6 +474,7 @@ h2 {
   object-fit: contain;
 }
 
+/* 페어 멤버 */
 .pair-members {
   display: flex;
   flex-wrap: wrap;
@@ -509,11 +500,7 @@ h2 {
   background: var(--paper-deep);
 }
 
-.pair-card h3 {
-  font: 600 22px var(--display);
-  margin: 0;
-}
-
+/* 페어 설명 */
 .pair-card p {
   font-size: 12px;
   color: #666;
@@ -555,12 +542,12 @@ h2 {
   min-height: 0;
   padding: 28px 18px;
   overflow: hidden;
+  width: 90%;
 }
 
 /* 턴테이블 비닐(CD) */
 .record-disc {
   --vinyl-size: clamp(180px, 20vw, 295px);
-
   position: relative;
   isolation: isolate;
   flex: 0 0 auto;
@@ -670,16 +657,13 @@ h2 {
   z-index: 3;
   left: 50%;
   top: 50%;
-
   width: 34%;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
   border: 1px solid #8fc4b7;
 
@@ -695,7 +679,6 @@ h2 {
   color: #222b27;
   text-align: center;
   font-family: var(--mono, monospace);
-
   box-shadow:
     0 1px 2px #00000060,
     inset 0 1px 2px #ffffffb0,
@@ -734,12 +717,10 @@ h2 {
   width: min(100%, 280px);
   padding-top: 12px;
   margin-top: 0;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
-
   border-top: 1px solid var(--ink, #262724);
 }
 
@@ -773,7 +754,6 @@ h2 {
 
 .turntable-base {
   --deck: #d94a1c;
-
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -785,7 +765,6 @@ h2 {
     linear-gradient(110deg, #ef6b32 0%, var(--deck) 52%, #a92d10 100%);
 
   border: 1px solid #8c321b;
-
   box-shadow:
     0 2px 2px #00000028,
     4px 7px 0 #0000000c,
@@ -809,7 +788,6 @@ h2 {
   left: 7%;
   top: 8%;
   border-radius: 50%;
-
   display: grid;
   place-items: center;
 
@@ -827,7 +805,6 @@ h2 {
     );
 
   border: 2px solid #171815;
-
   box-shadow:
     0 3px 5px #00000070,
     0 7px 12px #00000045,
@@ -861,7 +838,6 @@ h2 {
     );
 
   border: 1px solid #050605;
-
   box-shadow:
     inset 0 2px 3px #ffffff16,
     inset 0 -4px 7px #000000b0,
@@ -897,6 +873,7 @@ h2 {
 .turntable .record-label {
   width: 31%;
   border: 1px solid #d2f2e6;
+
   background:
     radial-gradient(
       circle at 30% 25%,
@@ -910,13 +887,8 @@ h2 {
     inset 0 1px 2px #ffffffb0;
 }
 
-.turntable .record-label span {
-  font-size: clamp(8px, 0.7vw, 11px);
-}
-
-.turntable .record-label small {
-  font-size: clamp(5px, 0.48vw, 7px);
-}
+.turntable .record-label span { font-size: clamp(8px, 0.7vw, 11px); }
+.turntable .record-label small { font-size: clamp(5px, 0.48vw, 7px); }
 
 .turntable .label-hole {
   width: 4px;
@@ -944,7 +916,6 @@ h2 {
     );
 
   border: 2px solid #181916;
-
   box-shadow:
     0 2px 4px #00000080,
     inset 0 1px 2px #ffffff30;
@@ -966,7 +937,6 @@ h2 {
   width: 4px;
   height: 62%;
   border-radius: 5px;
-
   transform: rotate(7deg);
   transform-origin: top center;
 
@@ -1041,7 +1011,6 @@ h2 {
   top: 49%;
   right: 5%;
   width: 13%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1124,7 +1093,7 @@ h2 {
   font-weight: 400;
 }
 
-/* 작은 화면 */
+/* 반응형 대응 */
 @media (max-width: 700px) {
   .song-sidebar {
     padding: 20px 12px;
@@ -1182,6 +1151,7 @@ h2 {
   gap: 4px;
 }
 
+/* 필터 */
 .song-filter {
   border: 1px solid var(--line);
   background: var(--paper);
@@ -1203,6 +1173,7 @@ h2 {
   scrollbar-color: var(--accent) var(--paper-deep);
 }
 
+/* 앨범 그리드 */
 .record-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1210,6 +1181,7 @@ h2 {
   align-content: start;
 }
 
+/* 앨범 아이템 */
 .record-item {
   min-width: 0;
   cursor: pointer;
@@ -1219,6 +1191,7 @@ h2 {
   text-align: left;
 }
 
+/* 앨범 커버 */
 .album-cover {
   aspect-ratio: 1;
   width: 100%;
@@ -1253,6 +1226,7 @@ h2 {
   outline: 1px solid var(--ink);
 }
 
+/* 노래 정보 */
 .record-title {
   display: block;
   margin-top: 8px;
@@ -1348,6 +1322,7 @@ h2 {
   filter: grayscale(0);
 }
 
+/* 사진 설명 */
 .gallery-caption {
   display: flex;
   justify-content: space-between;
@@ -1378,7 +1353,7 @@ h2 {
   min-height: 0;
   display: grid;
   grid-template-columns: minmax(220px, .38fr) minmax(0, 1fr);
-  gap: 4vw;
+  gap: 3vw;
   padding: 3vh 0;
 }
 
@@ -1390,6 +1365,9 @@ h2 {
   display: flex;
   flex-direction: column;
   transition: transform .2s;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--ink);
 }
 
 .links-title:hover {
@@ -1486,6 +1464,7 @@ h2 {
   transform: scale(1);
 }
 
+/* 탑바 */
 .profile-topbar {
   display: flex;
   align-items: center;
@@ -1511,7 +1490,7 @@ h2 {
   color: white;
 }
 
-/* 프로필 컨테이너 */
+/* 멤버 스탠딩+정보 */
 .profile-sheet {
   width: min(1050px, 100%);
   margin: auto;
@@ -1523,6 +1502,7 @@ h2 {
   gap: clamp(20px, 4vw, 55px);
 }
 
+/* 멤버 스탠딩 */
 .profile-portrait-wrap {
   position: relative;
   min-width: 0;
@@ -1541,6 +1521,7 @@ h2 {
   object-fit: cover;
 }
 
+/* 멤버 정보 */
 .profile-notes {
   display: flex;
   flex-direction: column;
@@ -1785,7 +1766,7 @@ h2 {
     display: none;
   }
 
-  .member-rail-wrap {
+  .member-scroll {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     gap: 10px;
@@ -1851,7 +1832,7 @@ h2 {
     display: none;
   }
 
-  .pair-list {
+  .pair-rail {
     grid-template-columns: 1fr;
     gap: 8px;
   }
@@ -2091,6 +2072,57 @@ h2 {
     padding: 8px;
     font-size: 8px;
   }
+
+:root {
+    --music-dock-height: 100px;
+  }
+
+  .music-dock {
+    padding: 9px 12px;
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 1.1fr);
+    gap: 12px;
+  }
+
+  #music-cover {
+    width: 42px;
+    height: 42px;
+  }
+
+  .music-track {
+    gap: 8px;
+  }
+
+  .music-label {
+    font-size: 7px;
+  }
+
+  #music-title {
+    font-size: 11px;
+  }
+
+  #music-artist {
+    font-size: 9px;
+  }
+
+  .music-controls {
+    gap: 8px;
+  }
+
+  .music-progress {
+    gap: 5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .music-dock {
+    grid-template-columns: minmax(0, .9fr) minmax(135px, 1.1fr);
+    gap: 8px;
+    padding-inline: 8px;
+  }
+
+  .music-controls {
+    gap: 5px;
+  }
 }
 
 /* --- 동작 감소 --------------------------- */
@@ -2107,7 +2139,7 @@ h2 {
 
 
 /* ==========================================================================
-   FIXED MUSIC PLAYER
+   하단 뮤직 플레이어
    ========================================================================== */
 
 :root {
@@ -2120,12 +2152,10 @@ h2 {
   inset: auto 0 0;
   height: var(--music-dock-height);
   padding: 10px 3.3vw;
-
   display: grid;
   grid-template-columns: minmax(180px, 1fr) minmax(260px, 1.4fr);
   align-items: center;
   gap: 28px;
-
   background: var(--paper);
   border-top: 1px solid var(--line);
 }
@@ -2200,9 +2230,7 @@ h2 {
   font: 11px var(--mono);
 }
 
-.music-controls button:hover {
-  color: var(--muted);
-}
+.music-controls button:hover { color: var(--muted); }
 
 #music-play {
   width: 29px;
@@ -2213,22 +2241,15 @@ h2 {
   color: var(--paper);
 }
 
-#music-play:hover {
-  opacity: .7;
-}
+#music-play:hover { opacity: .7; }
 
 #music-repeat {
   gap: 4px;
   color: var(--muted);
 }
 
-#music-repeat.is-active {
-  color: var(--ink);
-}
-
-#music-repeat-label {
-  font-size: 8px;
-}
+#music-repeat.is-active { color: var(--ink); }
+#music-repeat-label { font-size: 8px; }
 
 .music-progress {
   display: flex;
@@ -2250,58 +2271,4 @@ h2 {
 /* 메인 페이지가 플레이어 아래로 들어가지 않게 공간 확보 */
 .viewport {
   bottom: var(--music-dock-height);
-}
-
-/* 모바일 */
-@media (max-width: 600px) {
-  :root {
-    --music-dock-height: 100px;
-  }
-
-  .music-dock {
-    padding: 9px 12px;
-    grid-template-columns: minmax(0, 1fr) minmax(150px, 1.1fr);
-    gap: 12px;
-  }
-
-  #music-cover {
-    width: 42px;
-    height: 42px;
-  }
-
-  .music-track {
-    gap: 8px;
-  }
-
-  .music-label {
-    font-size: 7px;
-  }
-
-  #music-title {
-    font-size: 11px;
-  }
-
-  #music-artist {
-    font-size: 9px;
-  }
-
-  .music-controls {
-    gap: 8px;
-  }
-
-  .music-progress {
-    gap: 5px;
-  }
-}
-
-@media (max-width: 360px) {
-  .music-dock {
-    grid-template-columns: minmax(0, .9fr) minmax(135px, 1.1fr);
-    gap: 8px;
-    padding-inline: 8px;
-  }
-
-  .music-controls {
-    gap: 5px;
-  }
 }

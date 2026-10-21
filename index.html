@@ -11,9 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Hahmlet:wght@100..900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  
 </head>
-
 <body>
 
   <!-- 내비게이션 바 -->
@@ -46,7 +44,7 @@
           </div>
         </div>
 
-        <!-- 우측 사진 -->
+        <!-- 우측 이미지 -->
         <div class="home-visual">
           <div class="photo-frame group-photo" role="img">
             <div class="photo-placeholder"></div>
@@ -60,11 +58,9 @@
     <!-- MEMBERS -->
     <section class="page-section members-section" id="members" data-page="members" aria-label="Members">
       <div class="section-topline"><span>01 / 멤버 목록</span></div>
-
-      <div class="member-rail-wrap">
+      <div class="member-scroll">
         <div class="member-rail" id="member-rail" aria-label="Member list"></div>
       </div>
-      
     </section>
 
     <!-- PAIR -->
@@ -73,17 +69,16 @@
       <div class="pair-filter" id="pair-filter"></div>
       <div class="pair-layout">
         <div class="pair-scroll">
-          <div class="pair-list" id="pair-list"></div>
+          <div class="pair-rail" id="pair-rail"></div>
         </div>
       </div>
-      
     </section>
 
     <!-- SONG -->
     <section class="page-section song-section" id="song" data-page="song" aria-label="Songs">
       <div class="section-topline"><span>03 / 노래 목록</span></div>
       <div class="song-layout">
-              
+          
         <!-- 좌측 턴테이블 -->
         <aside class="song-sidebar">
           <div class="turntable">
@@ -134,7 +129,6 @@
           <div class="shelf-footer"><span>HANDLE WITH CARE</span><span>40+ TRACKS / SCROLL TO EXPLORE ↓</span></div>
         </div>
       </div>
-      
     </section>
 
     <!-- GALLERY -->
@@ -144,17 +138,15 @@
         <div class="gallery-scroll" id="gallery-scroll"><div class="gallery-grid" id="gallery-grid"></div></div>
         <div class="gallery-bottom"><span>← 가로로 스크롤 →</span></div>
       </div>
-      
     </section>
 
     <!-- LINKS -->
     <section class="page-section links-section" id="links" data-page="links" aria-label="Links">
       <div class="section-topline"><span>05 / 링크트리</span></div>
       <div class="links-layout">
-        <a class="links-title" href="https://youtube.com"><h2>왁물원</h2><p>우왁굳&왁타버스 공식 카페</p></a>
+        <a class="links-title" href="https://cafe.naver.com/steamindiegame" target="_blank"><h2>왁물원</h2><p>우왁굳&왁타버스 공식 카페</p></a>
         <div class="link-container" id="link-container"></div>
       </div>
-      
     </section>
   </main>
 
@@ -188,19 +180,16 @@
     <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
   </div>
 
-
-  <!-- 하단 고정 뮤직 플레이어 -->
+  <!-- 하단 뮤직 플레이어 -->
   <aside class="music-dock" id="music-dock" aria-label="뮤직 플레이어">
     <div class="music-track">
       <img id="music-cover" src="images/album/jongchunjimo.jpg" alt="앨범 커버">
-
       <div class="music-info">
         <span class="music-label">NOW PLAYING</span>
         <strong id="music-title">종천지모</strong>
         <span id="music-artist">사랑전도사 젠투</span>
       </div>
     </div>
-
     <div class="music-center">
       <div class="music-controls">
         <button id="music-prev" type="button" aria-label="이전 곡">|◀</button>
@@ -213,7 +202,6 @@
           <small id="music-repeat-label">ALL</small>
         </button>
       </div>
-
       <div class="music-progress">
         <span id="music-current-time">0:00</span>
         <input
@@ -228,10 +216,10 @@
         <span id="music-duration">0:00</span>
       </div>
     </div>
-
     <audio id="music-audio" preload="metadata"></audio>
   </aside>
 
+  <!-- JS 불러오기 -->
   <script src="script.js"></script>
 </body>
 </html>

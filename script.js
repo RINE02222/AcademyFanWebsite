@@ -85,12 +85,13 @@ const galleryItems = [
 ]
 
 const links = [
-  { title: "우왁굳의 게임 방송", description: "공식 팬카페 및 커뮤니티", label: "유튜브", icon: "N", url: "https://cafe.naver.com/" },
-  { title: "우왁굳", description: "영상과 다시보기 기록", label: "SOOP", icon: "▶", url: "https://www.youtube.com/" },
-  { title: "WAKTAVERSE", description: "방송국 바로가기", label: "유튜브", icon: "S", url: "https://www.sooplive.co.kr/" },
-  { title: "Waktaverse ZERO", description: "정보와 참고 자료 모음", label: "유튜브", icon: "↗", url: "#" },
-  { title: "패러블 엔터테인먼트", description: "팬아트와 창작물", label: "홈페이지", icon: "✳", url: "#" },
-  { title: "고카 상사", description: "그 외의 연결된 기록들", label: "홈페이지", icon: "+", url: "#" }
+  { title: "우왁굳", description: "우왁굳 유튜브 채널", label: "유튜브", icon: "N", url: "https://www.youtube.com/@woowakgood" },
+  { title: "우왁굳", description: "우왁굳 방송국 바로가기", label: "SOOP", icon: "▶", url: "https://www.sooplive.com/station/ecvhao" },
+  { title: "왁타버스 WAKTAVERSE", description: "왁타버스 메인 유튜브 채널", label: "유튜브", icon: "S", url: "https://www.youtube.com/channel/UCzh4yY8rl38knH33XpNqXbQ" },
+  { title: "왁타버스 ZERO", description: "방송 다시보기 및 고멤 놀이터", label: "유튜브", icon: "↗", url: "https://www.youtube.com/channel/UCZOcwheypMvYN_J2oRBgt2A" },
+  { title: "고카 상사", description: "공식 사내 커뮤니티", label: "홈페이지", icon: "+", url: "https://goca-company.sp0907sh.chatgpt.site/" },
+  { title: "아카데미 플레이리스트", description: "아카데미생들의 추천곡 모음", label: "유튜브 재생목록", icon: "+", url: "https://www.youtube.com/playlist?list=PLStHIETtt5OxgxpMb_1hohY9NuF9g5sN8" },
+  { title: "패러블 엔터테인먼트", description: "우왁굳이 소속된 MCN", label: "홈페이지", icon: "✳", url: "#" }
 ];
 
 /* ---------- Shared helpers ---------- */
@@ -224,7 +225,7 @@ function renderPairs() {
   ).join("");
 
   // 2. 여러 카테고리를 지원하는 리스트 필터링
-  $("#pair-list").innerHTML = pairs.filter(pair => {
+  $("#pair-rail").innerHTML = pairs.filter(pair => {
     // "전체"이거나 activePairFilter가 지정되지 않았으면 모든 카드 통과
     if (activePairFilter === "전체" || !activePairFilter) return true;
 
