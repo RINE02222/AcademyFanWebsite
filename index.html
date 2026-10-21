@@ -50,8 +50,8 @@
           <h1>GOMEM<br><em>ACADEMY</em></h1>
           <p class="home-description">왁타버스 고멤 아카데미 비공식 홈페이지</p>
           <div class="home-meta">
-            <div><small>마지막 업데이트</small><strong>2026. 10. 00.</strong></div>
-            <div><small>만든 이</small><strong>ㅁㄹㅂㅊ</strong></div>
+            <div><small>LATEST UPDATE</small><strong>2026. 10. 00.</strong></div>
+            <div><small>CREATED BY</small><strong>ㅁㄹㅂㅊ</strong></div>
           </div>
         </div>
 
@@ -63,20 +63,20 @@
             <article class="home-widget home-widget-birthday">
               <span class="home-widget-label">NEXT BIRTHDAY</span>
               <strong class="home-widget-count" id="home-birthday-days">—</strong>
-              <span class="home-widget-caption" id="home-birthday-name">생일 정보를 확인하고 있어요</span>
-              <span class="home-widget-date" id="home-birthday-date">ACADEMY MEMBER</span>
+              <span class="home-widget-caption" id="home-birthday-name">생일 정보를 확인하고 있습니다</span>
+              <span class="home-widget-date" id="home-birthday-date">날짜 표기란</span>
             </article>
 
             <article class="home-widget home-widget-event">
               <span class="home-widget-label">UPCOMING / D-DAY</span>
               <strong class="home-widget-event-title" id="home-event-title">등록된 일정이 없습니다</strong>
               <span class="home-widget-caption" id="home-event-count">캘린더 일정 등록 대기 중</span>
-              <span class="home-widget-date" id="home-event-date">CALENDAR LOG</span>
+              <span class="home-widget-date" id="home-event-date">날짜 표기란</span>
             </article>
 
             <article class="home-widget home-widget-archive">
               <span class="home-widget-label">RECENT UPDATE</span>
-              <ul class="home-archive-list" id="home-archive-list" aria-label="최근 업데이트"></ul>
+              <ul class="home-archive-list" id="home-archive-list"></ul>
             </article>
           </div>
         </div>
@@ -85,7 +85,7 @@
 
     <!-- MEMBERS -->
     <section class="page-section members-section" id="members" data-page="members">
-      <div class="section-topline"><span>01 / 멤버 목록</span></div>
+      <div class="section-topline"><span>01 / 아카데미생 목록</span></div>
       <div class="member-scroll">
         <div class="member-rail" id="member-rail"></div>
       </div>
@@ -93,7 +93,7 @@
 
     <!-- PAIR -->
     <section class="page-section pair-section" id="pair" data-page="pair" aria-label="Pairs">
-      <div class="section-topline"><span>02 / 페어 목록</span></div>
+      <div class="section-topline"><span>02 / 조합 목록</span></div>
       <div class="pair-container">
         <div class="pair-filter" id="pair-filter"></div>
           <div class="pair-scroll">
@@ -253,7 +253,7 @@
     <section class="archive-modal dossier-modal" role="dialog"
             aria-modal="true" aria-labelledby="dossier-title">
       <header class="archive-modal-header">
-        <span id="dossier-number">RELATIONSHIP DOSSIER / NO. 001</span>
+        <span id="dossier-number">RELATIONSHIP DOSSIER / NO. 01</span>
         <button type="button" class="archive-close" data-close-archive
                 aria-label="닫기">×</button>
       </header>
@@ -265,29 +265,17 @@
   <!-- GALLERY - 라이트박스 -->
   <div class="archive-overlay lightbox-overlay" id="archive-lightbox"
       aria-hidden="true">
-    <section class="archive-modal lightbox-modal" role="dialog"
-            aria-modal="true" aria-label="사진 열람실">
+    <section class="archive-modal lightbox-modal" role="dialog" aria-modal="true">
       <header class="archive-modal-header">
         <span id="lightbox-counter">ARCHIVE VIEWER / PHOTO 001</span>
-        <button type="button" class="archive-close" data-close-archive
-                aria-label="닫기">×</button>
+        <button type="button" class="archive-close" data-close-archive aria-label="닫기">×</button>
       </header>
-
       <div class="lightbox-main">
-        <button type="button" class="lightbox-arrow" id="lightbox-prev"
-                aria-label="이전 사진">←</button>
+        <button type="button" class="lightbox-arrow" id="lightbox-prev" aria-label="이전 사진">←</button>
         <div class="lightbox-image-wrap" id="lightbox-image-wrap"></div>
-        <button type="button" class="lightbox-arrow" id="lightbox-next"
-                aria-label="다음 사진">→</button>
+        <button type="button" class="lightbox-arrow" id="lightbox-next" aria-label="다음 사진">→</button>
       </div>
-
       <div class="lightbox-info" id="lightbox-info"></div>
-
-      <footer class="lightbox-footer">
-        <span>ARCHIVE COLLECTION</span>
-        <button type="button" class="archive-text-button"
-                id="open-evidence">OPEN EVIDENCE BOARD ↗</button>
-      </footer>
     </section>
   </div>
 
