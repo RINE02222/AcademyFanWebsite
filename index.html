@@ -49,7 +49,29 @@
           <div class="photo-frame group-photo" role="img">
             <div class="photo-placeholder"></div>
           </div>
-          <div class="home-sticker sticker-bottom"><img src="images/logo.png"></div>
+          <div class="home-sticker sticker-bottom"><img src="images/logo.png" alt="고멤 아카데미 로고"></div>
+
+          <!-- 일정 데이터는 script.js의 homeEvents 배열에서 관리합니다. -->
+          <div class="home-widgets" aria-label="다가오는 일정과 최근 기록">
+            <article class="home-widget home-widget-birthday">
+              <span class="home-widget-label">NEXT BIRTHDAY</span>
+              <strong class="home-widget-count" id="home-birthday-days">—</strong>
+              <span class="home-widget-caption" id="home-birthday-name">생일 정보를 확인하고 있어요</span>
+              <span class="home-widget-date" id="home-birthday-date">ACADEMY MEMBER</span>
+            </article>
+
+            <article class="home-widget home-widget-event">
+              <span class="home-widget-label">UPCOMING / D-DAY</span>
+              <strong class="home-widget-event-title" id="home-event-title">등록된 일정이 없습니다</strong>
+              <span class="home-widget-caption" id="home-event-count">캘린더 일정 등록 대기 중</span>
+              <span class="home-widget-date" id="home-event-date">CALENDAR LOG</span>
+            </article>
+
+            <article class="home-widget home-widget-archive">
+              <span class="home-widget-label">RECENT ARCHIVE LOG</span>
+              <ul class="home-archive-list" id="home-archive-list" aria-label="최근 업데이트"></ul>
+            </article>
+          </div>
         </div>
         <div class="home-footer"></div>
       </div>
