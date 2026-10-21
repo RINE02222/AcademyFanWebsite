@@ -150,6 +150,64 @@
     </section>
   </main>
 
+  <!-- PAIR 상세 기록 모달 -->
+  <div class="archive-overlay" id="pair-dossier" aria-hidden="true">
+    <section class="archive-modal dossier-modal" role="dialog"
+            aria-modal="true" aria-labelledby="dossier-title">
+      <header class="archive-modal-header">
+        <span id="dossier-number">RELATIONSHIP DOSSIER / NO. 001</span>
+        <button type="button" class="archive-close" data-close-archive
+                aria-label="닫기">×</button>
+      </header>
+
+      <div class="dossier-content" id="dossier-content"></div>
+    </section>
+  </div>
+
+  <!-- GALLERY 라이트박스 -->
+  <div class="archive-overlay lightbox-overlay" id="archive-lightbox"
+      aria-hidden="true">
+    <section class="archive-modal lightbox-modal" role="dialog"
+            aria-modal="true" aria-label="사진 열람실">
+      <header class="archive-modal-header">
+        <span id="lightbox-counter">ARCHIVE VIEWER / PHOTO 001</span>
+        <button type="button" class="archive-close" data-close-archive
+                aria-label="닫기">×</button>
+      </header>
+
+      <div class="lightbox-main">
+        <button type="button" class="lightbox-arrow" id="lightbox-prev"
+                aria-label="이전 사진">←</button>
+        <div class="lightbox-image-wrap" id="lightbox-image-wrap"></div>
+        <button type="button" class="lightbox-arrow" id="lightbox-next"
+                aria-label="다음 사진">→</button>
+      </div>
+
+      <div class="lightbox-info" id="lightbox-info"></div>
+
+      <footer class="lightbox-footer">
+        <span>ARCHIVE COLLECTION</span>
+        <button type="button" class="archive-text-button"
+                id="open-evidence">OPEN EVIDENCE BOARD ↗</button>
+      </footer>
+    </section>
+  </div>
+
+  <!-- Evidence Board -->
+  <div class="archive-overlay" id="evidence-board" aria-hidden="true">
+    <section class="archive-modal evidence-modal" role="dialog"
+            aria-modal="true" aria-labelledby="evidence-title">
+      <header class="archive-modal-header">
+        <span>CONNECTED RECORDS / EVIDENCE BOARD</span>
+        <button type="button" class="archive-close" data-close-archive
+                aria-label="닫기">×</button>
+      </header>
+
+      <div class="evidence-content" id="evidence-content"></div>
+    </section>
+  </div>
+
+
   <!-- MEMBERS 프로필 오버레이 -->
   <div class="profile-overlay" id="profile-overlay" aria-hidden="true">
     <div class="profile-topbar"><button id="close-profile" class="close-profile">← 돌아가기</button></div>

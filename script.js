@@ -67,21 +67,8 @@ const songs = [
 ];
 
 const galleryItems = [
-  { id: 1, title: "2023 우왁굳 생일", date: "2000. 00. 00.", image: "images/gallery/01_wgbirth.png" },
-  { id: 2, title: "제목", date: "2000. 00. 00.", image: "images/gallery/02_soccer.jpg" },
-  { id: 3, title: "제목", date: "2000. 00. 00.", image: "images/gallery/03_gomemhill.jpg" },
-  { id: 4, title: "제목", date: "2000. 00. 00.", image: "images/gallery/04_school.png" },
-  { id: 5, title: "제목", date: "2000. 00. 00.", image: "images/gallery/05_family.png" },
-  { id: 6, title: "제목", date: "2000. 00. 00.", image: "images/gallery/06_endofyear.png" },
-  { id: 7, title: "제목", date: "2000. 00. 00.", image: "images/gallery/07_popvirus.png" },
-  { id: 8, title: "제목", date: "2000. 00. 00.", image: "images/gallery/08_mibal.jpg" },
-  { id: 9, title: "제목", date: "2000. 00. 00.", image: "images/gallery/09_princess.png" },
-  { id: 10, title: "제목", date: "2000. 00. 00.", image: "images/gallery/10_wander.jpg" },
-  { id: 11, title: "제목", date: "2000. 00. 00.", image: "images/gallery/11_roki.png" },
-  { id: 12, title: "제목", date: "2000. 00. 00.", image: "images/gallery/12_newyear.png" },
-  { id: 13, title: "제목", date: "2000. 00. 00.", image: "images/gallery/13_baseball1.png" },
-  { id: 14, title: "제목", date: "2000. 00. 00.", image: "images/gallery/14_baseball2.png" },
-  { id: 15, title: "제목", date: "2000. 00. 00.", image: "images/gallery/15_summer.png" },
+  { id: 1, title: "2023 우왁굳 생일", date: "2000. 00. 00.", image: "images/gallery/01_wgbirth.png", description: "", memberIds: [2], pairIds: [1] },
+  { id: 2, title: "제목", date: "2000. 00. 00.", image: "images/gallery/02_soccer.jpg", description: "", memberIds: [2, 5, 6], pairIds: [2, 3, 4] }
 ]
 
 const links = [
@@ -216,35 +203,363 @@ function stepProfile(direction) {
   openProfile();
 }
 
+
 function renderPairs() {
-  const filters = ["전체", "기수별", "여성", "남성", "그룹"]; // 필요한 필터 추가 가능
+  const filters = ["전체", "기수별", "여성", "남성", "그룹"];
 
-  // 1. 버튼 렌더링
-  $("#pair-filter").innerHTML = filters.map(filter =>
-    `<button class="${activePairFilter === filter ? "is-active" : ""}" data-pair-filter="${filter}">${filter}</button>`
-  ).join("");
+  $("#pair-filter").innerHTML = filters.map(filter => `
+    <button
+      class="${activePairFilter === filter ? "is-active" : ""}"
+      data-pair-filter="${escapeHTML(filter)}"
+    >${escapeHTML(filter)}</button>
+  `).join("");
 
-  // 2. 여러 카테고리를 지원하는 리스트 필터링
-  $("#pair-rail").innerHTML = pairs.filter(pair => {
-    // "전체"이거나 activePairFilter가 지정되지 않았으면 모든 카드 통과
+  const filteredPairs = pairs.filter(pair => {
     if (activePairFilter === "전체" || !activePairFilter) return true;
+    return Array.isArray(pair.category) &&
+      pair.category.includes(activePairFilter);
+  });
 
-    // category가 배열이므로, 선택된 필터가 배열에 포함되어 있는지 확인 (.includes)
-    return Array.isArray(pair.category) && pair.category.includes(activePairFilter);
-  }).map(pair => {
-    // 💡 카드 헤드에 여러 카테고리를 보기 좋게 쉼표(,) 등으로 이어 붙여 출력할 수도 있습니다.
-    const categoryText = Array.isArray(pair.category) ? pair.category.join(", ") : pair.category;
-    const people = pair.members.slice(0, 11).map(id => memberById(id)).filter(Boolean);
+  $("#pair-rail").innerHTML = filteredPairs.map(pair => {
+    const people = pair.members
+      .map(id => memberById(id))
+      .filter(Boolean);
 
-    return `<article class="pair-card">
-      <h3>${escapeHTML(pair.title)}</h3>
-      <div class="pair-image"><img src="${escapeHTML(pair.image)}" alt=""></div>
-      <div class="pair-members">${people.map(member => `<div class="pair-person">${member.portrait ? `<img src="${escapeHTML(member.portrait)}" alt="">` : `<span class="pair-avatar-fallback" style="display:grid;place-items:center;font:9px var(--mono)">${String(member.id).padStart(2, "0")}</span>`}</div>`).join("")}</div>
-      <p>${escapeHTML(pair.description)}</p>
-      <div class="pair-card-foot"><span>${people.length} MEMBER${people.length === 1 ? "" : "S"}</span></div>
-    </article>`;
-  }).join("") || `<p class="empty-state">NO RECORDS IN THIS CATEGORY.</p>`;
+    const categories = Array.isArray(pair.category)
+      ? pair.category
+      : [pair.category].filter(Boolean);
+
+    return `
+      <article
+        class="pair-card"
+        data-pair-id="${escapeHTML(pair.id)}"
+        tabindex="0"
+        role="button"
+        aria-label="${escapeHTML(pair.title)} 관계 카드 열기"
+        aria-pressed="false"
+      >
+        <div class="pair-card-inner">
+
+          <div class="pair-card-front">
+            <div class="pair-card-index">
+              <span>INDEX ${String(pair.id).padStart(3, "0")}</span>
+              <span>↻ FLIP</span>
+            </div>
+
+            <h3>${escapeHTML(pair.title)}</h3>
+
+            <div class="pair-image">
+              ${imageMarkup(pair.image, pair.title)}
+            </div>
+
+            <div class="pair-members">
+              ${people.map(member => `
+                <div class="pair-person">
+                  ${member.portrait
+                    ? `<img src="${escapeHTML(member.portrait)}"
+                            alt="${escapeHTML(member.name)}">`
+                    : `<span class="pair-avatar-fallback">
+                         ${String(member.id).padStart(2, "0")}
+                       </span>`
+                  }
+                </div>
+              `).join("")}
+            </div>
+
+            <div class="pair-card-hint">
+              CLICK TO REVEAL →
+            </div>
+          </div>
+
+          <div class="pair-card-back">
+            <div class="pair-card-index">
+              <span>RELATION NOTES</span>
+              <span>NO. ${String(pair.id).padStart(3, "0")}</span>
+            </div>
+
+            <h3>${escapeHTML(pair.title)}</h3>
+
+            <div class="dossier-tags">
+              ${categories.map(category => `
+                <span class="dossier-tag">
+                  ${escapeHTML(category)}
+                </span>
+              `).join("")}
+            </div>
+
+            <p>${escapeHTML(pair.description || "기록된 설명이 없습니다.")}</p>
+
+            <button
+              type="button"
+              class="archive-text-button"
+              data-open-dossier="${escapeHTML(pair.id)}"
+            >OPEN DOSSIER ↗</button>
+          </div>
+
+        </div>
+      </article>
+    `;
+  }).join("") || `
+    <p class="empty-state">NO RECORDS IN THIS CATEGORY.</p>
+  `;
 }
+
+function openPairDossier(id) {
+  const pair = pairs.find(item => String(item.id) === String(id));
+  if (!pair) return;
+
+  const people = pair.members
+    .map(memberById)
+    .filter(Boolean);
+
+  const categories = Array.isArray(pair.category)
+    ? pair.category
+    : [pair.category].filter(Boolean);
+
+  // 이 페어와 연결해 둔 사진만 표시
+  const relatedPhotos = galleryItems.filter(item =>
+    (item.pairIds || []).some(pairId => String(pairId) === String(pair.id))
+  );
+
+  $("#dossier-number").textContent =
+    `RELATIONSHIP DOSSIER / NO. ${String(pair.id).padStart(3, "0")}`;
+
+  $("#dossier-content").innerHTML = `
+    <div class="dossier-hero">
+      <div class="dossier-cover">
+        ${imageMarkup(pair.image, pair.title)}
+      </div>
+
+      <div class="dossier-heading">
+        <span class="music-label">RELATIONSHIP RECORD</span>
+        <h2 id="dossier-title">${escapeHTML(pair.title)}</h2>
+
+        <div class="dossier-tags">
+          ${categories.map(category => `
+            <span class="dossier-tag">${escapeHTML(category)}</span>
+          `).join("")}
+        </div>
+
+        <p class="dossier-description">
+          ${escapeHTML(pair.description || "기록된 설명이 없습니다.")}
+        </p>
+      </div>
+    </div>
+
+    <section class="dossier-section">
+      <h3>MEMBER RECORDS / ${people.length}</h3>
+      <div class="dossier-members">
+        ${people.map(member => `
+          <button
+            type="button"
+            class="dossier-member"
+            data-dossier-member="${member.id}"
+          >
+            ${member.portrait
+              ? `<img src="${escapeHTML(member.portrait)}"
+                      alt="${escapeHTML(member.name)}">`
+              : `<span class="dossier-member-placeholder">
+                   ${String(member.id).padStart(2, "0")}
+                 </span>`
+            }
+            <span>${escapeHTML(member.name)}</span>
+          </button>
+        `).join("")}
+      </div>
+    </section>
+
+    <section class="dossier-section">
+      <h3>RELATED EVIDENCE / ${relatedPhotos.length}</h3>
+
+      <div class="related-photo-list">
+        ${relatedPhotos.map(photo => `
+          <button
+            type="button"
+            class="related-photo"
+            data-dossier-photo="${photo.id}"
+          >
+            ${photo.image
+              ? `<img src="${escapeHTML(photo.image)}"
+                      alt="${escapeHTML(photo.title)}">`
+              : ""
+            }
+            <span>${escapeHTML(photo.title)}</span>
+          </button>
+        `).join("")}
+      </div>
+
+      ${relatedPhotos.length === 0
+        ? `<p class="evidence-empty">
+             아직 연결된 사진이 없습니다.
+             갤러리 기록에 이 페어의 ID를 등록하면 여기에 표시됩니다.
+           </p>`
+        : ""
+      }
+    </section>
+  `;
+
+  closeArchiveOverlay("evidence-board");
+  closeArchiveOverlay("archive-lightbox");
+  $("#pair-dossier").classList.add("is-open");
+  $("#pair-dossier").setAttribute("aria-hidden", "false");
+}
+
+$("#dossier-content").addEventListener("click", event => {
+  const memberButton = event.target.closest("[data-dossier-member]");
+  const photoButton = event.target.closest("[data-dossier-photo]");
+
+  if (memberButton) {
+    const memberId = Number(memberButton.dataset.dossierMember);
+    closeArchiveOverlay("pair-dossier");
+    selectMember(memberId);
+    navigateTo("members");
+    openProfile();
+    return;
+  }
+
+  if (photoButton) {
+    openLightbox(Number(photoButton.dataset.dossierPhoto));
+  }
+});
+
+
+function openEvidenceBoard() {
+  const current = galleryItems.find(
+    item => item.id === currentGalleryId
+  );
+
+  if (!current) return;
+
+  const memberIds = current.memberIds || [];
+  const pairIds = (current.pairIds || []).map(String);
+
+  // 동일한 멤버 또는 페어 ID를 공유하는 사진
+  const relatedPhotos = galleryItems.filter(item => {
+    if (item.id === current.id) return false;
+
+    const sharesMember = (item.memberIds || [])
+      .some(id => memberIds.includes(id));
+
+    const sharesPair = (item.pairIds || [])
+      .some(id => pairIds.includes(String(id)));
+
+    return sharesMember || sharesPair;
+  });
+
+  const relatedMembers = memberIds
+    .map(memberById)
+    .filter(Boolean);
+
+  const relatedPairs = pairs.filter(pair =>
+    pairIds.includes(String(pair.id))
+  );
+
+  $("#evidence-content").innerHTML = `
+    <div class="evidence-intro">
+      <span class="music-label">CENTER RECORD / PHOTO ${String(current.id).padStart(3, "0")}</span>
+      <h2 id="evidence-title">${escapeHTML(current.title)}</h2>
+      <p>
+        이 기록과 연결된 멤버, 페어, 사진을 탐색합니다.
+        연결 정보는 galleryItems에 등록된 항목을 기준으로 표시됩니다.
+      </p>
+    </div>
+
+    <section class="evidence-group">
+      <h3>CONNECTED MEMBERS / ${relatedMembers.length}</h3>
+      <div class="evidence-record-grid">
+        ${relatedMembers.map(member => `
+          <button type="button" class="evidence-record"
+                  data-board-member="${member.id}">
+            ${member.portrait
+              ? `<img src="${escapeHTML(member.portrait)}"
+                      alt="${escapeHTML(member.name)}">`
+              : `<span>MEMBER ${String(member.id).padStart(2, "0")}</span>`
+            }
+            <span>${escapeHTML(member.name)}</span>
+          </button>
+        `).join("")}
+      </div>
+      ${relatedMembers.length ? "" : `
+        <p class="evidence-empty">연결된 멤버가 없습니다. memberIds를 등록해 주세요.</p>
+      `}
+    </section>
+
+    <section class="evidence-group">
+      <h3>CONNECTED PAIRS / ${relatedPairs.length}</h3>
+      <div class="evidence-record-grid">
+        ${relatedPairs.map(pair => `
+          <button type="button" class="evidence-record"
+                  data-board-pair="${escapeHTML(pair.id)}">
+            ${pair.image
+              ? `<img src="${escapeHTML(pair.image)}"
+                      alt="${escapeHTML(pair.title)}">`
+              : `<span>PAIR ${String(pair.id).padStart(3, "0")}</span>`
+            }
+            <span>${escapeHTML(pair.title)}</span>
+          </button>
+        `).join("")}
+      </div>
+      ${relatedPairs.length ? "" : `
+        <p class="evidence-empty">연결된 페어가 없습니다. pairIds를 등록해 주세요.</p>
+      `}
+    </section>
+
+    <section class="evidence-group">
+      <h3>RELATED PHOTOS / ${relatedPhotos.length}</h3>
+      <div class="evidence-record-grid">
+        ${relatedPhotos.map(photo => `
+          <button type="button" class="evidence-record"
+                  data-board-photo="${photo.id}">
+            ${photo.image
+              ? `<img src="${escapeHTML(photo.image)}"
+                      alt="${escapeHTML(photo.title)}">`
+              : `<span>PHOTO ${String(photo.id).padStart(3, "0")}</span>`
+            }
+            <span>${escapeHTML(photo.title)}</span>
+          </button>
+        `).join("")}
+      </div>
+      ${relatedPhotos.length ? "" : `
+        <p class="evidence-empty">
+          연결된 사진이 없습니다. 같은 멤버 또는 페어를 공유하는 사진이 자동으로 표시됩니다.
+        </p>
+      `}
+    </section>
+  `;
+
+  closeArchiveOverlay("archive-lightbox");
+  closeArchiveOverlay("pair-dossier");
+
+  $("#evidence-board").classList.add("is-open");
+  $("#evidence-board").setAttribute("aria-hidden", "false");
+}
+
+$("#open-evidence").addEventListener("click", openEvidenceBoard);
+
+$("#evidence-content").addEventListener("click", event => {
+  const memberButton = event.target.closest("[data-board-member]");
+  const pairButton = event.target.closest("[data-board-pair]");
+  const photoButton = event.target.closest("[data-board-photo]");
+
+  if (memberButton) {
+    const memberId = Number(memberButton.dataset.boardMember);
+    closeArchiveOverlay("evidence-board");
+    selectMember(memberId);
+    navigateTo("members");
+    openProfile();
+    return;
+  }
+
+  if (pairButton) {
+    openPairDossier(pairButton.dataset.boardPair);
+    return;
+  }
+
+  if (photoButton) {
+    openLightbox(Number(photoButton.dataset.boardPhoto));
+  }
+});
+
 
 function renderSongs() {
   renderSongGrid();
@@ -424,14 +739,118 @@ function toggleRepeatMode() {
 }
 
 
+
 function renderGallery() {
   $("#gallery-grid").innerHTML = galleryItems.map(item => `
-    <article class="gallery-item" style="--tilt:${(item.id % 3 - 1) * .5}deg">
-      <div class="gallery-image">${imageMarkup(item.image, `PHOTO ${String(item.id).padStart(3, "0")}`)}</div>
-      <div class="gallery-caption"><span>${escapeHTML(item.title)}</span><span>${escapeHTML(item.date)}</span></div>
+    <article
+      class="gallery-item"
+      data-gallery-id="${item.id}"
+      tabindex="0"
+      role="button"
+      aria-label="사진 열기: ${escapeHTML(item.title)}"
+      style="--tilt:${(item.id % 3 - 1) * .5}deg"
+    >
+      <div class="gallery-image">
+        ${imageMarkup(
+          item.image,
+          `PHOTO ${String(item.id).padStart(3, "0")}`
+        )}
+      </div>
+
+      <div class="gallery-caption">
+        <span>${escapeHTML(item.title)}</span>
+        <span>${escapeHTML(item.date)}</span>
+      </div>
     </article>
   `).join("");
 }
+
+let currentGalleryId = null;
+
+function openLightbox(id) {
+  const item = galleryItems.find(photo => photo.id === Number(id));
+  if (!item) return;
+
+  currentGalleryId = item.id;
+
+  closeArchiveOverlay("pair-dossier");
+  closeArchiveOverlay("evidence-board");
+
+  renderLightbox();
+
+  $("#archive-lightbox").classList.add("is-open");
+  $("#archive-lightbox").setAttribute("aria-hidden", "false");
+}
+
+function renderLightbox() {
+  const index = galleryItems.findIndex(
+    item => item.id === currentGalleryId
+  );
+
+  const item = galleryItems[index];
+  if (!item) return;
+
+  $("#lightbox-counter").textContent =
+    `ARCHIVE VIEWER / PHOTO ${String(index + 1).padStart(3, "0")} OF ${String(galleryItems.length).padStart(3, "0")}`;
+
+  $("#lightbox-image-wrap").innerHTML = item.image
+    ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}">`
+    : `<span>NO IMAGE AVAILABLE</span>`;
+
+  const memberNames = (item.memberIds || [])
+    .map(memberById)
+    .filter(Boolean)
+    .map(member => member.name);
+
+  $("#lightbox-info").innerHTML = `
+    <h2>${escapeHTML(item.title)}</h2>
+    <span class="music-label">
+      ${escapeHTML(item.date || "DATE UNKNOWN")}
+    </span>
+    <p>${escapeHTML(item.description || "아직 추가된 기록 설명이 없습니다.")}</p>
+    ${memberNames.length
+      ? `<p>MEMBERS / ${memberNames.map(escapeHTML).join(" · ")}</p>`
+      : ""
+    }
+  `;
+
+  $("#lightbox-prev").disabled = galleryItems.length < 2;
+  $("#lightbox-next").disabled = galleryItems.length < 2;
+}
+
+function stepLightbox(direction) {
+  const index = galleryItems.findIndex(
+    item => item.id === currentGalleryId
+  );
+
+  if (index < 0 || galleryItems.length < 2) return;
+
+  const nextIndex =
+    (index + direction + galleryItems.length) % galleryItems.length;
+
+  currentGalleryId = galleryItems[nextIndex].id;
+  renderLightbox();
+}
+
+// 갤러리 클릭 이벤트
+$("#gallery-grid").addEventListener("click", event => {
+  const card = event.target.closest("[data-gallery-id]");
+  if (card) openLightbox(Number(card.dataset.galleryId));
+});
+
+$("#gallery-grid").addEventListener("keydown", event => {
+  const card = event.target.closest("[data-gallery-id]");
+  if (!card) return;
+
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openLightbox(Number(card.dataset.galleryId));
+  }
+});
+
+$("#lightbox-prev").addEventListener("click", () => stepLightbox(-1));
+$("#lightbox-next").addEventListener("click", () => stepLightbox(1));
+
 
 function renderLinks() {
   $("#link-container").innerHTML = links.map((link, index) => `
@@ -474,6 +893,89 @@ document.addEventListener("keydown", event => {
   if ($("#profile-overlay").classList.contains("is-open")) {
     if (event.key === "ArrowLeft") stepProfile(-1);
     if (event.key === "ArrowRight") stepProfile(1);
+  }
+});
+
+function flipPairCard(card) {
+  const isFlipped = card.classList.toggle("is-flipped");
+  card.setAttribute("aria-pressed", String(isFlipped));
+}
+
+$("#pair-rail").addEventListener("click", event => {
+  const dossierButton = event.target.closest("[data-open-dossier]");
+
+  if (dossierButton) {
+    event.stopPropagation();
+    openPairDossier(dossierButton.dataset.openDossier);
+    return;
+  }
+
+  const card = event.target.closest("[data-pair-id]");
+  if (card) flipPairCard(card);
+});
+
+$("#pair-rail").addEventListener("keydown", event => {
+  const card = event.target.closest("[data-pair-id]");
+  if (!card) return;
+
+  if (event.target.closest("[data-open-dossier]")) return;
+
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    flipPairCard(card);
+  }
+});
+
+
+function closeArchiveOverlay(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+
+  overlay.classList.remove("is-open");
+  overlay.setAttribute("aria-hidden", "true");
+}
+
+// 모달의 X 버튼
+$$("[data-close-archive]").forEach(button => {
+  button.addEventListener("click", () => {
+    const overlay = button.closest(".archive-overlay");
+    if (overlay) closeArchiveOverlay(overlay.id);
+  });
+});
+
+// 어두운 배경을 클릭해 닫기
+$$(".archive-overlay").forEach(overlay => {
+  overlay.addEventListener("click", event => {
+    if (event.target === overlay) {
+      closeArchiveOverlay(overlay.id);
+    }
+  });
+});
+
+// 키보드 조작
+document.addEventListener("keydown", event => {
+  const lightboxOpen =
+    $("#archive-lightbox").classList.contains("is-open");
+
+  if (event.key === "Escape") {
+    const openOverlay = [
+      "evidence-board",
+      "pair-dossier",
+      "archive-lightbox"
+    ].find(id => $(`#${id}`).classList.contains("is-open"));
+
+    if (openOverlay) {
+      closeArchiveOverlay(openOverlay);
+    }
+    return;
+  }
+
+  if (lightboxOpen && event.key === "ArrowLeft") {
+    stepLightbox(-1);
+  }
+
+  if (lightboxOpen && event.key === "ArrowRight") {
+    stepLightbox(1);
   }
 });
 
