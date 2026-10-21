@@ -14,9 +14,14 @@
 </head>
 <body>
 
-  <!-- 내비게이션 바 -->
+  <!-- 
+  ============================================
+  내비게이션 바
+  ============================================ 
+  -->
+
   <header class="topbar">
-    <nav class="nav-container">
+    <nav class="nav-btn-wrap">
       <button class="nav-btn is-active" data-section="home">HOME</button>
       <button class="nav-btn" data-section="members">MEMBERS</button>
       <button class="nav-btn" data-section="pair">PAIR</button>
@@ -27,32 +32,34 @@
     <button class="menu-toggle" aria-expanded="false">☰</button>
   </header>
 
-  <!-- 뷰포트 -->
+  <!-- 
+  ============================================
+  뷰포트
+  ============================================ 
+  -->
+
   <main class="viewport" id="viewport">
 
     <!-- HOME -->
     <section class="page-section home-section is-current" id="home" data-page="home">
-      <div class="home-grid">
+      <div class="home-layout">
 
-        <!-- 좌측 텍스트 -->
+        <!-- 좌측 -->
         <div class="home-copy">
           <div class="micro-text"><span>WAKTAVERSE UNOFFICIAL WEBSITE</span></div>
           <h1>GOMEM<br><em>ACADEMY</em></h1>
           <p class="home-description">왁타버스 고멤 아카데미 비공식 홈페이지</p>
           <div class="home-meta">
             <div><small>마지막 업데이트</small><strong>2026. 10. 00.</strong></div>
+            <div><small>만든 이</small><strong>ㅁㄹㅂㅊ</strong></div>
           </div>
         </div>
 
-        <!-- 우측 이미지 -->
+        <!-- 우측 -->
         <div class="home-visual">
-          <div class="photo-frame group-photo" role="img">
-            <div class="photo-placeholder"></div>
-          </div>
-          <div class="home-sticker sticker-bottom"><img src="images/logo.png" alt="고멤 아카데미 로고"></div>
+          <img src="images/profile/17.png">
 
-          <!-- 일정 데이터는 script.js의 homeEvents 배열에서 관리합니다. -->
-          <div class="home-widgets" aria-label="다가오는 일정과 최근 기록">
+          <div class="home-widgets">
             <article class="home-widget home-widget-birthday">
               <span class="home-widget-label">NEXT BIRTHDAY</span>
               <strong class="home-widget-count" id="home-birthday-days">—</strong>
@@ -68,31 +75,30 @@
             </article>
 
             <article class="home-widget home-widget-archive">
-              <span class="home-widget-label">RECENT ARCHIVE LOG</span>
+              <span class="home-widget-label">RECENT UPDATE</span>
               <ul class="home-archive-list" id="home-archive-list" aria-label="최근 업데이트"></ul>
             </article>
           </div>
         </div>
-        <div class="home-footer"></div>
       </div>
     </section>
 
     <!-- MEMBERS -->
-    <section class="page-section members-section" id="members" data-page="members" aria-label="Members">
+    <section class="page-section members-section" id="members" data-page="members">
       <div class="section-topline"><span>01 / 멤버 목록</span></div>
       <div class="member-scroll">
-        <div class="member-rail" id="member-rail" aria-label="Member list"></div>
+        <div class="member-rail" id="member-rail"></div>
       </div>
     </section>
 
     <!-- PAIR -->
     <section class="page-section pair-section" id="pair" data-page="pair" aria-label="Pairs">
       <div class="section-topline"><span>02 / 페어 목록</span></div>
-      <div class="pair-filter" id="pair-filter"></div>
-      <div class="pair-layout">
-        <div class="pair-scroll">
-          <div class="pair-rail" id="pair-rail"></div>
-        </div>
+      <div class="pair-container">
+        <div class="pair-filter" id="pair-filter"></div>
+          <div class="pair-scroll">
+            <div class="pair-rail" id="pair-rail"></div>
+          </div>
       </div>
     </section>
 
@@ -109,8 +115,6 @@
                 <div class="record-disc" aria-hidden="true">
                   <div class="record-sheen"></div>
                   <div class="record-label">
-                    <span>G.A.</span>
-                    <small>RECORDS</small>
                     <i class="label-hole"></i>
                   </div>
                 </div>
@@ -132,7 +136,7 @@
                 <div class="speed-knob"></div>
               </div>
 
-              <div class="turntable-brand">G.A. <small>RECORD PLAYER</small></div>
+              <div class="turntable-brand">ACM<small>RECORD PLAYER</small></div>
             </div>
           </div>
           <div class="song-now">
@@ -144,11 +148,10 @@
 
       <!-- 우측 앨범 진열대 -->
         <div class="record-shelf">
-          <div class="shelf-toolbar"><strong>PLAYLIST</strong><div><button class="song-filter is-active" data-kind="all">ALL</button><button class="song-filter" data-kind="original">ORIGINAL</button><button class="song-filter" data-kind="cover">COVER</button></div></div>
+          <div class="record-toolbar"><strong>PLAYLIST</strong><div><button class="song-filter is-active" data-kind="all">ALL</button><button class="song-filter" data-kind="original">ORIGINAL</button><button class="song-filter" data-kind="cover">COVER</button></div></div>
           <div class="record-scroll" id="record-scroll">
             <div class="record-grid" id="record-grid"></div>
           </div>
-          <div class="shelf-footer"><span>HANDLE WITH CARE</span><span>40+ TRACKS / SCROLL TO EXPLORE ↓</span></div>
         </div>
       </div>
     </section>
@@ -157,8 +160,9 @@
     <section class="page-section gallery-section" id="gallery" data-page="gallery" aria-label="Gallery">
       <div class="section-topline"><span>04 / 갤러리</span></div>
       <div class="gallery-container">
-        <div class="gallery-scroll" id="gallery-scroll"><div class="gallery-grid" id="gallery-grid"></div></div>
-        <div class="gallery-bottom"><span>← 가로로 스크롤 →</span></div>
+        <div class="gallery-scroll" id="gallery-scroll">
+          <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
       </div>
     </section>
 
@@ -167,101 +171,19 @@
       <div class="section-topline"><span>05 / 링크트리</span></div>
       <div class="links-layout">
         <a class="links-title" href="https://cafe.naver.com/steamindiegame" target="_blank"><h2>왁물원</h2><p>우왁굳&왁타버스 공식 카페</p></a>
-        <div class="link-container" id="link-container"></div>
+        <div class="link-scroll" id="link-scroll"></div>
       </div>
     </section>
   </main>
 
-  <!-- PAIR 상세 기록 모달 -->
-  <div class="archive-overlay" id="pair-dossier" aria-hidden="true">
-    <section class="archive-modal dossier-modal" role="dialog"
-            aria-modal="true" aria-labelledby="dossier-title">
-      <header class="archive-modal-header">
-        <span id="dossier-number">RELATIONSHIP DOSSIER / NO. 001</span>
-        <button type="button" class="archive-close" data-close-archive
-                aria-label="닫기">×</button>
-      </header>
-
-      <div class="dossier-content" id="dossier-content"></div>
-    </section>
-  </div>
-
-  <!-- GALLERY 라이트박스 -->
-  <div class="archive-overlay lightbox-overlay" id="archive-lightbox"
-      aria-hidden="true">
-    <section class="archive-modal lightbox-modal" role="dialog"
-            aria-modal="true" aria-label="사진 열람실">
-      <header class="archive-modal-header">
-        <span id="lightbox-counter">ARCHIVE VIEWER / PHOTO 001</span>
-        <button type="button" class="archive-close" data-close-archive
-                aria-label="닫기">×</button>
-      </header>
-
-      <div class="lightbox-main">
-        <button type="button" class="lightbox-arrow" id="lightbox-prev"
-                aria-label="이전 사진">←</button>
-        <div class="lightbox-image-wrap" id="lightbox-image-wrap"></div>
-        <button type="button" class="lightbox-arrow" id="lightbox-next"
-                aria-label="다음 사진">→</button>
-      </div>
-
-      <div class="lightbox-info" id="lightbox-info"></div>
-
-      <footer class="lightbox-footer">
-        <span>ARCHIVE COLLECTION</span>
-        <button type="button" class="archive-text-button"
-                id="open-evidence">OPEN EVIDENCE BOARD ↗</button>
-      </footer>
-    </section>
-  </div>
-
-  <!-- Evidence Board -->
-  <div class="archive-overlay" id="evidence-board" aria-hidden="true">
-    <section class="archive-modal evidence-modal" role="dialog"
-            aria-modal="true" aria-labelledby="evidence-title">
-      <header class="archive-modal-header">
-        <span>CONNECTED RECORDS / EVIDENCE BOARD</span>
-        <button type="button" class="archive-close" data-close-archive
-                aria-label="닫기">×</button>
-      </header>
-
-      <div class="evidence-content" id="evidence-content"></div>
-    </section>
-  </div>
-
-
-  <!-- MEMBERS 프로필 오버레이 -->
-  <div class="profile-overlay" id="profile-overlay" aria-hidden="true">
-    <div class="profile-topbar"><button id="close-profile" class="close-profile">← 돌아가기</button></div>
-    <div class="profile-sheet">
-      <div class="profile-main">
-        <div class="profile-portrait-wrap">
-          <div class="profile-portrait" id="profile-portrait"><span>PORTRAIT IMAGE</span></div>
-        </div>
-        <div class="profile-notes">
-          <div class="profile-name-block">
-            <h2 id="profile-name">MEMBER NAME</h2>
-            <span class="profile-engname" id="profile-engname">MEMBER ENG NAME</span>
-            <span class="name-underline"></span></div>
-          <div class="profile-quote" id="profile-description">A record waiting to be written.</div>
-          <div class="profile-data">
-            <div><small>BIRTHDAY</small><strong id="profile-birthday">—</strong></div>
-            <div><small>MBTI</small><strong id="profile-mbti">—</strong></div>
-            <div><small>FANDOM</small><strong id="profile-fandom">—</strong></div>
-            <div><small>JAPANESE PRONOUNS</small><strong id="profile-jappronouns">—</strong></div>
-            <div><small>GENERATION</small><strong id="profile-generation">—</strong></div>
-            <div><small>CHANNEL</small><strong id="profile-channel">—</strong></div>
-          </div>
-          <div class="profile-memo"><span>NOTE</span><p id="profile-memo">No additional notes recorded.</p></div>
-          <div class="profile-profile-bottom"></div>
-        </div>
-      </div>
-    </div>
-    <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
-  </div>
+  <!-- 
+  ============================================
+  뷰포트 외 기타
+  ============================================ 
+  -->
 
   <!-- 하단 뮤직 플레이어 -->
-  <aside class="music-dock" id="music-dock" aria-label="뮤직 플레이어">
+  <aside class="music-dock" id="music-dock">
     <div class="music-track">
       <img id="music-cover" src="images/album/jongchunjimo.jpg" alt="앨범 커버">
       <div class="music-info">
@@ -299,7 +221,95 @@
     <audio id="music-audio" preload="metadata"></audio>
   </aside>
 
-  <!-- JS 불러오기 -->
+  <!-- MEMBERS - 프로필 오버레이 -->
+  <div class="profile-overlay" id="profile-overlay" aria-hidden="true">
+    <div class="profile-topbar"><button id="close-profile" class="close-profile">← 돌아가기</button></div>
+      <div class="profile-main">
+        <div class="profile-standing" id="profile-standing"><span>CHARACTER IMAGE</span></div>
+        <div class="profile-info">
+          <div class="profile-name-wrap">
+            <h2 id="profile-name">MEMBER NAME</h2>
+            <span class="profile-engname" id="profile-engname">MEMBER ENG NAME</span>
+            <span class="name-underline"></span></div>
+          <div class="profile-quote" id="profile-quote">A record waiting to be written.</div>
+          <div class="profile-data">
+            <div><small>BIRTHDAY</small><strong id="profile-birthday">—</strong></div>
+            <div><small>MBTI</small><strong id="profile-mbti">—</strong></div>
+            <div><small>FANDOM</small><strong id="profile-fandom">—</strong></div>
+            <div><small>JAPANESE PRONOUNS</small><strong id="profile-jappronouns">—</strong></div>
+            <div><small>GENERATION</small><strong id="profile-generation">—</strong></div>
+            <div><small>CHANNEL</small><strong id="profile-channel">—</strong></div>
+          </div>
+          <div class="profile-notes"><span>NOTE</span><p id="profile-notes">No additional notes recorded.</p></div>
+          <div class="profile-bottom"></div>
+        </div>
+      </div>
+    <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
+  </div>
+
+  <!-- PAIR - 상세 모달 -->
+  <div class="archive-overlay" id="pair-dossier" aria-hidden="true">
+    <section class="archive-modal dossier-modal" role="dialog"
+            aria-modal="true" aria-labelledby="dossier-title">
+      <header class="archive-modal-header">
+        <span id="dossier-number">RELATIONSHIP DOSSIER / NO. 001</span>
+        <button type="button" class="archive-close" data-close-archive
+                aria-label="닫기">×</button>
+      </header>
+
+      <div class="dossier-content" id="dossier-content"></div>
+    </section>
+  </div>
+
+  <!-- GALLERY - 라이트박스 -->
+  <div class="archive-overlay lightbox-overlay" id="archive-lightbox"
+      aria-hidden="true">
+    <section class="archive-modal lightbox-modal" role="dialog"
+            aria-modal="true" aria-label="사진 열람실">
+      <header class="archive-modal-header">
+        <span id="lightbox-counter">ARCHIVE VIEWER / PHOTO 001</span>
+        <button type="button" class="archive-close" data-close-archive
+                aria-label="닫기">×</button>
+      </header>
+
+      <div class="lightbox-main">
+        <button type="button" class="lightbox-arrow" id="lightbox-prev"
+                aria-label="이전 사진">←</button>
+        <div class="lightbox-image-wrap" id="lightbox-image-wrap"></div>
+        <button type="button" class="lightbox-arrow" id="lightbox-next"
+                aria-label="다음 사진">→</button>
+      </div>
+
+      <div class="lightbox-info" id="lightbox-info"></div>
+
+      <footer class="lightbox-footer">
+        <span>ARCHIVE COLLECTION</span>
+        <button type="button" class="archive-text-button"
+                id="open-evidence">OPEN EVIDENCE BOARD ↗</button>
+      </footer>
+    </section>
+  </div>
+
+  <!-- GALLERY - Evidence Board -->
+  <div class="archive-overlay" id="evidence-board" aria-hidden="true">
+    <section class="archive-modal evidence-modal" role="dialog"
+            aria-modal="true" aria-labelledby="evidence-title">
+      <header class="archive-modal-header">
+        <span>CONNECTED RECORDS / EVIDENCE BOARD</span>
+        <button type="button" class="archive-close" data-close-archive
+                aria-label="닫기">×</button>
+      </header>
+
+      <div class="evidence-content" id="evidence-content"></div>
+    </section>
+  </div>
+
+  <!-- 
+  ============================================
+  스크립트
+  ============================================ 
+  -->
+
   <script src="script.js"></script>
 </body>
 </html>

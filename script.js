@@ -6,28 +6,29 @@
 
 const members = [
   { id: 1, name: "닌닌", engname: "Ninnin", generation: "1기", birthday: "2005. 05. 12.", mbti: "ENTP", fandom: "조무래기", jappronouns: "私", channel: "SOOP", color: "#7150CE", image: "images/profile/test.png", portrait: "", description: "난 쿠노이치(가 될) 닌닌이다!", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 2, name: "미스 발렌타인", engname: "Miss Valentine", generation: "1기", birthday: "비공개", mbti: "ESTP", fandom: "미녀 ・ 미남", jappronouns: "私", channel: "SOOP", color: "#F5F5DC", image: "images/profile/test.png", portrait: "images/portrait/02.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 3, name: "보디가드 불독", engname: "Bodyguard Bulldog", generation: "1기", birthday: "2000. 05. 31", mbti: "INTP-T", fandom: "아가씨", jappronouns: "僕", channel: "SOOP", color: "#000000", image: "images/profile/test.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 4, name: "시리안 레인", engname: "Sirian Rain", generation: "1기", birthday: "07. 28.", mbti: "ISTJ", fandom: "도넛단", jappronouns: "私", channel: "SOOP", color: "#2D4BC1", image: "images/profile/test.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 2, name: "미스 발렌타인", engname: "Miss Valentine", generation: "1기", birthday: "비공개", mbti: "ESTP", fandom: "미녀 ・ 미남", jappronouns: "私", channel: "SOOP", color: "#F5F5DC", image: "images/profile/02.png", portrait: "images/portrait/02.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 3, name: "보디가드 불독", engname: "Bodyguard Bulldog", generation: "1기", birthday: "2000. 05. 31", mbti: "INTP-T", fandom: "아가씨", jappronouns: "僕", channel: "SOOP", color: "#000000", image: "images/profile/03.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 4, name: "시리안 레인", engname: "Sirian Rain", generation: "1기", birthday: "07. 28.", mbti: "ISTJ", fandom: "도넛단", jappronouns: "私", channel: "SOOP", color: "#2D4BC1", image: "images/profile/04.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 5, name: "아마데우스최", engname: "Amadeus Choi", generation: "1기", birthday: "03. 13", mbti: "ENTJ", fandom: "아사단", jappronouns: "僕 ・ 私", channel: "SOOP", color: "#6B2929", image: "images/profile/test.png", portrait: "images/portrait/05.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 6, name: "진희", engname: "Jinhe", generation: "1기", birthday: "05. 01.", mbti: "ENTP", fandom: "진미채", jappronouns: "オレ", channel: "SOOP", color: "#AAC484", image: "images/profile/test.png", portrait: "images/portrait/06.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 7, name: "캡틴 설리반", engname: "Captain Sullivan", generation: "1기", birthday: "09. 27.", mbti: "ENTP", fandom: "-", jappronouns: "俺 ・ 船長", channel: "SOOP", color: "#BB1111", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 8, name: "사랑전도사 젠투", engname: "Love Missionary Jentoo", generation: "2기", birthday: "02. 23.", mbti: "ESFP", fandom: "젠크리트", jappronouns: "僕 ・ 私", channel: "SOOP", color: "#FF80E6", image: "", portrait: "images/portrait/08.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 9, name: "수셈이", engname: "Soosemi", generation: "2기", birthday: "03. 02.", mbti: "ISTJ", fandom: "고기세제비실벌벌쫄보카피바라단", jappronouns: "僕", channel: "SOOP", color: "#425342", image: "", portrait: "images/portrait/09.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 10, name: "철도왕 길버트", engname: "Vanderbilt Gilbert", generation: "2기", birthday: "1801. 06. 27.", mbti: "INTP", fandom: "전쟁고멤 ・ 석탄단 ・ 철도단", jappronouns: "俺", channel: "SOOP", color: "#343F7E", image: "", portrait: "images/portrait/10.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "08. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", channel: "SOOP", color: "#ABCDEC", image: "", portrait: "images/portrait/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 12, name: "빅토리", engname: "Victory", generation: "3기", birthday: "2001. 02. 19.", mbti: "ESFP", fandom: "빅타민", jappronouns: "私", channel: "SOOP", color: "#FFC15C", image: "", portrait: "images/portrait/12.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 13, name: "데스해머쵸로키", engname: "Death Hammer Chouloky", generation: "4기", birthday: "2004. 07. 17.", mbti: "ISFP", fandom: "허접구리", jappronouns: "あたし", channel: "SOOP", color: "#6AA937", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 14, name: "아이 쓰께끼", engname: "I Cekkekki", generation: "4기", birthday: "꼬깔단", mbti: "-", fandom: "06. 29.", jappronouns: "ボク", channel: "SOOP", color: "#A7E6F0", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 15, name: "크리즈", engname: "Kreaze", generation: "4기", birthday: "비공개", mbti: "-", fandom: "-", jappronouns: "我", channel: "SOOP", color: "#787878", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 16, name: "버터우스 3세", engname: "Butterus III", generation: "5기", birthday: "05. 10.", mbti: "ENTJ", fandom: "백성단", jappronouns: "余", channel: "SOOP", color: "#C2A46E", image: "", portrait: "images/portrait/16.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 17, name: "성기사 샬롯", engname: "Castle Knight Charlotte", generation: "5기", birthday: "07. 15.", mbti: "INTP", fandom: "때지", jappronouns: "私", channel: "SOOP", color: "#B41432", image: "", portrait: "images/portrait/17.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 18, name: "메카 맹기산", engname: "Mecha Maeng Gisan", generation: "6기", birthday: "11. 24.", mbti: "-", fandom: "-", jappronouns: "オレ", channel: "SOOP", color: "#8C6B4B", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." }
+  { id: 6, name: "진희", engname: "Jinhe", generation: "1기", birthday: "05. 01.", mbti: "ENTP", fandom: "진미채", jappronouns: "オレ", channel: "SOOP", color: "#AAC484", image: "images/profile/06.png", portrait: "images/portrait/06.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 7, name: "캡틴 설리반", engname: "Captain Sullivan", generation: "1기", birthday: "09. 27.", mbti: "ENTP", fandom: "-", jappronouns: "俺 ・ 船長", channel: "SOOP", color: "#BB1111", image: "images/profile/test.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 8, name: "사랑전도사 젠투", engname: "Love Missionary Jentoo", generation: "2기", birthday: "02. 23.", mbti: "ESFP", fandom: "젠크리트", jappronouns: "僕 ・ 私", channel: "SOOP", color: "#FF80E6", image: "images/profile/08.png", portrait: "images/portrait/08.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 9, name: "수셈이", engname: "Soosemi", generation: "2기", birthday: "03. 02.", mbti: "ISTJ", fandom: "고기세제비실벌벌쫄보카피바라단", jappronouns: "僕", channel: "SOOP", color: "#425342", image: "images/profile/test.png", portrait: "images/portrait/09.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 10, name: "철도왕 길버트", engname: "Vanderbilt Gilbert", generation: "2기", birthday: "1801. 06. 27.", mbti: "INTP", fandom: "전쟁고멤 ・ 석탄단 ・ 철도단", jappronouns: "俺", channel: "SOOP", color: "#343F7E", image: "images/profile/10.png", portrait: "images/portrait/10.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "08. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", channel: "SOOP", color: "#ABCDEC", image: "images/profile/11.png", portrait: "images/portrait/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 12, name: "빅토리", engname: "Victory", generation: "3기", birthday: "2001. 02. 19.", mbti: "ESFP", fandom: "빅타민", jappronouns: "私", channel: "SOOP", color: "#FFC15C", image: "images/profile/12.png", portrait: "images/portrait/12.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 13, name: "데스해머쵸로키", engname: "Death Hammer Chouloky", generation: "4기", birthday: "2004. 07. 17.", mbti: "ISFP", fandom: "허접구리", jappronouns: "あたし", channel: "SOOP", color: "#6AA937", image: "images/profile/13.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 14, name: "아이 쓰께끼", engname: "I Cekkekki", generation: "4기", birthday: "꼬깔단", mbti: "-", fandom: "06. 29.", jappronouns: "ボク", channel: "SOOP", color: "#A7E6F0", image: "images/profile/test.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 15, name: "크리즈", engname: "Kreaze", generation: "4기", birthday: "비공개", mbti: "-", fandom: "-", jappronouns: "我", channel: "SOOP", color: "#787878", image: "images/profile/15.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 16, name: "버터우스 3세", engname: "Butterus III", generation: "5기", birthday: "05. 10.", mbti: "ENTJ", fandom: "백성단", jappronouns: "余", channel: "SOOP", color: "#C2A46E", image: "images/profile/16.png", portrait: "images/portrait/16.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 17, name: "성기사 샬롯", engname: "Castle Knight Charlotte", generation: "5기", birthday: "07. 15.", mbti: "INTP", fandom: "때지", jappronouns: "私", channel: "SOOP", color: "#B41432", image: "images/profile/17.png", portrait: "images/portrait/17.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 18, name: "메카 맹기산", engname: "Mecha Maeng Gisan", generation: "6기", birthday: "11. 24.", mbti: "-", fandom: "-", jappronouns: "オレ", channel: "SOOP", color: "#8C6B4B", image: "images/profile/test.png", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." }
 ];
 
 
 // HOME 위젯 데이터. 날짜는 YYYY-MM-DD 형식으로 입력하면 캘린더 탭과도 공유하기 쉽습니다.
-const homeEvents = [
+const homeEvents = [ 
+  { title: "고카 상사", date: "2026-10-25", category: "합방" }
   // 예: { title: "아카데미 공개 방송", date: "2026-11-01", category: "방송" }
 ];
 
@@ -131,7 +132,7 @@ function navigateTo(sectionId) {
   if (!target) return;
   $$(".page-section").forEach(section => section.classList.toggle("is-current", section === target));
   $$(".nav-btn").forEach(link => link.classList.toggle("is-active", link.dataset.section === sectionId));
-  $(".nav-container").classList.remove("is-open");
+  $(".nav-btn-wrap").classList.remove("is-open");
   $(".menu-toggle").setAttribute("aria-expanded", "false");
   $("#profile-overlay").classList.remove("is-open");
   $("#profile-overlay").setAttribute("aria-hidden", "true");
@@ -191,15 +192,15 @@ function openProfile() {
   setAccent(member.color);
   $("#profile-name").textContent = member.name;
   $("#profile-engname").textContent = member.engname;
-  $("#profile-description").textContent = member.description || "A record waiting to be written.";
+  $("#profile-quote").textContent = member.description || "A record waiting to be written.";
   $("#profile-birthday").textContent = member.birthday || "—";
   $("#profile-mbti").textContent = member.mbti || "—";
   $("#profile-fandom").textContent = member.fandom || "—";
   $("#profile-jappronouns").textContent = member.jappronouns || "—";
   $("#profile-generation").textContent = member.generation || "—";
   $("#profile-channel").textContent = member.channel || "—";
-  $("#profile-memo").textContent = member.memo || "No additional notes recorded.";
-  $("#profile-portrait").innerHTML = imageMarkup(member.image, `PORTRAIT / ${member.name}`);
+  $("#profile-notes").textContent = member.memo || "No additional notes recorded.";
+  $("#profile-standing").innerHTML = imageMarkup(member.image, `PORTRAIT / ${member.name}`);
   $("#profile-position").textContent = `${String(members.findIndex(item => item.id === member.id) + 1).padStart(2, "0")} / ${String(members.length).padStart(2, "0")}`;
   $("#profile-overlay").classList.add("is-open");
   $("#profile-overlay").setAttribute("aria-hidden", "false");
@@ -939,7 +940,7 @@ function renderHomeWidgets() {
 }
 
 function renderLinks() {
-  $("#link-container").innerHTML = links.map((link, index) => `
+  $("#link-scroll").innerHTML = links.map((link, index) => `
     <a class="link-card" href="${escapeHTML(link.url)}" ${link.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""}>
       <span class="link-card-icon">${escapeHTML(link.icon)}</span>
       <strong>${escapeHTML(link.title)}</strong>
@@ -952,7 +953,7 @@ function renderLinks() {
 /* ---------- Events ---------- */
 $$(".nav-btn").forEach(button => button.addEventListener("click", () => navigateTo(button.dataset.section)));
 $(".menu-toggle").addEventListener("click", () => {
-  const nav = $(".nav-container");
+  const nav = $(".nav-btn-wrap");
   const open = nav.classList.toggle("is-open");
   $(".menu-toggle").setAttribute("aria-expanded", String(open));
 });

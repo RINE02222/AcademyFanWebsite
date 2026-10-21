@@ -37,7 +37,6 @@
 
 html,
 body {
-  margin: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -59,12 +58,6 @@ a {
 button { cursor: pointer; }
 a { text-decoration: none; }
 
-/* ==========================================================================
-   텍스트
-   ========================================================================== */
-
-.mono { font-family: var(--mono); }
-
 h2 {
   font: 600 clamp(36px, 5vw, 72px)/.92 var(--display);
   letter-spacing: -.035em;
@@ -82,12 +75,11 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 3.3vw;
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
 }
 
-.nav-container {
+.nav-btn-wrap {
   display: flex;
   align-items: stretch;
   height: 100%;
@@ -99,8 +91,7 @@ h2 {
   display: flex;
   align-items: center;
   gap: 7px;
-  padding: 0 2px;
-  border: 0;
+  border: none;
   background: transparent;
   font: 600 11px var(--display);
   letter-spacing: .04em;
@@ -139,7 +130,6 @@ h2 {
 .viewport {
   position: fixed;
   inset: var(--nav-height) 0 0;
-  overflow: hidden;
 }
 
 /* 섹션 페이지 */
@@ -162,9 +152,8 @@ h2 {
   z-index: 2;
 }
 
-/* 섹션 상하단 */
-.section-topline,
-.section-footer {
+/* 섹션 상단 소제목 */
+.section-topline {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -173,17 +162,8 @@ h2 {
   letter-spacing: .07em;
   color: var(--muted);
   flex-shrink: 0;
-}
-
-.section-topline {
   border-bottom: 1px solid var(--line);
   padding-bottom: 5px;
-}
-
-.section-footer {
-  border-top: 1px solid var(--line);
-  padding-top: 10px;
-  margin-top: auto;
 }
 
 /* ==========================================================================
@@ -194,19 +174,18 @@ h2 {
   padding-top: 0;
 }
 
-.home-grid {
+.home-layout {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr auto;
-  gap: 10px 6vw;
+  gap: 10px;
   align-items: center;
 }
 
 /* --- 좌측 텍스트 --------------------------- */
 
 .home-copy {
-  padding: 3vh 0 0 2vw;
+  padding-left: 2vw;
 }
 
 .micro-text {
@@ -220,7 +199,7 @@ h2 {
 /* 타이틀 */
 .home-copy h1 {
   margin: 36px 0 20px;
-  font: 700 clamp(60px, 9vw, 120px)/.82 var(--display);
+  font: 700 clamp(60px, 9vw, 105px)/.82 var(--display);
   letter-spacing: -.08em;
 }
 
@@ -263,49 +242,17 @@ h2 {
 
 .home-visual {
   position: relative;
-  min-height: 350px;
-  height: min(64vh, 560px);
-  margin: 0 4vw 0 0;
-}
-
-.photo-frame {
-  position: absolute;
-  inset: 6% 8% 8% 4%;
-  border: 1px solid var(--ink);
-  padding: 10px;
-  background: #deded7;
-}
-
-/* 사진 넣는 곳 */
-.photo-placeholder {
   height: 100%;
+  padding-right: 5vw;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
-/* 스티커 */
-.home-sticker {
+.home-visual img {
   position: absolute;
-}
-
-.sticker-bottom {
-  bottom: 2%;
-  left: -8%;
-  transform: rotate(-4deg);
-}
-
-.sticker-bottom img {
-  width: 220px;
-}
-
-/* 푸터 */
-.home-footer {
-  grid-column: 1 / -1;
-  border-top: 1px solid var(--ink);
-  padding: 10px 0 0;
+  top: 0px;
+  height: 110%;
 }
 
 /* ==========================================================================
@@ -314,7 +261,6 @@ h2 {
 
 .member-scroll {
   flex: 1;
-  align-items: center;
   padding: 2.5vh 0;
   overflow-x: auto;
 }
@@ -322,7 +268,6 @@ h2 {
 .member-rail {
   display: flex;
   gap: 6px;
-  padding: 18px 3px 0px;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--paper-deep);
   height: 100%;
@@ -330,9 +275,8 @@ h2 {
 
 /* 멤버 카드 */
 .member-card {
-  flex: 0 0 clamp(90px, 9.1vw, 132px);
+  flex: 0 0 clamp(100px, 9.1vw, 132px);
   border: none;
-  background: transparent;
   text-align: left;
   transition: border-color .2s, transform .2s, background .2s;
   position: relative;
@@ -350,8 +294,6 @@ h2 {
 
 /* 멤버 이미지 */
 .member-thumb {
-  display: flex;
-  overflow: hidden;
   background: #e5e4dd;
   height: 100%;
   min-height: 0;
@@ -396,27 +338,23 @@ h2 {
    PAIR
    ========================================================================== */
 
-.pair-layout {
-  min-height: 0;
-  flex: 1;
-  padding: 12px;
+.pair-container {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  padding: 2.5vh 0;
 }
 
 .pair-scroll {
-  min-height: 0;
   flex: 1;
   overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-color: var(--accent) var(--paper-deep);
 }
 
 /* 필터 */
 .pair-filter {
   display: flex;
   gap: 6px;
-  margin-top: 18px;
+  margin-bottom: 6px;
 }
 
 .pair-filter button {
@@ -435,13 +373,14 @@ h2 {
 
 .pair-rail {
   height: 100%;
-  min-width: max-content;
   display: grid;
   grid-template-rows: repeat(1, minmax(0, 1fr));
   grid-auto-flow: column;
   grid-auto-columns: clamp(150px, 50vw, 307px);
   gap: 12px;
-  padding: 2px 2px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--paper-deep);
+  padding: 2px;
 }
 
 /* 페어 카드 */
@@ -529,7 +468,7 @@ h2 {
   min-height: 0;
   display: grid;
   grid-template-columns: minmax(210px, .5fr) minmax(0, 1fr);
-  gap: 4vw;
+  gap: 3vw;
   padding: 2.5vh 0;
 }
 
@@ -538,12 +477,8 @@ h2 {
 .song-sidebar {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-width: 0;
-  min-height: 0;
   padding: 28px 18px;
-  overflow: hidden;
   width: 90%;
 }
 
@@ -723,7 +658,7 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
-  border-top: 1px solid var(--ink, #262724);
+  border-top: 1px solid var(--line);
 }
 
 .song-now-caption {
@@ -1138,7 +1073,7 @@ h2 {
   min-height: 0;
 }
 
-.shelf-toolbar {
+.record-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1148,7 +1083,7 @@ h2 {
   font: 600 16px var(--display);
 }
 
-.shelf-toolbar>div {
+.record-toolbar>div {
   display: flex;
   gap: 4px;
 }
@@ -1188,7 +1123,6 @@ h2 {
   min-width: 0;
   cursor: pointer;
   border: 0;
-  padding: 0;
   background: transparent;
   text-align: left;
 }
@@ -1197,9 +1131,7 @@ h2 {
 .album-cover {
   aspect-ratio: 1;
   width: 100%;
-  background: #d6d5ce;
   border: 1px solid #b7b6af;
-  position: relative;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -1265,16 +1197,14 @@ h2 {
 .gallery-container {
   min-height: 0;
   flex: 1;
-  padding: 12px;
+  padding: 2.5vh 0;
   display: flex;
   flex-direction: column;
 }
 
 .gallery-scroll {
-  min-height: 0;
   flex: 1;
   overflow-x: auto;
-  overflow-y: hidden;
   scrollbar-color: var(--accent) var(--paper-deep);
 }
 
@@ -1287,7 +1217,7 @@ h2 {
   grid-auto-flow: column;
   grid-auto-columns: clamp(150px, 50vw, 420px);
   gap: 12px;
-  padding: 2px 2px 12px;
+  padding: 2px;
 }
 
 /* 갤러리 아이템 */
@@ -1302,14 +1232,9 @@ h2 {
 }
 
 .gallery-image {
-  min-height: 0;
-  flex: 1;
   display: grid;
   place-items: center;
-  background: #deddd6;
   overflow: hidden;
-  color: #888;
-  font: 9px var(--mono);
 }
 
 .gallery-image img {
@@ -1337,15 +1262,6 @@ h2 {
   color: var(--muted);
 }
 
-.gallery-bottom {
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid var(--line);
-  padding-top: 10px;
-  font: 8px var(--mono);
-  color: var(--muted);
-}
-
 /* ==========================================================================
    LINKS
    ========================================================================== */
@@ -1356,7 +1272,7 @@ h2 {
   display: grid;
   grid-template-columns: minmax(220px, .38fr) minmax(0, 1fr);
   gap: 3vw;
-  padding: 3vh 0;
+  padding: 2.5vh 0;
 }
 
 .links-title {
@@ -1376,8 +1292,7 @@ h2 {
   transform: translateY(-2px);
 }
 
-.link-container {
-  min-height: 0;
+.link-scroll {
   overflow-y: auto;
   padding: 4px 10px 12px 2px;
   display: grid;
@@ -1396,7 +1311,6 @@ h2 {
   display: flex;
   flex-direction: column;
   min-height: 145px;
-  box-shadow: 3px 3px 0 var(--paper-deep);
   transition: transform .2s;
 }
 
@@ -1415,8 +1329,8 @@ h2 {
 .link-card-icon {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 25px;
+  height: 25px;
   border: 1px solid var(--ink);
   font: 600 16px var(--display);
   margin: 0px 0 12px;
@@ -1431,7 +1345,6 @@ h2 {
   font-size: 10px;
   color: var(--muted);
   margin: 5px 0 10px;
-  line-height: 1.5;
 }
 
 .link-card .link-out {
@@ -1468,13 +1381,8 @@ h2 {
 
 /* 탑바 */
 .profile-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
   border-bottom: 1px solid var(--ink);
   padding-bottom: 12px;
-  font: 9px var(--mono);
   flex-shrink: 0;
 }
 
@@ -1483,7 +1391,7 @@ h2 {
   border: 1px solid var(--ink);
   background: transparent;
   padding: 9px 12px;
-  font: 9px var(--mono);
+  font: 10px var(--mono);
 }
 
 .close-profile:hover,
@@ -1492,46 +1400,43 @@ h2 {
   color: white;
 }
 
-/* 멤버 스탠딩+정보 */
-.profile-sheet {
+.profile-main {
   width: min(1050px, 100%);
   margin: auto;
-}
-
-.profile-main {
-  display: grid;
-  grid-template-columns: minmax(240px, .9fr) minmax(0, 1.1fr);
-  gap: clamp(20px, 4vw, 55px);
+  position: relative;
 }
 
 /* 멤버 스탠딩 */
-.profile-portrait-wrap {
-  position: relative;
+.profile-standing {
+  position: absolute;
   min-width: 0;
+  top: -11vh;
+  left: -8vw;
+  height: clamp(260px, 90vh, 180%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 85;
 }
 
-.profile-portrait {
-  height: clamp(260px, 90vh, 550px);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-
-.profile-portrait img {
-  width: 100%;
-  height: auto;
+.profile-standing img {
+  height: 100%;
+  width: auto;
   object-fit: cover;
 }
 
 /* 멤버 정보 */
-.profile-notes {
+.profile-info {
+  left: 38vw;
   display: flex;
   flex-direction: column;
   min-width: 0;
+  width: 50%;
   position: relative;
+  z-index: 90;
 }
 
-.profile-name-block h2 {
+.profile-name-wrap h2 {
   margin: 16px 0 8px;
   font-size: clamp(38px, 6vw, 74px);
   overflow-wrap: anywhere;
@@ -1542,8 +1447,8 @@ h2 {
 .profile-engname {
   position: absolute;
   left: 20px;
-  top: 55px;
-  font-size: clamp(16px, 3vw, 36px);
+  top: 60px;
+  font-size: clamp(16px, 3vw, 30px);
   color: var(--ink);
   opacity: .3;
   font-family: var(--handwrite);
@@ -1563,6 +1468,7 @@ h2 {
   padding: 12px;
   font-size: 12px;
   line-height: 1.7;
+  background: var(--paper);
 }
 
 .profile-data {
@@ -1570,6 +1476,7 @@ h2 {
   grid-template-columns: 1fr 1fr;
   border-top: 1px solid var(--ink);
   border-left: 1px solid var(--ink);
+  background: var(--paper);
 }
 
 .profile-data>div {
@@ -1591,22 +1498,22 @@ h2 {
   overflow-wrap: anywhere;
 }
 
-.profile-memo {
+.profile-notes {
   margin-top: 14px;
 }
 
-.profile-memo span {
+.profile-notes span {
   font: 8px var(--mono);
   color: var(--muted);
 }
 
-.profile-memo p {
+.profile-notes p {
   margin: 7px 0 0;
   font-size: 11px;
   line-height: 1.7;
 }
 
-.profile-profile-bottom {
+.profile-bottom {
   border-bottom: 1px solid var(--line);
   padding-top: 10px;
   margin-top: auto;
@@ -1618,7 +1525,12 @@ h2 {
   align-items: center;
   width: min(1050px, 100%);
   margin: 12px auto 0;
-  font: 9px var(--mono);
+  font: 10px var(--mono);
+  z-index: 90;
+}
+
+.profile-nav button {
+  background: var(--paper);
 }
 
 .profile-nav span {
@@ -1691,7 +1603,7 @@ h2 {
     flex-wrap: wrap;
   }
 
-  .home-grid {
+  .home-layout {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
     gap: 10px;
@@ -1880,7 +1792,7 @@ h2 {
     padding: 8px;
   }
 
-  .shelf-toolbar {
+  .record-toolbar {
     font-size: 13px;
     padding-bottom: 8px;
   }
@@ -1968,7 +1880,7 @@ h2 {
     margin: 0;
   }
 
-  .link-container {
+  .link-scroll {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     padding: 2px 4px 10px 2px;
@@ -2023,12 +1935,15 @@ h2 {
   }
 
   .profile-main {
+    margin: 12px auto;
+    padding: 12px;
+    font-size: 6px;
     grid-template-columns: 1fr;
     gap: 15px;
     padding: 14px 0;
   }
 
-  .profile-portrait {
+  .profile-standing {
     height: 30vh;
     min-height: 190px;
   }
@@ -2038,7 +1953,7 @@ h2 {
     bottom: 30px;
   }
 
-  .profile-name-block h2 {
+  .profile-name-wrap h2 {
     font-size: 42px;
   }
 
@@ -2057,11 +1972,11 @@ h2 {
     font-size: 10px;
   }
 
-  .profile-memo p {
+  .profile-notes p {
     font-size: 10px;
   }
 
-  .profile-profile-bottom {
+  .profile-bottom {
     font-size: 6px;
   }
 
@@ -2251,7 +2166,7 @@ h2 {
 }
 
 #music-repeat.is-active { color: var(--ink); }
-#music-repeat-label { font-size: 8px; }
+#music-repeat-icon, #music-repeat-label { font-size: 10px; }
 
 .music-progress {
   display: flex;
