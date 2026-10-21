@@ -249,11 +249,16 @@ h2 {
   justify-content: center;
 }
 
-.home-visual img {
+#home-birthday-image {
   position: absolute;
-  top: 0px;
+  top: 0;
   height: 110%;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom center;
 }
+#home-birthday-image[hidden] { display: none; }
 
 /* ==========================================================================
    MEMBERS
@@ -810,6 +815,7 @@ h2 {
 .turntable .record-label {
   width: 31%;
   border: 1px solid #d2f2e6;
+  overflow: hidden;
 
   background:
     radial-gradient(
@@ -827,7 +833,17 @@ h2 {
 .turntable .record-label span { font-size: clamp(8px, 0.7vw, 11px); }
 .turntable .record-label small { font-size: clamp(5px, 0.48vw, 7px); }
 
+.turntable .record-label #turntable-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .turntable .label-hole {
+  z-index: 1;
   width: 4px;
   background: #161815;
   border-color: #ffffffa0;
@@ -1401,37 +1417,43 @@ h2 {
 }
 
 .profile-main {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(18px, 4vw, 55px);
   width: min(1050px, 100%);
+  min-height: 0;
   margin: auto;
   position: relative;
 }
 
-/* 멤버 스탠딩 */
 .profile-standing {
-  position: absolute;
+  position: relative;
   min-width: 0;
-  top: -11vh;
-  left: -8vw;
-  height: clamp(260px, 90vh, 180%);
+  width: 100%;
+  height: clamp(300px, 68vh, 620px);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   z-index: 85;
+  overflow: hidden;
 }
 
 .profile-standing img {
+  display: block;
   height: 100%;
+  max-width: 100%;
   width: auto;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: bottom center;
 }
 
 /* 멤버 정보 */
 .profile-info {
-  left: 38vw;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  width: 50%;
+  width: auto;
   position: relative;
   z-index: 90;
 }
@@ -1935,17 +1957,20 @@ h2 {
   }
 
   .profile-main {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
     margin: 12px auto;
-    padding: 12px;
-    font-size: 6px;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    padding: 14px 0;
+    padding: 0;
   }
 
   .profile-standing {
-    height: 30vh;
-    min-height: 190px;
+    height: min(34vh, 270px);
+    min-height: 170px;
+  }
+
+  .profile-info {
+    width: 100%;
   }
 
   .profile-stamp {
@@ -2904,5 +2929,42 @@ h2 {
 
   .home-widget-event {
     bottom: 25%;
+  }
+}
+
+
+/* ==========================================================================
+   프로필 전환과 재생 중 레코드 모션
+   ========================================================================== */
+
+.profile-main.is-changing .profile-standing {
+  animation: profile-change-in .38s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+.profile-main.is-changing .profile-info {
+  animation: profile-change-in .38s cubic-bezier(.2, .7, .2, 1) .06s both;
+}
+
+@keyframes profile-change-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.turntable.is-playing .record-disc {
+  animation: record-spin 4s linear infinite;
+}
+
+@keyframes record-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-main.is-changing .profile-standing,
+  .profile-main.is-changing .profile-info {
+    animation: none;
+  }
+
+  .turntable.is-playing .record-disc {
+    animation-duration: 24s;
   }
 }
