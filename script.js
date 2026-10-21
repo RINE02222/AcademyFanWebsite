@@ -186,7 +186,7 @@ function selectMember(id) {
   renderMembers(); // 선택된 카드의 클래스 업데이트
 }
 
-function openProfile() {
+function openProfile(animateChange = false) {
   const member = memberById(selectedMemberId);
   if (!member) return;
   setAccent(member.color);
@@ -204,6 +204,14 @@ function openProfile() {
   $("#profile-position").textContent = `${String(members.findIndex(item => item.id === member.id) + 1).padStart(2, "0")} / ${String(members.length).padStart(2, "0")}`;
   $("#profile-overlay").classList.add("is-open");
   $("#profile-overlay").setAttribute("aria-hidden", "false");
+  if (animateChange) animateProfileChange();
+}
+function animateProfileChange() {
+  const panel = $(".profile-main");
+  panel.classList.remove("is-changing");
+  void panel.offsetWidth;
+  panel.classList.add("is-changing");
+  panel.addEventListener("animationend", () => panel.classList.remove("is-changing"), { once: true });
 }
 function closeProfile() {
   $("#profile-overlay").classList.remove("is-open");
@@ -214,7 +222,7 @@ function stepProfile(direction) {
   const index = members.findIndex(item => item.id === selectedMemberId);
   const next = (index + direction + members.length) % members.length;
   selectMember(members[next].id);
-  openProfile();
+  openProfile(true);
 }
 
 
@@ -616,6 +624,16 @@ function selectSong(id, autoplay = false) {
   $("#music-cover").src = song.cover || "";
   $("#music-cover").alt = `${song.title} 앨범 커버`;
 
+  const turntableCover = $("#turntable-cover");
+  turntableCover.hidden = !song.cover;
+  if (song.cover) {
+    turntableCover.src = song.cover;
+    turntableCover.alt = `${song.title} 레코드 라벨`;
+  } else {
+    turntableCover.removeAttribute("src");
+    turntableCover.alt = "";
+  }
+
   // 다른 곡을 선택했을 때만 음원 교체
   if (audio.getAttribute("src") !== song.audio) {
     audio.src = song.audio;
@@ -640,6 +658,7 @@ function formatTime(seconds) {
 }
 
 function updatePlayButton(isPlaying) {
+  $(".turntable").classList.toggle("is-playing", isPlaying);
   $("#music-play-icon").textContent = isPlaying ? "Ⅱ" : "▶";
   $("#music-play").setAttribute(
     "aria-label",
@@ -906,10 +925,24 @@ function renderHomeWidgets() {
     $("#home-birthday-name").textContent = nextBirthday.member.name;
     $("#home-birthday-date").textContent =
       `${String(nextBirthday.birthday.month).padStart(2, "0")}.${String(nextBirthday.birthday.day).padStart(2, "0")} / ${nextBirthday.member.generation || "ACADEMY"}`;
+    const heroImage = $("#home-birthday-image");
+    const heroImageSrc = nextBirthday.member.image || nextBirthday.member.portrait;
+
+    if (heroImageSrc) {
+      heroImage.src = heroImageSrc;
+      heroImage.alt = `${nextBirthday.member.name} 캐릭터 이미지`;
+      heroImage.hidden = false;
+    } else {
+      heroImage.removeAttribute("src");
+      heroImage.alt = `${nextBirthday.member.name} 이미지 미등록`;
+      heroImage.hidden = true;
+    }
   } else {
     $("#home-birthday-days").textContent = "—";
     $("#home-birthday-name").textContent = "등록된 생일 정보가 없습니다";
     $("#home-birthday-date").textContent = "BIRTHDAY ARCHIVE";
+    $("#home-birthday-image").removeAttribute("src");
+    $("#home-birthday-image").hidden = true;
   }
 
   const upcomingEvents = homeEvents
@@ -1080,6 +1113,8 @@ $("#music-next").addEventListener("click", () => {
 $("#music-repeat").addEventListener("click", toggleRepeatMode);
 
 // 재생 시간과 프로그레스 바 갱신
+$("#music-audio").addEventListener("play", () => updatePlayButton(true));
+$("#music-audio").addEventListener("pause", () => updatePlayButton(false));
 $("#music-audio").addEventListener("timeupdate", updateProgress);
 $("#music-audio").addEventListener("loadedmetadata", updateProgress);
 $("#music-audio").addEventListener("durationchange", updateProgress);
