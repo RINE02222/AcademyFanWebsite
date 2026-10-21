@@ -25,6 +25,19 @@ const members = [
   { id: 18, name: "메카 맹기산", engname: "Mecha Maeng Gisan", generation: "6기", birthday: "11. 24.", mbti: "-", fandom: "-", jappronouns: "オレ", channel: "SOOP", color: "#8C6B4B", image: "", portrait: "", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." }
 ];
 
+
+// HOME 위젯 데이터. 날짜는 YYYY-MM-DD 형식으로 입력하면 캘린더 탭과도 공유하기 쉽습니다.
+const homeEvents = [
+  // 예: { title: "아카데미 공개 방송", date: "2026-11-01", category: "방송" }
+];
+
+// 최근 아카이브 기록: 새 콘텐츠를 추가할 때 날짜와 제목을 갱신하세요.
+const homeArchiveEntries = [
+  { date: "2026.10.21", title: "PAIR 상세 기록 · GALLERY 라이트박스 추가" },
+  { date: "2026.10.21", title: "홈페이지 정보 구조 및 링크 정리" },
+  { date: "2026.10.20", title: "하단 뮤직 플레이어 추가" }
+];
+
 const pairs = [
   { id: "1", title: "1기즈", members: [1, 2, 3, 4, 5, 6, 7], image: "", category: ["기수별"], description: "이 조합의 관계성이나 대표적인 장면을 기록하세요." },
   { id: "2", title: "2기즈", members: [8, 9, 10], image: "images/pair/2nd.png", category: ["기수별", "남성"], description: "“근데 전 오히려 2기즈를 보고 싶어요”" },
@@ -852,6 +865,79 @@ $("#lightbox-prev").addEventListener("click", () => stepLightbox(-1));
 $("#lightbox-next").addEventListener("click", () => stepLightbox(1));
 
 
+
+function parseBirthdayMonthDay(value) {
+  const match = String(value || "").match(/^\s*(?:\d{4}[./-]\s*)?(\d{1,2})[./-]\s*(\d{1,2})\.?\s*$/);
+  if (!match) return null;
+
+  const month = Number(match[1]);
+  const day = Number(match[2]);
+  const probe = new Date(Date.UTC(2024, month - 1, day));
+
+  if (probe.getUTCMonth() !== month - 1 || probe.getUTCDate() !== day) return null;
+  return { month, day };
+}
+
+function daysBetweenLocalDates(fromDate, toDate) {
+  const from = Date.UTC(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate());
+  const to = Date.UTC(toDate.getFullYear(), toDate.getMonth(), toDate.getDate());
+  return Math.round((to - from) / 86400000);
+}
+
+function renderHomeWidgets() {
+  const today = new Date();
+  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const birthdays = members.flatMap(member => {
+    const birthday = parseBirthdayMonthDay(member.birthday);
+    if (!birthday) return [];
+
+    let nextDate = new Date(today.getFullYear(), birthday.month - 1, birthday.day);
+    if (nextDate < todayDate) {
+      nextDate = new Date(today.getFullYear() + 1, birthday.month - 1, birthday.day);
+    }
+
+    return [{ member, birthday, date: nextDate, days: daysBetweenLocalDates(todayDate, nextDate) }];
+  }).sort((a, b) => a.days - b.days);
+
+  const nextBirthday = birthdays[0];
+  if (nextBirthday) {
+    $("#home-birthday-days").textContent = nextBirthday.days === 0 ? "TODAY" : `D-${nextBirthday.days}`;
+    $("#home-birthday-name").textContent = nextBirthday.member.name;
+    $("#home-birthday-date").textContent =
+      `${String(nextBirthday.birthday.month).padStart(2, "0")}.${String(nextBirthday.birthday.day).padStart(2, "0")} / ${nextBirthday.member.generation || "ACADEMY"}`;
+  } else {
+    $("#home-birthday-days").textContent = "—";
+    $("#home-birthday-name").textContent = "등록된 생일 정보가 없습니다";
+    $("#home-birthday-date").textContent = "BIRTHDAY ARCHIVE";
+  }
+
+  const upcomingEvents = homeEvents
+    .map(event => {
+      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(event.date || "");
+      if (!event.title || !match) return null;
+
+      const [, year, month, day] = match.map(Number);
+      const date = new Date(year, month - 1, day);
+      if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) return null;
+
+      const days = daysBetweenLocalDates(todayDate, date);
+      return days < 0 ? null : { ...event, days };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.days - b.days);
+  const nextEvent = upcomingEvents[0];
+
+  if (nextEvent) {
+    $("#home-event-title").textContent = nextEvent.title;
+    $("#home-event-count").textContent = nextEvent.days === 0 ? "오늘 열리는 일정" : `D-${nextEvent.days} · ${nextEvent.category || "아카데미 일정"}`;
+    $("#home-event-date").textContent = nextEvent.date.replaceAll("-", ".");
+  }
+
+  $("#home-archive-list").innerHTML = homeArchiveEntries.slice(0, 3).map(entry => `
+    <li><span class="home-archive-date">${escapeHTML(entry.date)}</span><span class="home-archive-title">${escapeHTML(entry.title)}</span></li>
+  `).join("");
+}
+
 function renderLinks() {
   $("#link-container").innerHTML = links.map((link, index) => `
     <a class="link-card" href="${escapeHTML(link.url)}" ${link.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""}>
@@ -1021,6 +1107,7 @@ $("#music-audio").addEventListener("error", () => {
 
 
 /* ---------- Initial render ---------- */
+renderHomeWidgets();
 renderMembers();
 renderPairs();
 renderSongs();
