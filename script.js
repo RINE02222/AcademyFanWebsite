@@ -81,7 +81,20 @@ const songs = [
 // 갤러리
 const galleryItems = [
   { id: 1, title: "2023 우왁굳 생일", date: "2000. 00. 00.", image: "images/gallery/01_wgbirth.png", description: "" },
-  { id: 2, title: "제목", date: "2000. 00. 00.", image: "images/gallery/02_soccer.jpg", description: "" }
+  { id: 2, title: "제목", date: "2000. 00. 00.", image: "images/gallery/02_soccer.jpg" ,description: "" },
+  { id: 3, title: "제목", date: "2000. 00. 00.", image: "images/gallery/03_gomemhill.jpg", description: "" },
+  { id: 4, title: "제목", date: "2000. 00. 00.", image: "images/gallery/04_school.png", description: "" },
+  { id: 5, title: "제목", date: "2000. 00. 00.", image: "images/gallery/05_family.png", description: "" },
+  { id: 6, title: "제목", date: "2000. 00. 00.", image: "images/gallery/06_endofyear.png", description: "" },
+  { id: 7, title: "제목", date: "2000. 00. 00.", image: "images/gallery/07_popvirus.png", description: "" },
+  { id: 8, title: "제목", date: "2000. 00. 00.", image: "images/gallery/08_mibal.jpg", description: "" },
+  { id: 9, title: "제목", date: "2000. 00. 00.", image: "images/gallery/09_princess.png", description: "" },
+  { id: 10, title: "제목", date: "2000. 00. 00.", image: "images/gallery/10_wander.jpg", description: "" },
+  { id: 11, title: "제목", date: "2000. 00. 00.", image: "images/gallery/11_roki.png", description: "" },
+  { id: 12, title: "제목", date: "2000. 00. 00.", image: "images/gallery/12_newyear.png", description: "" },
+  { id: 13, title: "제목", date: "2000. 00. 00.", image: "images/gallery/13_baseball1.png", description: "" },
+  { id: 14, title: "제목", date: "2000. 00. 00.", image: "images/gallery/14_baseball2.png", description: "" },
+  { id: 15, title: "제목", date: "2000. 00. 00.", image: "images/gallery/15_summer.png", description: "" },
 ]
 
 // 링크
@@ -327,25 +340,12 @@ function renderMembers() {
   }).join("");
 }
 
-// 클릭 시 이미지 뿅 효과
-function playMemberImagePop(card) {
-  const img = card.querySelector(".member-thumb img");
-  if (!img) return;
-
-  img.classList.remove("is-clicked");
-
-  void img.offsetWidth;
-
-  img.classList.add("is-clicked");
-
-  img.addEventListener("animationend", () => {
-    img.classList.remove("is-clicked");
-  }, { once: true });
-}
-
 $("#member-rail").addEventListener("click", event => {
   const card = event.target.closest("[data-member-id]");
   if (!card) return;
+
+  playMemberImagePop(card);
+
   const clickedMemberId = Number(card.dataset.memberId);
 
   if (clickedMemberId === selectedMemberId) {
@@ -355,6 +355,20 @@ $("#member-rail").addEventListener("click", event => {
 
   selectMember(clickedMemberId);
 });
+
+// 클릭 시 이미지 뿅 효과
+function playMemberImagePop(card) {
+  card.classList.remove("is-clicked");
+
+  // 애니메이션을 다시 실행하기 위한 초기화
+  void card.offsetWidth;
+
+  card.classList.add("is-clicked");
+
+  card.addEventListener("animationend", () => {
+    card.classList.remove("is-clicked");
+  }, { once: true });
+}
 
 // 화살표 클릭 시 스크롤
 $("[data-member-scroll='-1']").addEventListener("click", () => {

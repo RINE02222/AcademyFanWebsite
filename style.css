@@ -413,8 +413,17 @@ body::after {
   transform: translateY(-7px);
 }
 
-.member-thumb img.is-popping {
-  animation: member-image-pop .32s ease-out;
+.member-card.is-clicked {
+  animation: member-card-pop .15s ease-in;
+}
+
+@keyframes member-card-pop {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-7px);
+  }
 }
 
 /* 호버 - 숫자 숨김 */
@@ -435,7 +444,7 @@ body::after {
 
 /* 이미지 컬러 전환 */
 .member-card:hover .member-thumb img,
-.member-card:focus-visible .member-thumb img
+.member-card:focus-visible .member-thumb img,
 .member-card.is-selected .member-thumb img {
   filter: grayscale(0) saturate(1);
   transform: scale(1.055);
