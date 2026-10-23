@@ -117,15 +117,15 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(1px);
+  background: transparent;
 }
 
 .nav-btn-wrap {
   display: flex;
   align-items: stretch;
   height: 100%;
-  gap: clamp(10px, 1.6vw, 26px);
+  gap: clamp(10px, 10vw, 60px);
 }
 
 .nav-btn {
@@ -666,6 +666,11 @@ body::after {
   gap: 10px;
   display: block;
   height: 100%;
+  transition: transform .2s ease;
+}
+
+.pair-card:hover {
+  transform: translateY(-7px);
 }
 
 .pair-card h3 {
@@ -808,35 +813,6 @@ body::after {
     box-shadow 450ms ease;
 }
 
-/* 비닐의 가장자리 하이라이트 */
-.record-disc::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: 2;
-  border-radius: inherit;
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at 32% 22%,
-      #ffffff18 0,
-      #ffffff08 13%,
-      transparent 38%
-    ),
-    linear-gradient(
-      135deg,
-      #ffffff18 0%,
-      transparent 23%,
-      transparent 69%,
-      #00000050 100%
-    );
-
-  box-shadow:
-    inset 1px 1px 1px #ffffff24,
-    inset -2px -3px 5px #00000045;
-}
-
 /* 비닐의 부드러운 반사광 */
 .record-sheen {
   position: absolute;
@@ -856,7 +832,6 @@ body::after {
     transparent 100%
   );
 
-  transform: rotate(-15deg);
   mix-blend-mode: screen;
 }
 
@@ -1004,6 +979,12 @@ body::after {
     inset 0 -3px 5px #000000a0;
 }
 
+.turntable-platter > .record-sheen {
+  inset: 2%;
+  z-index: 4;
+  transform: none;
+}
+
 .turntable .record-disc {
   position: relative;
   width: 96%;
@@ -1034,9 +1015,13 @@ body::after {
     inset 0 2px 3px #ffffff16,
     inset 0 -4px 7px #000000b0,
     0 2px 4px #00000080;
+
+  animation: record-spin 4s linear infinite;
+  animation-play-state: paused;
 }
 
 .turntable .record-sheen {
+  
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -2991,7 +2976,7 @@ body::after {
 }
 
 /* ==========================================================================
-   ARCHIVE MODALS
+   모달 팝업
    ========================================================================== */
 
 .archive-overlay {
@@ -3017,7 +3002,7 @@ body::after {
 
 .archive-modal {
   width: min(900px, 100%);
-  max-height: min(85vh, 850px);
+  max-height: min(850px, 100%);
   overflow: auto;
   background: var(--paper);
   color: var(--ink);
@@ -3087,14 +3072,15 @@ body::after {
 
 .dossier-cover {
   height: 260px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
   background: var(--paper-deep);
+  overflow: hidden;
 }
 
 .dossier-cover img {
   width: 100%;
-  max-height: 260px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -3214,7 +3200,7 @@ body::after {
 /* Gallery lightbox */
 
 .lightbox-modal {
-  width: min(1100px, 100%);
+  width: min(900px, 100%);
   background: #171816;
   color: #fdfdfd;
   border-color: #555650;
@@ -3259,16 +3245,15 @@ body::after {
 .lightbox-image {
   min-height: 180px;
   height: min(52vh, 560px);
-  display: grid;
   place-items: center;
   overflow: hidden;
-  background: #242522;
+  background: transparent;
 }
 
 .lightbox-image img {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -3445,7 +3430,7 @@ body::after {
 }
 
 .turntable.is-playing .record-disc {
-  animation: record-spin 4s linear infinite;
+   animation-play-state: running;
 }
 
 @keyframes record-spin {

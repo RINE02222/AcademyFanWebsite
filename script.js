@@ -391,7 +391,6 @@ function selectMember(id) {
   if (!member) return;
 
   selectedMemberId = member.id;
-  setAccent(member.color);
 
   document.querySelectorAll(".member-card").forEach(card => {
     const isSelected = Number(card.dataset.memberId) === member.id;
@@ -839,7 +838,7 @@ function animateProfileChange() {
 function closeProfile() {
   $("#profile-overlay").classList.remove("is-open");
   $("#profile-overlay").setAttribute("aria-hidden", "true");
-  setAccent("#A9DCCB");
+  setAccent("#A3E2C4");
 }
 
 function stepProfile(direction) {
