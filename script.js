@@ -5,24 +5,24 @@
 
 // 멤버
 const members = [
-  { id: 1, name: "닌닌", engname: "Ninnin", generation: "1기", birthday: "2005. 05. 12.", mbti: "ENTP", fandom: "조무래기", jappronouns: "私", channel: "SOOP", color: "#7150CE", standing: "images/profile/01.png", portrait: "images/portrait/01.png", idphoto: "images/idphoto/01.png", description: "쿠노이치(가 될) 닌닌이다!", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 2, name: "미스 발렌타인", engname: "Miss Valentine", generation: "1기", birthday: "비공개", mbti: "ESTP", fandom: "미녀 ・ 미남", jappronouns: "私", channel: "SOOP", color: "#F5F5DC", standing: "images/profile/02.png", portrait: "images/portrait/02.png", idphoto: "images/idphoto/02.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 3, name: "보디가드 불독", engname: "Bodyguard Bulldog", generation: "1기", birthday: "2000. 05. 31.", mbti: "INTP-T", fandom: "아가씨", jappronouns: "僕", channel: "SOOP", color: "#000000", standing: "images/profile/03.png", portrait: "images/portrait/03.png", idphoto: "images/idphoto/03.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 4, name: "시리안 레인", engname: "Sirian Rain", generation: "1기", birthday: "07. 28.", mbti: "ISTJ", fandom: "도넛단", jappronouns: "私", channel: "SOOP", color: "#2D4BC1", standing: "images/profile/04.png", portrait: "images/portrait/04.png", idphoto: "images/idphoto/04.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 5, name: "아마데우스최", engname: "Amadeus Choi", generation: "1기", birthday: "03. 13", mbti: "ENTJ", fandom: "아사단", jappronouns: "僕 ・ 私", channel: "SOOP", color: "#6B2929", standing: "images/profile/05.png", portrait: "images/portrait/05.png", idphoto: "images/idphoto/05.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 6, name: "진희", engname: "Jinhe", generation: "1기", birthday: "05. 01.", mbti: "ENTP", fandom: "진미채", jappronouns: "オレ", channel: "SOOP", color: "#AAC484", standing: "images/profile/06.png", portrait: "images/portrait/06.png", idphoto: "images/idphoto/06.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 7, name: "캡틴 설리반", engname: "Captain Sullivan", generation: "1기", birthday: "09. 27.", mbti: "ENTP", fandom: "-", jappronouns: "俺 ・ 船長", channel: "SOOP", color: "#BB1111", standing: "images/profile/07.png", portrait: "images/portrait/07.png", idphoto: "images/idphoto/07.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 8, name: "사랑전도사 젠투", engname: "Love Missionary Jentoo", generation: "2기", birthday: "02. 23.", mbti: "ESFP", fandom: "젠크리트", jappronouns: "僕 ・ 私", channel: "SOOP", color: "#FF80E6", standing: "images/profile/08.png", portrait: "images/portrait/08.png", idphoto: "images/idphoto/08.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 9, name: "수셈이", engname: "Soosemi", generation: "2기", birthday: "03. 02.", mbti: "ISTJ", fandom: "고기세제비실벌벌쫄보카피바라단", jappronouns: "僕", channel: "SOOP", color: "#425342", standing: "images/profile/09.png", portrait: "images/portrait/09.png", idphoto: "images/idphoto/09.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 10, name: "철도왕 길버트", engname: "Vanderbilt Gilbert", generation: "2기", birthday: "1801. 06. 27.", mbti: "INTP", fandom: "전쟁고멤 ・ 석탄단 ・ 철도단", jappronouns: "俺", channel: "SOOP", color: "#343F7E", standing: "images/profile/10.png", portrait: "images/portrait/10.png", idphoto: "images/idphoto/10.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "11. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", channel: "SOOP", color: "#ABCDEC", standing: "images/profile/11.png", portrait: "images/portrait/11.png", idphoto: "images/idphoto/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 12, name: "빅토리", engname: "Victory", generation: "3기", birthday: "2001. 02. 19.", mbti: "ESFP", fandom: "빅타민", jappronouns: "私", channel: "SOOP", color: "#FFC15C", standing: "images/profile/12.png", portrait: "images/portrait/12.png", idphoto: "images/idphoto/12.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 13, name: "데스해머쵸로키", engname: "Death Hammer Chouloky", generation: "4기", birthday: "2004. 07. 17.", mbti: "ISFP", fandom: "허접구리", jappronouns: "あたし", channel: "SOOP", color: "#6AA937", standing: "images/profile/13.png", portrait: "images/portrait/13.png", idphoto: "images/idphoto/13.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 14, name: "아이 쓰께끼", engname: "I Cekkekki", generation: "4기", birthday: "꼬깔단", mbti: "-", fandom: "06. 29.", jappronouns: "ボク", channel: "SOOP", color: "#A7E6F0", standing: "images/profile/14.png", portrait: "images/portrait/14.png", idphoto: "images/idphoto/14.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 15, name: "크리즈", engname: "Kreaze", generation: "4기", birthday: "비공개", mbti: "-", fandom: "-", jappronouns: "我", channel: "SOOP", color: "#787878", standing: "images/profile/15.png", portrait: "images/portrait/15.png", idphoto: "images/idphoto/15.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 16, name: "버터우스 3세", engname: "Butterus III", generation: "5기", birthday: "05. 10.", mbti: "ENTJ", fandom: "백성단", jappronouns: "余", channel: "SOOP", color: "#C2A46E", standing: "images/profile/16.png", portrait: "images/portrait/16.png", idphoto: "images/idphoto/16.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 17, name: "성기사 샬롯", engname: "Castle Knight Charlotte", generation: "5기", birthday: "07. 15.", mbti: "INTP", fandom: "때지", jappronouns: "私", channel: "SOOP", color: "#B41432", standing: "images/profile/17.png", portrait: "images/portrait/17.png", idphoto: "images/idphoto/17.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 18, name: "메카 맹기산", engname: "Mecha Maeng Gisan", generation: "6기", birthday: "11. 24.", mbti: "-", fandom: "-", jappronouns: "オレ", channel: "SOOP", color: "#8C6B4B", standing: "images/profile/18.png", portrait: "images/portrait/18.png", idphoto: "images/idphoto/18.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." }
+  { id: 1, name: "닌닌", engname: "Ninnin", generation: "1기", birthday: "2005. 05. 12.", mbti: "ENTP", fandom: "조무래기", jappronouns: "私", oshimark: "🥷", color: "#7150CE", standing: "images/profile/01.png", portrait: "", idphoto: "images/idphoto/01.png", description: "쿠노이치(가 될) 닌닌이다!", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 2, name: "미스 발렌타인", engname: "Miss Valentine", generation: "1기", birthday: "비공개", mbti: "ESTP", fandom: "미녀 ・ 미남", jappronouns: "私", oshimark: "🌹", color: "#F5F5DC", standing: "images/profile/02.png", portrait: "images/portrait/02.png", idphoto: "images/idphoto/02.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 3, name: "보디가드 불독", engname: "Bodyguard Bulldog", generation: "1기", birthday: "2000. 05. 31.", mbti: "INTP-T", fandom: "아가씨", jappronouns: "僕", oshimark: "🕶️", color: "#000000", standing: "images/profile/03.png", portrait: "", idphoto: "images/idphoto/03.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 4, name: "시리안 레인", engname: "Sirian Rain", generation: "1기", birthday: "07. 28.", mbti: "ISTJ", fandom: "도넛단", jappronouns: "私", oshimark: "👮", color: "#2D4BC1", standing: "images/profile/04.png", portrait: "", idphoto: "images/idphoto/04.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 5, name: "아마데우스최", engname: "Amadeus Choi", generation: "1기", birthday: "03. 13.", mbti: "ENTJ", fandom: "아사단", jappronouns: "僕 ・ 私", oshimark: "🎶", color: "#6B2929", standing: "images/profile/05.png", portrait: "images/portrait/05.png", idphoto: "images/idphoto/05.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 6, name: "진희", engname: "Jinhe", generation: "1기", birthday: "05. 01.", mbti: "ENTP", fandom: "진미채", jappronouns: "オレ", oshimark: "🧞", color: "#AAC484", standing: "images/profile/06.png", portrait: "images/portrait/06.png", idphoto: "images/idphoto/06.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 7, name: "캡틴 설리반", engname: "Captain Sullivan", generation: "1기", birthday: "09. 27.", mbti: "ENTP", fandom: "-", jappronouns: "俺 ・ 船長", oshimark: "🏴‍☠️", color: "#BB1111", standing: "images/profile/07.png", portrait: "", idphoto: "images/idphoto/07.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 8, name: "사랑전도사 젠투", engname: "Love Missionary Jentoo", generation: "2기", birthday: "02. 23.", mbti: "ESFP", fandom: "젠크리트", jappronouns: "僕 ・ 私", oshimark: "💘", color: "#FF80E6", standing: "images/profile/08.png", portrait: "images/portrait/08.png", idphoto: "images/idphoto/08.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 9, name: "수셈이", engname: "Soosemi", generation: "2기", birthday: "03. 02.", mbti: "ISTJ", fandom: "고기세제비실벌벌쫄보카피바라단", jappronouns: "僕", oshimark: "🧽", color: "#425342", standing: "images/profile/09.png", portrait: "images/portrait/09.png", idphoto: "images/idphoto/09.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 10, name: "철도왕 길버트", engname: "Vanderbilt Gilbert", generation: "2기", birthday: "1801. 06. 27.", mbti: "INTP", fandom: "전쟁고멤 ・ 석탄단 ・ 철도단", jappronouns: "俺", oshimark: "🚂", color: "#343F7E", standing: "images/profile/10.png", portrait: "images/portrait/10.png", idphoto: "images/idphoto/10.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "08. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", oshimark: "🪺🐲", color: "#ABCDEC", standing: "images/profile/11.png", portrait: "images/portrait/11.png", idphoto: "images/idphoto/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 12, name: "빅토리", engname: "Victory", generation: "3기", birthday: "2001. 02. 19.", mbti: "ESFP", fandom: "빅타민", jappronouns: "私", oshimark: "✨", color: "#FFC15C", standing: "images/profile/12.png", portrait: "", idphoto: "images/idphoto/12.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 13, name: "데스해머쵸로키", engname: "Death Hammer Chouloky", generation: "4기", birthday: "2004. 07. 17.", mbti: "ISFP", fandom: "허접구리", jappronouns: "あたし", oshimark: "🐸", color: "#6AA937", standing: "images/profile/13.png", portrait: "", idphoto: "images/idphoto/13.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 14, name: "아이 쓰께끼", engname: "I Cekkekki", generation: "4기", birthday: "06. 29.", mbti: "-", fandom: "꼬깔단", jappronouns: "ボク", oshimark: "🍦", color: "#A7E6F0", standing: "images/profile/14.png", portrait: "", idphoto: "images/idphoto/14.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 15, name: "크리즈", engname: "Kreaze", generation: "4기", birthday: "비공개", mbti: "-", fandom: "-", jappronouns: "我", oshimark: "🗿", color: "#787878", standing: "images/profile/15.png", portrait: "", idphoto: "images/idphoto/15.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 16, name: "버터우스 3세", engname: "Butterus III", generation: "5기", birthday: "05. 10.", mbti: "ENTJ", fandom: "백성단", jappronouns: "余", oshimark: "🧈", color: "#C2A46E", standing: "images/profile/16.png", portrait: "", idphoto: "images/idphoto/16.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 17, name: "성기사 샬롯", engname: "Castle Knight Charlotte", generation: "5기", birthday: "07. 15.", mbti: "INTP", fandom: "때지", jappronouns: "私", oshimark: "⚜️", color: "#B41432", standing: "images/profile/17.png", portrait: "images/portrait/17.png", idphoto: "images/idphoto/17.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 18, name: "메카 맹기산", engname: "Mecha Maeng Gisan", generation: "6기", birthday: "1984. 11. 24.", mbti: "-", fandom: "-", jappronouns: "オレ", oshimark: "🕵️‍♂️", color: "#8C6B4B", standing: "images/profile/18.png", portrait: "", idphoto: "images/idphoto/18.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." }
 ];
 
 // 페어
@@ -109,7 +109,7 @@ const homeEvents = [
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-let selectedMemberId = members[0]?.id ?? null;
+let selectedMemberId = null;
 let activePairFilter = "전체";
 let activeSongFilter = "all";
 let currentSongId = null;
@@ -134,7 +134,7 @@ function imageMarkup(src, alt, fallbackClass = "") {
 }
 
 // 멤버에 따라 포인트 컬러 바꾸기
-function setAccent(color = "#A9DCCB") {
+function setAccent(color = "#A3E2C4") {
   document.documentElement.style.setProperty("--accent", color);
   const hex = color.replace("#", "");
   const normalized = hex.length === 3 ? hex.split("").map(ch => ch + ch).join("") : hex;
@@ -144,11 +144,12 @@ function setAccent(color = "#A9DCCB") {
 
 
 /* =========================================================
-   페이지 별 함수
+   페이지별 함수
    ========================================================= */
 
 
 /* ---------- 내비게이션 바 ---------- */
+
 function navigateTo(sectionId) {
   const target = $(`[data-page="${sectionId}"]`);
   if (!target) return;
@@ -251,25 +252,95 @@ function renderHomeWidgets() {
 /* ---------- MEMBERS ---------- */
 
 // 멤버 카드 렌더링
+function getContrastTextColor(hex) {
+  const value = hex.replace("#", "");
+
+  if (!/^[0-9a-fA-F]{6}$/.test(value)) {
+    return "#ffffff";
+  }
+
+  const r = parseInt(value.slice(0, 2), 16);
+  const g = parseInt(value.slice(2, 4), 16);
+  const b = parseInt(value.slice(4, 6), 16);
+
+  // 밝기 계산
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+
+  return brightness >= 150 ? "#252525" : "#ffffff";
+}
+
 function renderMembers() {
-  $("#member-rail").innerHTML = members.map(member => `
-    <button
-      id="member-${member.id}"
-      class="member-card ${member.id === selectedMemberId ? "is-selected" : ""}"
-      data-member-id="${member.id}"
-      style="--member-accent:${member.color}"
-      aria-pressed="${member.id === selectedMemberId}">
-      <div class="member-thumb">
-        ${imageMarkup(member.standing, `MEMBER ${String(member.id).padStart(2, "0")}`)}
-      </div>
-      <span class="member-card-num">
-        NO. ${String(member.id).padStart(2, "0")}
-      </span>
-      <span class="member-card-name">
-        ${escapeHTML(member.name)}
-      </span>
-    </button>
-  `).join("");
+  const rail = $("#member-rail");
+
+  rail.innerHTML = members.map(member => {
+    const number = String(member.id).padStart(2, "0");
+    const englishName = member.engname || member.name;
+
+    return `
+      <button
+        id="member-${member.id}"
+        class="member-card ${
+          member.id === selectedMemberId ? "is-selected" : ""
+        }"
+        data-member-id="${member.id}"
+        style="
+        --member-accent: ${member.color};
+        --member-hover-text: ${getContrastTextColor(member.color)}
+"
+        aria-label="${escapeHTML(member.name)} 프로필 보기"
+        aria-pressed="${member.id === selectedMemberId}"
+        type="button"
+      >
+        <span class="member-card-number-bg" aria-hidden="true">
+          <span class="member-card-number">
+            ${number}
+          </span>
+          <span class="member-card-english">
+            ${escapeHTML(englishName)}
+          </span>
+        </span>
+
+        <span class="member-thumb">
+          ${imageMarkup(
+            member.standing || member.portrait,
+            `MEMBER ${number}`
+          )}
+        </span>
+
+        <span class="member-card-meta">
+          <span class="member-card-num">NO. ${number}</span>
+
+          <span class="member-card-name">
+            ${escapeHTML(member.name)}
+          </span>
+
+          <span class="member-card-engname">
+            ${escapeHTML(englishName)}
+          </span>
+
+          <span class="member-card-generation">
+            ${escapeHTML(member.generation || "")}
+          </span>
+        </span>
+      </button>
+    `;
+  }).join("");
+}
+
+// 클릭 시 이미지 뿅 효과
+function playMemberImagePop(card) {
+  const img = card.querySelector(".member-thumb img");
+  if (!img) return;
+
+  img.classList.remove("is-clicked");
+
+  void img.offsetWidth;
+
+  img.classList.add("is-clicked");
+
+  img.addEventListener("animationend", () => {
+    img.classList.remove("is-clicked");
+  }, { once: true });
 }
 
 $("#member-rail").addEventListener("click", event => {
@@ -285,84 +356,35 @@ $("#member-rail").addEventListener("click", event => {
   selectMember(clickedMemberId);
 });
 
+// 화살표 클릭 시 스크롤
+$("[data-member-scroll='-1']").addEventListener("click", () => {
+  $("#member-scroll").scrollBy({
+    left: -$("#member-scroll").clientWidth * 1,
+    behavior: "smooth"
+  });
+});
+
+$("[data-member-scroll='1']").addEventListener("click", () => {
+  $("#member-scroll").scrollBy({
+    left: $("#member-scroll").clientWidth * 1,
+    behavior: "smooth"
+  });
+});
+
 // 멤버 선택
 function selectMember(id) {
   const member = memberById(id);
   if (!member) return;
+
   selectedMemberId = member.id;
   setAccent(member.color);
-  renderMembers();
-}
 
-// 프로필 오버레이 열기
-function openProfile(animateChange = false) {
-  const member = memberById(selectedMemberId);
-  if (!member) return;
-  const memberIndex = members.findIndex(item => item.id === member.id);
-  const memberNumber = String(member.id).padStart(2, "0");
-  const archiveImages = [member.portrait, member.standing ]
-    .filter(Boolean)
-    .filter((src, index, items) => items.indexOf(src) === index)
-    .slice(0, 4);
+  document.querySelectorAll(".member-card").forEach(card => {
+    const isSelected = Number(card.dataset.memberId) === member.id;
 
-  setAccent(member.color);
-  $("#profile-name").textContent = member.name;
-  $("#profile-engname").textContent = member.engname;
-  $("#profile-quote").textContent = member.description || "A record waiting to be written.";
-  $("#profile-birthday").textContent = member.birthday || "—";
-  $("#profile-mbti").textContent = member.mbti || "—";
-  $("#profile-fandom").textContent = member.fandom || "—";
-  $("#profile-jappronouns").textContent = member.jappronouns || "—";
-  $("#profile-generation").textContent = member.generation || "—";
-  $("#profile-channel").textContent = member.channel || "—";
-  $("#profile-notes").textContent = member.memo || "No additional notes recorded.";
-  $("#profile-standing").innerHTML = imageMarkup(member.standing, `PORTRAIT / ${member.name}`);
-  $("#profile-position").textContent = `${String(memberIndex + 1).padStart(2, "0")} / ${String(members.length).padStart(2, "0")}`;
-  $("#profile-big-number").textContent = String(member.id).padStart(2, "0");
-  $("#profile-handwriting").textContent = member.engname || member.name;
-  $("#profile-side-label").textContent = `${member.engname || member.name}`;
-  $("#profile-archive-number").textContent = `NO. ${memberNumber}`;
-  const portraitSrc = member.idphoto || member.portrait;
-  $("#profile-id-card").innerHTML = `
-    <div class="id-card-brand"></div>
-    <div class="id-card-photo">${portraitSrc ? imageMarkup(portraitSrc, `${member.name} 학생증 사진`) : `<span>${escapeHTML(member.name)}</span>`}</div>
-    <b class="id-card-name">${escapeHTML(member.name)}</b>
-    <div class="id-card-meta">
-    <div class="id-card-meta-row"><span>기수</span><span class="id-card-value">${escapeHTML(member.generation || "—")}</span></div>
-    <div class="id-card-meta-row"><span>생년월일</span><span class="id-card-value">${escapeHTML(member.birthday || "—")}</span></div>
-    <div class="id-card-meta-row"><span>MBTI</span><span class="id-card-value">${escapeHTML(member.mbti || "—")}</span></div>
-    </div>
-    <div class="id-card-barcode" aria-hidden="true"></div>`;
-  $("#profile-gallery-grid").innerHTML = archiveImages.map((src, index) => `
-    <button class="profile-gallery-item" type="button" aria-label="${escapeHTML(member.name)} archive image ${String(index + 1).padStart(2, "0")}">
-      ${imageMarkup(src, `${member.name} archive image ${index + 1}`)}
-    </button>`).join("");
-  $("#profile-overlay").classList.add("is-open");
-  $("#profile-overlay").setAttribute("aria-hidden", "false");
-  if (animateChange) animateProfileChange();
-}
-
-// 멤버 전환 애니메이션
-function animateProfileChange() {
-  const panel = $(".profile-main");
-  panel.classList.remove("is-changing");
-  void panel.offsetWidth;
-  panel.classList.add("is-changing");
-  panel.addEventListener("animationend", () => panel.classList.remove("is-changing"), { once: true });
-}
-
-// 프로필 오버레이 닫기
-function closeProfile() {
-  $("#profile-overlay").classList.remove("is-open");
-  $("#profile-overlay").setAttribute("aria-hidden", "true");
-  setAccent("#A9DCCB");
-}
-
-function stepProfile(direction) {
-  const index = members.findIndex(item => item.id === selectedMemberId);
-  const next = (index + direction + members.length) % members.length;
-  selectMember(members[next].id);
-  openProfile(true);
+    card.classList.toggle("is-selected", isSelected);
+    card.setAttribute("aria-pressed", String(isSelected));
+  });
 }
 
 /* ---------- PAIR ---------- */
@@ -468,85 +490,6 @@ function renderPairs() {
   `;
 }
 
-// 페어 상세 정보 모달 열기
-function openPairDossier(id) {
-  const pair = pairs.find(item => String(item.id) === String(id));
-  if (!pair) return;
-
-  const people = pair.members
-    .map(memberById)
-    .filter(Boolean);
-
-  const categories = Array.isArray(pair.category)
-    ? pair.category
-    : [pair.category].filter(Boolean);
-
-  $("#dossier-number").textContent =
-    `조합 상세 정보 / NO. ${String(pair.id).padStart(2, "0")}`;
-
-  $("#dossier-content").innerHTML = `
-    <div class="dossier-hero">
-      <div class="dossier-cover">
-        ${imageMarkup(pair.image, pair.title)}
-      </div>
-
-      <div class="dossier-heading">
-        <h2 id="dossier-title">${escapeHTML(pair.title)}</h2>
-
-        <div class="dossier-tags">
-          ${categories.map(category => `
-            <span class="dossier-tag">${escapeHTML(category)}</span>
-          `).join("")}
-        </div>
-
-        <p class="dossier-description">
-          ${escapeHTML(pair.description || "기록된 설명이 없습니다.")}
-        </p>
-      </div>
-    </div>
-
-    <section class="dossier-section">
-      <h3>멤버 / ${people.length}</h3>
-      <div class="dossier-members">
-        ${people.map(member => `
-          <button
-            type="button"
-            class="dossier-member"
-            data-dossier-member="${member.id}"
-          >
-            ${member.portrait
-              ? `<img src="${escapeHTML(member.portrait)}"
-                      alt="${escapeHTML(member.name)}">`
-              : `<span class="dossier-member-placeholder">
-                   ${String(member.id).padStart(2, "0")}
-                 </span>`
-            }
-            <span>${escapeHTML(member.name)}</span>
-          </button>
-        `).join("")}
-      </div>
-    </section>
-  `;
-
-  closeArchiveOverlay("archive-lightbox");
-  $("#pair-dossier").classList.add("is-open");
-  $("#pair-dossier").setAttribute("aria-hidden", "false");
-}
-
-// 하단 멤버 클릭 이벤트
-$("#dossier-content").addEventListener("click", event => {
-  const memberButton = event.target.closest("[data-dossier-member]");
-
-  if (memberButton) {
-    const memberId = Number(memberButton.dataset.dossierMember);
-    closeArchiveOverlay("pair-dossier");
-    selectMember(memberId);
-    navigateTo("members");
-    openProfile();
-    return;
-  }
-});
-
 /* ---------- GALLERY ---------- */
 
 // 갤러리 그리드 렌더링
@@ -577,6 +520,7 @@ function renderGallery() {
 
 let currentGalleryId = null;
 
+// 라이트박스 열기
 function openLightbox(id) {
   const item = galleryItems.find(photo => photo.id === Number(id));
   if (!item) return;
@@ -588,47 +532,6 @@ function openLightbox(id) {
 
   $("#archive-lightbox").classList.add("is-open");
   $("#archive-lightbox").setAttribute("aria-hidden", "false");
-}
-
-function renderLightbox() {
-  const index = galleryItems.findIndex(
-    item => item.id === currentGalleryId
-  );
-
-  const item = galleryItems[index];
-  if (!item) return;
-
-  $("#lightbox-number").textContent =
-    `사진 확대샷 / PHOTO ${String(index + 1).padStart(3, "0")} OF ${String(galleryItems.length).padStart(3, "0")}`;
-
-  $("#lightbox-image").innerHTML = item.image
-    ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}">`
-    : `<span>NO IMAGE AVAILABLE</span>`;
-
-  $("#lightbox-info").innerHTML = `
-    <h2>${escapeHTML(item.title)}</h2>
-    <span class="music-label">
-      ${escapeHTML(item.date || "DATE UNKNOWN")}
-    </span>
-    <p>${escapeHTML(item.description || "아직 추가된 기록 설명이 없습니다.")}</p>
-  `;
-
-  $("#lightbox-prev").disabled = galleryItems.length < 2;
-  $("#lightbox-next").disabled = galleryItems.length < 2;
-}
-
-function stepLightbox(direction) {
-  const index = galleryItems.findIndex(
-    item => item.id === currentGalleryId
-  );
-
-  if (index < 0 || galleryItems.length < 2) return;
-
-  const nextIndex =
-    (index + direction + galleryItems.length) % galleryItems.length;
-
-  currentGalleryId = galleryItems[nextIndex].id;
-  renderLightbox();
 }
 
 // 사진 클릭 이벤트
@@ -647,12 +550,9 @@ $("#gallery-grid").addEventListener("keydown", event => {
   }
 });
 
-$("#lightbox-prev").addEventListener("click", () => stepLightbox(-1));
-$("#lightbox-next").addEventListener("click", () => stepLightbox(1));
-
 /* ---------- SONG ---------- */
 
-// 앨범 그리드 렌더
+// 앨범 그리드 렌더링
 function renderSongs() {
   renderSongGrid();
 }
@@ -716,6 +616,26 @@ function selectSong(id, autoplay = false) {
     playMusic();
   }
 }
+
+/* ---------- LINKS ---------- */
+
+// 링크 카드 렌더링
+function renderLinks() {
+  $("#link-scroll").innerHTML = links.map((link, index) => `
+    <a class="link-card" href="${escapeHTML(link.url)}" ${link.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""}>
+      <span class="link-card-icon">${escapeHTML(link.icon)}</span>
+      <strong>${escapeHTML(link.title)}</strong>
+      <p>${escapeHTML(link.description)}</p>
+      <span class="link-out">${escapeHTML(link.label)} ↗</span>
+    </a>
+  `).join("");
+}
+
+
+/* =========================================================
+   뷰포트 외 기타 함수
+   ========================================================= */
+
 
 /* ---------- 하단 뮤직 플레이어 ---------- */
 
@@ -842,23 +762,212 @@ function toggleRepeatMode() {
   );
 }
 
-/* ---------- LINKS ---------- */
+/* ---------- MEMBERS - 프로필 오버레이 ---------- */
 
-// 링크 카드 렌더링
-function renderLinks() {
-  $("#link-scroll").innerHTML = links.map((link, index) => `
-    <a class="link-card" href="${escapeHTML(link.url)}" ${link.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""}>
-      <span class="link-card-icon">${escapeHTML(link.icon)}</span>
-      <strong>${escapeHTML(link.title)}</strong>
-      <p>${escapeHTML(link.description)}</p>
-      <span class="link-out">${escapeHTML(link.label)} ↗</span>
-    </a>
-  `).join("");
+// 프로필 오버레이
+function openProfile(animateChange = false) {
+  const member = memberById(selectedMemberId);
+  if (!member) return;
+  const memberIndex = members.findIndex(item => item.id === member.id);
+  const memberNumber = String(member.id).padStart(2, "0");
+  const archiveImages = [member.portrait || member.idphoto, member.standing ]
+    .filter(Boolean)
+    .filter((src, index, items) => items.indexOf(src) === index)
+    .slice(0, 4);
+
+  setAccent(member.color);
+  $("#profile-name").textContent = member.name;
+  $("#profile-engname").textContent = member.engname;
+  $("#profile-quote").textContent = member.description || "A record waiting to be written.";
+  $("#profile-birthday").textContent = member.birthday || "—";
+  $("#profile-mbti").textContent = member.mbti || "—";
+  $("#profile-fandom").textContent = member.fandom || "—";
+  $("#profile-jappronouns").textContent = member.jappronouns || "—";
+  $("#profile-generation").textContent = member.generation || "—";
+  $("#profile-oshimark").textContent = member.oshimark || "—";
+  $("#profile-notes").textContent = member.memo || "No additional notes recorded.";
+  $("#profile-standing").innerHTML = imageMarkup(member.standing, `PORTRAIT / ${member.name}`);
+  $("#profile-position").textContent = `${String(memberIndex + 1).padStart(2, "0")} / ${String(members.length).padStart(2, "0")}`;
+  $("#profile-big-number").textContent = String(member.id).padStart(2, "0");
+  $("#profile-handwriting").textContent = member.engname || member.name;
+  $("#profile-side-label").textContent = `${member.engname || member.name}`;
+  $("#profile-archive-number").textContent = `NO. ${memberNumber}`;
+  const portraitSrc = member.idphoto || member.portrait;
+  $("#profile-id-card").innerHTML = `
+    <div class="id-card-brand"></div>
+    <div class="id-card-photo">${portraitSrc ? imageMarkup(portraitSrc, `${member.name} 학생증 사진`) : `<span>${escapeHTML(member.name)}</span>`}</div>
+    <b class="id-card-name">${escapeHTML(member.name)}</b>
+    <div class="id-card-meta">
+    <div class="id-card-meta-row"><span>기수</span><span class="id-card-value">${escapeHTML(member.generation || "—")}</span></div>
+    <div class="id-card-meta-row"><span>생년월일</span><span class="id-card-value">${escapeHTML(member.birthday || "—")}</span></div>
+    <div class="id-card-meta-row"><span>MBTI</span><span class="id-card-value">${escapeHTML(member.mbti || "—")}</span></div>
+    </div>
+    <div class="id-card-barcode" aria-hidden="true"></div>`;
+  $("#profile-gallery-grid").innerHTML = archiveImages.map((src, index) => `
+    <button class="profile-gallery-item" type="button" aria-label="${escapeHTML(member.name)} archive image ${String(index + 1).padStart(2, "0")}">
+      ${imageMarkup(src, `${member.name} archive image ${index + 1}`)}
+    </button>`).join("");
+  $("#profile-overlay").classList.add("is-open");
+  $("#profile-overlay").setAttribute("aria-hidden", "false");
+  if (animateChange) animateProfileChange();
 }
+
+// 멤버 전환 애니메이션
+function animateProfileChange() {
+  const panel = $(".profile-main");
+  panel.classList.remove("is-changing");
+  void panel.offsetWidth;
+  panel.classList.add("is-changing");
+  panel.addEventListener("animationend", () => panel.classList.remove("is-changing"), { once: true });
+}
+
+// 프로필 오버레이 닫기
+function closeProfile() {
+  $("#profile-overlay").classList.remove("is-open");
+  $("#profile-overlay").setAttribute("aria-hidden", "true");
+  setAccent("#A9DCCB");
+}
+
+function stepProfile(direction) {
+  const index = members.findIndex(item => item.id === selectedMemberId);
+  const next = (index + direction + members.length) % members.length;
+  selectMember(members[next].id);
+  openProfile(true);
+}
+
+/* ---------- PAIR - 상세 정보 모달 ---------- */
+
+// 상세 정보 모달
+function openPairDossier(id) {
+  const pair = pairs.find(item => String(item.id) === String(id));
+  if (!pair) return;
+
+  const people = pair.members
+    .map(memberById)
+    .filter(Boolean);
+
+  const categories = Array.isArray(pair.category)
+    ? pair.category
+    : [pair.category].filter(Boolean);
+
+  $("#dossier-number").textContent =
+    `조합 상세 정보 / NO. ${String(pair.id).padStart(2, "0")}`;
+
+  $("#dossier-content").innerHTML = `
+    <div class="dossier-hero">
+      <div class="dossier-cover">
+        ${imageMarkup(pair.image, pair.title)}
+      </div>
+
+      <div class="dossier-heading">
+        <h2 id="dossier-title">${escapeHTML(pair.title)}</h2>
+
+        <div class="dossier-tags">
+          ${categories.map(category => `
+            <span class="dossier-tag">${escapeHTML(category)}</span>
+          `).join("")}
+        </div>
+
+        <p class="dossier-description">
+          ${escapeHTML(pair.description || "기록된 설명이 없습니다.")}
+        </p>
+      </div>
+    </div>
+
+    <section class="dossier-section">
+      <h3>멤버 / ${people.length}</h3>
+      <div class="dossier-members">
+        ${people.map(member => `
+          <button
+            type="button"
+            class="dossier-member"
+            data-dossier-member="${member.id}"
+          >
+            ${member.portrait
+              ? `<img src="${escapeHTML(member.portrait)}"
+                      alt="${escapeHTML(member.name)}">`
+              : `<span class="dossier-member-placeholder">
+                   ${String(member.id).padStart(2, "0")}
+                 </span>`
+            }
+            <span>${escapeHTML(member.name)}</span>
+          </button>
+        `).join("")}
+      </div>
+    </section>
+  `;
+
+  closeArchiveOverlay("archive-lightbox");
+  $("#pair-dossier").classList.add("is-open");
+  $("#pair-dossier").setAttribute("aria-hidden", "false");
+}
+
+// 하단 멤버 클릭 이벤트
+$("#dossier-content").addEventListener("click", event => {
+  const memberButton = event.target.closest("[data-dossier-member]");
+
+  if (memberButton) {
+    const memberId = Number(memberButton.dataset.dossierMember);
+    closeArchiveOverlay("pair-dossier");
+    selectMember(memberId);
+    navigateTo("members");
+    openProfile();
+    return;
+  }
+});
+
+/* ---------- GALLERY - 라이트박스 ---------- */
+
+function renderLightbox() {
+  const index = galleryItems.findIndex(
+    item => item.id === currentGalleryId
+  );
+
+  const item = galleryItems[index];
+  if (!item) return;
+
+  $("#lightbox-number").textContent =
+    `사진 확대샷 / PHOTO ${String(index + 1).padStart(3, "0")} OF ${String(galleryItems.length).padStart(3, "0")}`;
+
+  $("#lightbox-image").innerHTML = item.image
+    ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}">`
+    : `<span>NO IMAGE AVAILABLE</span>`;
+
+  $("#lightbox-info").innerHTML = `
+    <h2>${escapeHTML(item.title)}</h2>
+    <span class="music-label">
+      ${escapeHTML(item.date || "DATE UNKNOWN")}
+    </span>
+    <p>${escapeHTML(item.description || "아직 추가된 기록 설명이 없습니다.")}</p>
+  `;
+
+  $("#lightbox-prev").disabled = galleryItems.length < 2;
+  $("#lightbox-next").disabled = galleryItems.length < 2;
+}
+
+function stepLightbox(direction) {
+  const index = galleryItems.findIndex(
+    item => item.id === currentGalleryId
+  );
+
+  if (index < 0 || galleryItems.length < 2) return;
+
+  const nextIndex =
+    (index + direction + galleryItems.length) % galleryItems.length;
+
+  currentGalleryId = galleryItems[nextIndex].id;
+  renderLightbox();
+}
+
+// 화살표 클릭 시 사진 전환
+$("#lightbox-prev").addEventListener("click", () => stepLightbox(-1));
+$("#lightbox-next").addEventListener("click", () => stepLightbox(1));
+
 
 /* =========================================================
    이벤트
    ========================================================= */
+
 
 $$(".nav-btn").forEach(button => button.addEventListener("click", () => navigateTo(button.dataset.section)));
 $(".menu-toggle").addEventListener("click", () => {

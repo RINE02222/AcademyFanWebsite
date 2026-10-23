@@ -6,20 +6,25 @@
   <meta name="theme-color" content="#f4f3ee">
   <title>고멤 아카데미 생활기록부</title>
   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Hahmlet:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/zsc2iqh.css">
   <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
+
+  <script>
+  (function(d) {
+    var config = {
+      kitId: 'zsc2iqh',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+  </script>
 </head>
 <body>
 
-  <!-- 
-  ============================================
-  내비게이션 바
-  ============================================ 
-  -->
-
+  <!-- 내비게이션 바 -->
   <header class="topbar">
     <nav class="nav-btn-wrap">
       <button class="nav-btn is-active" data-section="home">HOME</button>
@@ -81,9 +86,13 @@
 
     <!-- MEMBERS -->
     <section class="page-section members-section" id="members" data-page="members" aria-label="아카데미생">
-      <div class="section-topline"><span>01 / 아카데미생 목록</span></div>
-      <div class="member-scroll">
-        <div class="member-rail" id="member-rail"></div>
+      <div class="section-topline"><span>01 / 아카데미생 목록</span><span>좌우로 스크롤하기</span></div>
+      <div class="member-container">
+        <button class="member-scroll-button member-scroll-prev" type="button" aria-label="이전 멤버" data-member-scroll="-1">←</button>
+        <div class="member-scroll" id="member-scroll">
+          <div class="member-rail" id="member-rail"></div>
+        </div>
+        <button class="member-scroll-button member-scroll-next" type="button" aria-label="다음 멤버" data-member-scroll="1">→</button>
       </div>
     </section>
 
@@ -249,7 +258,7 @@
           <div><small>FANDOM</small><strong id="profile-fandom">—</strong></div>
           <div><small>JAPANESE PRONOUNS</small><strong id="profile-jappronouns">—</strong></div>
           <div><small>GENERATION</small><strong id="profile-generation">—</strong></div>
-          <div><small>CHANNEL</small><strong id="profile-channel">—</strong></div>
+          <div><small>OSHI MARK</small><strong id="profile-oshimark">—</strong></div>
         </div>
         <div class="profile-notes"><span>NOTES</span>
           <p id="profile-notes">작성된 내용이 없습니다.</p>
@@ -259,14 +268,14 @@
         </div>
       </div>
       <nav class="profile-hangtag" aria-label="프로필 바로가기">
-        <span class="tag-clip" aria-hidden="true"></span><span class="tag-emblem">✧</span>
-        <a href="">PROFILE</a><a href="">RELATION</a><a href="">VOICE</a><a href="">GALLERY</a>
+        <span class="tag-clip" aria-hidden="true"></span>
+        <a href="">SOOP</a><a href="">YOTUBE</a><a href="">CAFE</a>
       </nav>
     </div>
     <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
   </div>
 
-  <!-- PAIR - 상세 모달 -->
+  <!-- PAIR - 상세 정보 모달 -->
   <div class="archive-overlay" id="pair-dossier" aria-hidden="true">
     <section class="archive-modal dossier-modal" role="dialog"
             aria-modal="true" aria-labelledby="dossier-title">
@@ -302,15 +311,5 @@
   -->
 
   <script src="script.js"></script>
-  <script>
-  (function(d) {
-    var config = {
-      kitId: 'lun2qsl',
-      scriptTimeout: 3000,
-      async: true
-    },
-    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-  })(document);
-</script>
 </body>
 </html>
