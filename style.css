@@ -348,7 +348,7 @@ body::after {
   border: 1px solid var(--ink);
   text-align: left;
   scroll-snap-align: start;
-  transition: background-color .35s ease, transform .2s ease, background .28s ease;
+  transition: background-color .28s ease, transform .2s ease, background .28s ease;
 }
 
 /* 숫자+영문 이름 */
@@ -377,7 +377,6 @@ body::after {
   inset: 0;
   color: var(--member-hover-text, #fff);
   opacity: 0;
-  transform: translateY(4px);
   overflow-wrap: anywhere;
   word-break: break-all;
   transition: opacity .22s ease, transform .3s ease;
@@ -399,7 +398,7 @@ body::after {
   object-position: center top;
   filter: grayscale(1) saturate(.25);
   transform: scale(1.015);
-  transition: filter .42s ease, transform .4s ease;
+  transition: filter .42s ease, transform .38s ease;
 }
 
 .member-card:hover,
@@ -431,7 +430,6 @@ body::after {
 .member-card:focus-visible .member-card-number,
 .member-card.is-selected .member-card-number {
   opacity: 0;
-  transform: translateY(-8px);
 }
 
 /* 호버 - 영문 이름 표시 */
@@ -439,7 +437,6 @@ body::after {
 .member-card:focus-visible .member-card-english,
 .member-card.is-selected .member-card-english {
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* 이미지 컬러 전환 */
@@ -514,7 +511,7 @@ body::after {
   border: none;
   font: 48px var(--mono);
   text-shadow: 0 0 8px rgba(0, 0, 0, .5);
-  transition: background .2s ease, transform .2s ease;
+  transition: transform .2s ease;
 }
 
 .member-scroll-button:hover {
@@ -1527,22 +1524,41 @@ body::after {
 .links-title {
   position: relative;
   border: 1px solid var(--ink);
-  background: white;
+  background-image: url(https://i.namu.wiki/i/jNWnMZfiixGga2SVB3LynZre-nKuUNjc6fiFD_LMkPfvpDPou2j4Pkai-Dhn3pfQgaWmCIpx--uH8UaVua2aTA.webp);
   padding: 30px 22px;
   display: flex;
   flex-direction: column;
-  transition: transform .2s;
+  transition: background-size .25s ease;
   font-size: 12px;
   line-height: 1.8;
   color: var(--ink);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center 40px;
+}
+
+.links-title::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to bottom, black 30%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.links-title h2,
+.links-title p {
+  position: relative;
+  z-index: 1;
+  color: white;
 }
 
 .links-title:hover {
-  transform: translateY(-2px);
+  background-size: auto 105%;
 }
 
 .link-scroll {
-  overflow-y: auto;
+  overflow-y: hidden;
   padding: 4px 10px 12px 2px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1554,16 +1570,36 @@ body::after {
 .link-card {
   position: relative;
   border: 1px solid var(--ink);
-  background: white;
   padding: 15px;
   display: flex;
   flex-direction: column;
   min-height: 145px;
-  transition: transform .2s;
+  transition: background-size .25s ease;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 160px;
+}
+
+.link-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to right, white 50%, rgba(255, 255, 255, 0) 120%);
+  pointer-events: none;
 }
 
 .link-card:hover {
-  transform: translateY(-2px);
+  background-size: 105%;
+}
+
+.link-card-icon,
+.link-card strong,
+.link-card p,
+.link-out,
+.link-link-top {
+  position: relative;
+  z-index: 1;
 }
 
 .link-card-top {
@@ -1579,10 +1615,8 @@ body::after {
   place-items: center;
   width: 25px;
   height: 25px;
-  border: 1px solid var(--ink);
-  font: 600 16px var(--display);
-  margin: 0px 0 12px;
-  background: var(--accent);
+  font: 600 24px var(--display);
+  margin-bottom: 8px;
 }
 
 .link-card strong {
@@ -1595,7 +1629,7 @@ body::after {
   margin: 5px 0 10px;
 }
 
-.link-card .link-out {
+.link-out {
   margin-top: auto;
   font: 8px var(--mono);
   border-top: 1px solid var(--line);
@@ -3143,7 +3177,7 @@ body::after {
 .dossier-member img,
 .dossier-member-placeholder {
   width: 80px;
-  height: 75px;
+  height: 80px;
   object-fit: cover;
   border: 1px solid var(--line);
   background: var(--paper-deep);

@@ -5,23 +5,23 @@
 
 // 멤버
 const members = [
-  { id: 1, name: "닌닌", engname: "Ninnin", generation: "1기", birthday: "2005. 05. 12.", mbti: "ENTP", fandom: "조무래기", jappronouns: "私", oshimark: "🥷", color: "#7150CE", standing: "images/profile/01.png", portrait: "", idphoto: "images/idphoto/01.png", description: "쿠노이치(가 될) 닌닌이다!", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 1, name: "닌닌", engname: "Ninnin", generation: "1기", birthday: "2005. 05. 12.", mbti: "ENTP", fandom: "조무래기", jappronouns: "私", oshimark: "🥷", color: "#7150CE", standing: "images/profile/01.png", portrait: "images/portrait/01.png", idphoto: "images/idphoto/01.png", description: "쿠노이치(가 될) 닌닌이다!", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 2, name: "미스 발렌타인", engname: "Miss Valentine", generation: "1기", birthday: "비공개", mbti: "ESTP", fandom: "미녀 ・ 미남", jappronouns: "私", oshimark: "🌹", color: "#F5F5DC", standing: "images/profile/02.png", portrait: "images/portrait/02.png", idphoto: "images/idphoto/02.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 3, name: "보디가드 불독", engname: "Bodyguard Bulldog", generation: "1기", birthday: "2000. 05. 31.", mbti: "INTP-T", fandom: "아가씨", jappronouns: "僕", oshimark: "🕶️", color: "#000000", standing: "images/profile/03.png", portrait: "", idphoto: "images/idphoto/03.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 4, name: "시리안 레인", engname: "Sirian Rain", generation: "1기", birthday: "07. 28.", mbti: "ISTJ", fandom: "도넛단", jappronouns: "私", oshimark: "👮", color: "#2D4BC1", standing: "images/profile/04.png", portrait: "", idphoto: "images/idphoto/04.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 5, name: "아마데우스최", engname: "Amadeus Choi", generation: "1기", birthday: "03. 13.", mbti: "ENTJ", fandom: "아사단", jappronouns: "僕 ・ 私", oshimark: "🎶", color: "#6B2929", standing: "images/profile/05.png", portrait: "images/portrait/05.png", idphoto: "images/idphoto/05.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 5, name: "아마데우스최", engname: "Amadeus Choi", generation: "1기", birthday: "03. 13.", mbti: "ENTJ", fandom: "아사단", jappronouns: "僕 ・ 私", oshimark: "🎶", color: "#6B2929", standing: "images/profile/05.png", portrait: "", idphoto: "images/idphoto/05.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 6, name: "진희", engname: "Jinhe", generation: "1기", birthday: "05. 01.", mbti: "ENTP", fandom: "진미채", jappronouns: "オレ", oshimark: "🧞", color: "#AAC484", standing: "images/profile/06.png", portrait: "images/portrait/06.png", idphoto: "images/idphoto/06.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 7, name: "캡틴 설리반", engname: "Captain Sullivan", generation: "1기", birthday: "09. 27.", mbti: "ENTP", fandom: "-", jappronouns: "俺 ・ 船長", oshimark: "🏴‍☠️", color: "#BB1111", standing: "images/profile/07.png", portrait: "", idphoto: "images/idphoto/07.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 8, name: "사랑전도사 젠투", engname: "Love Missionary Jentoo", generation: "2기", birthday: "02. 23.", mbti: "ESFP", fandom: "젠크리트", jappronouns: "僕 ・ 私", oshimark: "💘", color: "#FF80E6", standing: "images/profile/08.png", portrait: "images/portrait/08.png", idphoto: "images/idphoto/08.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 9, name: "수셈이", engname: "Soosemi", generation: "2기", birthday: "03. 02.", mbti: "ISTJ", fandom: "고기세제비실벌벌쫄보카피바라단", jappronouns: "僕", oshimark: "🧽", color: "#425342", standing: "images/profile/09.png", portrait: "images/portrait/09.png", idphoto: "images/idphoto/09.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 10, name: "철도왕 길버트", engname: "Vanderbilt Gilbert", generation: "2기", birthday: "1801. 06. 27.", mbti: "INTP", fandom: "전쟁고멤 ・ 석탄단 ・ 철도단", jappronouns: "俺", oshimark: "🚂", color: "#343F7E", standing: "images/profile/10.png", portrait: "images/portrait/10.png", idphoto: "images/idphoto/10.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "08. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", oshimark: "🪺🐲", color: "#ABCDEC", standing: "images/profile/11.png", portrait: "images/portrait/11.png", idphoto: "images/idphoto/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 12, name: "빅토리", engname: "Victory", generation: "3기", birthday: "2001. 02. 19.", mbti: "ESFP", fandom: "빅타민", jappronouns: "私", oshimark: "✨", color: "#FFC15C", standing: "images/profile/12.png", portrait: "", idphoto: "images/idphoto/12.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "08. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", oshimark: "🪺🐲", color: "#ABCDEC", standing: "images/profile/11.png", portrait: "", idphoto: "images/idphoto/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 12, name: "빅토리", engname: "Victory", generation: "3기", birthday: "2001. 02. 19.", mbti: "ESFP", fandom: "빅타민", jappronouns: "私", oshimark: "✨", color: "#FFC15C", standing: "images/profile/12.png", portrait: "images/portrait/12.png", idphoto: "images/idphoto/12.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 13, name: "데스해머쵸로키", engname: "Death Hammer Chouloky", generation: "4기", birthday: "2004. 07. 17.", mbti: "ISFP", fandom: "허접구리", jappronouns: "あたし", oshimark: "🐸", color: "#6AA937", standing: "images/profile/13.png", portrait: "", idphoto: "images/idphoto/13.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 14, name: "아이 쓰께끼", engname: "I Cekkekki", generation: "4기", birthday: "06. 29.", mbti: "-", fandom: "꼬깔단", jappronouns: "ボク", oshimark: "🍦", color: "#A7E6F0", standing: "images/profile/14.png", portrait: "", idphoto: "images/idphoto/14.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 15, name: "크리즈", engname: "Kreaze", generation: "4기", birthday: "비공개", mbti: "-", fandom: "-", jappronouns: "我", oshimark: "🗿", color: "#787878", standing: "images/profile/15.png", portrait: "", idphoto: "images/idphoto/15.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 16, name: "버터우스 3세", engname: "Butterus III", generation: "5기", birthday: "05. 10.", mbti: "ENTJ", fandom: "백성단", jappronouns: "余", oshimark: "🧈", color: "#C2A46E", standing: "images/profile/16.png", portrait: "", idphoto: "images/idphoto/16.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 17, name: "성기사 샬롯", engname: "Castle Knight Charlotte", generation: "5기", birthday: "07. 15.", mbti: "INTP", fandom: "때지", jappronouns: "私", oshimark: "⚜️", color: "#B41432", standing: "images/profile/17.png", portrait: "images/portrait/17.png", idphoto: "images/idphoto/17.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 17, name: "성기사 샬롯", engname: "Castle Knight Charlotte", generation: "5기", birthday: "07. 15.", mbti: "INTP", fandom: "때지", jappronouns: "私", oshimark: "⚜️", color: "#B41432", standing: "images/profile/17.png", portrait: "", idphoto: "images/idphoto/17.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 18, name: "메카 맹기산", engname: "Mecha Maeng Gisan", generation: "6기", birthday: "1984. 11. 24.", mbti: "-", fandom: "-", jappronouns: "オレ", oshimark: "🕵️‍♂️", color: "#8C6B4B", standing: "images/profile/18.png", portrait: "", idphoto: "images/idphoto/18.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." }
 ];
 
@@ -99,13 +99,12 @@ const galleryItems = [
 
 // 링크
 const links = [
-  { title: "우왁굳", description: "우왁굳 유튜브 채널", label: "유튜브", icon: "N", url: "https://www.youtube.com/@woowakgood" },
-  { title: "우왁굳", description: "우왁굳 방송국 바로가기", label: "SOOP", icon: "▶", url: "https://www.sooplive.com/station/ecvhao" },
-  { title: "왁타버스 WAKTAVERSE", description: "왁타버스 메인 유튜브 채널", label: "유튜브", icon: "S", url: "https://www.youtube.com/channel/UCzh4yY8rl38knH33XpNqXbQ" },
-  { title: "왁타버스 ZERO", description: "방송 다시보기 및 고멤 놀이터", label: "유튜브", icon: "↗", url: "https://www.youtube.com/channel/UCZOcwheypMvYN_J2oRBgt2A" },
-  { title: "고카 상사", description: "공식 사내 커뮤니티", label: "홈페이지", icon: "+", url: "https://goca-company.sp0907sh.chatgpt.site/" },
-  { title: "아카데미 플레이리스트", description: "아카데미생들의 추천곡 모음", label: "유튜브 재생목록", icon: "+", url: "https://www.youtube.com/playlist?list=PLStHIETtt5OxgxpMb_1hohY9NuF9g5sN8" },
-  { title: "패러블 엔터테인먼트", description: "우왁굳이 소속된 MCN", label: "홈페이지", icon: "✳", url: "#" }
+  { title: "우왁굳", description: "우왁굳 유튜브 채널", label: "유튜브", icon: "iconoir-youtube-solid", url: "https://www.youtube.com/@woowakgood", image: "https://yt3.googleusercontent.com/8qJyQpSS6YLADyM5T6afKkpCsGtC3x_4_SSJWTNNO3qKX9FmlRRBZbO7VFy8IegO_717mU7zaqM=s900-c-k-c0x00ffffff-no-rj" },
+  { title: "우왁굳", description: "우왁굳 방송국 바로가기", label: "SOOP", icon: "iconoir-tv", url: "https://www.sooplive.com/station/ecvhao", image: "https://yt3.googleusercontent.com/8qJyQpSS6YLADyM5T6afKkpCsGtC3x_4_SSJWTNNO3qKX9FmlRRBZbO7VFy8IegO_717mU7zaqM=s900-c-k-c0x00ffffff-no-rj" },
+  { title: "왁타버스 WAKTAVERSE", description: "왁타버스 메인 유튜브 채널", label: "유튜브", icon: "iconoir-youtube-solid", url: "https://www.youtube.com/channel/UCzh4yY8rl38knH33XpNqXbQ", image: "https://yt3.googleusercontent.com/-WhlmETS5indv4KmktijCYdM1WfGkdmiii7yaGNzBUwJfhOYidLBgQrMz4wmO0_6o15kEdnAAA=s900-c-k-c0x00ffffff-no-rj" },
+  { title: "왁타버스 ZERO", description: "방송 다시보기 및 고멤 놀이터", label: "유튜브", icon: "iconoir-youtube-solid", url: "https://www.youtube.com/channel/UCZOcwheypMvYN_J2oRBgt2A", image: "https://yt3.googleusercontent.com/A7aCY6_48h-53dhNKq0mW6ph2_0V9Kv3GC9_YZzxV-lXo6d4aCHfKFXCAukohqd6-bEyaF78qA=s900-c-k-c0x00ffffff-no-rj" },
+  { title: "고카 상사", description: "공식 사내 커뮤니티", label: "홈페이지", icon: "iconoir-building", url: "https://goca-company.sp0907sh.chatgpt.site/", image: "images/logo.svg" },
+  { title: "아카데미 플레이리스트", description: "아카데미생들의 추천곡 모음", label: "유튜브 재생목록", icon: "iconoir-playlist", url: "https://www.youtube.com/playlist?list=PLStHIETtt5OxgxpMb_1hohY9NuF9g5sN8", image: "#" },
 ];
 
 // 다가오는 일정
@@ -635,8 +634,8 @@ function selectSong(id, autoplay = false) {
 // 링크 카드 렌더링
 function renderLinks() {
   $("#link-scroll").innerHTML = links.map((link, index) => `
-    <a class="link-card" href="${escapeHTML(link.url)}" ${link.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""}>
-      <span class="link-card-icon">${escapeHTML(link.icon)}</span>
+    <a class="link-card" href="${escapeHTML(link.url)}" ${link.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""} style="background-image: url(${escapeHTML(link.image)});" >
+      <span class="link-card-icon"><i class="${escapeHTML(link.icon)}"></i></span>
       <strong>${escapeHTML(link.title)}</strong>
       <p>${escapeHTML(link.description)}</p>
       <span class="link-out">${escapeHTML(link.label)} ↗</span>
