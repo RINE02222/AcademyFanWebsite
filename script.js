@@ -174,9 +174,134 @@ function navigateTo(sectionId) {
   setAccent("#A9DCCB");
 }
 
+/* ---------- 뮤직 플레이어 ---------- */
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00";
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+
+  return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
+}
+
+function updatePlayButton(isPlaying) {
+  $(".turntable").classList.toggle("is-playing", isPlaying);
+  $("#music-play-icon").textContent = isPlaying ? "Ⅱ" : "▶";
+  $("#music-play").setAttribute(
+    "aria-label",
+    isPlaying ? "일시정지" : "재생"
+  );
+}
+
+function updateProgress() {
+  const audio = $("#music-audio");
+  const currentTime = audio.currentTime || 0;
+  const duration = audio.duration;
+
+  $("#music-current-time").textContent = formatTime(currentTime);
+  $("#music-duration").textContent = formatTime(duration);
+
+  $("#music-seek").value =
+    Number.isFinite(duration) && duration > 0
+      ? (currentTime / duration) * 100
+      : 0;
+}
+
+async function playMusic() {
+  const audio = $("#music-audio");
+
+  try {
+    await audio.play();
+    updatePlayButton(true);
+  } catch (error) {
+    updatePlayButton(false);
+    console.warn("음원을 재생할 수 없습니다.", error);
+  }
+}
+
+function toggleMusicPlayback() {
+  const audio = $("#music-audio");
+
+  if (audio.paused) {
+    playMusic();
+  } else {
+    audio.pause();
+  }
+}
+
+function playPreviousSong() {
+  const currentIndex = songs.findIndex(
+    song => song.id === currentSongId
+  );
+
+  if (currentIndex < 0 || songs.length === 0) return;
+
+  const previousIndex =
+    (currentIndex - 1 + songs.length) % songs.length;
+
+  selectSong(songs[previousIndex].id, true);
+}
+
+function playNextSong(automatic = false) {
+  const currentIndex = songs.findIndex(
+    song => song.id === currentSongId
+  );
+
+  if (currentIndex < 0 || songs.length === 0) return;
+
+  const isLastSong = currentIndex === songs.length - 1;
+
+  // 반복 없음: 마지막 곡이 끝나면 재생을 멈춤
+  if (automatic && isLastSong && repeatMode === "none") {
+    const audio = $("#music-audio");
+    audio.pause();
+    audio.currentTime = 0;
+    updatePlayButton(false);
+    updateProgress();
+    return;
+  }
+
+  const nextIndex = isLastSong ? 0 : currentIndex + 1;
+  selectSong(songs[nextIndex].id, true);
+}
+
+function toggleRepeatMode() {
+  const modes = ["all", "one", "none"];
+  const currentIndex = modes.indexOf(repeatMode);
+
+  repeatMode = modes[(currentIndex + 1) % modes.length];
+
+  const audio = $("#music-audio");
+  audio.loop = repeatMode === "one";
+
+  const labels = {
+    all: "ALL",
+    one: "ONE",
+    none: "OFF"
+  };
+
+  $("#music-repeat-label").textContent = labels[repeatMode];
+  $("#music-repeat").classList.toggle(
+    "is-active",
+    repeatMode !== "none"
+  );
+
+  $("#music-repeat").setAttribute(
+    "aria-label",
+    `반복 모드: ${
+      repeatMode === "all"
+        ? "플레이리스트 반복"
+        : repeatMode === "one"
+          ? "한 곡 반복"
+          : "반복 없음"
+    }`
+  );
+}
+
 /* ---------- HOME ---------- */
 
-// 다가오는 생일 계산
+// 가장 가까운 생일 계산
 function parseBirthdayMonthDay(value) {
   const match = String(value || "").match(/^\s*(?:\d{4}[./-]\s*)?(\d{1,2})[./-]\s*(\d{1,2})\.?\s*$/);
   if (!match) return null;
@@ -189,7 +314,7 @@ function parseBirthdayMonthDay(value) {
   return { month, day };
 }
 
-// D-Day 계산
+// 디데이 계산
 function daysBetweenLocalDates(fromDate, toDate) {
   const from = Date.UTC(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate());
   const to = Date.UTC(toDate.getFullYear(), toDate.getMonth(), toDate.getDate());
@@ -355,7 +480,7 @@ $("#member-rail").addEventListener("click", event => {
   selectMember(clickedMemberId);
 });
 
-// 클릭 시 이미지 뿅 효과
+// 카드 클릭: 이미지 뿅 효과
 function playMemberImagePop(card) {
   card.classList.remove("is-clicked");
 
@@ -369,7 +494,7 @@ function playMemberImagePop(card) {
   }, { once: true });
 }
 
-// 화살표 클릭 시 스크롤
+// 화살표 클릭: 좌우로 스크롤
 $("[data-member-scroll='-1']").addEventListener("click", () => {
   $("#member-scroll").scrollBy({
     left: -$("#member-scroll").clientWidth * 1,
@@ -397,6 +522,79 @@ function selectMember(id) {
     card.classList.toggle("is-selected", isSelected);
     card.setAttribute("aria-pressed", String(isSelected));
   });
+}
+
+/* ---------- MEMBERS: 프로필 오버레이 ---------- */
+
+// 프로필 오버레이
+function openProfile(animateChange = false) {
+  const member = memberById(selectedMemberId);
+  if (!member) return;
+  const memberIndex = members.findIndex(item => item.id === member.id);
+  const memberNumber = String(member.id).padStart(2, "0");
+  const archiveImages = [member.portrait || member.idphoto, member.standing ]
+    .filter(Boolean)
+    .filter((src, index, items) => items.indexOf(src) === index)
+    .slice(0, 4);
+
+  setAccent(member.color);
+  $("#profile-name").textContent = member.name;
+  $("#profile-engname").textContent = member.engname;
+  $("#profile-quote").textContent = member.description || "A record waiting to be written.";
+  $("#profile-birthday").textContent = member.birthday || "—";
+  $("#profile-mbti").textContent = member.mbti || "—";
+  $("#profile-fandom").textContent = member.fandom || "—";
+  $("#profile-jappronouns").textContent = member.jappronouns || "—";
+  $("#profile-generation").textContent = member.generation || "—";
+  $("#profile-oshimark").textContent = member.oshimark || "—";
+  $("#profile-notes").textContent = member.memo || "No additional notes recorded.";
+  $("#profile-standing").innerHTML = imageMarkup(member.standing, `PORTRAIT / ${member.name}`);
+  $("#profile-position").textContent = `${String(memberIndex + 1).padStart(2, "0")} / ${String(members.length).padStart(2, "0")}`;
+  $("#profile-big-number").textContent = String(member.id).padStart(2, "0");
+  $("#profile-handwriting").textContent = member.engname || member.name;
+  $("#profile-side-label").textContent = `${member.engname || member.name}`;
+  $("#profile-archive-number").textContent = `NO. ${memberNumber}`;
+  const portraitSrc = member.idphoto || member.portrait;
+  $("#profile-id-card").innerHTML = `
+    <div class="id-card-brand"></div>
+    <div class="id-card-photo">${portraitSrc ? imageMarkup(portraitSrc, `${member.name} 학생증 사진`) : `<span>${escapeHTML(member.name)}</span>`}</div>
+    <b class="id-card-name">${escapeHTML(member.name)}</b>
+    <div class="id-card-meta">
+    <div class="id-card-meta-row"><span>기수</span><span class="id-card-value">${escapeHTML(member.generation || "—")}</span></div>
+    <div class="id-card-meta-row"><span>생년월일</span><span class="id-card-value">${escapeHTML(member.birthday || "—")}</span></div>
+    <div class="id-card-meta-row"><span>MBTI</span><span class="id-card-value">${escapeHTML(member.mbti || "—")}</span></div>
+    </div>
+    <div class="id-card-barcode" aria-hidden="true"></div>`;
+  $("#profile-gallery-grid").innerHTML = archiveImages.map((src, index) => `
+    <button class="profile-gallery-item" type="button" aria-label="${escapeHTML(member.name)} archive image ${String(index + 1).padStart(2, "0")}">
+      ${imageMarkup(src, `${member.name} archive image ${index + 1}`)}
+    </button>`).join("");
+  $("#profile-overlay").classList.add("is-open");
+  $("#profile-overlay").setAttribute("aria-hidden", "false");
+  if (animateChange) animateProfileChange();
+}
+
+// 멤버 전환 애니메이션
+function animateProfileChange() {
+  const panel = $(".profile-main");
+  panel.classList.remove("is-changing");
+  void panel.offsetWidth;
+  panel.classList.add("is-changing");
+  panel.addEventListener("animationend", () => panel.classList.remove("is-changing"), { once: true });
+}
+
+// 프로필 오버레이 닫기
+function closeProfile() {
+  $("#profile-overlay").classList.remove("is-open");
+  $("#profile-overlay").setAttribute("aria-hidden", "true");
+  setAccent("#A3E2C4");
+}
+
+function stepProfile(direction) {
+  const index = members.findIndex(item => item.id === selectedMemberId);
+  const next = (index + direction + members.length) % members.length;
+  selectMember(members[next].id);
+  openProfile(true);
 }
 
 /* ---------- PAIR ---------- */
@@ -502,6 +700,253 @@ function renderPairs() {
   `;
 }
 
+/* ---------- PAIR: 페어 상세 정보 ---------- */
+
+// 페어 모달 열기
+function openPairDossier(id) {
+  const pair = pairs.find(item => String(item.id) === String(id));
+  if (!pair) return;
+
+  const people = pair.members
+    .map(memberById)
+    .filter(Boolean);
+
+  const categories = Array.isArray(pair.category)
+    ? pair.category
+    : [pair.category].filter(Boolean);
+
+  $("#dossier-number").textContent =
+    `조합 상세 정보 / NO. ${String(pair.id).padStart(2, "0")}`;
+
+  $("#dossier-content").innerHTML = `
+    <div class="dossier-hero">
+      <div class="dossier-cover">
+        ${imageMarkup(pair.image, pair.title)}
+      </div>
+
+      <div class="dossier-heading">
+        <h2 id="dossier-title">${escapeHTML(pair.title)}</h2>
+
+        <div class="dossier-tags">
+          ${categories.map(category => `
+            <span class="dossier-tag">${escapeHTML(category)}</span>
+          `).join("")}
+        </div>
+
+        <p class="dossier-description">
+          ${escapeHTML(pair.description || "기록된 설명이 없습니다.")}
+        </p>
+      </div>
+    </div>
+
+    <section class="dossier-section">
+      <h3>멤버 / ${people.length}</h3>
+      <div class="dossier-members">
+        ${people.map(member => `
+          <button
+            type="button"
+            class="dossier-member"
+            data-dossier-member="${member.id}"
+          >
+            ${member.portrait
+              ? `<img src="${escapeHTML(member.portrait)}"
+                      alt="${escapeHTML(member.name)}">`
+              : `<span class="dossier-member-placeholder">
+                   ${String(member.id).padStart(2, "0")}
+                 </span>`
+            }
+            <span>${escapeHTML(member.name)}</span>
+          </button>
+        `).join("")}
+      </div>
+    </section>
+  `;
+
+  closeArchiveOverlay("archive-lightbox");
+  $("#pair-dossier").classList.add("is-open");
+  $("#pair-dossier").setAttribute("aria-hidden", "false");
+}
+
+// 하단 멤버 클릭: 프로필 오버레이 열기
+$("#dossier-content").addEventListener("click", event => {
+  const memberButton = event.target.closest("[data-dossier-member]");
+
+  if (memberButton) {
+    const memberId = Number(memberButton.dataset.dossierMember);
+    closeArchiveOverlay("pair-dossier");
+    selectMember(memberId);
+    navigateTo("members");
+    openProfile();
+    return;
+  }
+});
+
+/* ---------- CALENDAR ---------- */
+
+let calendarDate = new Date();
+let selectedCalendarDate = new Date(
+  calendarDate.getFullYear(),
+  calendarDate.getMonth(),
+  calendarDate.getDate()
+);
+
+// 날짜 YYYY-MM-DD 통일
+function getCalendarDateKey(year, month, day) {
+  return [
+    year,
+    String(month + 1).padStart(2, "0"),
+    String(day).padStart(2, "0")
+  ].join("-");
+}
+
+// 해당 날짜의 생일 멤버 찾기
+function getBirthdayMembers(month, day) {
+  return members.filter(member => {
+    const birthday = parseBirthdayMonthDay(member.birthday);
+
+    return birthday &&
+      birthday.month === month + 1 &&
+      birthday.day === day;
+  });
+}
+
+// 월간 달력 렌더링
+function renderCalendar() {
+  const grid = $("#calendar-grid");
+  const monthLabel = $("#calendar-current-month");
+
+  if (!grid || !monthLabel) return;
+
+  const year = calendarDate.getFullYear();
+  const month = calendarDate.getMonth();
+
+  monthLabel.textContent =
+    `${year}. ${String(month + 1).padStart(2, "0")}.`;
+
+  grid.innerHTML = "";
+
+  const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+
+  weekdays.forEach(day => {
+    const heading = document.createElement("div");
+    heading.className = "calendar-weekday";
+    heading.textContent = day;
+    grid.appendChild(heading);
+  });
+
+  // 첫 날짜와 마지막 날짜
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0).getDate();
+
+  const startOffset = (firstDay.getDay() + 6) % 7;
+
+  // 이전 달의 마지막 날짜부터 그리드 시작
+  const previousMonthLastDay = new Date(year, month, 0).getDate();
+
+  const today = new Date();
+  const todayKey = getCalendarDateKey(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  );
+
+  // 6주 × 7일 = 42칸
+  for (let i = 0; i < 42; i++) {
+    let day;
+    let cellMonth = month;
+    let cellYear = year;
+    let isOutside = false;
+
+    if (i < startOffset) {
+      // 이전 달
+      day = previousMonthLastDay - startOffset + i + 1;
+      cellMonth--;
+      isOutside = true;
+
+      if (cellMonth < 0) {
+        cellMonth = 11;
+        cellYear--;
+      }
+    } else if (i >= startOffset + lastDay) {
+      // 다음 달
+      day = i - startOffset - lastDay + 1;
+      cellMonth++;
+      isOutside = true;
+
+      if (cellMonth > 11) {
+        cellMonth = 0;
+        cellYear++;
+      }
+    } else {
+      // 현재 달
+      day = i - startOffset + 1;
+    }
+
+    const dateKey = getCalendarDateKey(
+      cellYear,
+      cellMonth,
+      day
+    );
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "calendar-day";
+    button.dataset.date = dateKey;
+
+    if (isOutside) {
+      button.classList.add("is-outside");
+    }
+
+    if (dateKey === todayKey) {
+      button.classList.add("is-today");
+    }
+
+    if (
+      dateKey === getCalendarDateKey(
+        selectedCalendarDate.getFullYear(),
+        selectedCalendarDate.getMonth(),
+        selectedCalendarDate.getDate()
+      )
+    ) {
+      button.classList.add("is-selected");
+    }
+
+    const number = document.createElement("span");
+    number.className = "calendar-day-number";
+    number.textContent = day;
+    button.appendChild(number);
+
+    // 현재 달에 속한 날짜에만 생일 이미지 적용
+    if (!isOutside) {
+      const birthdayMembers = getBirthdayMembers(month, day);
+
+      if (birthdayMembers.length > 0) {
+        const member = birthdayMembers[0];
+
+        button.classList.add("has-birthday");
+        button.style.setProperty("--member-color", member.color);
+
+        if (member.standing) {
+          button.style.setProperty(
+            "--birthday-image",
+            `url("${member.standing}")`
+          );
+        }
+
+        const name = document.createElement("span");
+        name.className = "calendar-birthday-name";
+        name.textContent = birthdayMembers
+          .map(person => person.name)
+          .join(", ");
+
+        button.appendChild(name);
+      }
+    }
+
+    grid.appendChild(button);
+  }
+}
+
 /* ---------- GALLERY ---------- */
 
 // 갤러리 그리드 렌더링
@@ -532,21 +977,7 @@ function renderGallery() {
 
 let currentGalleryId = null;
 
-// 라이트박스 열기
-function openLightbox(id) {
-  const item = galleryItems.find(photo => photo.id === Number(id));
-  if (!item) return;
-
-  currentGalleryId = item.id;
-
-  closeArchiveOverlay("pair-dossier");
-  renderLightbox();
-
-  $("#archive-lightbox").classList.add("is-open");
-  $("#archive-lightbox").setAttribute("aria-hidden", "false");
-}
-
-// 사진 클릭 이벤트
+// 사진 클릭: 라이트박스 열기
 $("#gallery-grid").addEventListener("click", event => {
   const card = event.target.closest("[data-gallery-id]");
   if (card) openLightbox(Number(card.dataset.galleryId));
@@ -561,6 +992,65 @@ $("#gallery-grid").addEventListener("keydown", event => {
     openLightbox(Number(card.dataset.galleryId));
   }
 });
+
+// 라이트박스 모달 열기
+function openLightbox(id) {
+  const item = galleryItems.find(photo => photo.id === Number(id));
+  if (!item) return;
+
+  currentGalleryId = item.id;
+
+  closeArchiveOverlay("pair-dossier");
+  renderLightbox();
+
+  $("#archive-lightbox").classList.add("is-open");
+  $("#archive-lightbox").setAttribute("aria-hidden", "false");
+}
+
+function renderLightbox() {
+  const index = galleryItems.findIndex(
+    item => item.id === currentGalleryId
+  );
+
+  const item = galleryItems[index];
+  if (!item) return;
+
+  $("#lightbox-number").textContent =
+    `사진 확대샷 / PHOTO ${String(index + 1).padStart(3, "0")} OF ${String(galleryItems.length).padStart(3, "0")}`;
+
+  $("#lightbox-image").innerHTML = item.image
+    ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}">`
+    : `<span>NO IMAGE AVAILABLE</span>`;
+
+  $("#lightbox-info").innerHTML = `
+    <h2>${escapeHTML(item.title)}</h2>
+    <span class="music-label">
+      ${escapeHTML(item.date || "DATE UNKNOWN")}
+    </span>
+    <p>${escapeHTML(item.description || "아직 추가된 기록 설명이 없습니다.")}</p>
+  `;
+
+  $("#lightbox-prev").disabled = galleryItems.length < 2;
+  $("#lightbox-next").disabled = galleryItems.length < 2;
+}
+
+function stepLightbox(direction) {
+  const index = galleryItems.findIndex(
+    item => item.id === currentGalleryId
+  );
+
+  if (index < 0 || galleryItems.length < 2) return;
+
+  const nextIndex =
+    (index + direction + galleryItems.length) % galleryItems.length;
+
+  currentGalleryId = galleryItems[nextIndex].id;
+  renderLightbox();
+}
+
+// 화살표 클릭: 사진 전환
+$("#lightbox-prev").addEventListener("click", () => stepLightbox(-1));
+$("#lightbox-next").addEventListener("click", () => stepLightbox(1));
 
 /* ---------- SONG ---------- */
 
@@ -642,338 +1132,6 @@ function renderLinks() {
     </a>
   `).join("");
 }
-
-
-/* =========================================================
-   뷰포트 외 기타 함수
-   ========================================================= */
-
-
-/* ---------- 하단 뮤직 플레이어 ---------- */
-
-function formatTime(seconds) {
-  if (!Number.isFinite(seconds)) return "0:00";
-
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = Math.floor(seconds % 60);
-
-  return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
-}
-
-function updatePlayButton(isPlaying) {
-  $(".turntable").classList.toggle("is-playing", isPlaying);
-  $("#music-play-icon").textContent = isPlaying ? "Ⅱ" : "▶";
-  $("#music-play").setAttribute(
-    "aria-label",
-    isPlaying ? "일시정지" : "재생"
-  );
-}
-
-function updateProgress() {
-  const audio = $("#music-audio");
-  const currentTime = audio.currentTime || 0;
-  const duration = audio.duration;
-
-  $("#music-current-time").textContent = formatTime(currentTime);
-  $("#music-duration").textContent = formatTime(duration);
-
-  $("#music-seek").value =
-    Number.isFinite(duration) && duration > 0
-      ? (currentTime / duration) * 100
-      : 0;
-}
-
-async function playMusic() {
-  const audio = $("#music-audio");
-
-  try {
-    await audio.play();
-    updatePlayButton(true);
-  } catch (error) {
-    updatePlayButton(false);
-    console.warn("음원을 재생할 수 없습니다.", error);
-  }
-}
-
-function toggleMusicPlayback() {
-  const audio = $("#music-audio");
-
-  if (audio.paused) {
-    playMusic();
-  } else {
-    audio.pause();
-  }
-}
-
-function playPreviousSong() {
-  const currentIndex = songs.findIndex(
-    song => song.id === currentSongId
-  );
-
-  if (currentIndex < 0 || songs.length === 0) return;
-
-  const previousIndex =
-    (currentIndex - 1 + songs.length) % songs.length;
-
-  selectSong(songs[previousIndex].id, true);
-}
-
-function playNextSong(automatic = false) {
-  const currentIndex = songs.findIndex(
-    song => song.id === currentSongId
-  );
-
-  if (currentIndex < 0 || songs.length === 0) return;
-
-  const isLastSong = currentIndex === songs.length - 1;
-
-  // 반복 없음: 마지막 곡이 끝나면 재생을 멈춤
-  if (automatic && isLastSong && repeatMode === "none") {
-    const audio = $("#music-audio");
-    audio.pause();
-    audio.currentTime = 0;
-    updatePlayButton(false);
-    updateProgress();
-    return;
-  }
-
-  const nextIndex = isLastSong ? 0 : currentIndex + 1;
-  selectSong(songs[nextIndex].id, true);
-}
-
-function toggleRepeatMode() {
-  const modes = ["all", "one", "none"];
-  const currentIndex = modes.indexOf(repeatMode);
-
-  repeatMode = modes[(currentIndex + 1) % modes.length];
-
-  const audio = $("#music-audio");
-  audio.loop = repeatMode === "one";
-
-  const labels = {
-    all: "ALL",
-    one: "ONE",
-    none: "OFF"
-  };
-
-  $("#music-repeat-label").textContent = labels[repeatMode];
-  $("#music-repeat").classList.toggle(
-    "is-active",
-    repeatMode !== "none"
-  );
-
-  $("#music-repeat").setAttribute(
-    "aria-label",
-    `반복 모드: ${
-      repeatMode === "all"
-        ? "플레이리스트 반복"
-        : repeatMode === "one"
-          ? "한 곡 반복"
-          : "반복 없음"
-    }`
-  );
-}
-
-/* ---------- MEMBERS - 프로필 오버레이 ---------- */
-
-// 프로필 오버레이
-function openProfile(animateChange = false) {
-  const member = memberById(selectedMemberId);
-  if (!member) return;
-  const memberIndex = members.findIndex(item => item.id === member.id);
-  const memberNumber = String(member.id).padStart(2, "0");
-  const archiveImages = [member.portrait || member.idphoto, member.standing ]
-    .filter(Boolean)
-    .filter((src, index, items) => items.indexOf(src) === index)
-    .slice(0, 4);
-
-  setAccent(member.color);
-  $("#profile-name").textContent = member.name;
-  $("#profile-engname").textContent = member.engname;
-  $("#profile-quote").textContent = member.description || "A record waiting to be written.";
-  $("#profile-birthday").textContent = member.birthday || "—";
-  $("#profile-mbti").textContent = member.mbti || "—";
-  $("#profile-fandom").textContent = member.fandom || "—";
-  $("#profile-jappronouns").textContent = member.jappronouns || "—";
-  $("#profile-generation").textContent = member.generation || "—";
-  $("#profile-oshimark").textContent = member.oshimark || "—";
-  $("#profile-notes").textContent = member.memo || "No additional notes recorded.";
-  $("#profile-standing").innerHTML = imageMarkup(member.standing, `PORTRAIT / ${member.name}`);
-  $("#profile-position").textContent = `${String(memberIndex + 1).padStart(2, "0")} / ${String(members.length).padStart(2, "0")}`;
-  $("#profile-big-number").textContent = String(member.id).padStart(2, "0");
-  $("#profile-handwriting").textContent = member.engname || member.name;
-  $("#profile-side-label").textContent = `${member.engname || member.name}`;
-  $("#profile-archive-number").textContent = `NO. ${memberNumber}`;
-  const portraitSrc = member.idphoto || member.portrait;
-  $("#profile-id-card").innerHTML = `
-    <div class="id-card-brand"></div>
-    <div class="id-card-photo">${portraitSrc ? imageMarkup(portraitSrc, `${member.name} 학생증 사진`) : `<span>${escapeHTML(member.name)}</span>`}</div>
-    <b class="id-card-name">${escapeHTML(member.name)}</b>
-    <div class="id-card-meta">
-    <div class="id-card-meta-row"><span>기수</span><span class="id-card-value">${escapeHTML(member.generation || "—")}</span></div>
-    <div class="id-card-meta-row"><span>생년월일</span><span class="id-card-value">${escapeHTML(member.birthday || "—")}</span></div>
-    <div class="id-card-meta-row"><span>MBTI</span><span class="id-card-value">${escapeHTML(member.mbti || "—")}</span></div>
-    </div>
-    <div class="id-card-barcode" aria-hidden="true"></div>`;
-  $("#profile-gallery-grid").innerHTML = archiveImages.map((src, index) => `
-    <button class="profile-gallery-item" type="button" aria-label="${escapeHTML(member.name)} archive image ${String(index + 1).padStart(2, "0")}">
-      ${imageMarkup(src, `${member.name} archive image ${index + 1}`)}
-    </button>`).join("");
-  $("#profile-overlay").classList.add("is-open");
-  $("#profile-overlay").setAttribute("aria-hidden", "false");
-  if (animateChange) animateProfileChange();
-}
-
-// 멤버 전환 애니메이션
-function animateProfileChange() {
-  const panel = $(".profile-main");
-  panel.classList.remove("is-changing");
-  void panel.offsetWidth;
-  panel.classList.add("is-changing");
-  panel.addEventListener("animationend", () => panel.classList.remove("is-changing"), { once: true });
-}
-
-// 프로필 오버레이 닫기
-function closeProfile() {
-  $("#profile-overlay").classList.remove("is-open");
-  $("#profile-overlay").setAttribute("aria-hidden", "true");
-  setAccent("#A3E2C4");
-}
-
-function stepProfile(direction) {
-  const index = members.findIndex(item => item.id === selectedMemberId);
-  const next = (index + direction + members.length) % members.length;
-  selectMember(members[next].id);
-  openProfile(true);
-}
-
-/* ---------- PAIR - 상세 정보 모달 ---------- */
-
-// 상세 정보 모달
-function openPairDossier(id) {
-  const pair = pairs.find(item => String(item.id) === String(id));
-  if (!pair) return;
-
-  const people = pair.members
-    .map(memberById)
-    .filter(Boolean);
-
-  const categories = Array.isArray(pair.category)
-    ? pair.category
-    : [pair.category].filter(Boolean);
-
-  $("#dossier-number").textContent =
-    `조합 상세 정보 / NO. ${String(pair.id).padStart(2, "0")}`;
-
-  $("#dossier-content").innerHTML = `
-    <div class="dossier-hero">
-      <div class="dossier-cover">
-        ${imageMarkup(pair.image, pair.title)}
-      </div>
-
-      <div class="dossier-heading">
-        <h2 id="dossier-title">${escapeHTML(pair.title)}</h2>
-
-        <div class="dossier-tags">
-          ${categories.map(category => `
-            <span class="dossier-tag">${escapeHTML(category)}</span>
-          `).join("")}
-        </div>
-
-        <p class="dossier-description">
-          ${escapeHTML(pair.description || "기록된 설명이 없습니다.")}
-        </p>
-      </div>
-    </div>
-
-    <section class="dossier-section">
-      <h3>멤버 / ${people.length}</h3>
-      <div class="dossier-members">
-        ${people.map(member => `
-          <button
-            type="button"
-            class="dossier-member"
-            data-dossier-member="${member.id}"
-          >
-            ${member.portrait
-              ? `<img src="${escapeHTML(member.portrait)}"
-                      alt="${escapeHTML(member.name)}">`
-              : `<span class="dossier-member-placeholder">
-                   ${String(member.id).padStart(2, "0")}
-                 </span>`
-            }
-            <span>${escapeHTML(member.name)}</span>
-          </button>
-        `).join("")}
-      </div>
-    </section>
-  `;
-
-  closeArchiveOverlay("archive-lightbox");
-  $("#pair-dossier").classList.add("is-open");
-  $("#pair-dossier").setAttribute("aria-hidden", "false");
-}
-
-// 하단 멤버 클릭 이벤트
-$("#dossier-content").addEventListener("click", event => {
-  const memberButton = event.target.closest("[data-dossier-member]");
-
-  if (memberButton) {
-    const memberId = Number(memberButton.dataset.dossierMember);
-    closeArchiveOverlay("pair-dossier");
-    selectMember(memberId);
-    navigateTo("members");
-    openProfile();
-    return;
-  }
-});
-
-/* ---------- GALLERY - 라이트박스 ---------- */
-
-function renderLightbox() {
-  const index = galleryItems.findIndex(
-    item => item.id === currentGalleryId
-  );
-
-  const item = galleryItems[index];
-  if (!item) return;
-
-  $("#lightbox-number").textContent =
-    `사진 확대샷 / PHOTO ${String(index + 1).padStart(3, "0")} OF ${String(galleryItems.length).padStart(3, "0")}`;
-
-  $("#lightbox-image").innerHTML = item.image
-    ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}">`
-    : `<span>NO IMAGE AVAILABLE</span>`;
-
-  $("#lightbox-info").innerHTML = `
-    <h2>${escapeHTML(item.title)}</h2>
-    <span class="music-label">
-      ${escapeHTML(item.date || "DATE UNKNOWN")}
-    </span>
-    <p>${escapeHTML(item.description || "아직 추가된 기록 설명이 없습니다.")}</p>
-  `;
-
-  $("#lightbox-prev").disabled = galleryItems.length < 2;
-  $("#lightbox-next").disabled = galleryItems.length < 2;
-}
-
-function stepLightbox(direction) {
-  const index = galleryItems.findIndex(
-    item => item.id === currentGalleryId
-  );
-
-  if (index < 0 || galleryItems.length < 2) return;
-
-  const nextIndex =
-    (index + direction + galleryItems.length) % galleryItems.length;
-
-  currentGalleryId = galleryItems[nextIndex].id;
-  renderLightbox();
-}
-
-// 화살표 클릭 시 사진 전환
-$("#lightbox-prev").addEventListener("click", () => stepLightbox(-1));
-$("#lightbox-next").addEventListener("click", () => stepLightbox(1));
 
 
 /* =========================================================
@@ -1139,6 +1297,7 @@ renderHomeWidgets();
 renderMembers();
 renderPairs();
 renderSongs();
+renderCalendar();
 renderGallery();
 renderLinks();
 selectSong(songs[0]?.id, false);

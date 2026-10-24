@@ -25,13 +25,19 @@
 </head>
 <body>
 
-  <!-- 내비게이션 바 -->
+  <!-- 
+  ============================================
+  내비게이션 바
+  ============================================ 
+  -->
+
   <header class="topbar">
     <nav class="nav-btn-wrap">
       <button class="nav-btn is-active" data-section="home">HOME</button>
       <button class="nav-btn" data-section="members">MEMBERS</button>
       <button class="nav-btn" data-section="pair">PAIR</button>
       <button class="nav-btn" data-section="song">SONG</button>
+      <button class="nav-btn" data-section="calendar">CALENDAR</button>
       <button class="nav-btn" data-section="gallery">GALLERY</button>
       <button class="nav-btn" data-section="links">LINKS</button>
     </nav>
@@ -40,155 +46,10 @@
 
   <!-- 
   ============================================
-  뷰포트
+  뮤직 플레이어
   ============================================ 
   -->
 
-  <main class="viewport" id="viewport">
-
-    <!-- HOME -->
-    <section class="page-section home-section is-current" id="home" data-page="home" aria-label="홈">
-      <div class="home-layout">
-
-        <!-- 좌측 -->
-        <div class="home-copy">
-          <div class="micro-text"><span>WAKTAVERSE UNOFFICIAL WEBSITE</span></div>
-          <h1>GOMEM<br><em>ACADEMY</em></h1>
-          <p class="home-description">왁타버스 고멤 아카데미 비공식 홈페이지</p>
-          <div class="home-meta">
-            <div><small>LATEST UPDATE</small><strong>2026. 10. 00.</strong></div>
-            <div><small>CREATED BY</small><strong>리네02</strong></div>
-          </div>
-        </div>
-
-        <!-- 우측 -->
-        <div class="home-visual">
-          <img id="home-birthday-image" src="images/profile/17.png">
-
-          <!-- 위젯 -->
-          <div class="home-widgets">
-            <article class="home-widget home-widget-birthday">
-              <span class="home-widget-label">NEXT BIRTHDAY</span>
-              <strong class="home-widget-count" id="home-birthday-days">—</strong>
-              <span class="home-widget-caption" id="home-birthday-name">생일 정보를 확인하고 있습니다</span>
-              <span class="home-widget-date" id="home-birthday-date">날짜 표기란</span>
-            </article>
-
-            <article class="home-widget home-widget-event">
-              <span class="home-widget-label">UPCOMING D-DAY</span>
-              <strong class="home-widget-event-title" id="home-event-title">등록된 디데이가 없습니다</strong>
-              <span class="home-widget-caption" id="home-event-count">디데이 등록 대기 중</span>
-              <span class="home-widget-date" id="home-event-date">날짜 표기란</span>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MEMBERS -->
-    <section class="page-section members-section" id="members" data-page="members" aria-label="아카데미생">
-      <div class="section-topline"><span>01 / 아카데미생 목록</span><span>좌우로 스크롤 ↔</span></div>
-      <div class="member-container">
-        <button class="member-scroll-button member-scroll-prev" type="button" aria-label="이전 멤버" data-member-scroll="-1">←</button>
-        <div class="member-scroll" id="member-scroll">
-          <div class="member-rail" id="member-rail"></div>
-        </div>
-        <button class="member-scroll-button member-scroll-next" type="button" aria-label="다음 멤버" data-member-scroll="1">→</button>
-      </div>
-    </section>
-
-    <!-- PAIR -->
-    <section class="page-section pair-section" id="pair" data-page="pair" aria-label="조합">
-      <div class="section-topline"><span>02 / 조합 목록</span></div>
-      <div class="pair-container">
-        <div class="pair-filter" id="pair-filter"></div>
-        <div class="pair-scroll">
-          <div class="pair-rail" id="pair-rail"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SONG -->
-    <section class="page-section song-section" id="song" data-page="song" aria-label="노래">
-      <div class="section-topline"><span>03 / 노래 목록</span></div>
-      <div class="song-layout">
-          
-        <!-- 좌측 턴테이블 -->
-        <aside class="song-sidebar">
-          <div class="turntable">
-            <div class="turntable-base">
-              <div class="turntable-platter">
-                <div class="record-disc" aria-hidden="true">
-                  <div class="record-label">
-                    <img id="turntable-cover" alt="앨범 커버">
-                    <i class="label-hole"></i>
-                  </div>
-                </div>
-                <div class="record-sheen"></div>
-              </div>
-              <div class="tonearm-base">
-                <div class="tonearm-joint"></div>
-              </div>
-              <div class="tonearm">
-                <div class="tonearm-head"></div>
-              </div>
-
-              <div class="turntable-controls">
-                <span class="control-label">START</span>
-                <button class="turntable-knob" aria-label="재생">
-                  <span></span>
-                </button>
-                <span class="control-label">SPEED</span>
-                <div class="speed-knob"></div>
-              </div>
-
-              <div class="turntable-brand">ACM<small>RECORD PLAYER</small></div>
-            </div>
-          </div>
-          <div class="song-now">
-            <span class="song-now-caption">SELECTED RECORD</span>
-            <strong id="song-selected-title">노래 제목</strong>
-            <span id="song-selected-artist">아티스트 이름</span>
-          </div>
-        </aside>
-
-      <!-- 우측 앨범 진열대 -->
-        <div class="record-shelf">
-          <div class="record-toolbar"><strong>PLAYLIST</strong><div><button class="song-filter is-active" data-kind="all">ALL</button><button class="song-filter" data-kind="original">오리지널</button><button class="song-filter" data-kind="cover">커버</button></div></div>
-          <div class="record-scroll" id="record-scroll">
-            <div class="record-grid" id="record-grid"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section class="page-section gallery-section" id="gallery" data-page="gallery" aria-label="갤러리">
-      <div class="section-topline"><span>04 / 갤러리</span></div>
-      <div class="gallery-container">
-        <div class="gallery-scroll" id="gallery-scroll">
-          <div class="gallery-grid" id="gallery-grid"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LINKS -->
-    <section class="page-section links-section" id="links" data-page="links" aria-label="링크트리">
-      <div class="section-topline"><span>05 / 링크트리</span></div>
-      <div class="links-layout">
-        <a class="links-title" href="https://cafe.naver.com/steamindiegame" target="_blank"><h2>왁물원</h2><p>우왁굳&왁타버스 공식 카페</p></a>
-        <div class="link-scroll" id="link-scroll"></div>
-      </div>
-    </section>
-  </main>
-
-  <!-- 
-  ============================================
-  뷰포트 외 기타
-  ============================================ 
-  -->
-
-  <!-- 하단 뮤직 플레이어 -->
   <aside class="music-dock" id="music-dock">
     <div class="music-track">
       <img id="music-cover" src="images/album/jongchunjimo.jpg" alt="앨범 커버">
@@ -227,83 +88,259 @@
     <audio id="music-audio" preload="metadata"></audio>
   </aside>
 
-  <!-- MEMBERS - 프로필 오버레이 -->
-  <div class="profile-overlay" id="profile-overlay" aria-hidden="true">
-    <div class="profile-topbar">
-      <button id="close-profile" class="close-profile">← 돌아가기</button>
-      <span class="profile-archive-mark">GOMEM ACADEMY<br>CHARACTER ARCHIVE<br><b id="profile-archive-number">NO. 01</b></span>
+  <!-- 
+  ============================================
+  뷰포트
+  ============================================ 
+  -->
+
+  <main class="viewport" id="viewport">
+
+    <!-- HOME -->
+    <section class="page-section home-section is-current" id="home" data-page="home" aria-label="홈">
+      <div class="home-layout">
+
+        <!-- 왼쪽: 홈페이지 타이틀 -->
+        <div class="home-copy">
+          <div class="micro-text"><span>WAKTAVERSE UNOFFICIAL WEBSITE</span></div>
+          <h1>GOMEM<br><em>ACADEMY</em></h1>
+          <p class="home-description">왁타버스 고멤 아카데미 비공식 홈페이지</p>
+          <div class="home-meta">
+            <div><small>LATEST UPDATE</small><strong>2026. 10. 00.</strong></div>
+            <div><small>CREATED BY</small><strong>리네02</strong></div>
+          </div>
+        </div>
+
+        <!-- 오른쪽: 캐릭터 스탠딩+위젯 -->
+        <div class="home-visual">
+          <img id="home-birthday-image" src="images/profile/17.png">
+
+          <!-- 위젯 -->
+          <div class="home-widgets">
+            <article class="home-widget home-widget-birthday">
+              <span class="home-widget-label">NEXT BIRTHDAY</span>
+              <strong class="home-widget-count" id="home-birthday-days">—</strong>
+              <span class="home-widget-caption" id="home-birthday-name">생일 정보를 확인하고 있습니다</span>
+              <span class="home-widget-date" id="home-birthday-date">날짜 표기란</span>
+            </article>
+
+            <article class="home-widget home-widget-event">
+              <span class="home-widget-label">UPCOMING D-DAY</span>
+              <strong class="home-widget-event-title" id="home-event-title">등록된 디데이가 없습니다</strong>
+              <span class="home-widget-caption" id="home-event-count">디데이 등록 대기 중</span>
+              <span class="home-widget-date" id="home-event-date">날짜 표기란</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBERS -->
+    <section class="page-section members-section" id="members" data-page="members" aria-label="아카데미생">
+      <div class="section-topline"><span>01 / 아카데미생 목록</span><span>좌우로 스크롤 ↔</span></div>
+      <div class="member-container">
+        <button class="member-scroll-button member-scroll-prev" type="button" aria-label="이전 멤버" data-member-scroll="-1">←</button>
+        <div class="member-scroll" id="member-scroll">
+          <div class="member-rail" id="member-rail"></div>
+        </div>
+        <button class="member-scroll-button member-scroll-next" type="button" aria-label="다음 멤버" data-member-scroll="1">→</button>
+      </div>
+    </section>
+
+    <!-- MEMBERS: 프로필 오버레이 -->
+    <div class="profile-overlay" id="profile-overlay" aria-hidden="true">
+      <div class="profile-topbar">
+        <button id="close-profile" class="close-profile">← 돌아가기</button>
+        <span class="profile-archive-mark">GOMEM ACADEMY<br>CHARACTER ARCHIVE<br><b id="profile-archive-number">NO. 01</b></span>
+      </div>
+
+      <div class="profile-main">
+
+        <!-- 왼쪽 : 캐릭터 스탠딩 -->
+        <div class="profile-collage" aria-hidden="true">
+          <span class="profile-big-number" id="profile-big-number">01</span>
+          <span class="profile-handwriting" id="profile-handwriting">영어 이름</span>
+          <span class="profile-side-label" id="profile-side-label">좌측 라벨</span>
+        </div>
+        <div class="profile-standing" id="profile-standing"><span>스탠딩</span></div>
+        <div class="profile-id-card" id="profile-id-card"></div>
+
+        <!-- 오른쪽: 캐릭터 정보 -->
+        <div class="profile-info">
+          <div class="profile-name-wrap">
+            <h2 id="profile-name">이름</h2>
+            <span class="profile-engname" id="profile-engname">영어 이름</span>
+            <span class="name-underline"></span>
+          </div>
+          <div class="profile-quote" id="profile-quote">이곳에 캐치프레이즈를 입력해 주세요.</div>
+          <div class="profile-data">
+            <div><small>BIRTHDAY</small><strong id="profile-birthday">—</strong></div>
+            <div><small>MBTI</small><strong id="profile-mbti">—</strong></div>
+            <div><small>FANDOM</small><strong id="profile-fandom">—</strong></div>
+            <div><small>JAPANESE PRONOUNS</small><strong id="profile-jappronouns">—</strong></div>
+            <div><small>GENERATION</small><strong id="profile-generation">—</strong></div>
+            <div><small>OSHI MARK</small><strong id="profile-oshimark">—</strong></div>
+          </div>
+          <div class="profile-notes"><span>NOTES</span>
+            <p id="profile-notes">작성된 내용이 없습니다.</p>
+          </div>
+          <div class="profile-gallery" id="profile-gallery"><span>GALLERY</span>
+            <div class="profile-gallery-grid" id="profile-gallery-grid"></div>
+          </div>
+        </div>
+        <nav class="profile-hangtag" aria-label="프로필 바로가기">
+          <span class="tag-clip" aria-hidden="true"></span>
+          <a href="">SOOP</a><a href="">YOUTUBE</a><a href="">CAFE</a>
+        </nav>
+      </div>
+      <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
     </div>
 
-    <div class="profile-main">
-
-      <!-- 좌측 -->
-      <div class="profile-collage" aria-hidden="true">
-        <span class="profile-big-number" id="profile-big-number">01</span>
-        <span class="profile-handwriting" id="profile-handwriting">영어 이름</span>
-        <span class="profile-side-label" id="profile-side-label">좌측 라벨</span>
-      </div>
-      <div class="profile-standing" id="profile-standing"><span>스탠딩</span></div>
-      <div class="profile-id-card" id="profile-id-card"></div>
-
-      <!-- 우측 -->
-      <div class="profile-info">
-        <div class="profile-name-wrap">
-          <h2 id="profile-name">이름</h2>
-          <span class="profile-engname" id="profile-engname">영어 이름</span>
-          <span class="name-underline"></span>
-        </div>
-        <div class="profile-quote" id="profile-quote">이곳에 캐치프레이즈를 입력해 주세요.</div>
-        <div class="profile-data">
-          <div><small>BIRTHDAY</small><strong id="profile-birthday">—</strong></div>
-          <div><small>MBTI</small><strong id="profile-mbti">—</strong></div>
-          <div><small>FANDOM</small><strong id="profile-fandom">—</strong></div>
-          <div><small>JAPANESE PRONOUNS</small><strong id="profile-jappronouns">—</strong></div>
-          <div><small>GENERATION</small><strong id="profile-generation">—</strong></div>
-          <div><small>OSHI MARK</small><strong id="profile-oshimark">—</strong></div>
-        </div>
-        <div class="profile-notes"><span>NOTES</span>
-          <p id="profile-notes">작성된 내용이 없습니다.</p>
-        </div>
-        <div class="profile-gallery" id="profile-gallery"><span>GALLERY</span>
-          <div class="profile-gallery-grid" id="profile-gallery-grid"></div>
+    <!-- PAIR -->
+    <section class="page-section pair-section" id="pair" data-page="pair" aria-label="조합">
+      <div class="section-topline"><span>02 / 조합 목록</span></div>
+      <div class="pair-container">
+        <div class="pair-filter" id="pair-filter"></div>
+        <div class="pair-scroll">
+          <div class="pair-rail" id="pair-rail"></div>
         </div>
       </div>
-      <nav class="profile-hangtag" aria-label="프로필 바로가기">
-        <span class="tag-clip" aria-hidden="true"></span>
-        <a href="">SOOP</a><a href="">YOUTUBE</a><a href="">CAFE</a>
-      </nav>
+    </section>
+
+    <!-- PAIR: 상세 정보 모달 -->
+    <div class="archive-overlay" id="pair-dossier" aria-hidden="true">
+      <section class="archive-modal dossier-modal" role="dialog"
+              aria-modal="true" aria-labelledby="dossier-title">
+        <header class="archive-modal-header">
+          <span id="dossier-number">조합 상세 정보 / NO. 01</span>
+          <button type="button" class="archive-close" data-close-archive aria-label="닫기">×</button>
+        </header>
+        <div class="dossier-content" id="dossier-content"></div>
+      </section>
     </div>
-    <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
-  </div>
 
-  <!-- PAIR - 상세 정보 모달 -->
-  <div class="archive-overlay" id="pair-dossier" aria-hidden="true">
-    <section class="archive-modal dossier-modal" role="dialog"
-            aria-modal="true" aria-labelledby="dossier-title">
-      <header class="archive-modal-header">
-        <span id="dossier-number">조합 상세 정보 / NO. 01</span>
-        <button type="button" class="archive-close" data-close-archive aria-label="닫기">×</button>
-      </header>
-      <div class="dossier-content" id="dossier-content"></div>
-    </section>
-  </div>
+    <!-- SONG -->
+    <section class="page-section song-section" id="song" data-page="song" aria-label="노래">
+      <div class="section-topline"><span>03 / 노래 목록</span></div>
+      <div class="song-layout">
+          
+        <!-- 왼쪽: 턴테이블 -->
+        <aside class="song-sidebar">
+          <div class="turntable">
+            <div class="turntable-base">
+              <div class="turntable-platter">
+                <div class="record-disc" aria-hidden="true">
+                  <div class="record-label">
+                    <img id="turntable-cover" alt="앨범 커버">
+                    <i class="label-hole"></i>
+                  </div>
+                </div>
+                <div class="record-sheen"></div>
+              </div>
+              <div class="tonearm-base">
+                <div class="tonearm-joint"></div>
+              </div>
+              <div class="tonearm">
+                <div class="tonearm-head"></div>
+              </div>
 
-  <!-- GALLERY - 라이트박스 -->
-  <div class="archive-overlay lightbox-overlay" id="archive-lightbox"
-      aria-hidden="true">
-    <section class="archive-modal lightbox-modal" role="dialog" aria-modal="true">
-      <header class="archive-modal-header">
-        <span id="lightbox-number">사진 확대샷 / PHOTO 001</span>
-        <button type="button" class="archive-close" data-close-archive aria-label="닫기">×</button>
-      </header>
-      <div class="lightbox-content">
-        <button type="button" class="lightbox-arrow" id="lightbox-prev" aria-label="이전 사진">←</button>
-        <div class="lightbox-image" id="lightbox-image"></div>
-        <button type="button" class="lightbox-arrow" id="lightbox-next" aria-label="다음 사진">→</button>
+              <div class="turntable-controls">
+                <span class="control-label">START</span>
+                <button class="turntable-knob" aria-label="재생">
+                  <span></span>
+                </button>
+                <span class="control-label">SPEED</span>
+                <div class="speed-knob"></div>
+              </div>
+
+              <div class="turntable-brand">ACM<small>RECORD PLAYER</small></div>
+            </div>
+          </div>
+          <div class="song-now">
+            <span class="song-now-caption">SELECTED RECORD</span>
+            <strong id="song-selected-title">노래 제목</strong>
+            <span id="song-selected-artist">아티스트 이름</span>
+          </div>
+        </aside>
+
+      <!-- 오른쪽: 앨범 진열대 -->
+        <div class="record-shelf">
+          <div class="record-toolbar"><strong>PLAYLIST</strong><div><button class="song-filter is-active" data-kind="all">ALL</button><button class="song-filter" data-kind="original">오리지널</button><button class="song-filter" data-kind="cover">커버</button></div></div>
+          <div class="record-scroll" id="record-scroll">
+            <div class="record-grid" id="record-grid"></div>
+          </div>
+        </div>
       </div>
-      <div class="lightbox-info" id="lightbox-info"></div>
     </section>
-  </div>
+
+    <!-- CALENDAR -->
+    <section class="page-section calendar-section" id="calendar" data-page="calendar" aria-label="캘린더">
+      <div class="section-topline"><span>06 / 캘린더</span></div>
+      <div class="calendar-layout">
+
+        <!-- 왼쪽: 달력 그리드 -->
+        <div class="calendar-main">
+          <div class="calendar-header">
+            <div class="calendar-month-control">
+              <button type="button" id="calendar-prev" aria-label="이전 달">←</button>
+              <strong id="calendar-current-month"> 2026. 10. </strong>
+              <button type="button" id="calendar-next" aria-label="다음 달">→</button>
+            </div>
+          </div>
+          <div class="calendar-grid" id="calendar-grid" aria-label="월간 달력"></div>
+        </div>
+
+        <!-- 오른쪽: 선택된 날짜+일정 -->
+        <aside class="calendar-detail">
+          <div class="calendar-detail-header">
+            <span class="calendar-label">DAILY SCHEDULE</span>
+            <h3 id="calendar-selected-date">
+              날짜를 선택해 주세요
+            </h3>
+          </div>
+          <div class="calendar-event-list" id="calendar-event-list" aria-live="polite">
+            <p class="calendar-empty">선택한 날짜의 일정이 여기에 표시됩니다.</p>
+          </div>
+        </aside>
+        </div>
+      </section>
+
+    <!-- GALLERY -->
+    <section class="page-section gallery-section" id="gallery" data-page="gallery" aria-label="갤러리">
+      <div class="section-topline"><span>04 / 갤러리</span></div>
+      <div class="gallery-container">
+        <div class="gallery-scroll" id="gallery-scroll">
+          <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY: 라이트박스 -->
+    <div class="archive-overlay lightbox-overlay" id="archive-lightbox"
+        aria-hidden="true">
+      <section class="archive-modal lightbox-modal" role="dialog" aria-modal="true">
+        <header class="archive-modal-header">
+          <span id="lightbox-number">사진 확대샷 / PHOTO 001</span>
+          <button type="button" class="archive-close" data-close-archive aria-label="닫기">×</button>
+        </header>
+        <div class="lightbox-content">
+          <button type="button" class="lightbox-arrow" id="lightbox-prev" aria-label="이전 사진">←</button>
+          <div class="lightbox-image" id="lightbox-image"></div>
+          <button type="button" class="lightbox-arrow" id="lightbox-next" aria-label="다음 사진">→</button>
+        </div>
+        <div class="lightbox-info" id="lightbox-info"></div>
+      </section>
+    </div>
+
+    <!-- LINKS -->
+    <section class="page-section links-section" id="links" data-page="links" aria-label="링크트리">
+      <div class="section-topline"><span>05 / 링크트리</span></div>
+      <div class="links-layout">
+        <a class="links-title" href="https://cafe.naver.com/steamindiegame" target="_blank"><h2>왁물원</h2><p>우왁굳&왁타버스 공식 카페</p></a>
+        <div class="link-scroll" id="link-scroll"></div>
+      </div>
+    </section>
+  </main>
 
   <!-- 
   ============================================
