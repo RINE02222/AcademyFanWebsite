@@ -49,35 +49,35 @@ const pairs = [
 
 // 노래
 const songs = [
-  // { id: 1, title: "고멤 아카데미 교가", artist: "고멤 아카데미", kind: "original", cover: "http://img.youtube.com/vi/링크/maxresdefault.jpg", audio: "audio/wander.wav", year: "2023"},
-  { id: 2, title: "고멤 아카데미 사이퍼 Vol.1", artist: "고멤 아카데미 1~2기", kind: "original", cover: "http://img.youtube.com/vi/w4Zhanyxr2Q/maxresdefault.jpg", audio: "audio/wander.wav", year: "2023"},
-  { id: 3, title: "고멤 아카데미 사이퍼 Vol.2", artist: "고멤 아카데미 3~6기", kind: "original", cover: "http://img.youtube.com/vi/MYnaLe-nkPk/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2024"},
-  { id: 4, title: "합방을 내게 주어라!", artist: "닌닌", kind: "cover", cover: "http://img.youtube.com/vi/pWcLWKmlcHk/maxresdefault.jpg", audio: "audio/jongchunjimo.wav", year: "2023"},
-  { id: 5, title: "비가 오는 날엔", artist: "남카데미", kind: "cover", cover: "http://img.youtube.com/vi/XvjQcSjQahE/maxresdefault.jpg", audio: "audio/wander.wav", year: "2023"},
-  { id: 6, title: "빵", artist: "JJ (진희, 사랑전도사 젠투)", kind: "cover", cover: "http://img.youtube.com/vi/wbfDpnHyWbM/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2023"},
-  { id: 7, title: "슈퍼스타", artist: "미미짱짱세용", kind: "cover", cover: "http://img.youtube.com/vi/44CAW_Mqm1k/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2024"},
-  { id: 8, title: "용기 100%", artist: "닌닌", kind: "cover", cover: "http://img.youtube.com/vi/wXPntQ0M8rs/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
-  { id: 10, title: "Instagram (ft. 닌닌)", artist: "수셈이", kind: "cover", cover: "http://img.youtube.com/vi/oQbWrcjLoHU/maxresdefault.jpg", audio: "audio/jongchunjimo.wav", year: "2024"},
-  { id: 11, title: "GERMAN BON", artist: "닌닌, 철도왕 길버트", kind: "cover", cover: "http://img.youtube.com/vi/HUdRsuridNg/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2024"},
-  { id: 12, title: "칵테일 사랑", artist: "버터우스 3세", kind: "cover", cover: "http://img.youtube.com/vi/BEs_c0DSNrY/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2024"},
-  { id: 13, title: "두근 어질", artist: "미미짱짱세용", kind: "cover", cover: "http://img.youtube.com/vi/T544189tpY0/maxresdefault.jpg", audio: "audio/jongchunjimo.wav", year: "2024"},
-  { id: 14, title: "CIDER BANG!", artist: "RYKY (빅토리, 데스해머쵸로키)", kind: "original", cover: "http://img.youtube.com/vi/IhIDFiYWMbc/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
-  { id: 15, title: "LOGIN", artist: "시리안, 아마데우스최, 크리즈", kind: "original", cover: "http://img.youtube.com/vi/kzgr3hqIe4k/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
-  { id: 16, title: "SKY HiGH!", artist: "미미짱짱세용", kind: "original", cover: "http://img.youtube.com/vi/AF5MVogdcAU/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
-  { id: 17, title: "Black Flower", artist: "닌닌, 사랑전도사 젠투", kind: "original", cover: "http://img.youtube.com/vi/WycX_3W3agM/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
-  { id: 18, title: "Wander", artist: "수셈이", kind: "original", cover: "http://img.youtube.com/vi/c74agkeKGlc/maxresdefault.jpg", audio: "audio/wander.mp3", year: "2024"},
-  { id: 19, title: "Ready Action (ft. 단군)", artist: "진희, 아이 쓰께끼, 베베리", kind: "original", cover: "http://img.youtube.com/vi/Lv3A_gPPmNE/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
-  { id: 20, title: "청개구리", artist: "데스해머쵸로키", kind: "original", cover: "http://img.youtube.com/vi/7Q61ZtM2qyM/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
-  { id: 22, title: "Still With You", artist: "시리안 레인", kind: "cover", cover: "http://img.youtube.com/vi/-7DHVqDC-g0/maxresdefault.jpg", audio: "audio/wander.wav", year: "2025"},
-  { id: 23, title: "밤 끝없는 밤", artist: "아마데우스최, 빅토리", kind: "cover", cover: "http://img.youtube.com/vi/M3gQdpLwHtY/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
-  { id: 24, title: "감전", artist: "보디가드 불독", kind: "cover", cover: "http://img.youtube.com/vi/4G4w9wMyHZI/maxresdefault.jpg", audio: "audio/wander.wav", year: "2025"},
-  { id: 25, title: "종천지모", artist: "사랑전도사 젠투", kind: "original", cover: "http://img.youtube.com/vi/zCiezbft1x0/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2025"},
-  { id: 26, title: "MONO DRAMA (ft. 성기사 샬롯)", artist: "철도왕 길버트", kind: "original", cover: "http://img.youtube.com/vi/R3qNn4PPJc4/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2025"},
-  { id: 27, title: "Forgotten", artist: "닌닌", kind: "original", cover: "http://img.youtube.com/vi/Ph2IyI_flj0/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2025"},
-  { id: 28, title: "EVERYTHING", artist: "수셈이", kind: "cover", cover: "http://img.youtube.com/vi/gisyJWichLY/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2026"},
-  { id: 29, title: "I Really Want To Stay At Your House", artist: "데스해머쵸로키", kind: "cover", cover: "http://img.youtube.com/vi/TgVa1jiYQ34/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2026"},
-  { id: 30, title: "Guerilla", artist: "보디가드 불독, 진희, 수셈이, 버터우스 3세", kind: "original", cover: "http://img.youtube.com/vi/PYx0uUdyeUg/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2025"},
-  { id: 1000, title: "연말의노래", artist: "고멤 아카데미 1~5기", kind: "original", cover: "http://img.youtube.com/vi/Ii_w6jGjI7g/maxresdefault.jpg", audio: "audio/jongchunjimo.wav", year: "2024"},
+  // { id: 1, title: "고멤 아카데미 교가", artist: "고멤 아카데미", kind: "original", cover: "http://img.youtube.com/vi/링크/maxresdefault.jpg", videoId: "", year: "2023"},
+  { id: 2, title: "고멤 아카데미 사이퍼 Vol.1", artist: "고멤 아카데미 1~2기", kind: "original", cover: "http://img.youtube.com/vi/w4Zhanyxr2Q/maxresdefault.jpg", videoId: "w4Zhanyxr2Q", year: "2023"},
+  { id: 3, title: "고멤 아카데미 사이퍼 Vol.2", artist: "고멤 아카데미 3~6기", kind: "original", cover: "http://img.youtube.com/vi/MYnaLe-nkPk/maxresdefault.jpg", videoId: "MYnaLe-nkPk", year: "2024"},
+  { id: 4, title: "합방을 내게 주어라!", artist: "닌닌", kind: "cover", cover: "http://img.youtube.com/vi/pWcLWKmlcHk/maxresdefault.jpg", videoId: "pWcLWKmlcHk", year: "2023"},
+  { id: 5, title: "비가 오는 날엔", artist: "남카데미", kind: "cover", cover: "http://img.youtube.com/vi/XvjQcSjQahE/maxresdefault.jpg", videoId: "XvjQcSjQahE", year: "2023"},
+  { id: 6, title: "빵", artist: "JJ (진희, 사랑전도사 젠투)", kind: "cover", cover: "http://img.youtube.com/vi/wbfDpnHyWbM/maxresdefault.jpg", videoId: "wbfDpnHyWbM", year: "2023"},
+  { id: 7, title: "슈퍼스타", artist: "미미짱짱세용", kind: "cover", cover: "http://img.youtube.com/vi/44CAW_Mqm1k/maxresdefault.jpg", videoId: "44CAW_Mqm1k", year: "2024"},
+  { id: 8, title: "용기 100%", artist: "닌닌", kind: "cover", cover: "http://img.youtube.com/vi/wXPntQ0M8rs/maxresdefault.jpg", videoId: "wXPntQ0M8rs", year: "2024"},
+  { id: 10, title: "Instagram (ft. 닌닌)", artist: "수셈이", kind: "cover", cover: "http://img.youtube.com/vi/oQbWrcjLoHU/maxresdefault.jpg", videoId: "oQbWrcjLoHU", year: "2024"},
+  { id: 11, title: "GERMAN BON", artist: "닌닌, 철도왕 길버트", kind: "cover", cover: "http://img.youtube.com/vi/HUdRsuridNg/maxresdefault.jpg", videoId: "HUdRsuridNg", year: "2024"},
+  { id: 12, title: "칵테일 사랑", artist: "버터우스 3세", kind: "cover", cover: "http://img.youtube.com/vi/BEs_c0DSNrY/maxresdefault.jpg", videoId: "BEs_c0DSNrY", year: "2024"},
+  { id: 13, title: "두근 어질", artist: "미미짱짱세용", kind: "cover", cover: "http://img.youtube.com/vi/T544189tpY0/maxresdefault.jpg", videoId: "T544189tpY0", year: "2024"},
+  { id: 14, title: "CIDER BANG!", artist: "RYKY (빅토리, 데스해머쵸로키)", kind: "original", cover: "http://img.youtube.com/vi/IhIDFiYWMbc/maxresdefault.jpg", videoId: "IhIDFiYWMbc", year: "2024"},
+  { id: 15, title: "LOGIN", artist: "시리안, 아마데우스최, 크리즈", kind: "original", cover: "http://img.youtube.com/vi/kzgr3hqIe4k/maxresdefault.jpg", videoId: "kzgr3hqIe4k", year: "2024"},
+  { id: 16, title: "SKY HiGH!", artist: "미미짱짱세용", kind: "original", cover: "http://img.youtube.com/vi/AF5MVogdcAU/maxresdefault.jpg", videoId: "AF5MVogdcAU", year: "2024"},
+  { id: 17, title: "Black Flower", artist: "닌닌, 사랑전도사 젠투", kind: "original", cover: "http://img.youtube.com/vi/WycX_3W3agM/maxresdefault.jpg", videoId: "WycX_3W3agM", year: "2024"},
+  { id: 18, title: "Wander", artist: "수셈이", kind: "original", cover: "http://img.youtube.com/vi/c74agkeKGlc/maxresdefault.jpg", videoId: "c74agkeKGlc", year: "2024"},
+  { id: 19, title: "Ready Action (ft. 단군)", artist: "진희, 아이 쓰께끼, 베베리", kind: "original", cover: "http://img.youtube.com/vi/Lv3A_gPPmNE/maxresdefault.jpg", videoId: "Lv3A_gPPmNE", year: "2024"},
+  { id: 20, title: "청개구리", artist: "데스해머쵸로키", kind: "original", cover: "http://img.youtube.com/vi/7Q61ZtM2qyM/maxresdefault.jpg", videoId: "7Q61ZtM2qyM", year: "2024"},
+  { id: 22, title: "Still With You", artist: "시리안 레인", kind: "cover", cover: "http://img.youtube.com/vi/-7DHVqDC-g0/maxresdefault.jpg", videoId: "-7DHVqDC-g0", year: "2025"},
+  { id: 23, title: "밤 끝없는 밤", artist: "아마데우스최, 빅토리", kind: "cover", cover: "http://img.youtube.com/vi/M3gQdpLwHtY/maxresdefault.jpg", videoId: "M3gQdpLwHtY", year: "2024"},
+  { id: 24, title: "감전", artist: "보디가드 불독", kind: "cover", cover: "http://img.youtube.com/vi/4G4w9wMyHZI/maxresdefault.jpg", videoId: "4G4w9wMyHZI", year: "2025"},
+  { id: 25, title: "종천지모", artist: "사랑전도사 젠투", kind: "original", cover: "http://img.youtube.com/vi/zCiezbft1x0/maxresdefault.jpg", videoId: "zCiezbft1x0", year: "2025"},
+  { id: 26, title: "MONO DRAMA (ft. 성기사 샬롯)", artist: "철도왕 길버트", kind: "original", cover: "http://img.youtube.com/vi/R3qNn4PPJc4/maxresdefault.jpg", videoId: "R3qNn4PPJc4", year: "2025"},
+  { id: 27, title: "Forgotten", artist: "닌닌", kind: "original", cover: "http://img.youtube.com/vi/Ph2IyI_flj0/maxresdefault.jpg", videoId: "Ph2IyI_flj0", year: "2025"},
+  { id: 28, title: "EVERYTHING", artist: "수셈이", kind: "cover", cover: "http://img.youtube.com/vi/gisyJWichLY/maxresdefault.jpg", videoId: "gisyJWichLY", year: "2026"},
+  { id: 29, title: "I Really Want To Stay At Your House", artist: "데스해머쵸로키", kind: "cover", cover: "http://img.youtube.com/vi/TgVa1jiYQ34/maxresdefault.jpg", videoId: "TgVa1jiYQ34", year: "2026"},
+  { id: 30, title: "Guerilla", artist: "보디가드 불독, 진희, 수셈이, 버터우스 3세", kind: "original", cover: "http://img.youtube.com/vi/PYx0uUdyeUg/maxresdefault.jpg", videoId: "PYx0uUdyeUg", year: "2025"},
+  { id: 1000, title: "연말의노래", artist: "고멤 아카데미 1~5기", kind: "original", cover: "http://img.youtube.com/vi/Ii_w6jGjI7g/maxresdefault.jpg", videoId: "Ii_w6jGjI7g", year: "2024"},
 ];
 
 // 캘린더
@@ -161,6 +161,34 @@ function setAccent(color = "#A3E2C4") {
   document.documentElement.style.setProperty("--accent-rgb", rgb.join(","));
 }
 
+// 유튜브 플레이어
+let youtubePlayer = null;
+let youtubeReady = false;
+let progressTimer = null;
+
+window.onYouTubeIframeAPIReady = () => {
+  youtubePlayer = new YT.Player("youtube-player", {
+    width: "240",
+    height: "200",
+    videoId: "",
+    playerVars: {
+      playsinline: 1
+    },
+    events: {
+      onReady: () => {
+        youtubeReady = true;
+
+        const currentSong = songs.find(song => song.id === currentSongId);
+        if (currentSong?.videoId) {
+          youtubePlayer.cueVideoById(currentSong.videoId);
+        }
+      },
+      onStateChange: handleYouTubeStateChange,
+      onError: event => console.error("YouTube 재생 오류:", event.data)
+    }
+  });
+};
+
 
 /* =========================================================
    페이지별 함수
@@ -201,38 +229,28 @@ function updatePlayButton(isPlaying) {
 }
 
 function updateProgress() {
-  const audio = $("#music-audio");
-  const currentTime = audio.currentTime || 0;
-  const duration = audio.duration;
+  if (!youtubeReady) return;
+
+  const currentTime = youtubePlayer.getCurrentTime() || 0;
+  const duration = youtubePlayer.getDuration() || 0;
 
   $("#music-current-time").textContent = formatTime(currentTime);
   $("#music-duration").textContent = formatTime(duration);
-
   $("#music-seek").value =
-    Number.isFinite(duration) && duration > 0
-      ? (currentTime / duration) * 100
-      : 0;
+    duration > 0 ? (currentTime / duration) * 100 : 0;
 }
 
-async function playMusic() {
-  const audio = $("#music-audio");
-
-  try {
-    await audio.play();
-    updatePlayButton(true);
-  } catch (error) {
-    updatePlayButton(false);
-    console.warn("음원을 재생할 수 없습니다.", error);
-  }
+function playMusic() {
+  if (youtubeReady) youtubePlayer.playVideo();
 }
 
 function toggleMusicPlayback() {
-  const audio = $("#music-audio");
+  if (!youtubeReady) return;
 
-  if (audio.paused) {
-    playMusic();
+  if (youtubePlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+    youtubePlayer.pauseVideo();
   } else {
-    audio.pause();
+    youtubePlayer.playVideo();
   }
 }
 
@@ -260,9 +278,8 @@ function playNextSong(automatic = false) {
 
   // 반복 없음: 마지막 곡이 끝나면 재생을 멈춤
   if (automatic && isLastSong && repeatMode === "none") {
-    const audio = $("#music-audio");
-    audio.pause();
-    audio.currentTime = 0;
+    youtubePlayer.pauseVideo();
+    youtubePlayer.seekTo(0, true);
     updatePlayButton(false);
     updateProgress();
     return;
@@ -303,6 +320,29 @@ function toggleRepeatMode() {
           : "반복 없음"
     }`
   );
+}
+
+function handleYouTubeStateChange(event) {
+  const isPlaying = event.data === YT.PlayerState.PLAYING;
+
+  updatePlayButton(isPlaying);
+  $("#music-dock").classList.toggle("is-playing", isPlaying);
+
+  clearInterval(progressTimer);
+  progressTimer = null;
+
+  if (isPlaying) {
+    progressTimer = setInterval(updateProgress, 250);
+  }
+
+  if (event.data === YT.PlayerState.ENDED) {
+    if (repeatMode === "one") {
+      youtubePlayer.seekTo(0, true);
+      youtubePlayer.playVideo();
+    } else {
+      playNextSong(true);
+    }
+  }
 }
 
 
@@ -857,10 +897,13 @@ function selectSong(id, autoplay = false) {
   }
 
   // 다른 곡을 선택했을 때만 음원 교체
-  if (audio.getAttribute("src") !== song.audio) {
-    audio.src = song.audio;
-    audio.load();
+if (youtubeReady && song.videoId) {
+  if (autoplay) {
+    youtubePlayer.loadVideoById(song.videoId);
+  } else {
+    youtubePlayer.cueVideoById(song.videoId);
   }
+}
 
   audio.loop = repeatMode === "one";
   updateProgress();
@@ -1625,11 +1668,12 @@ $("#music-audio").addEventListener("durationchange", updateProgress);
 
 // 재생 바를 움직이면 해당 위치부터 재생
 $("#music-seek").addEventListener("input", event => {
-  const audio = $("#music-audio");
+  if (!youtubeReady) return;
 
-  if (Number.isFinite(audio.duration) && audio.duration > 0) {
-    audio.currentTime =
-      (Number(event.target.value) / 100) * audio.duration;
+  const duration = youtubePlayer.getDuration();
+  if (duration > 0) {
+    const seconds = (Number(event.target.value) / 100) * duration;
+    youtubePlayer.seekTo(seconds, true);
   }
 });
 
