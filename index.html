@@ -41,7 +41,6 @@
       <button class="nav-btn" data-section="gallery">GALLERY</button>
       <button class="nav-btn" data-section="links">LINKS</button>
     </nav>
-    <button class="menu-toggle" aria-expanded="false">☰</button>
   </header>
 
   <!-- 
@@ -147,55 +146,6 @@
       </div>
     </section>
 
-    <!-- MEMBERS: 프로필 오버레이 -->
-    <div class="profile-overlay" id="profile-overlay" aria-hidden="true">
-      <div class="profile-topbar">
-        <button id="close-profile" class="close-profile">← 돌아가기</button>
-        <span class="profile-archive-mark">GOMEM ACADEMY<br>CHARACTER ARCHIVE<br><b id="profile-archive-number">NO. 01</b></span>
-      </div>
-
-      <div class="profile-main">
-
-        <!-- 왼쪽 : 캐릭터 스탠딩 -->
-        <div class="profile-collage" aria-hidden="true">
-          <span class="profile-big-number" id="profile-big-number">01</span>
-          <span class="profile-handwriting" id="profile-handwriting">영어 이름</span>
-          <span class="profile-side-label" id="profile-side-label">좌측 라벨</span>
-        </div>
-        <div class="profile-standing" id="profile-standing"><span>스탠딩</span></div>
-        <div class="profile-id-card" id="profile-id-card"></div>
-
-        <!-- 오른쪽: 캐릭터 정보 -->
-        <div class="profile-info">
-          <div class="profile-name-wrap">
-            <h2 id="profile-name">이름</h2>
-            <span class="profile-engname" id="profile-engname">영어 이름</span>
-            <span class="name-underline"></span>
-          </div>
-          <div class="profile-quote" id="profile-quote">이곳에 캐치프레이즈를 입력해 주세요.</div>
-          <div class="profile-data">
-            <div><small>BIRTHDAY</small><strong id="profile-birthday">—</strong></div>
-            <div><small>MBTI</small><strong id="profile-mbti">—</strong></div>
-            <div><small>FANDOM</small><strong id="profile-fandom">—</strong></div>
-            <div><small>JAPANESE PRONOUNS</small><strong id="profile-jappronouns">—</strong></div>
-            <div><small>GENERATION</small><strong id="profile-generation">—</strong></div>
-            <div><small>OSHI MARK</small><strong id="profile-oshimark">—</strong></div>
-          </div>
-          <div class="profile-notes"><span>NOTES</span>
-            <p id="profile-notes">작성된 내용이 없습니다.</p>
-          </div>
-          <div class="profile-gallery" id="profile-gallery"><span>GALLERY</span>
-            <div class="profile-gallery-grid" id="profile-gallery-grid"></div>
-          </div>
-        </div>
-        <nav class="profile-hangtag" aria-label="프로필 바로가기">
-          <span class="tag-clip" aria-hidden="true"></span>
-          <a href="">SOOP</a><a href="">YOUTUBE</a><a href="">CAFE</a>
-        </nav>
-      </div>
-      <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
-    </div>
-
     <!-- PAIR -->
     <section class="page-section pair-section" id="pair" data-page="pair" aria-label="조합">
       <div class="section-topline"><span>02 / 조합 목록</span></div>
@@ -206,18 +156,6 @@
         </div>
       </div>
     </section>
-
-    <!-- PAIR: 상세 정보 모달 -->
-    <div class="archive-overlay" id="pair-dossier" aria-hidden="true">
-      <section class="archive-modal dossier-modal" role="dialog"
-              aria-modal="true" aria-labelledby="dossier-title">
-        <header class="archive-modal-header">
-          <span id="dossier-number">조합 상세 정보 / NO. 01</span>
-          <button type="button" class="archive-close" data-close-archive aria-label="닫기">×</button>
-        </header>
-        <div class="dossier-content" id="dossier-content"></div>
-      </section>
-    </div>
 
     <!-- SONG -->
     <section class="page-section song-section" id="song" data-page="song" aria-label="노래">
@@ -275,7 +213,7 @@
 
     <!-- CALENDAR -->
     <section class="page-section calendar-section" id="calendar" data-page="calendar" aria-label="캘린더">
-      <div class="section-topline"><span>06 / 캘린더</span></div>
+      <div class="section-topline"><span>04 / 캘린더</span></div>
       <div class="calendar-layout">
 
         <!-- 왼쪽: 달력 그리드 -->
@@ -307,13 +245,90 @@
 
     <!-- GALLERY -->
     <section class="page-section gallery-section" id="gallery" data-page="gallery" aria-label="갤러리">
-      <div class="section-topline"><span>04 / 갤러리</span></div>
+      <div class="section-topline"><span>05 / 갤러리</span></div>
       <div class="gallery-container">
         <div class="gallery-scroll" id="gallery-scroll">
           <div class="gallery-grid" id="gallery-grid"></div>
         </div>
       </div>
     </section>
+
+    <!-- LINKS -->
+    <section class="page-section links-section" id="links" data-page="links" aria-label="링크트리">
+      <div class="section-topline"><span>06 / 링크트리</span></div>
+      <div class="links-layout">
+        <a class="links-title" href="https://cafe.naver.com/steamindiegame" target="_blank"><h2>왁물원</h2><p>우왁굳&왁타버스 공식 카페</p></a>
+        <div class="link-scroll" id="link-scroll"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 
+  ============================================
+  뷰포트를 덮는 오버레이
+  ============================================ 
+  -->
+
+  <!-- MEMBERS: 프로필 오버레이 -->
+    <div class="profile-overlay" id="profile-overlay" aria-hidden="true">
+      <div class="profile-topbar">
+        <button id="close-profile" class="close-profile">← 돌아가기</button>
+        <span class="profile-archive-mark">GOMEM ACADEMY<br>CHARACTER ARCHIVE<br><b id="profile-archive-number">NO. 01</b></span>
+      </div>
+
+      <div class="profile-main">
+
+        <!-- 왼쪽 : 캐릭터 스탠딩 -->
+        <div class="profile-collage" aria-hidden="true">
+          <span class="profile-big-number" id="profile-big-number">01</span>
+          <span class="profile-handwriting" id="profile-handwriting">영어 이름</span>
+          <span class="profile-side-label" id="profile-side-label">좌측 라벨</span>
+        </div>
+        <div class="profile-standing" id="profile-standing"><span>스탠딩</span></div>
+        <div class="profile-id-card" id="profile-id-card"></div>
+
+        <!-- 오른쪽: 캐릭터 정보 -->
+        <div class="profile-info">
+          <div class="profile-name-wrap">
+            <h2 id="profile-name">이름</h2>
+            <span class="profile-engname" id="profile-engname">영어 이름</span>
+            <span class="name-underline"></span>
+          </div>
+          <div class="profile-quote" id="profile-quote">이곳에 캐치프레이즈를 입력해 주세요.</div>
+          <div class="profile-data">
+            <div><small>BIRTHDAY</small><strong id="profile-birthday">—</strong></div>
+            <div><small>MBTI</small><strong id="profile-mbti">—</strong></div>
+            <div><small>FANDOM</small><strong id="profile-fandom">—</strong></div>
+            <div><small>JAPANESE PRONOUNS</small><strong id="profile-jappronouns">—</strong></div>
+            <div><small>GENERATION</small><strong id="profile-generation">—</strong></div>
+            <div><small>OSHI MARK</small><strong id="profile-oshimark">—</strong></div>
+          </div>
+          <div class="profile-notes"><span>NOTES</span>
+            <p id="profile-notes">작성된 내용이 없습니다.</p>
+          </div>
+          <div class="profile-gallery" id="profile-gallery"><span>GALLERY</span>
+            <div class="profile-gallery-grid" id="profile-gallery-grid"></div>
+          </div>
+        </div>
+        <nav class="profile-hangtag" aria-label="프로필 바로가기">
+          <span class="tag-clip" aria-hidden="true"></span>
+          <a href="">SOOP</a><a href="">YOUTUBE</a><a href="">CAFE</a>
+        </nav>
+      </div>
+      <div class="profile-nav"><button id="profile-prev">← 이전</button><span id="profile-position">01 / 18</span><button id="profile-next">다음 →</button></div>
+    </div>
+
+    <!-- PAIR: 상세 정보 모달 -->
+    <div class="archive-overlay" id="pair-dossier" aria-hidden="true">
+      <section class="archive-modal dossier-modal" role="dialog"
+              aria-modal="true" aria-labelledby="dossier-title">
+        <header class="archive-modal-header">
+          <span id="dossier-number">조합 상세 정보 / NO. 01</span>
+          <button type="button" class="archive-close" data-close-archive aria-label="닫기">×</button>
+        </header>
+        <div class="dossier-content" id="dossier-content"></div>
+      </section>
+    </div>
 
     <!-- GALLERY: 라이트박스 -->
     <div class="archive-overlay lightbox-overlay" id="archive-lightbox"
@@ -331,16 +346,6 @@
         <div class="lightbox-info" id="lightbox-info"></div>
       </section>
     </div>
-
-    <!-- LINKS -->
-    <section class="page-section links-section" id="links" data-page="links" aria-label="링크트리">
-      <div class="section-topline"><span>05 / 링크트리</span></div>
-      <div class="links-layout">
-        <a class="links-title" href="https://cafe.naver.com/steamindiegame" target="_blank"><h2>왁물원</h2><p>우왁굳&왁타버스 공식 카페</p></a>
-        <div class="link-scroll" id="link-scroll"></div>
-      </div>
-    </section>
-  </main>
 
   <!-- 
   ============================================

@@ -569,7 +569,7 @@ h2 {
   border: none;
   font: 48px var(--mono);
   text-shadow: 0 0 8px rgba(0, 0, 0, .5);
-  transition: transform .2s ease;
+  transition: transform .2s;
 }
 
 .member-scroll-button:hover {
@@ -598,7 +598,7 @@ h2 {
   border: 1px solid var(--ink);
   text-align: left;
   scroll-snap-align: start;
-  transition: background-color .28s ease, transform .2s ease, background .28s ease;
+  transition: background-color .28s, transform .2s, background .28s;
 }
 
 /* 배경 숫자+영문 이름 */
@@ -615,7 +615,7 @@ h2 {
   font: 700 clamp(42px, 7vw, 100px)/.9 var(--display);
   color: var(--member-accent);
   opacity: 1;
-  transition: transform .3s ease;
+  transition: transform .3s;
 }
 
 /* 기본: 영문 이름 숨김 */
@@ -629,7 +629,7 @@ h2 {
   opacity: 0;
   overflow-wrap: anywhere;
   word-break: break-all;
-  transition: opacity .22s ease, transform .3s ease;
+  transition: opacity .22s, transform .3s;
 }
 
 /* 멤버 이미지 */
@@ -648,7 +648,7 @@ h2 {
   object-position: center top;
   filter: grayscale(1) saturate(.25);
   transform: scale(1.015);
-  transition: filter .42s ease, transform .38s ease;
+  transition: filter .42s, transform .38s;
 }
 
 @keyframes member-card-pop {
@@ -770,7 +770,7 @@ h2 {
   opacity: 0;
   visibility: hidden;
   transform: scale(.985);
-  transition: opacity .28s ease, transform .35s ease, visibility .35s;
+  transition: opacity .28s, transform .35s, visibility .35s;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -811,6 +811,7 @@ h2 {
   background: rgba(255, 255, 255, .75);
   padding: 9px 12px;
   font: 10px var(--mono);
+  transition: background .2s, color .2s;
 }
 
 .close-profile:hover,
@@ -908,7 +909,7 @@ h2 {
   border-radius: 8px;
   box-shadow: 2px 2px 2px rgba(27, 32, 42, .1);
   transform: rotate(5deg);
-  transition: transform .25s ease, box-shadow .25s ease;
+  transition: transform .25s, box-shadow .25s;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -1149,7 +1150,7 @@ h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .25s ease;
+  transition: transform .25s;
 }
 
 .profile-gallery-item:hover img,
@@ -1272,7 +1273,7 @@ h2 {
   gap: 10px;
   display: block;
   height: 100%;
-  transition: transform .2s ease;
+  transition: transform .2s;
   perspective: 1000px;
   text-align: left;
   overflow: visible;
@@ -1489,8 +1490,8 @@ h2 {
     inset 0 -5px 10px #00000080;
 
   transition:
-    transform 450ms ease,
-    box-shadow 450ms ease;
+    transform 450ms,
+    box-shadow 450ms;
 }
 
 /* 비닐을 가로지르는 반사광 */
@@ -2078,7 +2079,7 @@ h2 {
 
 .record-item:hover .album-cover,
 .record-item.is-selected .album-cover {
-  transform: translateY(-3px) rotate(-1deg);
+  transform: translateY(-4px) rotate(-1deg);
 }
 
 .record-item.is-selected .album-cover {
@@ -2114,7 +2115,7 @@ h2 {
 
 
 .calendar-section {
-  padding-bottom: 90px; /* 하단 뮤직 플레이어와 간격 */
+  padding-bottom: 20px; /* 하단 뮤직 플레이어와 간격 */
 }
 
 .calendar-layout {
@@ -2123,7 +2124,7 @@ h2 {
   gap: 28px;
   min-height: 0;
   flex: 1;
-  padding-top: 22px;
+  padding-top: 20px;
 }
 
 .calendar-main,
@@ -2148,7 +2149,6 @@ h2 {
 .calendar-label {
   display: block;
   font: 10px var(--mono);
-  letter-spacing: .08em;
   color: var(--muted);
   margin-bottom: 8px;
 }
@@ -2161,13 +2161,12 @@ h2 {
   display: flex;
   align-items: center;
   gap: 12px;
-  white-space: nowrap;
   font: 12px var(--mono);
 }
 
 .calendar-month-control button {
-  border: 1px solid var(--ink);
-  background: transparent;
+  border: 1px solid var(--line);
+  background: white;
   width: 30px;
   height: 30px;
   transition: background .2s, color .2s;
@@ -2180,8 +2179,11 @@ h2 {
 
 /* 날짜 그리드 */
 .calendar-grid {
+  flex: 1;
+  min-height: 0;
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-rows: 36px repeat(6, minmax(0, 1fr));
   border-top: 1px solid var(--ink);
   border-left: 1px solid var(--ink);
 }
@@ -2190,7 +2192,7 @@ h2 {
 .calendar-weekday,
 .calendar-day {
   min-width: 0;
-  border: 0;
+  border: none;
   border-right: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
@@ -2198,27 +2200,25 @@ h2 {
 .calendar-weekday {
   display: grid;
   place-items: center;
-  min-height: 36px;
+  min-height: 18px;
   font: 600 10px var(--mono);
   letter-spacing: .04em;
-  background: var(--paper);
+  background: white;
 }
 
 .calendar-day {
   position: relative;
-  display: block;
-  aspect-ratio: 1 / 1;
-  min-height: 58px;
+  isolation: isolate;
+  aspect-ratio: auto;
+  min-height: 0;
   overflow: hidden;
-  padding: 0;
-  text-align: left;
   background: var(--paper);
   isolation: isolate;
-  transition: filter .2s, box-shadow .2s;
+  transition: filter .2s;
 }
 
 .calendar-day:hover {
-  filter: brightness(.94);
+  filter: brightness(.95);
   z-index: 1;
 }
 
@@ -2232,22 +2232,26 @@ h2 {
 }
 
 .calendar-day.is-outside {
-  background: var(--paper-deep);
+  background: #e8e8e8;
 }
 
 .calendar-day.is-outside .calendar-day-number {
-  color: #aaa;
+  color: #999999;
 }
 
 .calendar-day.is-today {
-  box-shadow: inset 0 0 0 2px var(--accent);
+  background-color: var(--ink);
+}
+
+.calendar-day.is-today .calendar-day-number {
+  color: white;
 }
 
 .calendar-day.is-selected {
-  box-shadow: inset 0 0 0 3px var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
 }
 
-/* 생일 칸: 멤버 테마색 + 전신 이미지 */
+/* 생일 칸: 멤버 테마색+전신 이미지 */
 .calendar-day.has-birthday {
   background-color: var(--member-color, var(--accent));
 }
@@ -2256,32 +2260,27 @@ h2 {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 2;
   background-image: var(--birthday-image);
-  background-size: 300%;
-  background-position: center 10%;
+  background-size: 200%;
+  background-position: center 15%;
   background-repeat: no-repeat;
-  opacity: .9;
 }
 
 .calendar-day.has-birthday .calendar-day-number {
-  background: var(--member-color, var(--accent));
-  padding: 3px 5px;
-  margin: -3px 0 0 -3px;
+  opacity: 0;
 }
 
 .calendar-day.has-birthday .calendar-birthday-name {
   position: absolute;
-  z-index: 2;
-  left: 7px;
-  right: 7px;
-  bottom: 7px;
-  padding: 4px 5px;
-  background: var(--member-color, var(--accent));
-  color: var(--ink);
-  font-size: 10px;
-  line-height: 1.35;
-  overflow-wrap: anywhere;
+  inset: 0;
+  z-index: 1;
+  color: white;
+  font: 700 30px/.8 'kensington';
+  white-space: normal;
+  text-transform: uppercase;
+  text-align: left;
+
 }
 
 .calendar-day.has-birthday.is-selected {
