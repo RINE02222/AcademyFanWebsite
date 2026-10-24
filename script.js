@@ -168,12 +168,14 @@ let progressTimer = null;
 
 window.onYouTubeIframeAPIReady = () => {
   youtubePlayer = new YT.Player("youtube-player", {
-    width: "240",
+    
+    width: "200",
     height: "200",
     videoId: "",
     playerVars: {
-      playsinline: 1
-    },
+  playsinline: 1,
+  origin: window.location.origin
+},
     events: {
       onReady: () => {
         youtubeReady = true;
@@ -294,9 +296,6 @@ function toggleRepeatMode() {
   const currentIndex = modes.indexOf(repeatMode);
 
   repeatMode = modes[(currentIndex + 1) % modes.length];
-
-  const audio = $("#music-audio");
-  audio.loop = repeatMode === "one";
 
   const labels = {
     all: "ALL",
@@ -865,7 +864,6 @@ function selectSong(id, autoplay = false) {
   const song = songs.find(item => item.id === Number(id));
   if (!song) return;
 
-  const audio = $("#music-audio");
   currentSongId = song.id;
 
   $$(".record-item").forEach(item => {
@@ -905,11 +903,10 @@ if (youtubeReady && song.videoId) {
   }
 }
 
-  audio.loop = repeatMode === "one";
   updateProgress();
 
-  if (autoplay) {
-    playMusic();
+if (autoplay) {
+  playMusic();
   }
 }
 
@@ -1467,20 +1464,6 @@ musicMinimizeButton.addEventListener("click", () => {
   );
 });
 
-const musicAudio = $("#music-audio");
-
-musicAudio.addEventListener("play", () => {
-  musicDock.classList.add("is-playing");
-});
-
-musicAudio.addEventListener("pause", () => {
-  musicDock.classList.remove("is-playing");
-});
-
-musicAudio.addEventListener("ended", () => {
-  musicDock.classList.remove("is-playing");
-});
-
 /* 드래그 이동 */
 const musicWindowTop = $(".music-window-top");
 
@@ -1541,115 +1524,6 @@ function stopDraggingMusic(event) {
   }
 }
 
-// 이퀄라이저
-let audioContext = null;
-let analyser = null;
-let audioSource = null;
-let frequencyData = null;
-let equalizerFrame = null;
-
-const equalizerBars = [
-  ...document.querySelectorAll(".music-equalizer i")
-];
-
-// 오디오 분석기 초기화
-function setupEqualizer() {
-  if (analyser) return;
-
-  const AudioContextClass =
-    window.AudioContext || window.webkitAudioContext;
-
-  if (!AudioContextClass) {
-    console.warn("이 브라우저는 Web Audio API를 지원하지 않습니다.");
-    return;
-  }
-
-  audioContext = new AudioContextClass();
-
-  analyser = audioContext.createAnalyser();
-  analyser.fftSize = 256;
-  analyser.smoothingTimeConstant = 0.75;
-
-  frequencyData = new Uint8Array(analyser.frequencyBinCount);
-
-  // 같은 audio 요소에는 한 번만 연결해야 함
-  audioSource = audioContext.createMediaElementSource(musicAudio);
-
-  audioSource.connect(analyser);
-  analyser.connect(audioContext.destination);
-}
-
-// 주파수 데이터를 막대 높이로 변환
-function updateEqualizer() {
-  if (!analyser || musicAudio.paused || musicAudio.ended) {
-    equalizerFrame = null;
-    return;
-  }
-
-  analyser.getByteFrequencyData(frequencyData);
-
-  const binCount = frequencyData.length;
-  const barCount = equalizerBars.length;
-
-  equalizerBars.forEach((bar, index) => {
-    // 저음부터 고음까지 주파수 구간을 나눔
-    const start = Math.floor(
-      Math.pow(index / barCount, 2) * binCount
-    );
-
-    const end = Math.max(
-      start + 1,
-      Math.floor(Math.pow((index + 1) / barCount, 2) * binCount)
-    );
-
-    let sum = 0;
-
-    for (let i = start; i < Math.min(end, binCount); i++) {
-      sum += frequencyData[i];
-    }
-
-    const average = sum / Math.max(1, Math.min(end, binCount) - start);
-    const volume = average / 255;
-
-    // 최소 높이를 유지하고 음량에 따라 확대
-    const scale = 0.2 + volume * 4.5;
-
-    bar.style.setProperty("--bar-scale", scale);
-  });
-
-  equalizerFrame = requestAnimationFrame(updateEqualizer);
-}
-
-// 재생될 때 분석기 시작
-musicAudio.addEventListener("play", async () => {
-  try {
-    setupEqualizer();
-    if (!audioContext || !analyser) return;
-
-    if (audioContext.state === "suspended") {
-      await audioContext.resume();
-    }
-
-    if (equalizerFrame === null) {
-      equalizerFrame = requestAnimationFrame(updateEqualizer);
-    }
-  } catch (error) {
-    console.error("이퀄라이저 초기화 실패:", error);
-  }
-});
-
-// 일시 정지하면 막대 높이를 기본값으로 복귀
-musicAudio.addEventListener("pause", () => {
-  if (equalizerFrame !== null) {
-    cancelAnimationFrame(equalizerFrame);
-    equalizerFrame = null;
-  }
-
-  equalizerBars.forEach(bar => {
-    bar.style.setProperty("--bar-scale", 1);
-  });
-});
-
 musicWindowTop.addEventListener("pointerup", stopDraggingMusic);
 musicWindowTop.addEventListener("pointercancel", stopDraggingMusic);
 
@@ -1660,12 +1534,6 @@ $("#music-next").addEventListener("click", () => {
 });
 $("#music-repeat").addEventListener("click", toggleRepeatMode);
 
-$("#music-audio").addEventListener("play", () => updatePlayButton(true));
-$("#music-audio").addEventListener("pause", () => updatePlayButton(false));
-$("#music-audio").addEventListener("timeupdate", updateProgress);
-$("#music-audio").addEventListener("loadedmetadata", updateProgress);
-$("#music-audio").addEventListener("durationchange", updateProgress);
-
 // 재생 바를 움직이면 해당 위치부터 재생
 $("#music-seek").addEventListener("input", event => {
   if (!youtubeReady) return;
@@ -1675,17 +1543,6 @@ $("#music-seek").addEventListener("input", event => {
     const seconds = (Number(event.target.value) / 100) * duration;
     youtubePlayer.seekTo(seconds, true);
   }
-});
-
-// 곡이 끝났을 때 다음 곡으로 이동
-$("#music-audio").addEventListener("ended", () => {
-  updatePlayButton(false);
-  playNextSong(true);
-});
-
-$("#music-audio").addEventListener("error", () => {
-  updatePlayButton(false);
-  console.warn("음원 파일을 불러오지 못했습니다. 파일 경로를 확인해 주세요.");
 });
 
 // MEMBERS: 프로필 오버레이
