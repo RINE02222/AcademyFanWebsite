@@ -1404,6 +1404,209 @@ function renderLinks() {
 $$(".nav-btn").forEach(button => button.addEventListener("click", () => navigateTo(button.dataset.section)));
 
 // 뮤직 플레이어
+const musicDock = $("#music-dock");
+const musicMinimizeButton = $("#music-minimize");
+musicMinimizeButton.addEventListener("click", () => {
+  const isMinimized = musicDock.classList.toggle("is-minimized");
+
+  musicMinimizeButton.textContent = isMinimized ? "+" : "−";
+  musicMinimizeButton.setAttribute(
+    "aria-expanded",
+    String(!isMinimized)
+  );
+  musicMinimizeButton.setAttribute(
+    "aria-label",
+    isMinimized
+      ? "뮤직 플레이어 펼치기"
+      : "뮤직 플레이어 접기"
+  );
+});
+
+const musicAudio = $("#music-audio");
+
+musicAudio.addEventListener("play", () => {
+  musicDock.classList.add("is-playing");
+});
+
+musicAudio.addEventListener("pause", () => {
+  musicDock.classList.remove("is-playing");
+});
+
+musicAudio.addEventListener("ended", () => {
+  musicDock.classList.remove("is-playing");
+});
+
+/* 드래그 이동 */
+const musicWindowTop = $(".music-window-top");
+
+let isDraggingMusic = false;
+let dragOffsetX = 0;
+let dragOffsetY = 0;
+
+musicWindowTop.addEventListener("pointerdown", event => {
+  if (event.button !== 0) return;
+  if (event.target.closest("button")) return;
+
+  const rect = musicDock.getBoundingClientRect();
+
+  musicDock.style.left = `${rect.left}px`;
+  musicDock.style.top = `${rect.top}px`;
+  musicDock.style.right = "auto";
+  musicDock.style.bottom = "auto";
+
+  dragOffsetX = event.clientX - rect.left;
+  dragOffsetY = event.clientY - rect.top;
+
+  isDraggingMusic = true;
+  musicWindowTop.setPointerCapture(event.pointerId);
+
+  musicDock.classList.add("is-dragging");
+});
+
+musicWindowTop.addEventListener("pointermove", event => {
+  if (!isDraggingMusic) return;
+
+  const rect = musicDock.getBoundingClientRect();
+
+  const maxLeft = window.innerWidth - rect.width;
+  const maxTop = window.innerHeight - rect.height;
+
+  const left = Math.max(
+    0,
+    Math.min(event.clientX - dragOffsetX, maxLeft)
+  );
+
+  const top = Math.max(
+    0,
+    Math.min(event.clientY - dragOffsetY, maxTop)
+  );
+
+  musicDock.style.left = `${left}px`;
+  musicDock.style.top = `${top}px`;
+});
+
+function stopDraggingMusic(event) {
+  if (!isDraggingMusic) return;
+
+  isDraggingMusic = false;
+  musicDock.classList.remove("is-dragging");
+
+  if (musicWindowTop.hasPointerCapture(event.pointerId)) {
+    musicWindowTop.releasePointerCapture(event.pointerId);
+  }
+}
+
+// 이퀄라이저
+let audioContext = null;
+let analyser = null;
+let audioSource = null;
+let frequencyData = null;
+let equalizerFrame = null;
+
+const equalizerBars = [
+  ...document.querySelectorAll(".music-equalizer i")
+];
+
+// 오디오 분석기 초기화
+function setupEqualizer() {
+  if (analyser) return;
+
+  const AudioContextClass =
+    window.AudioContext || window.webkitAudioContext;
+
+  if (!AudioContextClass) {
+    console.warn("이 브라우저는 Web Audio API를 지원하지 않습니다.");
+    return;
+  }
+
+  audioContext = new AudioContextClass();
+
+  analyser = audioContext.createAnalyser();
+  analyser.fftSize = 256;
+  analyser.smoothingTimeConstant = 0.75;
+
+  frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+  // 같은 audio 요소에는 한 번만 연결해야 함
+  audioSource = audioContext.createMediaElementSource(musicAudio);
+
+  audioSource.connect(analyser);
+  analyser.connect(audioContext.destination);
+}
+
+// 주파수 데이터를 막대 높이로 변환
+function updateEqualizer() {
+  if (!analyser || musicAudio.paused || musicAudio.ended) {
+    equalizerFrame = null;
+    return;
+  }
+
+  analyser.getByteFrequencyData(frequencyData);
+
+  const binCount = frequencyData.length;
+  const barCount = equalizerBars.length;
+
+  equalizerBars.forEach((bar, index) => {
+    // 저음부터 고음까지 주파수 구간을 나눔
+    const start = Math.floor(
+      Math.pow(index / barCount, 2) * binCount
+    );
+
+    const end = Math.max(
+      start + 1,
+      Math.floor(Math.pow((index + 1) / barCount, 2) * binCount)
+    );
+
+    let sum = 0;
+
+    for (let i = start; i < Math.min(end, binCount); i++) {
+      sum += frequencyData[i];
+    }
+
+    const average = sum / Math.max(1, Math.min(end, binCount) - start);
+    const volume = average / 255;
+
+    // 최소 높이를 유지하고 음량에 따라 확대
+    const scale = 0.2 + volume * 4.5;
+
+    bar.style.setProperty("--bar-scale", scale);
+  });
+
+  equalizerFrame = requestAnimationFrame(updateEqualizer);
+}
+
+// 재생될 때 분석기 시작
+musicAudio.addEventListener("play", async () => {
+  try {
+    setupEqualizer();
+
+    if (audioContext.state === "suspended") {
+      await audioContext.resume();
+    }
+
+    if (equalizerFrame === null) {
+      equalizerFrame = requestAnimationFrame(updateEqualizer);
+    }
+  } catch (error) {
+    console.error("이퀄라이저 초기화 실패:", error);
+  }
+});
+
+// 일시 정지하면 막대 높이를 기본값으로 복귀
+musicAudio.addEventListener("pause", () => {
+  if (equalizerFrame !== null) {
+    cancelAnimationFrame(equalizerFrame);
+    equalizerFrame = null;
+  }
+
+  equalizerBars.forEach(bar => {
+    bar.style.setProperty("--bar-scale", 1);
+  });
+});
+
+musicWindowTop.addEventListener("pointerup", stopDraggingMusic);
+musicWindowTop.addEventListener("pointercancel", stopDraggingMusic);
+
 $("#music-play").addEventListener("click", toggleMusicPlayback);
 $("#music-prev").addEventListener("click", playPreviousSong);
 $("#music-next").addEventListener("click", () => {

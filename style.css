@@ -164,64 +164,88 @@ h2 {
    ========================================================================== */
 
 
-:root {
-  --music-dock-height: 82px;
-}
-
 .music-dock {
   position: fixed;
-  z-index: 30;
-  inset: auto 0 0;
-  height: var(--music-dock-height);
-  padding: 10px 3.3vw;
-  display: grid;
-  grid-template-columns: minmax(180px, 1fr) minmax(260px, 1.4fr);
-  align-items: center;
-  gap: 28px;
-  background: var(--paper);
-  border-top: 1px solid var(--line);
+  isolation: isolate;
+  z-index: 90;
+  right: 24px;
+  bottom: 24px;
+  width: min(300px, calc(100vw - 80px));
+  height: auto;
+  display: block;
+  background: transparent;
+  border: none;
+  color: var(--ink);
 }
 
-/* 왼쪽: 곡 정보 */
+.music-window {
+  padding: 8px;
+  border: 1px solid var(--ink);
+  background: white;
+}
+
+.music-window-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 8px;
+}
+
+.music-window-label {
+  font: 700 12px var(--mono);
+  color: var(--ink);
+}
+
+.music-window-minimize {
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font: 16px var(--mono);
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+
+.music-window-minimize:hover {
+  transform: scale(1.05);
+}
+
+.music-player-content {
+  padding: 2px 20px
+}
+
 .music-track {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 #music-cover {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   flex-shrink: 0;
   object-fit: cover;
-  border: 1px solid var(--line);
-  background: var(--paper-deep);
+  border: 1px solid rgba(23, 24, 22, .15);
+  background: var(--paper);
 }
 
 .music-info {
   min-width: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 
-/* NOW PLAYING */
-.music-label {
-  font: 8px var(--mono);
-  color: var(--muted);
-  letter-spacing: .04em;
-}
-
-/* 곡 제목 */
 #music-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font: 600 13px var(--body);
+  font: 600 16px var(--body);
 }
 
-/* 곡 아티스트 */
 #music-artist {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -230,73 +254,137 @@ h2 {
   color: var(--muted);
 }
 
-/* 오른쪽: 컨트롤러+재생 바 */
-.music-center {
-  min-width: 0;
+.music-equalizer {
+  height: 40px;
   display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-/* 컨트롤러 */
-.music-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 17px;
-}
-
-.music-controls button {
-  min-width: 26px;
-  border: 0;
-  background: transparent;
-  display: inline-flex;
-  justify-content: center;
   align-items: center;
   gap: 3px;
-  color: var(--ink);
-  font: 11px var(--mono);
+  flex-shrink: 0;
 }
 
-.music-controls button:hover { color: var(--muted); }
-
-/* 노래 재생 */
-#music-play {
-  width: 29px;
-  height: 29px;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--paper);
+.music-equalizer i {
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: var(--player-ink);
+  transform: scaleY(var(--bar-scale, 1));
+  transform-origin: center;
+  transition: transform 60ms linear;
 }
 
-#music-play:hover { opacity: .7; }
-
-#music-repeat {
-  gap: 4px;
-  color: var(--muted);
+.music-equalizer i:nth-child(2n) {
+  animation-delay: -.3s;
 }
 
-/* 노래 반복 버튼 */
-#music-repeat.is-active { color: var(--ink); }
-#music-repeat-icon, #music-repeat-label { font-size: 10px; }
+.music-equalizer i:nth-child(3n) {
+  animation-delay: -.5s;
+}
 
-/* 재생 바 */
 .music-progress {
-  display: flex;
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 9px;
-  font: 8px var(--mono);
-  color: var(--muted);
+  gap: 8px;
+  font: 9px var(--mono);
+  color: var(--ink);
 }
 
 #music-seek {
   width: 100%;
   min-width: 0;
-  height: 3px;
+  height: 2.5px;
   margin: 0;
   accent-color: var(--ink);
   cursor: pointer;
+}
+
+.music-controls {
+  position: relative;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.music-controls-trio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.music-controls button {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 5px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  font: 11px var(--mono);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+
+#music-play {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  background: transparent;
+  font-size: 14px;
+}
+
+.music-controls button:hover,
+#music-play:hover {
+  transform: scale(1.05);
+}
+
+#music-repeat {
+  color: var(--muted);
+  position: absolute;
+  right: calc(50% + 82px);
+}
+
+#music-repeat.is-active {
+  color: var(--ink);
+}
+
+#music-repeat-icon,
+#music-repeat-label {
+  font-size: 10px;
+}
+
+/* 접힌 상태 */
+.music-dock.is-minimized .music-window {
+  padding: 8px;
+}
+
+.music-dock.is-minimized .music-window-top {
+  padding-bottom: 0;
+}
+
+.music-dock.is-minimized .music-player-content {
+  display: none;
+}
+
+.music-window-top {
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.music-window-top:active {
+  cursor: grabbing;
+}
+
+.music-window-minimize {
+  cursor: pointer;
+  touch-action: manipulation;
 }
 
 
@@ -308,7 +396,6 @@ h2 {
 .viewport {
   position: fixed;
   inset: var(--nav-height) 0 0;
-  bottom: var(--music-dock-height);
 }
 
 /* 섹션 페이지 */
@@ -460,7 +547,7 @@ h2 {
   padding: 12px 14px;
   border: 1px solid var(--ink);
   background: rgba(253, 253, 253, .96);
-  box-shadow: 4px 4px 2px rgba(23, 24, 22, .14);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
   pointer-events: auto;
 }
 
@@ -907,7 +994,7 @@ h2 {
   background: #fbfbf8;
   border: 1px solid var(--line);
   border-radius: 8px;
-  box-shadow: 2px 2px 2px rgba(27, 32, 42, .1);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
   transform: rotate(5deg);
   transition: transform .25s, box-shadow .25s;
   display: flex;
@@ -929,7 +1016,7 @@ h2 {
 
 .profile-id-card:hover {
   transform: rotate(1deg) translateY(-5px);
-  box-shadow: 10px 16px 18px rgba(27, 32, 42, .18);
+  box-shadow: 10px 16px 18px rgba(0, 0, 0, .18);
   z-index: 5;
 }
 
@@ -1013,12 +1100,12 @@ h2 {
 
 .profile-standing img {
   display: block;
-  height: 110%;
+  height: 115%;
   max-width: 200%;
   width: auto;
   object-fit: contain;
   object-position: center;
-  transform: translate(2vw, 7vh);
+  transform: translate(2vw, 12vh);
   filter: drop-shadow(0 10px 10px rgba(24, 29, 44, .25));
 }
 
@@ -1172,7 +1259,7 @@ h2 {
   height: 120px;
   padding: 32px 8px 14px;
   background: var(--accent);
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, .12);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .1);
   clip-path: polygon(0 0, 100% 0, 100% 94%, 50% 100%, 0 94%);
   transform: rotate(-4deg);
 }
@@ -2115,7 +2202,7 @@ h2 {
 
 
 .calendar-section {
-  padding-bottom: 20px; /* 하단 뮤직 플레이어와 간격 */
+  padding-bottom: 39px; /* 하단 뮤직 플레이어와 간격 */
 }
 
 .calendar-layout {
@@ -2285,7 +2372,7 @@ h2 {
 }
 
 .calendar-day.has-birthday.is-selected {
-  box-shadow: inset 0 0 0 3px var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
 }
 
 .calendar-day.has-event::before {
