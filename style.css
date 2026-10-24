@@ -113,7 +113,7 @@ h2 {
   height: var(--nav-height);
   position: fixed;
   z-index: 30;
-  inset: 0 0 0 60px;
+  inset: 0 0 0 6%;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -124,7 +124,7 @@ h2 {
 .nav-btn-wrap {
   display: flex;
   height: 60%;
-  gap: clamp(10px, 10vw, 60px);
+  gap: clamp(10px, 4vw, 48px);
 }
 
 .nav-btn {
@@ -474,15 +474,15 @@ h2 {
   background: var(--accent);
 }
 
-/* 위젯: 생일 */
-.home-widget-birthday {
+/* 위젯: 디데이 */
+.home-widget-event {
   top: 8%;
   right: 5%;
   transform: rotate(2deg);
 }
 
-/* 위젯: 디데이 */
-.home-widget-event {
+/* 위젯: 생일 */
+.home-widget-birthday {
   left: -2%;
   bottom: 7%;
   transform: rotate(-2deg);
@@ -496,11 +496,18 @@ h2 {
   letter-spacing: .06em;
 }
 
-.home-widget-count {
+.home-event-count {
   display: block;
   margin: 6px 0 3px;
   font: 700 clamp(25px, 3vw, 38px)/1 var(--display);
   color: var(--ink);
+}
+
+.home-birthday-name {
+  display: block;
+  margin-top: 8px;
+  font: 600 15px/1.35 var(--body);
+  overflow-wrap: anywhere;
 }
 
 .home-widget-caption {
@@ -515,13 +522,6 @@ h2 {
   padding-top: 7px;
   border-top: 1px solid var(--line);
   font-size: 7px;
-}
-
-.home-widget-event-title {
-  display: block;
-  margin-top: 8px;
-  font: 600 15px/1.35 var(--body);
-  overflow-wrap: anywhere;
 }
 
 
@@ -1256,7 +1256,7 @@ h2 {
   display: grid;
   grid-template-rows: repeat(1, minmax(0, 1fr));
   grid-auto-flow: column;
-  grid-auto-columns: clamp(150px, 50vw, 300px);
+  grid-auto-columns: clamp(150px, 50vw, 315px);
   gap: 12px;
 }
 
@@ -2138,6 +2138,7 @@ h2 {
   flex-direction: column;
 }
 
+/* 달 이동 바 */
 .calendar-header {
   display: flex;
   justify-content: space-between;
@@ -2179,6 +2180,7 @@ h2 {
 
 /* 날짜 그리드 */
 .calendar-grid {
+  position: relative;
   flex: 1;
   min-height: 0;
   display: grid;
@@ -2188,7 +2190,6 @@ h2 {
   border-left: 1px solid var(--ink);
 }
 
-/* 요일 헤더와 날짜 칸의 공통 선 */
 .calendar-weekday,
 .calendar-day {
   min-width: 0;
@@ -2213,7 +2214,6 @@ h2 {
   min-height: 0;
   overflow: hidden;
   background: var(--paper);
-  isolation: isolate;
   transition: filter .2s;
 }
 
@@ -2231,6 +2231,7 @@ h2 {
   color: var(--ink);
 }
 
+/* 오늘이 아닌 칸 */
 .calendar-day.is-outside {
   background: #e8e8e8;
 }
@@ -2239,8 +2240,9 @@ h2 {
   color: #999999;
 }
 
+/* 오늘 칸 */
 .calendar-day.is-today {
-  background-color: var(--ink);
+  background-color: var(--accent);
 }
 
 .calendar-day.is-today .calendar-day-number {
@@ -2251,7 +2253,7 @@ h2 {
   box-shadow: inset 0 0 0 1.5px var(--ink);
 }
 
-/* 생일 칸: 멤버 테마색+전신 이미지 */
+/* 생일 칸: 멤버 테마색+스탠딩 이미지 */
 .calendar-day.has-birthday {
   background-color: var(--member-color, var(--accent));
 }
@@ -2280,11 +2282,31 @@ h2 {
   white-space: normal;
   text-transform: uppercase;
   text-align: left;
-
 }
 
 .calendar-day.has-birthday.is-selected {
   box-shadow: inset 0 0 0 3px var(--ink);
+}
+
+.calendar-day.has-event::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: var(--event-image);
+  background-size: cover;
+  background-position: center 15%;
+}
+
+.calendar-day.has-event .calendar-event-name {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  color: white;
+  font: 700 18px/.8 var(--display);
+  white-space: normal;
+  text-transform: uppercase;
+  text-align: left;
 }
 
 /* 날짜 상세 패널 */
@@ -2313,6 +2335,72 @@ h2 {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.8;
+}
+
+/* 일정 막대 바 */
+.calendar-event-bar {
+  z-index: 3;
+  align-self: start;
+  min-width: 0;
+  height: 17px;
+  margin: 27px 3px 0;
+  transform: translateY(calc(var(--event-lane, 0) * 20px));
+  padding: 1px 7px;
+  overflow: hidden;
+  border: none;
+  background: var(--event-color);
+  color: white;
+  font: 600 10px/18px var(--mono);
+  display: flex;
+  align-items: center;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.calendar-event-bar.continues-before {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.calendar-event-bar.continues-after {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.calendar-event-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 76px;
+  margin-bottom: 10px;
+  padding: 14px 18px;
+  border: 1px solid color-mix(in srgb, var(--event-color) 45%, white);
+  border-left: 5px solid var(--event-color);
+  background: color-mix(in srgb, var(--event-color) 9%, white);
+}
+
+.calendar-event-card-time {
+  flex: 0 0 72px;
+  color: var(--muted);
+  font: 11px var(--mono);
+}
+
+.calendar-event-card-content {
+  min-width: 0;
+}
+
+.calendar-event-card-content strong {
+  display: block;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.calendar-event-card-content p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 
@@ -2618,11 +2706,21 @@ h2 {
 }
 
 .dossier-cover {
+  position: relative;
   height: 260px;
   display: flex;
   align-items: center;
   background: var(--paper-deep);
   overflow: hidden;
+}
+
+.dossier-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to left, rgba(253, 253, 253) 5%, rgba(253, 253, 253, 0) 25%);
+  pointer-events: none;
 }
 
 .dossier-cover img {

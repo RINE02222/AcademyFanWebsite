@@ -6,7 +6,7 @@
 // 멤버
 const members = [
   { id: 1, name: "닌닌", engname: "Ninnin", generation: "1기", birthday: "2005. 05. 12.", mbti: "ENTP", fandom: "조무래기", jappronouns: "私", oshimark: "🥷", color: "#7150CE", standing: "images/profile/01.png", portrait: "images/portrait/01.png", idphoto: "images/idphoto/01.png", description: "쿠노이치(가 될) 닌닌이다!", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 2, name: "미스 발렌타인", engname: "Miss Valentine", generation: "1기", birthday: "비공개", mbti: "ESTP", fandom: "미녀 ・ 미남", jappronouns: "私", oshimark: "🌹", color: "#F5F5DC", standing: "images/profile/02.png", portrait: "images/portrait/02.png", idphoto: "images/idphoto/02.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 2, name: "미스 발렌타인", engname: "Miss Valentine", generation: "1기", birthday: "02. 14.", mbti: "ESTP", fandom: "미녀 ・ 미남", jappronouns: "私", oshimark: "🌹", color: "#F5F5DC", standing: "images/profile/02.png", portrait: "images/portrait/02.png", idphoto: "images/idphoto/02.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 3, name: "보디가드 불독", engname: "Bodyguard Bulldog", generation: "1기", birthday: "2000. 05. 31.", mbti: "INTP-T", fandom: "아가씨", jappronouns: "僕", oshimark: "🕶️", color: "#000000", standing: "images/profile/03.png", portrait: "", idphoto: "images/idphoto/03.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 4, name: "시리안 레인", engname: "Sirian Rain", generation: "1기", birthday: "07. 28.", mbti: "ISTJ", fandom: "도넛단", jappronouns: "私", oshimark: "👮", color: "#2D4BC1", standing: "images/profile/04.png", portrait: "", idphoto: "images/idphoto/04.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 5, name: "아마데우스최", engname: "Amadeus Choi", generation: "1기", birthday: "03. 13.", mbti: "ENTJ", fandom: "아사단", jappronouns: "僕 ・ 私", oshimark: "🎶", color: "#6B2929", standing: "images/profile/05.png", portrait: "", idphoto: "images/idphoto/05.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
@@ -14,7 +14,7 @@ const members = [
   { id: 7, name: "캡틴 설리반", engname: "Captain Sullivan", generation: "1기", birthday: "09. 27.", mbti: "ENTP", fandom: "-", jappronouns: "俺 ・ 船長", oshimark: "🏴‍☠️", color: "#BB1111", standing: "images/profile/07.png", portrait: "", idphoto: "images/idphoto/07.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 8, name: "사랑전도사 젠투", engname: "Love Missionary Jentoo", generation: "2기", birthday: "02. 23.", mbti: "ESFP", fandom: "젠크리트", jappronouns: "僕 ・ 私", oshimark: "💘", color: "#FF80E6", standing: "images/profile/08.png", portrait: "images/portrait/08.png", idphoto: "images/idphoto/08.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 9, name: "수셈이", engname: "Soosemi", generation: "2기", birthday: "03. 02.", mbti: "ISTJ", fandom: "고기세제비실벌벌쫄보카피바라단", jappronouns: "僕", oshimark: "🧽", color: "#425342", standing: "images/profile/09.png", portrait: "images/portrait/09.png", idphoto: "images/idphoto/09.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 10, name: "철도왕 길버트", engname: "Vanderbilt Gilbert", generation: "2기", birthday: "1801. 10. 27.", mbti: "INTP", fandom: "전쟁고멤 ・ 석탄단 ・ 철도단", jappronouns: "俺", oshimark: "🚂", color: "#343F7E", standing: "images/profile/10.png", portrait: "images/portrait/10.png", idphoto: "images/idphoto/10.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 10, name: "철도왕 길버트", engname: "Vanderbilt Gilbert", generation: "2기", birthday: "1801. 06. 27.", mbti: "INTP", fandom: "전쟁고멤 ・ 석탄단 ・ 철도단", jappronouns: "俺", oshimark: "🚂", color: "#343F7E", standing: "images/profile/10.png", portrait: "images/portrait/10.png", idphoto: "images/idphoto/10.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "08. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", oshimark: "🪺🐲", color: "#ABCDEC", standing: "images/profile/11.png", portrait: "", idphoto: "images/idphoto/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 12, name: "빅토리", engname: "Victory", generation: "3기", birthday: "2001. 02. 19.", mbti: "ESFP", fandom: "빅타민", jappronouns: "私", oshimark: "✨", color: "#FFC15C", standing: "images/profile/12.png", portrait: "images/portrait/12.png", idphoto: "images/idphoto/12.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 13, name: "데스해머쵸로키", engname: "Death Hammer Chouloky", generation: "4기", birthday: "2004. 07. 17.", mbti: "ISFP", fandom: "허접구리", jappronouns: "あたし", oshimark: "🐸", color: "#6AA937", standing: "images/profile/13.png", portrait: "", idphoto: "images/idphoto/13.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
@@ -78,6 +78,11 @@ const songs = [
   }
 ];
 
+// 캘린더
+const calendarEvents = [
+  { id: "1", title: "고카 상사 합방", start: "2026-10-25", time: "20:00", color: "#8B5CF6", description: "공식 채널 방송" },
+];
+
 // 갤러리
 const galleryItems = [
   { id: 1, title: "2023 우왁굳 생일", date: "2000. 00. 00.", image: "images/gallery/01_wgbirth.png", description: "" },
@@ -107,9 +112,9 @@ const links = [
   { title: "아카데미 플레이리스트", description: "아카데미생들의 추천곡 모음", label: "유튜브 재생목록", icon: "iconoir-playlist", url: "https://www.youtube.com/playlist?list=PLStHIETtt5OxgxpMb_1hohY9NuF9g5sN8", image: "#" },
 ];
 
-// 다가오는 일정
-const homeEvents = [ 
-  { title: "고카 상사", date: "2026-10-25", category: "합방" }
+// 디데이
+const events = [ 
+  { title: "고멤 아카데미 창설일", date: "2026-12-01", category: "기수별", image: "images/logo.png" }
   // 예: { title: "아카데미 공개 방송", date: "2026-11-01", category: "방송" }
 ];
 
@@ -298,7 +303,11 @@ function toggleRepeatMode() {
   );
 }
 
-/* ---------- HOME ---------- */
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
 
 // 가장 가까운 생일 계산
 function parseBirthdayMonthDay(value) {
@@ -341,7 +350,7 @@ function renderHomeWidgets() {
     $("#home-birthday-days").textContent = nextBirthday.days === 0 ? "TODAY" : `D-${nextBirthday.days}`;
     $("#home-birthday-name").textContent = nextBirthday.member.name;
     $("#home-birthday-date").textContent =
-      `${String(nextBirthday.birthday.month).padStart(2, "0")}.${String(nextBirthday.birthday.day).padStart(2, "0")} / ${nextBirthday.member.generation || "ACADEMY"}`;
+      `${String(nextBirthday.birthday.month).padStart(2, "0")}. ${String(nextBirthday.birthday.day).padStart(2, "0")}. / ${nextBirthday.member.generation || "ACADEMY"}`;
     const heroImage = $("#home-birthday-image");
     const heroImageSrc = nextBirthday.member.standing || nextBirthday.member.portrait;
 
@@ -357,12 +366,12 @@ function renderHomeWidgets() {
   } else {
     $("#home-birthday-days").textContent = "—";
     $("#home-birthday-name").textContent = "등록된 생일 정보가 없습니다";
-    $("#home-birthday-date").textContent = "BIRTHDAY ARCHIVE";
+    $("#home-birthday-date").textContent = "날짜 표기란";
     $("#home-birthday-image").removeAttribute("src");
     $("#home-birthday-image").hidden = true;
   }
 
-  const upcomingEvents = homeEvents
+  const upcomingEvents = events
     .map(event => {
       const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(event.date || "");
       if (!event.title || !match) return null;
@@ -380,12 +389,16 @@ function renderHomeWidgets() {
 
   if (nextEvent) {
     $("#home-event-title").textContent = nextEvent.title;
-    $("#home-event-count").textContent = nextEvent.days === 0 ? "오늘 열리는 일정" : `D-${nextEvent.days} · ${nextEvent.category || "아카데미 일정"}`;
-    $("#home-event-date").textContent = nextEvent.date.replaceAll("-", ".");
+    $("#home-event-count").textContent = nextEvent.days === 0 ? "오늘 열리는 일정" : `D-${nextEvent.days}`;
+    $("#home-event-date").textContent =   nextEvent.date.split("-").join(". ") + ".";
   }
 }
 
-/* ---------- MEMBERS ---------- */
+
+/* =========================================================
+   MEMBERS
+   ========================================================= */
+
 
 // 멤버 카드 렌더링
 function getContrastTextColor(hex) {
@@ -596,7 +609,11 @@ function stepProfile(direction) {
   openProfile(true);
 }
 
-/* ---------- PAIR ---------- */
+
+/* =========================================================
+   PAIR
+   ========================================================= */
+
 
 // 페어 카드 렌더링
 function renderPairs() {
@@ -780,7 +797,82 @@ $("#dossier-content").addEventListener("click", event => {
   }
 });
 
-/* ---------- CALENDAR ---------- */
+
+/* =========================================================
+   SONG
+   ========================================================= */
+
+
+// 앨범 그리드 렌더링
+function renderSongs() {
+  renderSongGrid();
+}
+function renderSongGrid() {
+  const filtered = songs.filter(song => activeSongFilter === "all" || song.kind === activeSongFilter);
+  $("#record-grid").innerHTML = filtered.map(song => `
+    <button class="record-item" data-song-id="${song.id}">
+      <span class="album-cover">${song.cover ? `<img src="${escapeHTML(song.cover)}" alt="${escapeHTML(song.title)}" loading="lazy">` : `<span class="album-placeholder">G.A.<br>RECORDS</span>`}</span>
+      <span class="record-title">${escapeHTML(song.title)}</span>
+      <span class="record-artist">${escapeHTML(song.artist)}</span>
+    </button>
+  `).join("");
+}
+
+// 노래 선택
+function selectSong(id, autoplay = false) {
+  const song = songs.find(item => item.id === Number(id));
+  if (!song) return;
+
+  const audio = $("#music-audio");
+  currentSongId = song.id;
+
+  $$(".record-item").forEach(item => {
+    item.classList.toggle(
+      "is-selected",
+      Number(item.dataset.songId) === song.id
+    );
+  });
+
+  // 턴테이블 선택 곡 정보
+  $("#song-selected-title").textContent = song.title;
+  $("#song-selected-artist").textContent =
+    `${song.artist} / ${song.kind.toUpperCase()} / ${song.year}`;
+
+  // 하단 뮤직 플레이어 정보
+  $("#music-title").textContent = song.title;
+  $("#music-artist").textContent = song.artist;
+  $("#music-cover").src = song.cover || "";
+  $("#music-cover").alt = `${song.title} 앨범 커버`;
+
+  const turntableCover = $("#turntable-cover");
+  turntableCover.hidden = !song.cover;
+  if (song.cover) {
+    turntableCover.src = song.cover;
+    turntableCover.alt = `${song.title} 레코드 라벨`;
+  } else {
+    turntableCover.removeAttribute("src");
+    turntableCover.alt = "";
+  }
+
+  // 다른 곡을 선택했을 때만 음원 교체
+  if (audio.getAttribute("src") !== song.audio) {
+    audio.src = song.audio;
+    audio.load();
+  }
+
+  audio.loop = repeatMode === "one";
+  updateProgress();
+
+  if (autoplay) {
+    playMusic();
+  }
+}
+
+
+/* =========================================================
+   CALENDAR
+   ========================================================= */
+
 
 let calendarDate = new Date();
 let selectedCalendarDate = new Date(
@@ -809,7 +901,20 @@ function getBirthdayMembers(month, day) {
   });
 }
 
-// 월간 달력 렌더링
+// 기념일 찾기
+function getDDay(month, day) {
+  return events.filter(event => {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(event.date || "");
+    if (!match) return false;
+
+    const [, , eventMonth, eventDay] = match;
+
+    return Number(eventMonth) === month + 1 &&
+      Number(eventDay) === day;
+  });
+}
+
+// 날짜 렌더링
 function renderCalendar() {
   const grid = $("#calendar-grid");
   const monthLabel = $("#calendar-current-month");
@@ -836,7 +941,6 @@ function renderCalendar() {
   // 첫 날짜와 마지막 날짜
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0).getDate();
-
   const startOffset = (firstDay.getDay() + 6) % 7;
 
   // 이전 달의 마지막 날짜부터 그리드 시작
@@ -849,7 +953,6 @@ function renderCalendar() {
     today.getDate()
   );
 
-  // 6주 × 7일 = 42칸
   for (let i = 0; i < 42; i++) {
     let day;
     let cellMonth = month;
@@ -942,11 +1045,233 @@ function renderCalendar() {
       }
     }
 
+    // 현재 달에 속한 날짜에만 디데이 이미지 적용
+    if (!isOutside) {
+      const eventDay = getDDay(month, day);
+
+      if (eventDay.length > 0) {
+        const events = eventDay[0];
+
+        button.classList.add("has-event");
+
+        if (events.image) {
+          button.style.setProperty(
+            "--event-image",
+            `url("${events.image}")`
+          );
+        }
+
+        const name = document.createElement("span");
+        name.className = "calendar-event-name";
+        name.textContent = eventDay
+          .map(event => event.title)
+          .join(", ");
+
+        button.appendChild(name);
+      }
+    }
     grid.appendChild(button);
-  }
+    button.style.gridColumn = String((i % 7) + 1);
+    button.style.gridRow = String(Math.floor(i / 7) + 2);
+  } 
+  renderCalendarBars();
 }
 
-/* ---------- GALLERY ---------- */
+// 달 이동
+function moveCalendarMonth(direction) {
+  const year = calendarDate.getFullYear();
+  const month = calendarDate.getMonth();
+  const selectedDay = selectedCalendarDate.getDate();
+
+  const nextMonthLastDay = new Date(year, month + direction + 1, 0).getDate();
+  const day = Math.min(selectedDay, nextMonthLastDay);
+
+  calendarDate = new Date(year, month + direction, 1);
+  selectedCalendarDate = new Date(year, month + direction, day);
+
+  renderCalendar();
+  renderCalendarEvents();
+}
+
+function selectCalendarDate(dateKey) {
+  const [year, month, day] = dateKey.split("-").map(Number);
+
+  selectedCalendarDate = new Date(year, month - 1, day);
+
+  // 이전 달, 다음 달에 속한 칸을 눌러도 달 이동
+  if (
+    selectedCalendarDate.getFullYear() !== calendarDate.getFullYear() ||
+    selectedCalendarDate.getMonth() !== calendarDate.getMonth()
+  ) {
+    calendarDate = new Date(
+      selectedCalendarDate.getFullYear(),
+      selectedCalendarDate.getMonth(),
+      1
+    );
+  }
+
+  renderCalendar();
+  renderCalendarEvents();
+}
+
+// 캘린더 이벤트 렌더링
+function renderCalendarEvents() {
+  const heading = $("#calendar-selected-date");
+  const list = $("#calendar-event-list");
+  if (!heading || !list) return;
+
+  const year = selectedCalendarDate.getFullYear();
+  const month = selectedCalendarDate.getMonth();
+  const day = selectedCalendarDate.getDate();
+  const dateKey = getCalendarDateKey(year, month, day);
+
+  heading.textContent =
+    `${year}. ${String(month + 1).padStart(2, "0")}. ` +
+    `${String(day).padStart(2, "0")}.`;
+
+  const dayEvents = calendarEvents.filter(event =>
+    compareDateKeys(event.start, dateKey) <= 0 &&
+    compareDateKeys(getEventEndKey(event), dateKey) >= 0
+  );
+
+  const birthdays = getBirthdayMembers(month, day);
+
+  const cards = [
+    ...dayEvents.map(event => ({
+      title: event.title,
+      time: event.time || "종일",
+      description: event.description || "",
+      color: event.color || "#8B5CF6"
+    })),
+    ...birthdays.map(member => ({
+      title: `${member.name} 생일`,
+      time: "종일",
+      description: member.engname,
+      color: member.color
+    }))
+  ];
+
+  list.innerHTML = cards.length
+    ? cards.map(item => `
+        <article
+          class="calendar-event-card"
+          style="--event-color: ${escapeHTML(item.color)}"
+        >
+          <span class="calendar-event-card-time">
+            ${escapeHTML(item.time)}
+          </span>
+          <div class="calendar-event-card-content">
+            <strong>${escapeHTML(item.title)}</strong>
+            ${item.description
+              ? `<p>${escapeHTML(item.description)}</p>`
+              : ""}
+          </div>
+        </article>
+      `).join("")
+    : `<p class="calendar-empty">등록된 일정이 없습니다.</p>`;
+}
+
+// 이벤트 시작 날과 끝나는 날 계산
+function dateFromKey(dateKey) {
+  const [year, month, day] = dateKey.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+function addCalendarDays(date, amount) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + amount);
+  return next;
+}
+
+function compareDateKeys(a, b) {
+  return a.localeCompare(b);
+}
+
+function getEventEndKey(event) {
+  return event.end || event.start;
+}
+
+// 그리드 막대 바 렌더링
+function renderCalendarBars() {
+  const grid = $("#calendar-grid");
+  if (!grid) return;
+
+  grid.querySelectorAll(".calendar-event-bar").forEach(bar => bar.remove());
+
+  const year = calendarDate.getFullYear();
+  const month = calendarDate.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const startOffset = (firstDay.getDay() + 6) % 7;
+  const gridStart = addCalendarDays(firstDay, -startOffset);
+
+  grid.querySelectorAll(".calendar-day").forEach((dayButton, index) => {
+    dayButton.style.gridColumn = String((index % 7) + 1);
+    dayButton.style.gridRow = String(Math.floor(index / 7) + 2);
+  });
+
+  const lanesByWeek = Array.from({ length: 6 }, () => []);
+
+  calendarEvents.forEach(event => {
+    const eventStart = dateFromKey(event.start);
+    const eventEnd = dateFromKey(getEventEndKey(event));
+
+    if (eventEnd < eventStart) return;
+
+    for (let week = 0; week < 6; week++) {
+      const weekStart = addCalendarDays(gridStart, week * 7);
+      const weekEnd = addCalendarDays(weekStart, 6);
+
+      const segmentStart = eventStart > weekStart ? eventStart : weekStart;
+      const segmentEnd = eventEnd < weekEnd ? eventEnd : weekEnd;
+
+      if (segmentStart > segmentEnd) continue;
+
+      const startColumn =
+        Math.round((segmentStart - weekStart) / 86400000) + 1;
+      const endColumn =
+        Math.round((segmentEnd - weekStart) / 86400000) + 1;
+
+      // 이 일정 구간과 겹치지 않는 첫 lane을 찾는다.
+      const lanes = lanesByWeek[week];
+      let lane = lanes.findIndex(lastColumn => lastColumn < startColumn);
+
+      if (lane === -1) {
+        lane = lanes.length;
+        lanes.push(0);
+      }
+
+      // lane 0~2까지만 그린다. 더 많은 일정은 세 번째 줄에 겹칠 수 있다.
+      if (lane >= 3) continue;
+
+      lanes[lane] = endColumn;
+
+      const bar = document.createElement("button");
+      bar.type = "button";
+      bar.className = "calendar-event-bar";
+      bar.dataset.eventId = event.id;
+      bar.style.gridColumn = `${startColumn} / ${endColumn + 1}`;
+      bar.style.gridRow = String(week + 2);
+      bar.style.setProperty("--event-color", event.color || "#8B5CF6");
+      bar.style.setProperty("--event-lane", lane);
+      bar.setAttribute("aria-label", `${event.title}, ${event.start}`);
+
+      const continuesBefore = eventStart < segmentStart;
+      const continuesAfter = eventEnd > segmentEnd;
+
+      bar.classList.toggle("continues-before", continuesBefore);
+      bar.classList.toggle("continues-after", continuesAfter);
+      bar.textContent = `${continuesBefore ? "‹ " : ""}${event.title}`;
+
+      grid.appendChild(bar);
+    }
+  });
+}
+
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
+
 
 // 갤러리 그리드 렌더링
 function renderGallery() {
@@ -1051,74 +1376,11 @@ function stepLightbox(direction) {
 $("#lightbox-prev").addEventListener("click", () => stepLightbox(-1));
 $("#lightbox-next").addEventListener("click", () => stepLightbox(1));
 
-/* ---------- SONG ---------- */
 
-// 앨범 그리드 렌더링
-function renderSongs() {
-  renderSongGrid();
-}
-function renderSongGrid() {
-  const filtered = songs.filter(song => activeSongFilter === "all" || song.kind === activeSongFilter);
-  $("#record-grid").innerHTML = filtered.map(song => `
-    <button class="record-item" data-song-id="${song.id}">
-      <span class="album-cover">${song.cover ? `<img src="${escapeHTML(song.cover)}" alt="${escapeHTML(song.title)}" loading="lazy">` : `<span class="album-placeholder">G.A.<br>RECORDS</span>`}</span>
-      <span class="record-title">${escapeHTML(song.title)}</span>
-      <span class="record-artist">${escapeHTML(song.artist)}</span>
-    </button>
-  `).join("");
-}
+/* =========================================================
+   LINKS
+   ========================================================= */
 
-// 노래 선택
-function selectSong(id, autoplay = false) {
-  const song = songs.find(item => item.id === Number(id));
-  if (!song) return;
-
-  const audio = $("#music-audio");
-  currentSongId = song.id;
-
-  $$(".record-item").forEach(item => {
-    item.classList.toggle(
-      "is-selected",
-      Number(item.dataset.songId) === song.id
-    );
-  });
-
-  // 턴테이블 선택 곡 정보
-  $("#song-selected-title").textContent = song.title;
-  $("#song-selected-artist").textContent =
-    `${song.artist} / ${song.kind.toUpperCase()} / ${song.year}`;
-
-  // 하단 뮤직 플레이어 정보
-  $("#music-title").textContent = song.title;
-  $("#music-artist").textContent = song.artist;
-  $("#music-cover").src = song.cover || "";
-  $("#music-cover").alt = `${song.title} 앨범 커버`;
-
-  const turntableCover = $("#turntable-cover");
-  turntableCover.hidden = !song.cover;
-  if (song.cover) {
-    turntableCover.src = song.cover;
-    turntableCover.alt = `${song.title} 레코드 라벨`;
-  } else {
-    turntableCover.removeAttribute("src");
-    turntableCover.alt = "";
-  }
-
-  // 다른 곡을 선택했을 때만 음원 교체
-  if (audio.getAttribute("src") !== song.audio) {
-    audio.src = song.audio;
-    audio.load();
-  }
-
-  audio.loop = repeatMode === "one";
-  updateProgress();
-
-  if (autoplay) {
-    playMusic();
-  }
-}
-
-/* ---------- LINKS ---------- */
 
 // 링크 카드 렌더링
 function renderLinks() {
@@ -1138,7 +1400,45 @@ function renderLinks() {
    ========================================================= */
 
 
+// 내비게이션 바
 $$(".nav-btn").forEach(button => button.addEventListener("click", () => navigateTo(button.dataset.section)));
+
+// 뮤직 플레이어
+$("#music-play").addEventListener("click", toggleMusicPlayback);
+$("#music-prev").addEventListener("click", playPreviousSong);
+$("#music-next").addEventListener("click", () => {
+  playNextSong(false);
+});
+$("#music-repeat").addEventListener("click", toggleRepeatMode);
+
+$("#music-audio").addEventListener("play", () => updatePlayButton(true));
+$("#music-audio").addEventListener("pause", () => updatePlayButton(false));
+$("#music-audio").addEventListener("timeupdate", updateProgress);
+$("#music-audio").addEventListener("loadedmetadata", updateProgress);
+$("#music-audio").addEventListener("durationchange", updateProgress);
+
+// 재생 바를 움직이면 해당 위치부터 재생
+$("#music-seek").addEventListener("input", event => {
+  const audio = $("#music-audio");
+
+  if (Number.isFinite(audio.duration) && audio.duration > 0) {
+    audio.currentTime =
+      (Number(event.target.value) / 100) * audio.duration;
+  }
+});
+
+// 곡이 끝났을 때 다음 곡으로 이동
+$("#music-audio").addEventListener("ended", () => {
+  updatePlayButton(false);
+  playNextSong(true);
+});
+
+$("#music-audio").addEventListener("error", () => {
+  updatePlayButton(false);
+  console.warn("음원 파일을 불러오지 못했습니다. 파일 경로를 확인해 주세요.");
+});
+
+// MEMBERS: 프로필 오버레이
 $("#close-profile").addEventListener("click", closeProfile);
 $("#profile-prev").addEventListener("click", () => stepProfile(-1));
 $("#profile-next").addEventListener("click", () => stepProfile(1));
@@ -1149,30 +1449,16 @@ $(".profile-hangtag").addEventListener("click", event => {
   const target = document.querySelector(link.getAttribute("href"));
   target?.scrollIntoView({ behavior: "smooth", block: "center" });
 });
+
+// PAIR
 $("#pair-filter").addEventListener("click", event => {
   const button = event.target.closest("[data-pair-filter]");
   if (!button) return;
   activePairFilter = button.dataset.pairFilter;
   renderPairs();
 });
-$("#record-grid").addEventListener("click", event => {
-  const item = event.target.closest("[data-song-id]");
-  if (item) selectSong(item.dataset.songId, true);
-});
-$$(".song-filter").forEach(button => button.addEventListener("click", () => {
-  activeSongFilter = button.dataset.kind;
-  $$(".song-filter").forEach(item => item.classList.toggle("is-active", item === button));
-  renderSongGrid();
-}));
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeProfile();
-  if ($("#profile-overlay").classList.contains("is-open")) {
-    if (event.key === "ArrowLeft") stepProfile(-1);
-    if (event.key === "ArrowRight") stepProfile(1);
-  }
-});
 
-// 페어 카드 뒤집기
+// PAIR: 페어 카드 뒤집기
 function flipPairCard(card) {
   const isFlipped = card.classList.toggle("is-flipped");
   card.setAttribute("aria-pressed", String(isFlipped));
@@ -1191,6 +1477,45 @@ $("#pair-rail").addEventListener("click", event => {
   if (card) flipPairCard(card);
 });
 
+// SONG
+$("#record-grid").addEventListener("click", event => {
+  const item = event.target.closest("[data-song-id]");
+  if (item) selectSong(item.dataset.songId, true);
+});
+
+$$(".song-filter").forEach(button => button.addEventListener("click", () => {
+  activeSongFilter = button.dataset.kind;
+  $$(".song-filter").forEach(item => item.classList.toggle("is-active", item === button));
+  renderSongGrid();
+}));
+
+// CALENDAR
+$("#calendar-prev").addEventListener("click", () => moveCalendarMonth(-1));
+$("#calendar-next").addEventListener("click", () => moveCalendarMonth(1));
+
+$("#calendar-grid").addEventListener("click", event => {
+  const dayButton = event.target.closest(".calendar-day[data-date]");
+  if (!dayButton) return;
+
+  selectCalendarDate(dayButton.dataset.date);
+});
+
+$("#calendar-grid").addEventListener("click", event => {
+  const eventBar = event.target.closest(".calendar-event-bar");
+
+  if (eventBar) {
+    const item = calendarEvents.find(
+      item => String(item.id) === eventBar.dataset.eventId
+    );
+    if (item) selectCalendarDate(item.start);
+    return;
+  }
+
+  const dayButton = event.target.closest(".calendar-day[data-date]");
+  if (dayButton) selectCalendarDate(dayButton.dataset.date);
+});
+
+// 공통 모달
 function closeArchiveOverlay(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
@@ -1199,7 +1524,7 @@ function closeArchiveOverlay(id) {
   overlay.setAttribute("aria-hidden", "true");
 }
 
-// 버튼으로 닫기
+// X 버튼으로 닫기
 $$("[data-close-archive]").forEach(button => {
   button.addEventListener("click", () => {
     const overlay = button.closest(".archive-overlay");
@@ -1216,7 +1541,18 @@ $$(".archive-overlay").forEach(overlay => {
   });
 });
 
-// 키보드 조작
+/* ---------- 키보드 조작 이벤트 ---------- */
+
+// 프로필 오버레이
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeProfile();
+  if ($("#profile-overlay").classList.contains("is-open")) {
+    if (event.key === "ArrowLeft") stepProfile(-1);
+    if (event.key === "ArrowRight") stepProfile(1);
+  }
+});
+
+// 라이트박스
 document.addEventListener("keydown", event => {
   const lightboxOpen =
     $("#archive-lightbox").classList.contains("is-open");
@@ -1240,47 +1576,6 @@ document.addEventListener("keydown", event => {
   }
 });
 
-/* ---------- 뮤직 플레이어 이벤트 ---------- */
-
-$("#music-play").addEventListener("click", toggleMusicPlayback);
-
-$("#music-prev").addEventListener("click", playPreviousSong);
-
-$("#music-next").addEventListener("click", () => {
-  playNextSong(false);
-});
-
-$("#music-repeat").addEventListener("click", toggleRepeatMode);
-
-// 재생 시간과 재생 바 갱신
-$("#music-audio").addEventListener("play", () => updatePlayButton(true));
-$("#music-audio").addEventListener("pause", () => updatePlayButton(false));
-$("#music-audio").addEventListener("timeupdate", updateProgress);
-$("#music-audio").addEventListener("loadedmetadata", updateProgress);
-$("#music-audio").addEventListener("durationchange", updateProgress);
-
-// 재생 바를 움직이면 해당 위치부터 재생
-$("#music-seek").addEventListener("input", event => {
-  const audio = $("#music-audio");
-
-  if (Number.isFinite(audio.duration) && audio.duration > 0) {
-    audio.currentTime =
-      (Number(event.target.value) / 100) * audio.duration;
-  }
-});
-
-// 곡이 끝났을 때 다음 곡으로 이동
-$("#music-audio").addEventListener("ended", () => {
-  updatePlayButton(false);
-  playNextSong(true);
-});
-
-// 브라우저가 파일을 불러오지 못한 경우
-$("#music-audio").addEventListener("error", () => {
-  updatePlayButton(false);
-  console.warn("음원 파일을 불러오지 못했습니다. 파일 경로를 확인해 주세요.");
-});
-
 
 /* =========================================================
    이니셜 렌더
@@ -1292,6 +1587,7 @@ renderMembers();
 renderPairs();
 renderSongs();
 renderCalendar();
+renderCalendarEvents();
 renderGallery();
 renderLinks();
 selectSong(songs[0]?.id, false);
