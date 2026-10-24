@@ -168,9 +168,8 @@ let progressTimer = null;
 
 window.onYouTubeIframeAPIReady = () => {
   youtubePlayer = new YT.Player("youtube-player", {
-    
     width: "200",
-    height: "200",
+    height: "50",
     videoId: "",
     playerVars: {
   playsinline: 1,

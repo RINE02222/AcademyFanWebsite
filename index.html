@@ -53,43 +53,42 @@
         <span class="music-window-label">MUSIC PLAYER</span>
         <button id="music-minimize" class="music-window-minimize" type="button" aria-label="뮤직 플레이어 접기" aria-expanded="true">−</button>
       </div>
-      <div class="music-player-content" id="music-player-content">
-        <div class="music-track">
-          <img id="music-cover" src="images/album/jongchunjimo.jpg" alt="앨범 커버">
-          <div class="music-info">
-            <strong id="music-title">노래 제목</strong>
-            <span id="music-artist">노래 아티스트</span>
+      <div class="music-video-stage">
+        <div id="youtube-player"></div>
+        <div class="music-player-content" id="music-player-content">
+          <div class="music-track">
+            <img id="music-cover" src="images/album/jongchunjimo.jpg" alt="앨범 커버">
+            <div class="music-info">
+              <strong id="music-title">노래 제목</strong>
+              <span id="music-artist">노래 아티스트</span>
+            </div>
           </div>
-          <div class="music-equalizer" aria-hidden="true">
-            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <div class="music-progress">
+            <span id="music-current-time">0:00</span>
+            <input
+              id="music-seek"
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              step="0.1"
+              aria-label="음악 재생 위치">
+            <span id="music-duration">0:00</span>
           </div>
-        </div>
-        <div class="music-progress">
-          <span id="music-current-time">0:00</span>
-          <input
-            id="music-seek"
-            type="range"
-            min="0"
-            max="100"
-            value="0"
-            step="0.1"
-            aria-label="음악 재생 위치">
-          <span id="music-duration">0:00</span>
-        </div>
-        <div class="music-controls">
-          <button id="music-repeat" type="button" aria-label="반복 모드">
-            <span id="music-repeat-icon">↻</span>
-            <small id="music-repeat-label">ALL</small>
-          </button>
-          <div class="music-controls-trio">
-            <button id="music-prev" type="button" aria-label="이전 곡">|◀</button>
-            <button id="music-play" type="button" aria-label="재생"><span id="music-play-icon">▶</span></button>
-            <button id="music-next" type="button" aria-label="다음 곡">▶|</button>
+          <div class="music-controls">
+            <button id="music-repeat" type="button" aria-label="반복 모드">
+              <span id="music-repeat-icon">↻</span>
+              <small id="music-repeat-label">ALL</small>
+            </button>
+            <div class="music-controls-trio">
+              <button id="music-prev" type="button" aria-label="이전 곡">|◀</button>
+              <button id="music-play" type="button" aria-label="재생"><span id="music-play-icon">▶</span></button>
+              <button id="music-next" type="button" aria-label="다음 곡">▶|</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div id="youtube-player"></div>
   </aside>
 
   <!-- 
