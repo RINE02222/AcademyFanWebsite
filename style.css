@@ -255,7 +255,7 @@ h2 {
 }
 
 .music-equalizer {
-  height: 40px;
+  height: 60px;
   display: flex;
   align-items: center;
   gap: 3px;
@@ -266,7 +266,7 @@ h2 {
   display: block;
   width: 4px;
   height: 4px;
-  background: var(--player-ink);
+  background: var(--ink);
   transform: scaleY(var(--bar-scale, 1));
   transform-origin: center;
   transition: transform 60ms linear;
@@ -630,7 +630,7 @@ h2 {
   overflow-x: auto;
   overflow-y: hidden;
   align-items: center;
-  padding: 2.5vh 2px;
+  padding: 2.5vh 2px 10vh;
 }
 
 .member-rail {
@@ -1308,7 +1308,7 @@ h2 {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 2.5vh 0;
+  padding: 2.5vh 0 10vh;
 }
 
 /* 페어 필터 */
@@ -1513,7 +1513,7 @@ h2 {
   display: grid;
   grid-template-columns: minmax(210px, .5fr) minmax(0, 1fr);
   gap: 3vw;
-  padding: 2.5vh 0;
+  padding: 2.5vh 0 10vh;
 }
 
 /* --- 왼쪽: 턴테이블 --------------------------- */
@@ -2200,18 +2200,13 @@ h2 {
    CALENDAR
    ========================================================================== */
 
-
-.calendar-section {
-  padding-bottom: 39px; /* 하단 뮤직 플레이어와 간격 */
-}
-
 .calendar-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(240px, 0.8fr);
   gap: 28px;
   min-height: 0;
   flex: 1;
-  padding-top: 20px;
+  padding: 2.5vh 0 10vh;
 }
 
 .calendar-main,
@@ -2499,7 +2494,7 @@ h2 {
 .gallery-container {
   min-height: 0;
   flex: 1;
-  padding: 2.5vh 0;
+  padding: 2.5vh 0 10vh;
   display: flex;
   flex-direction: column;
 }

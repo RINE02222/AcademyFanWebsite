@@ -49,33 +49,35 @@ const pairs = [
 
 // 노래
 const songs = [
-  {
-    id: 1,
-    title: "종천지모",
-    artist: "사랑전도사 젠투",
-    kind: "original",
-    cover: "images/album/jongchunjimo.jpg",
-    audio: "audio/jongchunjimo.wav",
-    year: "2025"
-  },
-  {
-    id: 2,
-    title: "Wander",
-    artist: "수셈이",
-    kind: "original",
-    cover: "images/album/wander.png",
-    audio: "audio/wander.mp3",
-    year: "2025"
-  },
-  {
-    id: 3,
-    title: "MONO DRAMA (feat. 성기사 샬롯)",
-    artist: "철도왕 길버트",
-    kind: "cover",
-    cover: "images/album/monodrama.png",
-    audio: "audio/monodrama.wav",
-    year: "2025"
-  }
+  // { id: 1, title: "고멤 아카데미 교가", artist: "고멤 아카데미", kind: "original", cover: "http://img.youtube.com/vi/링크/maxresdefault.jpg", audio: "audio/wander.wav", year: "2023"},
+  { id: 2, title: "고멤 아카데미 사이퍼 Vol.1", artist: "고멤 아카데미 1~2기", kind: "original", cover: "http://img.youtube.com/vi/w4Zhanyxr2Q/maxresdefault.jpg", audio: "audio/wander.wav", year: "2023"},
+  { id: 3, title: "고멤 아카데미 사이퍼 Vol.2", artist: "고멤 아카데미 3~6기", kind: "original", cover: "http://img.youtube.com/vi/MYnaLe-nkPk/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2024"},
+  { id: 4, title: "합방을 내게 주어라!", artist: "닌닌", kind: "cover", cover: "http://img.youtube.com/vi/pWcLWKmlcHk/maxresdefault.jpg", audio: "audio/jongchunjimo.wav", year: "2023"},
+  { id: 5, title: "비가 오는 날엔", artist: "남카데미", kind: "cover", cover: "http://img.youtube.com/vi/XvjQcSjQahE/maxresdefault.jpg", audio: "audio/wander.wav", year: "2023"},
+  { id: 6, title: "빵", artist: "JJ (진희, 사랑전도사 젠투)", kind: "cover", cover: "http://img.youtube.com/vi/wbfDpnHyWbM/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2023"},
+  { id: 7, title: "슈퍼스타", artist: "미미짱짱세용", kind: "cover", cover: "http://img.youtube.com/vi/44CAW_Mqm1k/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2024"},
+  { id: 8, title: "용기 100%", artist: "닌닌", kind: "cover", cover: "http://img.youtube.com/vi/wXPntQ0M8rs/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
+  { id: 10, title: "Instagram (ft. 닌닌)", artist: "수셈이", kind: "cover", cover: "http://img.youtube.com/vi/oQbWrcjLoHU/maxresdefault.jpg", audio: "audio/jongchunjimo.wav", year: "2024"},
+  { id: 11, title: "GERMAN BON", artist: "닌닌, 철도왕 길버트", kind: "cover", cover: "http://img.youtube.com/vi/HUdRsuridNg/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2024"},
+  { id: 12, title: "칵테일 사랑", artist: "버터우스 3세", kind: "cover", cover: "http://img.youtube.com/vi/BEs_c0DSNrY/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2024"},
+  { id: 13, title: "두근 어질", artist: "미미짱짱세용", kind: "cover", cover: "http://img.youtube.com/vi/T544189tpY0/maxresdefault.jpg", audio: "audio/jongchunjimo.wav", year: "2024"},
+  { id: 14, title: "CIDER BANG!", artist: "RYKY (빅토리, 데스해머쵸로키)", kind: "original", cover: "http://img.youtube.com/vi/IhIDFiYWMbc/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
+  { id: 15, title: "LOGIN", artist: "시리안, 아마데우스최, 크리즈", kind: "original", cover: "http://img.youtube.com/vi/kzgr3hqIe4k/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
+  { id: 16, title: "SKY HiGH!", artist: "미미짱짱세용", kind: "original", cover: "http://img.youtube.com/vi/AF5MVogdcAU/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
+  { id: 17, title: "Black Flower", artist: "닌닌, 사랑전도사 젠투", kind: "original", cover: "http://img.youtube.com/vi/WycX_3W3agM/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
+  { id: 18, title: "Wander", artist: "수셈이", kind: "original", cover: "http://img.youtube.com/vi/c74agkeKGlc/maxresdefault.jpg", audio: "audio/wander.mp3", year: "2024"},
+  { id: 19, title: "Ready Action (ft. 단군)", artist: "진희, 아이 쓰께끼, 베베리", kind: "original", cover: "http://img.youtube.com/vi/Lv3A_gPPmNE/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
+  { id: 20, title: "청개구리", artist: "데스해머쵸로키", kind: "original", cover: "http://img.youtube.com/vi/7Q61ZtM2qyM/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
+  { id: 22, title: "Still With You", artist: "시리안 레인", kind: "cover", cover: "http://img.youtube.com/vi/-7DHVqDC-g0/maxresdefault.jpg", audio: "audio/wander.wav", year: "2025"},
+  { id: 23, title: "밤 끝없는 밤", artist: "아마데우스최, 빅토리", kind: "cover", cover: "http://img.youtube.com/vi/M3gQdpLwHtY/maxresdefault.jpg", audio: "audio/wander.wav", year: "2024"},
+  { id: 24, title: "감전", artist: "보디가드 불독", kind: "cover", cover: "http://img.youtube.com/vi/4G4w9wMyHZI/maxresdefault.jpg", audio: "audio/wander.wav", year: "2025"},
+  { id: 25, title: "종천지모", artist: "사랑전도사 젠투", kind: "original", cover: "http://img.youtube.com/vi/zCiezbft1x0/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2025"},
+  { id: 26, title: "MONO DRAMA (ft. 성기사 샬롯)", artist: "철도왕 길버트", kind: "original", cover: "http://img.youtube.com/vi/R3qNn4PPJc4/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2025"},
+  { id: 27, title: "Forgotten", artist: "닌닌", kind: "original", cover: "http://img.youtube.com/vi/Ph2IyI_flj0/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2025"},
+  { id: 28, title: "EVERYTHING", artist: "수셈이", kind: "cover", cover: "http://img.youtube.com/vi/gisyJWichLY/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2026"},
+  { id: 29, title: "I Really Want To Stay At Your House", artist: "데스해머쵸로키", kind: "cover", cover: "http://img.youtube.com/vi/TgVa1jiYQ34/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2026"},
+  { id: 30, title: "Guerilla", artist: "보디가드 불독, 진희, 수셈이, 버터우스 3세", kind: "original", cover: "http://img.youtube.com/vi/PYx0uUdyeUg/maxresdefault.jpg", audio: "audio/monodrama.wav", year: "2025"},
+  { id: 1000, title: "연말의노래", artist: "고멤 아카데미 1~5기", kind: "original", cover: "http://img.youtube.com/vi/Ii_w6jGjI7g/maxresdefault.jpg", audio: "audio/jongchunjimo.wav", year: "2024"},
 ];
 
 // 캘린더
@@ -1579,6 +1581,7 @@ function updateEqualizer() {
 musicAudio.addEventListener("play", async () => {
   try {
     setupEqualizer();
+    if (!audioContext || !analyser) return;
 
     if (audioContext.state === "suspended") {
       await audioContext.resume();
