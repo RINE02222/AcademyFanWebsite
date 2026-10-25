@@ -2817,7 +2817,125 @@ h2 {
 }
 
 
-/* ==========================================================================
-   HOME — EDITORIAL POSTER LAYERS
-   기존 style.css 맨 아래에 추가
-   ========================================================================== */
+/* =========================================================
+   스티커 추가
+   ========================================================= */
+
+
+.sticker-toolbar {
+  position: absolute;
+  z-index: 30;
+  top: 11px;
+  right: 5vw;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+}
+
+.sticker-mode-label {
+  margin-right: 5px;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .08em;
+}
+
+.sticker-toolbar button {
+  padding: 7px 10px;
+  border: 1px solid var(--ink);
+  background: white;
+  font: 11px var(--mono);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+.sticker-toolbar button:hover,
+.sticker-toolbar button.is-active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.sticker-edit-actions {
+  display: flex;
+  gap: 7px;
+}
+
+.sticker-edit-actions[hidden] {
+  display: none;
+}
+
+/* 스티커가 놓이는 섹션 전체 */
+.sticker-layer {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* 편집 모드에서는 스티커만 조작 가능 */
+.page-section.sticker-editing .sticker-layer {
+  pointer-events: auto;
+}
+
+.sticker-item {
+  position: absolute;
+  width: 150px;
+  left: 0;
+  top: 0;
+  transform-origin: center center;
+  touch-action: none;
+}
+
+.sticker-item.is-selected {
+  outline: 1px dashed var(--ink);
+  outline-offset: 4px;
+}
+
+.sticker-item img {
+  width: 100%;
+}
+
+/* 편집 핸들은 기본적으로 감춤 */
+.sticker-handle {
+  position: absolute;
+  z-index: 2;
+  display: none;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: white;
+  font: 12px/18px var(--mono);
+  text-align: center;
+  cursor: grab;
+  touch-action: none;
+  
+}
+
+.sticker-item.is-selected .sticker-handle {
+  display: block;
+}
+
+/* 크기 조절 */
+.sticker-handle-resize {
+  right: -15px;
+  bottom: -15px;
+  cursor: nwse-resize;
+}
+
+/* 회전 */
+.sticker-handle-rotate {
+  top: -15px;
+  left: -15px;
+  cursor: grab;
+}
+
+/* 삭제 */
+.sticker-handle-delete {
+  top: -15px;
+  right: -15px;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 17px;
+}

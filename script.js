@@ -15,7 +15,7 @@ const members = [
   { id: 8, name: "사랑전도사 젠투", engname: "Love Missionary Jentoo", generation: "2기", birthday: "02. 23.", mbti: "ESFP", fandom: "젠크리트", jappronouns: "僕 ・ 私", oshimark: "💘", color: "#FF80E6", standing: "images/profile/08.png", portrait: "images/portrait/08.png", idphoto: "images/idphoto/08.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 9, name: "수셈이", engname: "Soosemi", generation: "2기", birthday: "03. 02.", mbti: "ISTJ", fandom: "고기세제비실벌벌쫄보카피바라단", jappronouns: "僕", oshimark: "🧽", color: "#425342", standing: "images/profile/09.png", portrait: "images/portrait/09.png", idphoto: "images/idphoto/09.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 10, name: "철도왕 길버트", engname: "Vanderbilt Gilbert", generation: "2기", birthday: "1801. 06. 27.", mbti: "INTP", fandom: "전쟁고멤 ・ 석탄단 ・ 철도단", jappronouns: "俺", oshimark: "🚂", color: "#343F7E", standing: "images/profile/10.png", portrait: "images/portrait/10.png", idphoto: "images/idphoto/10.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
-  { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "11. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", oshimark: "🪺🐲", color: "#ABCDEC", standing: "images/profile/11.png", portrait: "", idphoto: "images/idphoto/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
+  { id: 11, name: "미미짱짱세용", engname: "Mimi Chan-chan Seyong", generation: "3기", birthday: "08. 01.", mbti: "INFP", fandom: "둥지단 ・ 둥둥이", jappronouns: "わたし", oshimark: "🪺🐲", color: "#ABCDEC", standing: "images/profile/11.png", portrait: "", idphoto: "images/idphoto/11.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 12, name: "빅토리", engname: "Victory", generation: "3기", birthday: "2001. 02. 19.", mbti: "ESFP", fandom: "빅타민", jappronouns: "私", oshimark: "✨", color: "#FFC15C", standing: "images/profile/12.png", portrait: "images/portrait/12.png", idphoto: "images/idphoto/12.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 13, name: "데스해머쵸로키", engname: "Death Hammer Chouloky", generation: "4기", birthday: "2004. 07. 17.", mbti: "ISFP", fandom: "허접구리", jappronouns: "あたし", oshimark: "🐸", color: "#6AA937", standing: "images/profile/13.png", portrait: "", idphoto: "images/idphoto/13.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
   { id: 14, name: "아이 쓰께끼", engname: "I Cekkekki", generation: "4기", birthday: "06. 29.", mbti: "-", fandom: "꼬깔단", jappronouns: "ボク", oshimark: "🍦", color: "#A7E6F0", standing: "images/profile/14.png", portrait: "", idphoto: "images/idphoto/14.png", description: "이곳에 캐릭터를 소개하는 짧은 문장을 작성하세요.", memo: "추가 프로필 및 관계 기록을 입력할 수 있습니다." },
@@ -1434,6 +1434,501 @@ function renderLinks() {
     </a>
   `).join("");
 }
+
+
+/* =========================================================
+   스티커 추가
+   ========================================================= */
+
+
+(() => {
+  const STORAGE_KEY = "academy-stickers-v1";
+  const SECTION_IDS = ["home", "calendar", "gallery"];
+
+  const state = {
+    activeSection: null,
+    selectedId: null,
+    stickers: {
+      home: [],
+      calendar: [],
+      gallery: []
+    },
+    interaction: null
+  };
+
+  const $ = (selector, root = document) =>
+    root.querySelector(selector);
+
+  const $$ = (selector, root = document) =>
+    [...root.querySelectorAll(selector)];
+
+  const makeId = () =>
+    `sticker-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+  function getSection(id) {
+    return document.getElementById(id);
+  }
+
+  function getLayer(id) {
+    return $(`[data-sticker-layer="${id}"]`);
+  }
+
+  function getSelectedSticker() {
+    if (!state.activeSection || !state.selectedId) return null;
+
+    return state.stickers[state.activeSection].find(
+      sticker => sticker.id === state.selectedId
+    ) || null;
+  }
+
+  function saveStickers() {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(state.stickers)
+      );
+    } catch (error) {
+      alert(
+        "저장 공간이 부족해 스티커를 저장하지 못했어요. " +
+        "이미지 크기를 줄이거나 스티커 수를 줄여 주세요."
+      );
+      console.error("스티커 저장 실패:", error);
+    }
+  }
+
+  function loadStickers() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+      SECTION_IDS.forEach(sectionId => {
+        if (Array.isArray(saved[sectionId])) {
+          state.stickers[sectionId] = saved[sectionId].filter(sticker =>
+            sticker &&
+            typeof sticker.src === "string" &&
+            sticker.src.startsWith("data:image/") &&
+            Number.isFinite(sticker.x) &&
+            Number.isFinite(sticker.y) &&
+            Number.isFinite(sticker.scale) &&
+            Number.isFinite(sticker.rotation)
+          );
+        }
+      });
+    } catch (error) {
+      console.warn("저장된 스티커를 불러오지 못했습니다.", error);
+    }
+  }
+
+  function createHandle(type, symbol, label) {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = `sticker-handle sticker-handle-${type}`;
+    button.textContent = symbol;
+    button.setAttribute("aria-label", label);
+    button.dataset.stickerAction = type;
+
+    return button;
+  }
+
+  function renderSection(sectionId) {
+    const layer = getLayer(sectionId);
+    if (!layer) return;
+
+    layer.replaceChildren();
+
+    state.stickers[sectionId].forEach(sticker => {
+      const item = document.createElement("div");
+
+      item.className = "sticker-item";
+      item.dataset.stickerId = sticker.id;
+
+      if (
+        state.activeSection === sectionId &&
+        state.selectedId === sticker.id
+      ) {
+        item.classList.add("is-selected");
+      }
+
+      item.style.left = `${sticker.x * 100}%`;
+      item.style.top = `${sticker.y * 100}%`;
+      item.style.width = `${sticker.width * 100}%`;
+      item.style.transform =
+        `rotate(${sticker.rotation}deg) scale(${sticker.scale})`;
+
+      const image = document.createElement("img");
+      image.src = sticker.src;
+      image.alt = "사용자 스티커";
+      image.draggable = false;
+
+      item.append(
+  image,
+  createHandle("rotate", "↻", "스티커 회전"),
+  createHandle("resize", "↘", "스티커 크기 조절"),
+  createHandle("delete", "×", "스티커 삭제")
+);
+
+      layer.appendChild(item);
+    });
+
+    const isEditing = state.activeSection === sectionId;
+
+    layer.style.pointerEvents = isEditing ? "auto" : "none";
+    layer.querySelectorAll(".sticker-handle").forEach(handle => {
+      handle.tabIndex = isEditing ? 0 : -1;
+    });
+  }
+
+  function setEditing(sectionId, enabled) {
+    const section = getSection(sectionId);
+    const toolbar = $(`[data-sticker-toolbar="${sectionId}"]`);
+
+    if (!section || !toolbar) return;
+
+    if (enabled) {
+      state.activeSection = sectionId;
+      state.selectedId = null;
+    } else if (state.activeSection === sectionId) {
+      state.activeSection = null;
+      state.selectedId = null;
+    }
+
+    section.classList.toggle("sticker-editing", enabled);
+
+    const modeButton = $("[data-sticker-mode]", toolbar);
+    const actions = $(".sticker-edit-actions", toolbar);
+
+    modeButton.classList.toggle("is-active", enabled);
+    modeButton.textContent = enabled ? "편집 중" : "스티커 편집";
+    modeButton.setAttribute("aria-pressed", String(enabled));
+
+    actions.hidden = !enabled;
+
+    SECTION_IDS.forEach(id => renderSection(id));
+  }
+
+  function selectSticker(id) {
+    state.selectedId = id;
+
+    SECTION_IDS.forEach(renderSection);
+  }
+
+  function addStickerFile(file, sectionId) {
+    if (!file || !file.type.startsWith("image/")) {
+      alert("이미지 파일을 선택해 주세요.");
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert("이미지 한 장의 크기는 2MB 이하로 선택해 주세요.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const section = getSection(sectionId);
+      if (!section || typeof reader.result !== "string") return;
+
+      const sticker = {
+        id: makeId(),
+        src: reader.result,
+        // 섹션 크기에 대한 비율로 위치 저장
+        x: 0.35,
+        y: 0.35,
+        width: 0.18,
+        scale: 1,
+        rotation: 0
+      };
+
+      state.stickers[sectionId].push(sticker);
+      state.activeSection = sectionId;
+      state.selectedId = sticker.id;
+
+      renderSection(sectionId);
+      saveStickers();
+    };
+
+    reader.onerror = () => {
+      alert("이미지를 읽지 못했어요. 다른 파일을 선택해 주세요.");
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  function getPoint(event, sectionId) {
+    const rect = getSection(sectionId).getBoundingClientRect();
+
+    return {
+      x: (event.clientX - rect.left) / rect.width,
+      y: (event.clientY - rect.top) / rect.height
+    };
+  }
+
+  function updateStickerElement(sectionId, stickerId) {
+  const layer = getLayer(sectionId);
+  const sticker = state.stickers[sectionId].find(
+    item => item.id === stickerId
+  );
+  const element = layer?.querySelector(
+    `[data-sticker-id="${stickerId}"]`
+  );
+
+  if (!sticker || !element) return;
+
+  element.style.left = `${sticker.x * 100}%`;
+  element.style.top = `${sticker.y * 100}%`;
+  element.style.width = `${sticker.width * 100}%`;
+  element.style.transform =
+    `rotate(${sticker.rotation}deg) scale(${sticker.scale})`;
+}
+
+function normalizeAngle(angle) {
+  return ((angle + 180) % 360 + 360) % 360 - 180;
+}
+
+function onPointerDown(event) {
+  if (!state.activeSection) return;
+
+  const sectionId = state.activeSection;
+  const layer = getLayer(sectionId);
+  let item = event.target.closest(".sticker-item");
+
+  if (!item || !layer.contains(item)) {
+    if (event.target.closest(".sticker-toolbar")) return;
+    selectSticker(null);
+    return;
+  }
+
+  const stickerId = item.dataset.stickerId;
+  const sticker = state.stickers[sectionId].find(
+    entry => entry.id === stickerId
+  );
+
+  if (!sticker) return;
+
+  const action = event.target.closest("[data-sticker-action]")
+    ?.dataset.stickerAction || "move";
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  // 삭제 버튼은 드래그를 시작하지 않고 즉시 삭제
+  if (action === "delete") {
+    state.stickers[sectionId] = state.stickers[sectionId].filter(
+      entry => entry.id !== stickerId
+    );
+
+    state.selectedId = null;
+    saveStickers();
+    renderSection(sectionId);
+    return;
+  }
+
+  selectSticker(stickerId);
+
+  item = layer.querySelector(`[data-sticker-id="${stickerId}"]`);
+  if (!item) return;
+
+  const rect = item.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  const startAngle = Math.atan2(
+    event.clientY - centerY,
+    event.clientX - centerX
+  ) * (180 / Math.PI);
+
+  const startDistance = Math.hypot(
+    event.clientX - centerX,
+    event.clientY - centerY
+  );
+
+  state.interaction = {
+    pointerId: event.pointerId,
+    sectionId,
+    stickerId,
+    action,
+    startX: event.clientX,
+    startY: event.clientY,
+    startStickerX: sticker.x,
+    startStickerY: sticker.y,
+    startScale: sticker.scale,
+    startRotation: sticker.rotation,
+    startAngle,
+    startDistance
+  };
+
+  layer.setPointerCapture(event.pointerId);
+}
+
+function onPointerMove(event) {
+  const interaction = state.interaction;
+
+  if (!interaction || interaction.pointerId !== event.pointerId) return;
+
+  const {
+    sectionId,
+    stickerId,
+    action,
+    startX,
+    startY,
+    startStickerX,
+    startStickerY,
+    startScale,
+    startRotation,
+    startAngle,
+    startDistance
+  } = interaction;
+
+  const sticker = state.stickers[sectionId].find(
+    entry => entry.id === stickerId
+  );
+
+  if (!sticker) return;
+
+  const section = getSection(sectionId);
+  const sectionRect = section.getBoundingClientRect();
+  const dx = event.clientX - startX;
+  const dy = event.clientY - startY;
+
+  if (action === "move") {
+  sticker.x = startStickerX + dx / sectionRect.width;
+  sticker.y = startStickerY + dy / sectionRect.height;
+}
+
+  if (action === "resize") {
+    const item = getLayer(sectionId).querySelector(
+      `[data-sticker-id="${stickerId}"]`
+    );
+
+    if (!item) return;
+
+    const rect = item.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const currentDistance = Math.hypot(
+      event.clientX - centerX,
+      event.clientY - centerY
+    );
+
+    // 드래그 시작 시점의 거리와 비교해 크기를 조절
+    const ratio = currentDistance / Math.max(startDistance, 1);
+
+    sticker.scale = Math.max(
+      0.25,
+      Math.min(3, startScale * ratio)
+    );
+  }
+
+  if (action === "rotate") {
+    const item = getLayer(sectionId).querySelector(
+      `[data-sticker-id="${stickerId}"]`
+    );
+
+    if (!item) return;
+
+    const rect = item.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const currentAngle = Math.atan2(
+      event.clientY - centerY,
+      event.clientX - centerX
+    ) * (180 / Math.PI);
+
+    const delta = normalizeAngle(currentAngle - startAngle);
+
+    sticker.rotation = startRotation + delta;
+  }
+
+  updateStickerElement(sectionId, stickerId);
+}
+
+function onPointerUp(event) {
+  const interaction = state.interaction;
+
+  if (!interaction || interaction.pointerId !== event.pointerId) return;
+
+  const { sectionId, stickerId } = interaction;
+
+  state.interaction = null;
+
+  saveStickers();
+  updateStickerElement(sectionId, stickerId);
+}
+
+  function deleteSelectedSticker() {
+    const sectionId = state.activeSection;
+    const sticker = getSelectedSticker();
+
+    if (!sectionId || !sticker) {
+      alert("먼저 삭제할 스티커를 선택해 주세요.");
+      return;
+    }
+
+    state.stickers[sectionId] = state.stickers[sectionId].filter(
+      item => item.id !== sticker.id
+    );
+
+    state.selectedId = null;
+
+    saveStickers();
+    renderSection(sectionId);
+  }
+
+  function initialize() {
+    loadStickers();
+
+    SECTION_IDS.forEach(sectionId => {
+      const toolbar = $(`[data-sticker-toolbar="${sectionId}"]`);
+      const layer = getLayer(sectionId);
+
+      if (!toolbar || !layer) return;
+
+      toolbar.addEventListener("click", event => {
+        const modeButton = event.target.closest("[data-sticker-mode]");
+        const addButton = event.target.closest("[data-sticker-add]");
+        const finishButton = event.target.closest("[data-sticker-finish]");
+        
+
+        if (modeButton) {
+          const isActive = state.activeSection === sectionId;
+          setEditing(sectionId, !isActive);
+        }
+
+        if (addButton) {
+          const input = document.createElement("input");
+
+          input.type = "file";
+          input.accept = "image/*";
+          input.addEventListener("change", () => {
+            if (input.files?.[0]) {
+              addStickerFile(input.files[0], sectionId);
+            }
+          });
+
+          input.click();
+        }
+
+        if (finishButton) {
+          saveStickers();
+          setEditing(sectionId, false);
+        }
+
+      });
+
+      layer.addEventListener("pointerdown", onPointerDown);
+      layer.addEventListener("pointermove", onPointerMove);
+      layer.addEventListener("pointerup", onPointerUp);
+      layer.addEventListener("pointercancel", onPointerUp);
+
+      renderSection(sectionId);
+    });
+    SECTION_IDS.forEach(sectionId => renderSection(sectionId));
+  }
+  initialize();
+})();
 
 
 /* =========================================================
