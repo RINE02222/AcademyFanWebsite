@@ -623,6 +623,7 @@ function openProfile(animateChange = false) {
     </button>`).join("");
   $("#profile-overlay").classList.add("is-open");
   $("#profile-overlay").setAttribute("aria-hidden", "false");
+  $("#close-profile").focus({ preventScroll: true });
   if (animateChange) animateProfileChange();
 }
 
@@ -756,9 +757,9 @@ function renderPairs() {
   `;
 }
 
-/* ---------- PAIR: 페어 상세 정보 ---------- */
+/* ---------- PAIR: 페어 상세 ---------- */
 
-// 페어 모달 열기
+// 페어 상세 모달 열기
 function openPairDossier(id) {
   const pair = pairs.find(item => String(item.id) === String(id));
   if (!pair) return;
@@ -821,6 +822,7 @@ function openPairDossier(id) {
   closeArchiveOverlay("archive-lightbox");
   $("#pair-dossier").classList.add("is-open");
   $("#pair-dossier").setAttribute("aria-hidden", "false");
+  $("#pair-dossier .archive-close").focus({ preventScroll: true });
 }
 
 // 하단 멤버 클릭: 프로필 오버레이 열기
@@ -1370,6 +1372,7 @@ function openLightbox(id) {
 
   $("#archive-lightbox").classList.add("is-open");
   $("#archive-lightbox").setAttribute("aria-hidden", "false");
+  $("#archive-lightbox .archive-close").focus({ preventScroll: true });
 }
 
 function renderLightbox() {
@@ -2095,25 +2098,21 @@ $("#calendar-prev").addEventListener("click", () => moveCalendarMonth(-1));
 $("#calendar-next").addEventListener("click", () => moveCalendarMonth(1));
 
 $("#calendar-grid").addEventListener("click", event => {
-  const dayButton = event.target.closest(".calendar-day[data-date]");
-  if (!dayButton) return;
-
-  selectCalendarDate(dayButton.dataset.date);
-});
-
-$("#calendar-grid").addEventListener("click", event => {
   const eventBar = event.target.closest(".calendar-event-bar");
 
   if (eventBar) {
     const item = calendarEvents.find(
       item => String(item.id) === eventBar.dataset.eventId
     );
+
     if (item) selectCalendarDate(item.start);
     return;
   }
 
   const dayButton = event.target.closest(".calendar-day[data-date]");
-  if (dayButton) selectCalendarDate(dayButton.dataset.date);
+  if (dayButton) {
+    selectCalendarDate(dayButton.dataset.date);
+  }
 });
 
 // 공통 모달
@@ -2144,37 +2143,59 @@ $$(".archive-overlay").forEach(overlay => {
 
 /* ---------- 키보드 조작 이벤트 ---------- */
 
-// 프로필 오버레이
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeProfile();
-  if ($("#profile-overlay").classList.contains("is-open")) {
-    if (event.key === "ArrowLeft") stepProfile(-1);
-    if (event.key === "ArrowRight") stepProfile(1);
-  }
-});
+  const profile = $("#profile-overlay");
+  const dossier = $("#pair-dossier");
+  const lightbox = $("#archive-lightbox");
 
-// 라이트박스
-document.addEventListener("keydown", event => {
-  const lightboxOpen =
-    $("#archive-lightbox").classList.contains("is-open");
-
+  // Escape: 현재 열려 있는 오버레이 하나만 닫기
   if (event.key === "Escape") {
-    const openOverlay = ["pair-dossier", "archive-lightbox"]
-      .find(id => $(`#${id}`).classList.contains("is-open"));
-
-    if (openOverlay) {
-      closeArchiveOverlay(openOverlay);
+    if (lightbox.classList.contains("is-open")) {
+      closeArchiveOverlay("archive-lightbox");
+    } else if (dossier.classList.contains("is-open")) {
+      closeArchiveOverlay("pair-dossier");
+    } else if (profile.classList.contains("is-open")) {
+      closeProfile();
     }
+
     return;
   }
 
-  if (lightboxOpen && event.key === "ArrowLeft") {
-    stepLightbox(-1);
+  // 프로필 오버레이
+  if (profile.classList.contains("is-open")) {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      stepProfile(-1);
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      stepProfile(1);
+    }
+
+    return;
   }
 
-  if (lightboxOpen && event.key === "ArrowRight") {
-    stepLightbox(1);
+  // 페어 상세
+  if (dossier.classList.contains("is-open")) {
+    if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) {
+      event.preventDefault();
+    }
+
+    return;
   }
+
+  // 라이트박스
+  if (lightbox.classList.contains("is-open")) {
+    if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) {
+      event.preventDefault();
+    }
+
+    if (event.key === "ArrowLeft") {
+      stepLightbox(-1);
+    } else if (event.key === "ArrowRight") {
+      stepLightbox(1);
+    }
+  }
+
 });
 
 
