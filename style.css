@@ -822,7 +822,7 @@ h2 {
   opacity: 0;
   visibility: hidden;
   transform: scale(.985);
-  transition: opacity .28s, transform .35s, visibility .35s;
+  transition: opacity .2s, transform .2s, visibility .2s;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -843,6 +843,7 @@ h2 {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
+  transition: opacity .28s, transform .35s, visibility .35s;
 }
 
 /* 오버레이 상단 바 */
@@ -2560,7 +2561,7 @@ h2 {
 
 .archive-overlay {
   position: fixed;
-  z-index: 100;
+  z-index: 70;
   inset: 0;
   padding: 48px;
   display: flex;

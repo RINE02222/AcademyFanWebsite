@@ -134,6 +134,11 @@ let activeSongFilter = "all";
 let currentSongId = null;
 let repeatMode = "all"; // all -> one -> none
 
+// 오버레이를 열기 전의 포커스 위치
+let profileReturnFocus = null;
+let dossierReturnFocus = null;
+let lightboxReturnFocus = null;
+
 // 기호 이스케이프
 function escapeHTML(value = "") {
   return String(value).replace(/[&<>"']/g, char => ({
@@ -579,9 +584,18 @@ function selectMember(id) {
 /* ---------- MEMBERS: 프로필 오버레이 ---------- */
 
 // 프로필 오버레이
-function openProfile(animateChange = false) {
+function openProfile(animateChange = false, returnFocusTarget = null) {
   const member = memberById(selectedMemberId);
   if (!member) return;
+
+  const overlay = $("#profile-overlay");
+  const wasOpen = overlay.classList.contains("is-open");
+  if (!wasOpen) {
+    profileReturnFocus = returnFocusTarget || document.activeElement;
+    // 페어 상세를 유지할 때 프로필을 그 위에 표시합니다.
+    overlay.style.zIndex = returnFocusTarget?.closest("#dossier-content") ? "110" : "";
+  }
+
   const memberIndex = members.findIndex(item => item.id === member.id);
   const memberNumber = String(member.id).padStart(2, "0");
   const archiveImages = [member.portrait || member.idphoto, member.standing ]
@@ -621,9 +635,13 @@ function openProfile(animateChange = false) {
     <button class="profile-gallery-item" type="button" aria-label="${escapeHTML(member.name)} archive image ${String(index + 1).padStart(2, "0")}">
       ${imageMarkup(src, `${member.name} archive image ${index + 1}`)}
     </button>`).join("");
-  $("#profile-overlay").classList.add("is-open");
-  $("#profile-overlay").setAttribute("aria-hidden", "false");
-  $("#close-profile").focus({ preventScroll: true });
+
+  if (!wasOpen) {
+    focusCloseButtonAfterOpen(overlay, $("#close-profile"));
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+
   if (animateChange) animateProfileChange();
 }
 
@@ -638,9 +656,18 @@ function animateProfileChange() {
 
 // 프로필 오버레이 닫기
 function closeProfile() {
-  $("#profile-overlay").classList.remove("is-open");
-  $("#profile-overlay").setAttribute("aria-hidden", "true");
+  const overlay = $("#profile-overlay");
+  overlay.classList.remove("is-open");
+  overlay.setAttribute("aria-hidden", "true");
+  overlay.style.zIndex = "";
   setAccent("#A3E2C4");
+
+  const returnTarget = profileReturnFocus;
+  profileReturnFocus = null;
+
+  if (returnTarget?.isConnected) {
+    returnTarget.focus({ preventScroll: true });
+  }
 }
 
 function stepProfile(direction) {
@@ -819,10 +846,22 @@ function openPairDossier(id) {
     </section>
   `;
 
-  closeArchiveOverlay("archive-lightbox");
-  $("#pair-dossier").classList.add("is-open");
-  $("#pair-dossier").setAttribute("aria-hidden", "false");
-  $("#pair-dossier .archive-close").focus({ preventScroll: true });
+  const overlay = $("#pair-dossier");
+  const wasOpen = overlay.classList.contains("is-open");
+  if (!wasOpen) {
+    dossierReturnFocus = document.activeElement;
+  }
+
+  closeArchiveOverlay("archive-lightbox", { restoreFocus: false });
+
+  if (!wasOpen) {
+    focusCloseButtonAfterOpen(
+      overlay,
+      overlay.querySelector(".archive-close")
+    );
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+  }
 }
 
 // 하단 멤버 클릭: 프로필 오버레이 열기
@@ -831,10 +870,10 @@ $("#dossier-content").addEventListener("click", event => {
 
   if (memberButton) {
     const memberId = Number(memberButton.dataset.dossierMember);
-    closeArchiveOverlay("pair-dossier");
+
+    // 페어 상세 모달은 열린 채 유지하고, 프로필을 닫으면 이 멤버로 돌아갑니다.
     selectMember(memberId);
-    navigateTo("members");
-    openProfile();
+    openProfile(false, memberButton);
     return;
   }
 });
@@ -1367,12 +1406,23 @@ function openLightbox(id) {
 
   currentGalleryId = item.id;
 
-  closeArchiveOverlay("pair-dossier");
+  const overlay = $("#archive-lightbox");
+  const wasOpen = overlay.classList.contains("is-open");
+  if (!wasOpen) {
+    lightboxReturnFocus = document.activeElement;
+  }
+
+  closeArchiveOverlay("pair-dossier", { restoreFocus: false });
   renderLightbox();
 
-  $("#archive-lightbox").classList.add("is-open");
-  $("#archive-lightbox").setAttribute("aria-hidden", "false");
-  $("#archive-lightbox .archive-close").focus({ preventScroll: true });
+  if (!wasOpen) {
+    focusCloseButtonAfterOpen(
+      overlay,
+      overlay.querySelector(".archive-close")
+    );
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+  }
 }
 
 function renderLightbox() {
@@ -2116,12 +2166,41 @@ $("#calendar-grid").addEventListener("click", event => {
 });
 
 // 공통 모달
-function closeArchiveOverlay(id) {
+function closeArchiveOverlay(id, { restoreFocus = true } = {}) {
   const overlay = document.getElementById(id);
-  if (!overlay) return;
+  if (!overlay || !overlay.classList.contains("is-open")) return;
 
   overlay.classList.remove("is-open");
   overlay.setAttribute("aria-hidden", "true");
+
+  let returnTarget = null;
+
+  if (id === "pair-dossier") {
+    returnTarget = dossierReturnFocus;
+    dossierReturnFocus = null;
+  } else if (id === "archive-lightbox") {
+    returnTarget = lightboxReturnFocus;
+    lightboxReturnFocus = null;
+  }
+
+  if (restoreFocus && returnTarget?.isConnected) {
+    returnTarget.focus({ preventScroll: true });
+  }
+}
+
+// 오버레이에 포커스 주기
+function focusCloseButtonAfterOpen(overlay, closeButton) {
+  function handleTransitionEnd(event) {
+    if (event.target !== overlay || event.propertyName !== "opacity") return;
+
+    overlay.removeEventListener("transitionend", handleTransitionEnd);
+
+    if (overlay.classList.contains("is-open")) {
+      closeButton.focus({ preventScroll: true });
+    }
+  }
+
+  overlay.addEventListener("transitionend", handleTransitionEnd);
 }
 
 // X 버튼으로 닫기
