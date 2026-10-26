@@ -1264,7 +1264,7 @@ function goToAdjacentSchedule(direction) {
   );
   const scheduleDates = [...new Set(
     calendarEvents.map(item => item.start)
-      .filter(dateKey => /^\\d{4}-\\d{2}-\\d{2}$/.test(dateKey))
+      .filter(dateKey => /^\d{4}-\d{2}-\d{2}$/.test(dateKey))
   )].sort();
   const targetDate = direction > 0
     ? scheduleDates.find(dateKey => dateKey > selectedKey)
@@ -1280,7 +1280,7 @@ function updateCalendarNavigationState() {
   );
   const scheduleDates = [...new Set(
     calendarEvents.map(item => item.start)
-      .filter(dateKey => /^\\d{4}-\\d{2}-\\d{2}$/.test(dateKey))
+      .filter(dateKey => /^\d{4}-\d{2}-\d{2}$/.test(dateKey))
   )].sort();
   const previous = $("#calendar-prev-event");
   const next = $("#calendar-next-event");
@@ -1501,7 +1501,7 @@ function getFilteredGalleryItems() {
   const year = $("#gallery-year")?.value || "all";
   return galleryItems.filter(item => {
     const searchableText = `${item.title} ${item.description || ""}`.toLocaleLowerCase();
-    const itemYear = /^(\\d{4})/.exec(item.date || "")?.[1] || "";
+    const itemYear = /^(\d{4})/.exec(item.date || "")?.[1] || "";
     return (!query || searchableText.includes(query)) && (year === "all" || itemYear === year);
   });
 }
@@ -1538,7 +1538,7 @@ function populateGalleryYears() {
   if (!select) return;
   const selectedYear = select.value || "all";
   const years = [...new Set(
-    galleryItems.map(item => /^(\\d{4})/.exec(item.date || "")?.[1]).filter(Boolean)
+    galleryItems.map(item => /^(\d{4})/.exec(item.date || "")?.[1]).filter(Boolean)
   )].sort();
   select.innerHTML = `<option value="all">전체 연도</option>` +
     years.map(year => `<option value="${year}">${year}</option>`).join("");
