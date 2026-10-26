@@ -255,6 +255,7 @@ function updatePlayButton(isPlaying) {
     "aria-label",
     isPlaying ? "일시정지" : "재생"
   );
+  $("#music-play").setAttribute("aria-pressed", String(isPlaying));
 }
 
 function updateProgress() {
@@ -346,6 +347,7 @@ function toggleRepeatMode() {
           : "반복 없음"
     }`
   );
+  $("#music-repeat").setAttribute("aria-pressed", String(repeatMode !== "none"));
 }
 
 function handleYouTubeStateChange(event) {
@@ -472,6 +474,14 @@ function renderHomeWidgets() {
     const nextEvent = upcomingEvents[0];
 
     const eventWidget = $(".home-widget-event");
+    eventWidget.setAttribute("role", "button");
+    eventWidget.setAttribute("tabindex", nextEvent ? "0" : "-1");
+    eventWidget.setAttribute(
+      "aria-label",
+      nextEvent
+        ? `${nextEvent.title}, D-${nextEvent.days}. 캘린더에서 기념일 보기`
+        : "등록된 기념일이 없습니다"
+    );
 
     if (nextEvent) {
       $("#home-event-title").textContent = nextEvent.title;
@@ -1241,6 +1251,43 @@ function renderCalendar() {
 }
 
 // 달 이동
+function goToCalendarToday() {
+  const today = new Date();
+  selectCalendarDate(getCalendarDateKey(today.getFullYear(), today.getMonth(), today.getDate()));
+}
+
+function goToAdjacentSchedule(direction) {
+  const selectedKey = getCalendarDateKey(
+    selectedCalendarDate.getFullYear(),
+    selectedCalendarDate.getMonth(),
+    selectedCalendarDate.getDate()
+  );
+  const scheduleDates = [...new Set(
+    calendarEvents.map(item => item.start)
+      .filter(dateKey => /^\\d{4}-\\d{2}-\\d{2}$/.test(dateKey))
+  )].sort();
+  const targetDate = direction > 0
+    ? scheduleDates.find(dateKey => dateKey > selectedKey)
+    : [...scheduleDates].reverse().find(dateKey => dateKey < selectedKey);
+  if (targetDate) selectCalendarDate(targetDate);
+}
+
+function updateCalendarNavigationState() {
+  const selectedKey = getCalendarDateKey(
+    selectedCalendarDate.getFullYear(),
+    selectedCalendarDate.getMonth(),
+    selectedCalendarDate.getDate()
+  );
+  const scheduleDates = [...new Set(
+    calendarEvents.map(item => item.start)
+      .filter(dateKey => /^\\d{4}-\\d{2}-\\d{2}$/.test(dateKey))
+  )].sort();
+  const previous = $("#calendar-prev-event");
+  const next = $("#calendar-next-event");
+  if (previous) previous.disabled = !scheduleDates.some(dateKey => dateKey < selectedKey);
+  if (next) next.disabled = !scheduleDates.some(dateKey => dateKey > selectedKey);
+}
+
 function moveCalendarMonth(direction) {
   const year = calendarDate.getFullYear();
   const month = calendarDate.getMonth();
@@ -1254,6 +1301,7 @@ function moveCalendarMonth(direction) {
 
   renderCalendar();
   renderCalendarEvents();
+  updateCalendarNavigationState();
 }
 
 function selectCalendarDate(dateKey) {
@@ -1276,6 +1324,7 @@ function selectCalendarDate(dateKey) {
 
   renderCalendar();
   renderCalendarEvents();
+  updateCalendarNavigationState();
 }
 
 
@@ -1446,9 +1495,21 @@ function renderCalendarBars() {
    ========================================================= */
 
 
+// 갤러리 검색/연도 필터
+function getFilteredGalleryItems() {
+  const query = ($("#gallery-search")?.value || "").trim().toLocaleLowerCase();
+  const year = $("#gallery-year")?.value || "all";
+  return galleryItems.filter(item => {
+    const searchableText = `${item.title} ${item.description || ""}`.toLocaleLowerCase();
+    const itemYear = /^(\\d{4})/.exec(item.date || "")?.[1] || "";
+    return (!query || searchableText.includes(query)) && (year === "all" || itemYear === year);
+  });
+}
+
 // 갤러리 그리드 렌더링
 function renderGallery() {
-  $("#gallery-grid").innerHTML = galleryItems.map(item => `
+  const visibleItems = getFilteredGalleryItems();
+  $("#gallery-grid").innerHTML = visibleItems.length ? visibleItems.map(item => `
     <article
       class="gallery-item"
       data-gallery-id="${item.id}"
@@ -1469,8 +1530,23 @@ function renderGallery() {
         <span>${escapeHTML(item.date)}</span>
       </div>
     </article>
-  `).join("");
+  `).join("") : `<p class="gallery-empty">검색 조건에 맞는 사진이 없습니다.</p>`;
 }
+
+function populateGalleryYears() {
+  const select = $("#gallery-year");
+  if (!select) return;
+  const selectedYear = select.value || "all";
+  const years = [...new Set(
+    galleryItems.map(item => /^(\\d{4})/.exec(item.date || "")?.[1]).filter(Boolean)
+  )].sort();
+  select.innerHTML = `<option value="all">전체 연도</option>` +
+    years.map(year => `<option value="${year}">${year}</option>`).join("");
+  select.value = years.includes(selectedYear) ? selectedYear : "all";
+}
+
+$("#gallery-search").addEventListener("input", renderGallery);
+$("#gallery-year").addEventListener("change", renderGallery);
 
 let currentGalleryId = null;
 
@@ -1517,15 +1593,17 @@ function openLightbox(id) {
 }
 
 function renderLightbox() {
-  const index = galleryItems.findIndex(
-    item => item.id === currentGalleryId
-  );
-
-  const item = galleryItems[index];
+  const visibleItems = getFilteredGalleryItems();
+  let index = visibleItems.findIndex(item => item.id === currentGalleryId);
+  if (index < 0 && visibleItems.length) {
+    currentGalleryId = visibleItems[0].id;
+    index = 0;
+  }
+  const item = visibleItems[index];
   if (!item) return;
 
   $("#lightbox-number").textContent =
-    `사진 확대샷 / PHOTO ${String(index + 1).padStart(3, "0")} OF ${String(galleryItems.length).padStart(3, "0")}`;
+    `사진 확대샷 / PHOTO ${String(index + 1).padStart(3, "0")} OF ${String(visibleItems.length).padStart(3, "0")}`;
 
   $("#lightbox-image").innerHTML = item.image
     ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}">`
@@ -1539,21 +1617,16 @@ function renderLightbox() {
     <p>${escapeHTML(item.description || "아직 추가된 기록 설명이 없습니다.")}</p>
   `;
 
-  $("#lightbox-prev").disabled = galleryItems.length < 2;
-  $("#lightbox-next").disabled = galleryItems.length < 2;
+  $("#lightbox-prev").disabled = visibleItems.length < 2;
+  $("#lightbox-next").disabled = visibleItems.length < 2;
 }
 
 function stepLightbox(direction) {
-  const index = galleryItems.findIndex(
-    item => item.id === currentGalleryId
-  );
-
-  if (index < 0 || galleryItems.length < 2) return;
-
-  const nextIndex =
-    (index + direction + galleryItems.length) % galleryItems.length;
-
-  currentGalleryId = galleryItems[nextIndex].id;
+  const visibleItems = getFilteredGalleryItems();
+  const index = visibleItems.findIndex(item => item.id === currentGalleryId);
+  if (index < 0 || visibleItems.length < 2) return;
+  const nextIndex = (index + direction + visibleItems.length) % visibleItems.length;
+  currentGalleryId = visibleItems[nextIndex].id;
   renderLightbox();
 }
 
@@ -2237,6 +2310,9 @@ $$(".song-filter").forEach(button => button.addEventListener("click", () => {
 // CALENDAR
 $("#calendar-prev").addEventListener("click", () => moveCalendarMonth(-1));
 $("#calendar-next").addEventListener("click", () => moveCalendarMonth(1));
+$("#calendar-today").addEventListener("click", goToCalendarToday);
+$("#calendar-prev-event").addEventListener("click", () => goToAdjacentSchedule(-1));
+$("#calendar-next-event").addEventListener("click", () => goToAdjacentSchedule(1));
 
 $("#calendar-grid").addEventListener("click", event => {
   const eventBar = event.target.closest(".calendar-event-bar");
@@ -2317,6 +2393,26 @@ $$(".archive-overlay").forEach(overlay => {
 
 /* ---------- 키보드 조작 이벤트 ---------- */
 
+function trapOverlayFocus(event, overlay) {
+  if (event.key !== "Tab" || !overlay) return;
+  const focusable = [...overlay.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  )].filter(element => !element.hidden && element.getAttribute("aria-hidden") !== "true");
+  if (!focusable.length) {
+    event.preventDefault();
+    return;
+  }
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && (document.activeElement === first || !overlay.contains(document.activeElement))) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && (document.activeElement === last || !overlay.contains(document.activeElement))) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
 document.addEventListener("keydown", event => {
   const profile = $("#profile-overlay");
   const dossier = $("#pair-dossier");
@@ -2337,6 +2433,7 @@ document.addEventListener("keydown", event => {
 
   // 프로필 오버레이
   if (profile.classList.contains("is-open")) {
+    trapOverlayFocus(event, profile);
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       stepProfile(-1);
@@ -2350,6 +2447,7 @@ document.addEventListener("keydown", event => {
 
   // 페어 상세
   if (dossier.classList.contains("is-open")) {
+    trapOverlayFocus(event, dossier);
     if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) {
       event.preventDefault();
     }
@@ -2359,6 +2457,7 @@ document.addEventListener("keydown", event => {
 
   // 라이트박스
   if (lightbox.classList.contains("is-open")) {
+    trapOverlayFocus(event, lightbox);
     if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) {
       event.preventDefault();
     }
@@ -2372,12 +2471,16 @@ document.addEventListener("keydown", event => {
 
 });
 
-$(".home-widget-event").addEventListener("click", () => {
+function openHomeAnniversary() {
   const dateKey = $(".home-widget-event").dataset.date;
+  if (dateKey) openCalendarDate(dateKey);
+}
 
-  if (!dateKey) return;
-
-  openCalendarDate(dateKey);
+$(".home-widget-event").addEventListener("click", openHomeAnniversary);
+$(".home-widget-event").addEventListener("keydown", event => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  openHomeAnniversary();
 });
 
 
@@ -2392,7 +2495,9 @@ renderPairs();
 renderSongs();
 renderCalendar();
 renderCalendarEvents();
+populateGalleryYears();
 renderGallery();
 renderLinks();
 selectSong(songs[0]?.id, false);
 $("#music-repeat").classList.add("is-active");
+$("#music-repeat").setAttribute("aria-pressed", "true");
