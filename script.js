@@ -248,7 +248,16 @@ function formatTime(seconds) {
   return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
 }
 
+function updatePlayerStatus(isPlaying = false) {
+  const repeatLabels = { all: "REPEAT ALL", one: "REPEAT ONE", none: "REPEAT OFF" };
+  const status = $("#music-dock-status");
+  if (status) {
+    status.textContent = `${isPlaying ? "PLAYING" : "PAUSED"} · ${repeatLabels[repeatMode]}`;
+  }
+}
+
 function updatePlayButton(isPlaying) {
+  updatePlayerStatus(isPlaying);
   $(".turntable").classList.toggle("is-playing", isPlaying);
   $("#music-play-icon").textContent = isPlaying ? "Ⅱ" : "▶";
   $("#music-play").setAttribute(
@@ -348,6 +357,7 @@ function toggleRepeatMode() {
     }`
   );
   $("#music-repeat").setAttribute("aria-pressed", String(repeatMode !== "none"));
+  updatePlayerStatus(youtubeReady && youtubePlayer?.getPlayerState() === YT.PlayerState.PLAYING);
 }
 
 function handleYouTubeStateChange(event) {
@@ -2502,3 +2512,4 @@ renderLinks();
 selectSong(songs[0]?.id, false);
 $("#music-repeat").classList.add("is-active");
 $("#music-repeat").setAttribute("aria-pressed", "true");
+updatePlayerStatus(false);
