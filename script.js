@@ -1541,8 +1541,12 @@ function renderGallery() {
       </div>
     </article>
   `).join("") : `<p class="gallery-empty">검색 조건에 맞는 사진이 없습니다.</p>`;
-}
 
+  // 라이트박스가 열린 상태에서 검색/연도를 바꾸어도 표시와 순번을 동기화합니다.
+  if ($("#archive-lightbox")?.classList.contains("is-open")) {
+    renderLightbox();
+  }
+}
 function populateGalleryYears() {
   const select = $("#gallery-year");
   if (!select) return;
@@ -1605,12 +1609,23 @@ function openLightbox(id) {
 function renderLightbox() {
   const visibleItems = getFilteredGalleryItems();
   let index = visibleItems.findIndex(item => item.id === currentGalleryId);
-  if (index < 0 && visibleItems.length) {
+
+  if (!visibleItems.length) {
+    currentGalleryId = null;
+    $("#lightbox-number").textContent = "검색 결과 없음 / PHOTO 000 OF 000";
+    $("#lightbox-image").innerHTML = `<span>검색 조건에 맞는 사진이 없습니다.</span>`;
+    $("#lightbox-info").innerHTML = "";
+    $("#lightbox-prev").disabled = true;
+    $("#lightbox-next").disabled = true;
+    return;
+  }
+
+  if (index < 0) {
     currentGalleryId = visibleItems[0].id;
     index = 0;
   }
+
   const item = visibleItems[index];
-  if (!item) return;
 
   $("#lightbox-number").textContent =
     `사진 확대샷 / PHOTO ${String(index + 1).padStart(3, "0")} OF ${String(visibleItems.length).padStart(3, "0")}`;
@@ -1630,7 +1645,6 @@ function renderLightbox() {
   $("#lightbox-prev").disabled = visibleItems.length < 2;
   $("#lightbox-next").disabled = visibleItems.length < 2;
 }
-
 function stepLightbox(direction) {
   const visibleItems = getFilteredGalleryItems();
   const index = visibleItems.findIndex(item => item.id === currentGalleryId);
