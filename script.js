@@ -2495,6 +2495,7 @@ renderPairs();
 renderSongs();
 renderCalendar();
 renderCalendarEvents();
+updateCalendarNavigationState();
 populateGalleryYears();
 renderGallery();
 renderLinks();
