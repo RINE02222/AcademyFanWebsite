@@ -10,6 +10,12 @@
   border: 0;
 }
 
+
+/* ==========================================================================
+   기본 설정
+   ========================================================================== */
+
+
 @font-face {
     font-family: 'Aggravo';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
@@ -50,9 +56,10 @@
 
 
 /* ==========================================================================
-   기본 설정
+   HTML & body
    ========================================================================== */
 
+  
 ::-webkit-scrollbar {
   display: none;
 }
@@ -94,15 +101,18 @@ body::before {
   background-size: 48px 48px, 48px 48px, 5px 5px;
 }
 
-/* 하단 인쇄 마크 */
+/* 하단 장식 */
 body::after {
   z-index: -1;
   inset: auto 0 0;
   height: 7px;
-  background: repeating-linear-gradient(90deg, var(--ink) 0 26px, transparent 26px 31px, var(--accent) 31px 37px, transparent 37px 43px);
+  background: repeating-linear-gradient(90deg, var(--ink) 0 26px,
+              transparent 26px 31px, var(--accent) 31px 37px,
+              transparent 37px 43px);
   opacity: .8;
 }
 
+/* 버튼 설정 */
 button,
 a {
   color: inherit;
@@ -147,7 +157,7 @@ h2 {
   letter-spacing: .04em;
 }
 
-/* 버튼 밑 밑줄 */
+/* 버튼 밑줄 */
 .nav-btn::after {
   content: "";
   position: absolute;
@@ -191,7 +201,26 @@ h2 {
   color: var(--ink);
 }
 
-/* 상단 바 */
+/* 접힌 상태 */
+.music-dock.is-minimized .music-window {
+  padding: 8px;
+}
+
+.music-dock.is-minimized .music-window-top {
+  padding-bottom: 0;
+}
+
+.music-dock.is-minimized .music-video-stage {
+  display: none;
+}
+
+/* 잡은 상태 */
+.music-window-top:active {
+  cursor: grabbing;
+}
+
+/* --- 뮤직 플레이어 상단 바 --------------------------- */
+
 .music-window-top {
   display: flex;
   align-items: center;
@@ -205,7 +234,7 @@ h2 {
   font: 700 14px var(--body);
 }
 
-/* 접기 버튼 */
+/* 뮤직 플레이어 접기 버튼 */
 .music-window-minimize {
   width: 25px;
   height: 25px;
@@ -229,6 +258,19 @@ h2 {
   height: 100%;
   z-index: -1;
 }
+
+.music-dock-status {
+  flex: 1;
+  min-width: 0;
+  padding: 0 8px;
+  color: var(--muted);
+  font: 10px var(--mono);
+  text-align: right;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+
+/* --- 뮤직 플레이어 본문 --------------------------- */
 
 .music-player-content {
   padding: 2px 20px;
@@ -270,6 +312,7 @@ h2 {
   color: var(--muted);
 }
 
+/* 재생 바 */
 .music-progress {
   margin-top: 14px;
   display: grid;
@@ -279,7 +322,7 @@ h2 {
   font: 9px var(--mono);
 }
 
-/* 재생 바 */
+/* 재생 바 동글이 */
 #music-seek {
   width: 100%;
   height: 2.5px;
@@ -341,27 +384,9 @@ h2 {
   font-size: 10px;
 }
 
-/* 접힌 상태 */
-.music-dock.is-minimized .music-window {
-  padding: 8px;
-}
-
-.music-dock.is-minimized .music-window-top {
-  padding-bottom: 0;
-}
-
-.music-dock.is-minimized .music-video-stage {
-  display: none;
-}
-
-/* 잡은 상태 */
-.music-window-top:active {
-  cursor: grabbing;
-}
-
 
 /* ==========================================================================
-   뷰포트 (메인 콘텐츠)
+   뷰포트
    ========================================================================== */
 
 
@@ -383,7 +408,7 @@ h2 {
   flex-direction: column;
 }
 
-/* 섹션 페이지(현재) */
+/* 섹션 페이지: 현재 */
 .page-section.is-current {
   opacity: 1;
   visibility: visible;
@@ -404,7 +429,7 @@ h2 {
 }
 
 /* ==========================================================================
-   HOME
+   0. HOME
    ========================================================================== */
 
 .home-section {
@@ -500,7 +525,7 @@ h2 {
   font: 10px var(--mono);
 }
 
-/* --- 오른쪽: 캐릭터 스탠딩+위젯 --------------------------- */
+/* --- 오른쪽: 캐릭터 스탠딩 & 위젯 --------------------------- */
 
 .home-visual {
   position: relative;
@@ -596,7 +621,7 @@ h2 {
   overflow-wrap: anywhere;
 }
 
-/* 호버 시 살짝 들리는 효과 */
+/* 호버: 살짝 들림 */
 .home-widget:hover,
 .home-widget:focus-within {
   z-index: 5;
@@ -615,12 +640,11 @@ h2 {
 }
 
 
-
 /* ==========================================================================
-   MEMBERS
+   1. MEMBERS
    ========================================================================== */
 
-
+   
 .member-container {
   position: relative;
   display: flex;
@@ -665,7 +689,8 @@ h2 {
   right: -21px;
 }
 
-/* 멤버 카드 */
+/* --- 멤버 카드 --------------------------- */
+
 .member-card {
   min-width: 0;
   position: relative;
@@ -680,7 +705,7 @@ h2 {
   transition: background-color .28s, transform .2s, background .28s;
 }
 
-/* 배경 숫자+영문 이름 */
+/* 배경 숫자 & 영문 이름 */
 .member-card-number-bg {
   position: absolute;
   inset: 0;
@@ -733,6 +758,48 @@ h2 {
   }
 }
 
+/* 카드 하단 글씨 */
+.member-card-meta {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 8px;
+  min-height: 76px;
+  padding: 10px;
+  border-top: 1px solid rgba(0, 0, 0, .12);
+  background: #fff;
+}
+
+.member-card-num {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font: 500 8px var(--mono);
+}
+
+.member-card-name {
+  color: var(--ink);
+  font: 700 14px/1.35 var(--body);
+}
+
+.member-card-engname {
+  overflow: hidden;
+  color: var(--muted);
+  font: 500 8px/1.4 var(--mono);
+  text-transform: uppercase;
+}
+
+.member-card-generation {
+  grid-column: 2;
+  grid-row: 2 / span 2;
+  align-self: center;
+  padding-left: 7px;
+  border-left: 1px solid var(--ink);
+  color: var(--muted);
+  font: 500 9px var(--mono);
+}
+
+/* --- 멤버 카드: 효과 --------------------------- */
+
 /* 호버: 숫자 숨김 */
 .member-card:hover .member-card-number,
 .member-card:focus-visible .member-card-number,
@@ -778,46 +845,6 @@ h2 {
   outline: 2px solid var(--ink);
 }
 
-/* 카드 글씨 */
-.member-card-meta {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 3px 8px;
-  min-height: 76px;
-  padding: 10px;
-  border-top: 1px solid rgba(0, 0, 0, .12);
-  background: #fff;
-}
-
-.member-card-num {
-  grid-column: 1 / -1;
-  color: var(--muted);
-  font: 500 8px var(--mono);
-}
-
-.member-card-name {
-  color: var(--ink);
-  font: 700 14px/1.35 var(--body);
-}
-
-.member-card-engname {
-  overflow: hidden;
-  color: var(--muted);
-  font: 500 8px/1.4 var(--mono);
-  text-transform: uppercase;
-}
-
-.member-card-generation {
-  grid-column: 2;
-  grid-row: 2 / span 2;
-  align-self: center;
-  padding-left: 7px;
-  border-left: 1px solid var(--ink);
-  color: var(--muted);
-  font: 500 9px var(--mono);
-}
-
 
 /* ==========================================================================
    MEMBERS: 프로필 오버레이
@@ -851,7 +878,7 @@ h2 {
   background-size: 7px 7px;
 }
 
-/* 오버레이 열림 */
+/* 프로필 오버레이 열림 */
 .profile-overlay.is-open {
   opacity: 1;
   visibility: visible;
@@ -859,7 +886,8 @@ h2 {
   transition: opacity .28s, transform .35s, visibility .35s;
 }
 
-/* 오버레이 상단 바 */
+/* --- 프로필 오버레이 상단 바 --------------------------- */
+
 .profile-topbar {
   display: flex;
   align-items: center;
@@ -897,7 +925,8 @@ h2 {
   color: var(--profile-accent);
 }
 
-/* 캐릭터 스탠딩+정보 */
+/* --- 프로필 오버레이 본문 --------------------------- */
+
 .profile-main {
   position: relative;
   display: grid;
@@ -906,7 +935,7 @@ h2 {
   min-height: 610px;
 }
 
-/* --- 왼쪽: 캐릭터 스탠딩 --------------------------- */
+/* --- 왼쪽: 캐릭터 스탠딩 & 장식 --------------------------- */
 
 .profile-collage {
   position: absolute;
@@ -1235,7 +1264,8 @@ h2 {
   border-radius: 12px;
 }
 
-/* 하단 이동 바 */
+/* --- 프로필 오버레이 하단 바 --------------------------- */
+
 .profile-nav {
   position: relative;
   display: flex;
@@ -1253,7 +1283,7 @@ h2 {
 
 
 /* ==========================================================================
-   PAIR
+   2. PAIR
    ========================================================================== */
 
 
@@ -1276,6 +1306,7 @@ h2 {
   padding: 7px 10px;
   background: white;
   font: 9px var(--mono);
+  transition: background .2s, color .2s, border .2s;
 }
 
 .pair-filter button.is-active,
@@ -1308,6 +1339,7 @@ h2 {
   cursor: pointer;
 }
 
+/* 페어 카드 본문 */
 .pair-card-inner {
   height: 100%;
   transform-style: preserve-3d;
@@ -1338,16 +1370,10 @@ h2 {
   -webkit-backface-visibility: hidden;
 }
 
-/* 카드 앞면 */
+/* --- 카드 앞면 --------------------------- */
+
 .pair-card-front {
   transform: rotateY(0);
-}
-
-/* 카드 뒷면 */
-.pair-card-back {
-  transform: rotateY(180deg);
-  background: var(--paper-deep);
-  justify-content: space-between;
 }
 
 /* 앞면: 상단 글씨 */
@@ -1404,6 +1430,14 @@ h2 {
   background: var(--paper-deep);
 }
 
+/* --- 카드 뒷면 --------------------------- */
+
+.pair-card-back {
+  transform: rotateY(180deg);
+  background: var(--paper-deep);
+  justify-content: space-between;
+}
+
 /* 뒷면: 페어 이름 */
 .pair-card-back h3 {
   font: 600 24px var(--display);
@@ -1424,7 +1458,7 @@ h2 {
 
 
 /* ==========================================================================
-   SONG
+   3. SONG
    ========================================================================== */
 
 
@@ -1434,6 +1468,7 @@ h2 {
   grid-template-columns: minmax(210px, .5fr) minmax(0, 1fr);
   gap: 3vw;
   padding: 2.5vh 0 10vh;
+  flex: 1;
 }
 
 /* --- 왼쪽: 턴테이블 --------------------------- */
@@ -1939,7 +1974,30 @@ h2 {
   font-weight: 400;
 }
 
-/* 선택된 곡 정보 */
+/* 턴테이블 회전 애니메이션 */
+.profile-main.is-changing .profile-standing {
+  animation: profile-change-in .38s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+.profile-main.is-changing .profile-info {
+  animation: profile-change-in .38s cubic-bezier(.2, .7, .2, 1) .06s both;
+}
+
+@keyframes profile-change-in {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.turntable.is-playing .record-disc {
+   animation-play-state: running;
+}
+
+@keyframes record-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --- 왼쪽: 곡 정보 --------------------------- */
+
 .song-now {
   display: flex;
   flex-direction: column;
@@ -1970,28 +2028,6 @@ h2 {
   line-height: 1.6;
 }
 
-/* 턴테이블 회전 애니메이션 */
-.profile-main.is-changing .profile-standing {
-  animation: profile-change-in .38s cubic-bezier(.2, .7, .2, 1) both;
-}
-
-.profile-main.is-changing .profile-info {
-  animation: profile-change-in .38s cubic-bezier(.2, .7, .2, 1) .06s both;
-}
-
-@keyframes profile-change-in {
-  from { opacity: 0; transform: translateX(14px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.turntable.is-playing .record-disc {
-   animation-play-state: running;
-}
-
-@keyframes record-spin {
-  to { transform: rotate(360deg); }
-}
-
 /* --- 오른쪽: 앨범 진열대 --------------------------- */
 
 .record-shelf {
@@ -2000,19 +2036,21 @@ h2 {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  height: 100%;
   background-color: rgba(255, 255, 255, .75);
 }
 
-/* 상단 바 */
+/* --- 앨범 진열대 상단 바 --------------------------- */
+
 .record-toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   padding: 0 0 12px;
   border-bottom: 1px solid var(--ink);
 }
 
+/* 노래 검색창 */
 .song-search-wrap {
   flex: 1 1 180px;
   min-width: 120px;
@@ -2023,29 +2061,28 @@ h2 {
   min-height: 34px;
   padding: 7px 10px;
   border: 1px solid var(--line);
-  border-radius: 0;
   background: white;
-  color: var(--ink);
   font: 10px var(--mono);
 }
 
+/* 클릭: 검정 테두리 */
 .song-search-wrap input:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
+  outline: 1px solid var(--ink);
 }
 
+/* 노래 필터 */
 .song-filters {
   display: flex;
   flex: 0 0 auto;
   gap: 5px;
 }
 
-/* 노래 필터 */
 .song-filter {
   border: 1px solid var(--line);
   padding: 7px 10px;
   background: white;
   font: 9px var(--mono);
+  transition: background .2s, color .2s, border .2s;
 }
 
 .song-filter:hover,
@@ -2054,6 +2091,8 @@ h2 {
   color: white;
   border-color: var(--ink);
 }
+
+/* --- 앨범 진열대 본문 --------------------------- */
 
 .record-scroll {
   overflow-y: auto;
@@ -2137,7 +2176,7 @@ h2 {
 
 
 /* ==========================================================================
-   CALENDAR
+   4. CALENDAR
    ========================================================================== */
 
 
@@ -2146,7 +2185,7 @@ h2 {
   grid-template-columns: minmax(0, 1.7fr) minmax(240px, 0.8fr);
   gap: 28px;
   flex: 1;
-  padding: 2.5vh 0 10vh;
+  padding: 2.3vh 0 10vh;
 }
 
 .calendar-main,
@@ -2160,9 +2199,12 @@ h2 {
   flex-direction: column;
 }
 
-/* 달 이동 바 */
+/* --- 캘린더 상단 바 --------------------------- */
+
 .calendar-header {
+  display: flex;
   margin-bottom: 20px;
+  gap: 12px;
 }
 
 .calendar-label {
@@ -2172,9 +2214,15 @@ h2 {
   margin-bottom: 8px;
 }
 
-.calendar-month-control {
+.calendar-month-control,
+.calendar-move {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+/* 달 이동 */
+.calendar-month-control {
   gap: 12px;
   font: 12px var(--mono);
 }
@@ -2182,17 +2230,38 @@ h2 {
 .calendar-month-control button {
   border: 1px solid var(--line);
   background: white;
-  width: 30px;
-  height: 30px;
-  transition: background .2s, color .2s;
+  padding: 7px 8px;
+  transition: background .2s, color .2s, border .2s;
 }
 
-.calendar-month-control button:hover {
+/* 이전 일정 & 오늘 & 다음 일정 */
+.calendar-move {
+  gap: 5px;
+  font: 9px var(--mono);
+}
+
+.calendar-move button {
+  border: 1px solid var(--line);
+  background: white;
+  padding: 7px 10px;
+  transition: background .2s, color .2s, border .2s;
+}
+
+#calendar-prev-event:disabled,
+#calendar-next-event:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.calendar-month-control button:hover,
+.calendar-move button:hover {
   background: var(--ink);
   color: var(--paper);
+  border: 1px solid var(--ink);
 }
 
-/* 날짜 그리드 */
+/* --- 왼쪽: 캘린더 그리드 --------------------------- */
+
 .calendar-grid {
   flex: 1;
   display: grid;
@@ -2209,6 +2278,7 @@ h2 {
   border-bottom: 1px solid var(--ink);
 }
 
+/* 요일 */
 .calendar-weekday {
   display: grid;
   place-items: center;
@@ -2217,6 +2287,7 @@ h2 {
   background: white;
 }
 
+/* 날 */
 .calendar-day {
   position: relative;
   overflow: hidden;
@@ -2256,7 +2327,7 @@ h2 {
   color: white;
 }
 
-/* 생일 칸: 멤버 테마색+스탠딩 이미지 */
+/* 생일 칸: 멤버 테마색 & 스탠딩 이미지 */
 .calendar-day.has-birthday {
   background-color: var(--member-color, var(--accent));
 }
@@ -2311,25 +2382,63 @@ h2 {
   text-align: left;
 }
 
-/* 날짜 상세 패널 */
+/* 일정 막대 바 (정돈 필요) */
+.calendar-event-bar {
+  position: relative;
+  z-index: 3;
+  align-self: start;
+  min-width: 0;
+  height: 17px;
+  margin: 27px 3px 0;
+  transform: translateY(calc(var(--event-lane, 0) * 20px));
+  padding: 1px 7px;
+  overflow: hidden;
+  border: none;
+  background: var(--event-color);
+  color: white;
+  font: 600 10px/18px var(--mono);
+  display: flex;
+  align-items: center;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.calendar-event-bar.continues-before {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.calendar-event-bar.continues-after {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* --- 오른쪽: 날짜 상세 --------------------------- */
+
 .calendar-detail {
   padding-top: 15px;
 }
 
+/* 스케줄 어쩌고 */
 .calendar-detail-header {
   padding-bottom: 18px;
   border-bottom: 1px solid var(--line);
 }
 
+/* 선택된 날짜 */
 .calendar-detail-header h3 {
   font: 600 clamp(20px, 2.5vw, 30px)/1.1 var(--display);
 }
 
+/* 일정 리스트 */
 .calendar-event-list {
   padding-top: 12px;
   overflow-y: auto;
 }
 
+/* 일정 카드 */
 .calendar-event-card {
   display: flex;
   align-items: center;
@@ -2369,50 +2478,63 @@ h2 {
   line-height: 1.8;
 }
 
-/* 일정 막대 바 (정돈 필요) */
-.calendar-event-bar {
-  position: relative;
-  z-index: 3;
-  align-self: start;
-  min-width: 0;
-  height: 17px;
-  margin: 27px 3px 0;
-  transform: translateY(calc(var(--event-lane, 0) * 20px));
-  padding: 1px 7px;
-  overflow: hidden;
-  border: none;
-  background: var(--event-color);
-  color: white;
-  font: 600 10px/18px var(--mono);
-  display: flex;
-  align-items: center;
-  text-align: left;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.calendar-event-bar.continues-before {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.calendar-event-bar.continues-after {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
 
 /* ==========================================================================
-   GALLERY
+   5. GALLERY
    ========================================================================== */
-
 
 .gallery-container {
   min-height: 0;
   padding: 2.5vh 0 10vh;
   display: flex;
+  flex-direction: column;
 }
+
+/* --- 갤러리 상단 바 --------------------------- */
+
+.gallery-toolbar {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.gallery-search-wrap,
+.gallery-year-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 갤러리 검색창 */
+.gallery-search-wrap {
+  flex: 1;
+  min-width: 180px;
+}
+
+.gallery-toolbar input,
+.gallery-toolbar select {
+  min-height: 34px;
+  border: 1px solid var(--line);
+  padding: 7px 9px;
+  background: white;
+  font: 10px var(--mono);
+}
+
+/* 갤러리 연도별 검색 */
+.gallery-year-wrap select {
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.gallery-empty {
+  align-self: center;
+  padding: 24px;
+  color: var(--muted);
+  font: 12px var(--mono);
+  line-height: 1.8;
+}
+
+/* --- 갤러리 본문 --------------------------- */
 
 .gallery-scroll {
   overflow-x: auto;
@@ -2476,7 +2598,7 @@ h2 {
 
 
 /* ==========================================================================
-   LINKS
+   6. LINKS
    ========================================================================== */
 
 
@@ -2489,7 +2611,8 @@ h2 {
   padding: 2.5vh 0 10vh;
 }
 
-/* 왁물원 카드 */
+/* --- 왼쪽: 왁물원 카드 --------------------------- */
+
 .links-title {
   position: relative;
   border: 1px solid var(--ink);
@@ -2524,6 +2647,8 @@ h2 {
   background-size: auto 105%;
 }
 
+/* --- 왼쪽: 링크 카드 --------------------------- */
+
 .link-scroll {
   overflow-y: hidden;
   padding: 4px 10px 12px 2px;
@@ -2532,7 +2657,6 @@ h2 {
   gap: 12px;
 }
 
-/* 링크 카드 */
 .link-card {
   position: relative;
   border: 1px solid var(--ink);
@@ -2599,7 +2723,7 @@ h2 {
 
 
 /* ==========================================================================
-   공통 모달 디자인
+   A. 공통 모달
    ========================================================================== */
 
 
@@ -2618,6 +2742,7 @@ h2 {
   transition: opacity .25s ease, visibility .25s ease;
 }
 
+/* 모달 열림 */
 .archive-overlay.is-open {
   opacity: 1;
   visibility: visible;
@@ -2640,7 +2765,8 @@ h2 {
   transform: translateY(0);
 }
 
-/* 상단 바 */
+/* --- 모달 상단 바 --------------------------- */
+
 .archive-modal-header {
   position: sticky;
   top: 0;
@@ -2685,7 +2811,7 @@ h2 {
   color: var(--muted);
 }
 
-/* --- PAIR: 페어 상세 정보 --------------------------- */
+/* --- 모달: PAIR 상세 정보 --------------------------- */
 
 .dossier-modal {
   width: 60%;
@@ -2790,7 +2916,7 @@ h2 {
   white-space: pre-line;
 }
 
-/* --- GALLERY: 라이트박스 --------------------------- */
+/* --- 모달: 라이트박스 --------------------------- */
 
 .lightbox-modal {
   width: 70%;
@@ -2863,14 +2989,14 @@ h2 {
 
 
 /* =========================================================
-   스티커 추가
+   B. 스티커 툴바
    ========================================================= */
 
 
 .sticker-toolbar {
   position: absolute;
   z-index: 30;
-  top: 11px;
+  top: 13px;
   right: 5vw;
   display: flex;
   align-items: center;
@@ -2909,7 +3035,6 @@ h2 {
   display: none;
 }
 
-/* 스티커가 놓이는 섹션 전체 */
 .sticker-layer {
   position: absolute;
   z-index: 20;
@@ -2918,7 +3043,6 @@ h2 {
   pointer-events: none;
 }
 
-/* 편집 모드에서는 스티커만 조작 가능 */
 .page-section.sticker-editing .sticker-layer {
   pointer-events: auto;
 }
@@ -2941,7 +3065,6 @@ h2 {
   width: 100%;
 }
 
-/* 편집 핸들은 기본적으로 감춤 */
 .sticker-handle {
   position: absolute;
   z-index: 2;
@@ -2983,168 +3106,4 @@ h2 {
   cursor: pointer;
   font-size: 15px;
   line-height: 17px;
-}
-
-/* 편의성 개선: 캘린더 빠른 탐색 */
-.calendar-month-control {
-  flex-wrap: wrap;
-}
-
-#calendar-today,
-#calendar-prev-event,
-#calendar-next-event {
-  width: auto;
-  min-width: 30px;
-  padding: 0 9px;
-  font: 10px var(--mono);
-}
-
-#calendar-prev-event:disabled,
-#calendar-next-event:disabled {
-  opacity: .35;
-  cursor: not-allowed;
-}
-
-/* 편의성 개선: 갤러리 검색 및 연도 필터 */
-.gallery-toolbar {
-  display: flex;
-  align-items: end;
-  gap: 12px;
-  padding: 12px 0 0;
-}
-
-.gallery-search-wrap,
-.gallery-year-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  color: var(--muted);
-  font: 9px var(--mono);
-}
-
-.gallery-search-wrap {
-  flex: 1;
-  min-width: 180px;
-}
-
-.gallery-toolbar input,
-.gallery-toolbar select {
-  min-height: 34px;
-  border: 1px solid var(--line);
-  border-radius: 0;
-  padding: 7px 9px;
-  background: white;
-  color: var(--ink);
-  font: 11px var(--body);
-}
-
-.gallery-year-wrap select {
-  min-width: 115px;
-}
-
-.gallery-empty {
-  align-self: center;
-  padding: 24px;
-  color: var(--muted);
-  font: 12px var(--mono);
-  line-height: 1.8;
-}
-
-/* 키보드 탐색 시 포커스 표시 */
-.home-widget-event:focus-visible,
-.gallery-item:focus-visible,
-.calendar-month-control button:focus-visible,
-.gallery-toolbar input:focus-visible,
-.gallery-toolbar select:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-
-/* 편의성 개선: 캘린더 빠른 탐색 */
-.calendar-month-control {
-  flex-wrap: wrap;
-}
-
-#calendar-today,
-#calendar-prev-event,
-#calendar-next-event {
-  width: auto;
-  min-width: 30px;
-  padding: 0 9px;
-  font: 10px var(--mono);
-}
-
-#calendar-prev-event:disabled,
-#calendar-next-event:disabled {
-  opacity: .35;
-  cursor: not-allowed;
-}
-
-/* 편의성 개선: 갤러리 검색 및 연도 필터 */
-.gallery-toolbar {
-  display: flex;
-  align-items: end;
-  gap: 12px;
-  padding: 12px 0 0;
-}
-
-.gallery-search-wrap,
-.gallery-year-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  color: var(--muted);
-  font: 9px var(--mono);
-}
-
-.gallery-search-wrap {
-  flex: 1;
-  min-width: 180px;
-}
-
-.gallery-toolbar input,
-.gallery-toolbar select {
-  min-height: 34px;
-  border: 1px solid var(--line);
-  border-radius: 0;
-  padding: 7px 9px;
-  background: white;
-  color: var(--ink);
-  font: 11px var(--body);
-}
-
-.gallery-year-wrap select {
-  min-width: 115px;
-}
-
-.gallery-empty {
-  align-self: center;
-  padding: 24px;
-  color: var(--muted);
-  font: 12px var(--mono);
-  line-height: 1.8;
-}
-
-/* 키보드 탐색 시 포커스 표시 */
-.home-widget-event:focus-visible,
-.gallery-item:focus-visible,
-.calendar-month-control button:focus-visible,
-.gallery-toolbar input:focus-visible,
-.gallery-toolbar select:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-
-/* 접힌 상태에서도 재생/반복 상태를 확인할 수 있는 플레이어 표시 */
-.music-dock-status {
-  flex: 1;
-  min-width: 0;
-  padding: 0 8px;
-  color: var(--muted);
-  font: 8px var(--mono);
-  text-align: right;
-  letter-spacing: .03em;
-  white-space: nowrap;
 }

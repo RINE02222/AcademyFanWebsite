@@ -51,14 +51,14 @@
     <div class="music-window">
       <div class="music-window-top">
         <span class="music-window-label">MUSIC PLAYER</span>
-        <span id="music-dock-status" class="music-dock-status" aria-live="polite">PAUSED · REPEAT ALL</span>
+        <span id="music-dock-status" class="music-dock-status" aria-live="polite">중지 · 전체 반복</span>
         <button id="music-minimize" class="music-window-minimize" type="button" aria-label="뮤직 플레이어 접기" aria-expanded="true">−</button>
       </div>
       <div class="music-video-stage">
         <div id="youtube-player"></div>
         <div class="music-player-content" id="music-player-content">
           <div class="music-track">
-            <img id="music-cover" src="images/album/jongchunjimo.jpg" alt="앨범 커버">
+            <img id="music-cover" src="images/logo.png" alt="앨범 커버">
             <div class="music-info">
               <strong id="music-title">노래 제목</strong>
               <span id="music-artist">노래 아티스트</span>
@@ -100,7 +100,7 @@
 
   <main class="viewport" id="viewport">
 
-    <!-- HOME -->
+    <!-- 0. HOME -->
     <section class="page-section home-section is-current" id="home" data-page="home" aria-label="홈">
       <div class="home-layout">
 
@@ -135,14 +135,14 @@
             <article class="home-widget home-widget-event">
               <span class="home-widget-label">UPCOMING D-DAY</span>
               <strong class="home-event-count" id="home-event-count">등록된 디데이가 없습니다</strong>
-              <span class="home-widget-caption" id="home-event-title">디데이 등록 대기 중</span>
+              <span class="home-widget-caption" id="home-event-title">-</span>
               <span class="home-widget-date" id="home-event-date">날짜 표기란</span>
             </article>
 
             <article class="home-widget home-widget-birthday">
               <span class="home-widget-label">NEXT BIRTHDAY</span>
               <strong class="home-birthday-name" id="home-birthday-name">생일 정보를 확인하고 있습니다</strong>
-              <span class="home-widget-caption" id="home-birthday-days">—</span>
+              <span class="home-widget-caption" id="home-birthday-days">-</span>
               <span class="home-widget-date" id="home-birthday-date">날짜 표기란</span>
             </article>
           </div>
@@ -150,7 +150,7 @@
       </div>
     </section>
 
-    <!-- MEMBERS -->
+    <!-- 1. MEMBERS -->
     <section class="page-section members-section" id="members" data-page="members" aria-label="아카데미생">
       <div class="section-topline"><span>01 / 아카데미생 목록</span><span>좌우로 스크롤 ↔</span></div>
       <div class="member-container">
@@ -162,7 +162,7 @@
       </div>
     </section>
 
-    <!-- PAIR -->
+    <!-- 2. PAIR -->
     <section class="page-section pair-section" id="pair" data-page="pair" aria-label="조합">
       <div class="section-topline"><span>02 / 조합 목록</span></div>
       <div class="pair-container">
@@ -173,7 +173,7 @@
       </div>
     </section>
 
-    <!-- SONG -->
+    <!-- 3. SONG -->
     <section class="page-section song-section" id="song" data-page="song" aria-label="노래">
       <div class="section-topline"><span>03 / 노래 목록</span></div>
       <div class="song-layout">
@@ -237,7 +237,7 @@
       </div>
     </section>
 
-    <!-- CALENDAR -->
+    <!-- 4. CALENDAR -->
     <section class="page-section calendar-section" id="calendar" data-page="calendar" aria-label="캘린더">
       <div class="section-topline"><span>04 / 캘린더</span></div>
 
@@ -261,6 +261,8 @@
               <button type="button" id="calendar-prev" aria-label="이전 달">←</button>
               <strong id="calendar-current-month"> 2026. 10. </strong>
               <button type="button" id="calendar-next" aria-label="다음 달">→</button>
+            </div>
+            <div class="calendar-move">
               <button type="button" id="calendar-today">오늘</button>
               <button type="button" id="calendar-prev-event" aria-label="이전 일정 날짜로 이동">이전 일정</button>
               <button type="button" id="calendar-next-event" aria-label="다음 일정 날짜로 이동">다음 일정</button>
@@ -284,7 +286,7 @@
         </div>
       </section>
 
-    <!-- GALLERY -->
+    <!-- 5. GALLERY -->
     <section class="page-section gallery-section" id="gallery" data-page="gallery" aria-label="갤러리">
       <div class="section-topline"><span>05 / 갤러리</span></div>
 
@@ -299,26 +301,25 @@
         </div>
         <div class="sticker-layer" data-sticker-layer="gallery"></div>
 
-      <div class="gallery-toolbar" aria-label="갤러리 검색 및 필터">
+      
+      <div class="gallery-container">
+        <div class="gallery-toolbar" aria-label="갤러리 검색 및 필터">
         <label class="gallery-search-wrap">
-          <span>검색</span>
           <input id="gallery-search" type="search" placeholder="사진 제목 또는 설명" autocomplete="off">
         </label>
         <label class="gallery-year-wrap">
-          <span>연도</span>
           <select id="gallery-year">
             <option value="all">전체 연도</option>
           </select>
         </label>
       </div>
-      <div class="gallery-container">
         <div class="gallery-scroll" id="gallery-scroll">
           <div class="gallery-grid" id="gallery-grid"></div>
         </div>
       </div>
     </section>
 
-    <!-- LINKS -->
+    <!-- 6. LINKS -->
     <section class="page-section links-section" id="links" data-page="links" aria-label="링크트리">
       <div class="section-topline"><span>06 / 링크트리</span></div>
       <div class="links-layout">

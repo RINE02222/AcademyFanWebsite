@@ -43,7 +43,7 @@ const pairs = [
   { id: "14", title: "배틀크루져", members: [6, 8, 10, 16], image: "images/pair/battlecruiser.png", category: ["대회", "남성"], description: "모두 우릴 쳐다봐, 거함 배틀크루져!" },
   { id: "15", title: "도둑고양이", members: [4, 5, 9, 12], image: "images/pair/cat.png", category: ["대회"], description: "이 조합의 관계성이나 대표적인 장면을 기록하세요." },
   { id: "16", title: "기산시불셈키", members: [3, 4, 9, 13, 18], image: "", category: ["대회"], description: "이 조합의 관계성이나 대표적인 장면을 기록하세요." },
-  { id: "17", title: "패티다져스", members: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16, 17], image: "images/gallery/13_baseball1.png", category: ["대회"], description: "이 조합의 관계성이나 대표적인 장면을 기록하세요." },
+  { id: "17", title: "패티다져스", members: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16, 17], image: "images/gallery/baseball1.png", category: ["대회"], description: "이 조합의 관계성이나 대표적인 장면을 기록하세요." },
   { id: "18", title: "2기즈", members: [8, 9, 10], image: "images/pair/2nd.png", category: ["기수별", "남성"], description: "“근데 전 오히려 2기즈를 보고 싶어요”" },
 ];
 
@@ -75,7 +75,7 @@ const songs = [
   { id: 24, title: "instagram (ft. 닌닌)", artist: "수셈이", kind: "cover", cover: "http://img.youtube.com/vi/oQbWrcjLoHU/maxresdefault.jpg", videoId: "oQbWrcjLoHU", year: "2024"},
   { id: 25, title: "사라시모노", artist: "JJ (진희, 사랑전도사 젠투)", kind: "cover", cover: "http://img.youtube.com/vi/hY83fPwlmVI/maxresdefault.jpg", videoId: "hY83fPwlmVI", year: "2023"},
   { id: 26, title: "내숭 떨어서 뭐가 나쁜 거야?", artist: "미스 발렌타인", kind: "cover", cover: "http://img.youtube.com/vi/i_R1P4bJp8A/maxresdefault.jpg", videoId: "i_R1P4bJp8A", year: "2024"},
-  { id: 27, title: "결혼행진곡", artist: "아마데우스최", kind: "cover", cover: "http://img.youtube.com/vi/D_k9Z7MbWvU/maxresdefault.jpg", videoId: "D_k9Z7MbWvU", year: "2024"},
+  { id: 27, title: "결혼행진곡", artist: "아마데우스최", kind: "cover", cover: "http://img.youtube.com/vi/D_k9Z7MbWvU/sddefault.jpg", videoId: "D_k9Z7MbWvU", year: "2024"},
   { id: 28, title: "CIDER BANG!", artist: "RYKY (빅토리, 데스해머쵸로키)", kind: "original", cover: "http://img.youtube.com/vi/IhIDFiYWMbc/maxresdefault.jpg", videoId: "IhIDFiYWMbc", year: "2024"},
   { id: 29, title: "LOGIN", artist: "시리안, 아마데우스최, 크리즈", kind: "original", cover: "http://img.youtube.com/vi/kzgr3hqIe4k/maxresdefault.jpg", videoId: "kzgr3hqIe4k", year: "2024"},
   { id: 30, title: "SKY HiGH!", artist: "미미짱짱세용", kind: "original", cover: "http://img.youtube.com/vi/AF5MVogdcAU/maxresdefault.jpg", videoId: "AF5MVogdcAU", year: "2024"},
@@ -90,7 +90,7 @@ const songs = [
   { id: 39, title: "CHEER UP (ft. 성기사 샬롯)", artist: "빅토리", kind: "cover", cover: "http://img.youtube.com/vi/cHOkRf78WJo/maxresdefault.jpg", videoId: "cHOkRf78WJo", year: "2024"},
   { id: 40, title: "이참에 뭔가 해봐", artist: "미미짱짱세용", kind: "cover", cover: "http://img.youtube.com/vi/9nfXU9stnvQ/maxresdefault.jpg", videoId: "9nfXU9stnvQ", year: "2025"},
   { id: 41, title: "Omokage", artist: "시리안 레인, 아마데우스최, 빅토리", kind: "cover", cover: "http://img.youtube.com/vi/mdNEh9Hyz4c/maxresdefault.jpg", videoId: "mdNEh9Hyz4c", year: "2024"},
-  { id: 42, title: "밤 끝없는 밤", artist: "아마데우스최, 빅토리", kind: "cover", cover: "http://img.youtube.com/vi/M3gQdpLwHtY/maxresdefault.jpg", videoId: "M3gQdpLwHtY", year: "2024"},
+  { id: 42, title: "밤 끝없는 밤", artist: "아마데우스최, 빅토리", kind: "cover", cover: "http://img.youtube.com/vi/M3gQdpLwHtY/sddefault.jpg", videoId: "M3gQdpLwHtY", year: "2024"},
   { id: 43, title: "Still With You", artist: "시리안 레인", kind: "cover", cover: "http://img.youtube.com/vi/mdNEh9Hyz4c/maxresdefault.jpg", videoId: "mdNEh9Hyz4c", year: "2024"},
   { id: 44, title: "감전", artist: "보디가드 불독", kind: "cover", cover: "http://img.youtube.com/vi/4G4w9wMyHZI/maxresdefault.jpg", videoId: "4G4w9wMyHZI", year: "2025"},
   { id: 45, title: "종천지모", artist: "사랑전도사 젠투", kind: "original", cover: "http://img.youtube.com/vi/zCiezbft1x0/maxresdefault.jpg", videoId: "zCiezbft1x0", year: "2025"},
@@ -249,10 +249,10 @@ function formatTime(seconds) {
 }
 
 function updatePlayerStatus(isPlaying = false) {
-  const repeatLabels = { all: "REPEAT ALL", one: "REPEAT ONE", none: "REPEAT OFF" };
+  const repeatLabels = { all: "전체 반복", one: "한 곡 반복", none: "반복 안 함" };
   const status = $("#music-dock-status");
   if (status) {
-    status.textContent = `${isPlaying ? "PLAYING" : "PAUSED"} · ${repeatLabels[repeatMode]}`;
+    status.textContent = `${isPlaying ? "재생 중" : "중지"} · ${repeatLabels[repeatMode]}`;
   }
 }
 
