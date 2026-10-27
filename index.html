@@ -219,7 +219,17 @@
 
       <!-- 오른쪽: 앨범 진열대 -->
         <div class="record-shelf">
-          <div class="record-toolbar"><strong>PLAYLIST</strong><div><button class="song-filter is-active" data-kind="all">ALL</button><button class="song-filter" data-kind="original">오리지널</button><button class="song-filter" data-kind="cover">커버</button></div></div>
+          <div class="record-toolbar">
+            <label class="song-search-wrap">
+              <span class="sr-only">노래 제목 또는 아티스트 검색</span>
+              <input id="song-search" type="search" placeholder="노래 제목 또는 아티스트 검색" autocomplete="off">
+            </label>
+            <div class="song-filters" role="group" aria-label="노래 종류 필터">
+              <button class="song-filter is-active" type="button" data-kind="all">ALL</button>
+              <button class="song-filter" type="button" data-kind="original">오리지널</button>
+              <button class="song-filter" type="button" data-kind="cover">커버</button>
+            </div>
+          </div>
           <div class="record-scroll" id="record-scroll">
             <div class="record-grid" id="record-grid"></div>
           </div>
