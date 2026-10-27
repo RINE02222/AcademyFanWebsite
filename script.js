@@ -91,7 +91,7 @@ const songs = [
   { id: 40, title: "이참에 뭔가 해봐", artist: "미미짱짱세용", kind: "cover", cover: "http://img.youtube.com/vi/9nfXU9stnvQ/maxresdefault.jpg", videoId: "9nfXU9stnvQ", year: "2025"},
   { id: 41, title: "Omokage", artist: "시리안 레인, 아마데우스최, 빅토리", kind: "cover", cover: "http://img.youtube.com/vi/mdNEh9Hyz4c/maxresdefault.jpg", videoId: "mdNEh9Hyz4c", year: "2024"},
   { id: 42, title: "밤 끝없는 밤", artist: "아마데우스최, 빅토리", kind: "cover", cover: "http://img.youtube.com/vi/M3gQdpLwHtY/sddefault.jpg", videoId: "M3gQdpLwHtY", year: "2024"},
-  { id: 43, title: "Still With You", artist: "시리안 레인", kind: "cover", cover: "http://img.youtube.com/vi/mdNEh9Hyz4c/maxresdefault.jpg", videoId: "mdNEh9Hyz4c", year: "2024"},
+  { id: 43, title: "Still With You", artist: "시리안 레인", kind: "cover", cover: "http://img.youtube.com/vi/-7DHVqDC-g0/maxresdefault.jpg", videoId: "-7DHVqDC-g0", year: "2024"},
   { id: 44, title: "감전", artist: "보디가드 불독", kind: "cover", cover: "http://img.youtube.com/vi/4G4w9wMyHZI/maxresdefault.jpg", videoId: "4G4w9wMyHZI", year: "2025"},
   { id: 45, title: "종천지모", artist: "사랑전도사 젠투", kind: "original", cover: "http://img.youtube.com/vi/zCiezbft1x0/maxresdefault.jpg", videoId: "zCiezbft1x0", year: "2025"},
   { id: 46, title: "MONO DRAMA (ft. 성기사 샬롯)", artist: "철도왕 길버트", kind: "original", cover: "http://img.youtube.com/vi/R3qNn4PPJc4/maxresdefault.jpg", videoId: "R3qNn4PPJc4", year: "2025"},
