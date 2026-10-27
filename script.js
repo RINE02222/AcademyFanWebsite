@@ -990,14 +990,22 @@ function renderSongs() {
   renderSongGrid();
 }
 function renderSongGrid() {
-  const filtered = songs.filter(song => activeSongFilter === "all" || song.kind === activeSongFilter);
-  $("#record-grid").innerHTML = filtered.map(song => `
-    <button class="record-item" data-song-id="${song.id}">
-      <span class="album-cover">${song.cover ? `<img src="${escapeHTML(song.cover)}" alt="${escapeHTML(song.title)}" loading="lazy">` : `<span class="album-placeholder">G.A.<br>RECORDS</span>`}</span>
-      <span class="record-title">${escapeHTML(song.title)}</span>
-      <span class="record-artist">${escapeHTML(song.artist)}</span>
-    </button>
-  `).join("");
+  const query = $("#song-search").value.trim().toLocaleLowerCase();
+  const filtered = songs.filter(song => {
+    const matchesKind = activeSongFilter === "all" || song.kind === activeSongFilter;
+    const searchableText = `${song.title} ${song.artist}`.toLocaleLowerCase();
+    return matchesKind && (!query || searchableText.includes(query));
+  });
+
+  $("#record-grid").innerHTML = filtered.length
+    ? filtered.map(song => `
+        <button class="record-item${song.id === currentSongId ? " is-selected" : ""}" data-song-id="${song.id}">
+          <span class="album-cover">${song.cover ? `<img src="${escapeHTML(song.cover)}" alt="${escapeHTML(song.title)}" loading="lazy">` : `<span class="album-placeholder">G.A.<br>RECORDS</span>`}</span>
+          <span class="record-title">${escapeHTML(song.title)}</span>
+          <span class="record-artist">${escapeHTML(song.artist)}</span>
+        </button>
+      `).join("")
+    : '<p class="record-empty" role="status">검색 결과가 없습니다.</p>';
 }
 
 // 노래 선택
@@ -2325,9 +2333,11 @@ $("#record-grid").addEventListener("click", event => {
   if (item) selectSong(item.dataset.songId, true);
 });
 
-$$(".song-filter").forEach(button => button.addEventListener("click", () => {
+$("#song-search").addEventListener("input", renderSongGrid);
+
+$(".song-filter").forEach(button => button.addEventListener("click", () => {
   activeSongFilter = button.dataset.kind;
-  $$(".song-filter").forEach(item => item.classList.toggle("is-active", item === button));
+  $(".song-filter").forEach(item => item.classList.toggle("is-active", item === button));
   renderSongGrid();
 }));
 
