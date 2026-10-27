@@ -2335,9 +2335,9 @@ $("#record-grid").addEventListener("click", event => {
 
 $("#song-search").addEventListener("input", renderSongGrid);
 
-$(".song-filter").forEach(button => button.addEventListener("click", () => {
+$$(".song-filter").forEach(button => button.addEventListener("click", () => {
   activeSongFilter = button.dataset.kind;
-  $(".song-filter").forEach(item => item.classList.toggle("is-active", item === button));
+  $$(".song-filter").forEach(item => item.classList.toggle("is-active", item === button));
   renderSongGrid();
 }));
 
