@@ -1,3 +1,4 @@
+/* 검색창 글씨였던 것 같은데 */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -12,29 +13,29 @@
 
 
 /* ==========================================================================
-   기본 설정
-   ========================================================================== */
+  기본 설정
+  ========================================================================== */
 
 
 @font-face {
-    font-family: 'Aggravo';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
-    font-weight: 700;
-    font-display: swap;
+  font-family: 'Aggravo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Paperozi';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-display: swap;
+  font-family: 'Paperozi';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Paperozi';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-display: swap;
+  font-family: 'Paperozi';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
 }
 
 :root {
@@ -52,14 +53,18 @@
   --nav-width: 120px;
 }
 
-* { box-sizing: border-box; padding: 0; margin: 0; }
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
 
 /* ==========================================================================
-   HTML & body
-   ========================================================================== */
+  HTML & body
+  ========================================================================== */
 
-  
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -96,8 +101,8 @@ body::before {
   z-index: -1;
   opacity: .4;
   background-image: linear-gradient(to right, rgb(0 0 0 / 5%) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgb(0 0 0 / 4%) 1px, transparent 1px),
-                    radial-gradient(rgb(0 0 0 / 17%) .45px, transparent .55px);
+      linear-gradient(to bottom, rgb(0 0 0 / 4%) 1px, transparent 1px),
+      radial-gradient(rgb(0 0 0 / 17%) .45px, transparent .55px);
   background-size: 48px 48px, 48px 48px, 5px 5px;
 }
 
@@ -107,8 +112,8 @@ body::after {
   inset: auto 0 0;
   height: 7px;
   background: repeating-linear-gradient(90deg, var(--ink) 0 26px,
-              transparent 26px 31px, var(--accent) 31px 37px,
-              transparent 37px 43px);
+          transparent 26px 31px, var(--accent) 31px 37px,
+          transparent 37px 43px);
   opacity: .8;
 }
 
@@ -119,8 +124,13 @@ a {
   font: inherit;
 }
 
-button { cursor: pointer; }
-a { text-decoration: none; }
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
 
 h2 {
   font: 600 clamp(36px, 5vw, 72px)/.92 var(--display);
@@ -129,8 +139,8 @@ h2 {
 
 
 /* ==========================================================================
-   내비게이션 바
-   ========================================================================== */
+  내비게이션 바
+  ========================================================================== */
 
 
 .topbar {
@@ -180,8 +190,8 @@ h2 {
 
 
 /* ==========================================================================
-   뮤직 플레이어
-   ========================================================================== */
+  뮤직 플레이어
+  ========================================================================== */
 
 
 .music-dock {
@@ -392,8 +402,8 @@ h2 {
 
 
 /* ==========================================================================
-   뷰포트
-   ========================================================================== */
+  뷰포트
+  ========================================================================== */
 
 
 .viewport {
@@ -435,8 +445,8 @@ h2 {
 }
 
 /* ==========================================================================
-   0. HOME
-   ========================================================================== */
+  0. HOME
+  ========================================================================== */
 
 .home-section {
   isolation: isolate;
@@ -553,7 +563,9 @@ h2 {
   overflow: visible;
 }
 
-#home-birthday-image[hidden] { display: none; }
+#home-birthday-image[hidden] {
+  display: none;
+}
 
 .home-widget {
   position: absolute;
@@ -645,10 +657,10 @@ h2 {
 
 
 /* ==========================================================================
-   1. MEMBERS
-   ========================================================================== */
+  1. MEMBERS
+  ========================================================================== */
 
-   
+
 .member-container {
   position: relative;
   display: flex;
@@ -755,10 +767,11 @@ h2 {
 
 @keyframes member-card-pop {
   0% {
-    transform: translateY(0px);
+      transform: translateY(0px);
   }
+
   100% {
-    transform: translateY(-7px);
+      transform: translateY(-7px);
   }
 }
 
@@ -851,8 +864,8 @@ h2 {
 
 
 /* ==========================================================================
-   MEMBERS: 프로필 오버레이
-   ========================================================================== */
+  MEMBERS: 프로필 오버레이
+  ========================================================================== */
 
 
 .profile-overlay {
@@ -915,7 +928,9 @@ h2 {
   color: white;
 }
 
-.profile-nav span { color: var(--muted); }
+.profile-nav span {
+  color: var(--muted);
+}
 
 /* 상단 바 오른쪽 글씨 */
 .profile-archive-mark {
@@ -1287,8 +1302,8 @@ h2 {
 
 
 /* ==========================================================================
-   2. PAIR
-   ========================================================================== */
+  2. PAIR
+  ========================================================================== */
 
 
 .pair-container {
@@ -1462,8 +1477,8 @@ h2 {
 
 
 /* ==========================================================================
-   3. SONG
-   ========================================================================== */
+  3. SONG
+  ========================================================================== */
 
 
 .song-layout {
@@ -1500,44 +1515,40 @@ h2 {
 
   /* 미세한 반사광 */
   background:
-    conic-gradient(
-      from 215deg at 50% 50%,
-      transparent 0deg,
-      #ffffff08 30deg,
-      #ffffff13 55deg,
-      transparent 83deg,
-      #00000035 135deg,
-      transparent 180deg,
-      #ffffff09 235deg,
-      transparent 280deg,
-      #00000030 330deg,
-      transparent 360deg
-    ),
+      conic-gradient(from 215deg at 50% 50%,
+          transparent 0deg,
+          #ffffff08 30deg,
+          #ffffff13 55deg,
+          transparent 83deg,
+          #00000035 135deg,
+          transparent 180deg,
+          #ffffff09 235deg,
+          transparent 280deg,
+          #00000030 330deg,
+          transparent 360deg),
 
-    /* 비닐의 동심원 홈 */
-    repeating-radial-gradient(
-      circle at 50% 50%,
-      #111210 0px,
-      #171816 1px,
-      #292a27 1.5px,
-      #171816 2.5px,
-      #10110f 3.5px,
-      #20211f 4px
-    );
+      /* 비닐의 동심원 홈 */
+      repeating-radial-gradient(circle at 50% 50%,
+          #111210 0px,
+          #171816 1px,
+          #292a27 1.5px,
+          #171816 2.5px,
+          #10110f 3.5px,
+          #20211f 4px);
 
   border: 1px solid #454641;
 
   box-shadow:
-    0 2px 2px #00000020,
-    3px 5px 0 #0000000c,
-    8px 12px 18px #00000020,
-    15px 23px 35px #00000012,
-    inset 0 1px 2px #ffffff18,
-    inset 0 -5px 10px #00000080;
+      0 2px 2px #00000020,
+      3px 5px 0 #0000000c,
+      8px 12px 18px #00000020,
+      15px 23px 35px #00000012,
+      inset 0 1px 2px #ffffff18,
+      inset 0 -5px 10px #00000080;
 
   transition:
-    transform 450ms,
-    box-shadow 450ms;
+      transform 450ms,
+      box-shadow 450ms;
 }
 
 /* 비닐을 가로지르는 반사광 */
@@ -1548,16 +1559,14 @@ h2 {
   border-radius: 50%;
   pointer-events: none;
 
-  background: linear-gradient(
-    125deg,
-    transparent 23%,
-    #ffffff00 35%,
-    #ffffff0b 41%,
-    #ffffff20 44%,
-    #ffffff08 47%,
-    transparent 54%,
-    transparent 100%
-  );
+  background: linear-gradient(125deg,
+          transparent 23%,
+          #ffffff00 35%,
+          #ffffff0b 41%,
+          #ffffff20 44%,
+          #ffffff08 47%,
+          transparent 54%,
+          transparent 100%);
 
   mix-blend-mode: screen;
 }
@@ -1578,21 +1587,19 @@ h2 {
   border-radius: 50%;
 
   background:
-    radial-gradient(
-      circle at 30% 25%,
-      #d5f6e9 0%,
-      #b7e5d6 38%,
-      #9bd5c5 75%,
-      #75b8a6 100%
-    );
+      radial-gradient(circle at 30% 25%,
+          #d5f6e9 0%,
+          #b7e5d6 38%,
+          #9bd5c5 75%,
+          #75b8a6 100%);
 
   color: #222b27;
   text-align: center;
   font-family: var(--mono, monospace);
   box-shadow:
-    0 1px 2px #00000060,
-    inset 0 1px 2px #ffffffb0,
-    inset 0 -2px 3px #3b786533;
+      0 1px 2px #00000060,
+      inset 0 1px 2px #ffffffb0,
+      inset 0 -2px 3px #3b786533;
 }
 
 /* 비닐 중앙 구멍 */
@@ -1625,16 +1632,16 @@ h2 {
   overflow: hidden;
 
   background:
-    linear-gradient(135deg, #ffffff28, transparent 25%),
-    linear-gradient(110deg, #5de5b3 0%, var(--deck) 52%, #11af8a 100%);
+      linear-gradient(135deg, #ffffff28, transparent 25%),
+      linear-gradient(110deg, #5de5b3 0%, var(--deck) 52%, #11af8a 100%);
 
   border: 1px solid #12585b;
   box-shadow:
-    0 2px 2px #00000028,
-    4px 7px 0 #0000000c,
-    8px 13px 22px #00000020,
-    inset 0 1px 1px #ffffff42,
-    inset 0 -4px 8px #681b0b30;
+      0 2px 2px #00000028,
+      4px 7px 0 #0000000c,
+      8px 13px 22px #00000020,
+      inset 0 1px 1px #ffffff42,
+      inset 0 -4px 8px #681b0b30;
 }
 
 .turntable-base::before {
@@ -1656,27 +1663,25 @@ h2 {
   place-items: center;
 
   background:
-    radial-gradient(
-      circle,
-      #333532 0%,
-      #151614 68%,
-      #080908 72%,
-      #282925 74%,
-      #10110f 78%,
-      #393a35 80%,
-      #151614 83%,
-      #090a09 100%
-    );
+      radial-gradient(circle,
+          #333532 0%,
+          #151614 68%,
+          #080908 72%,
+          #282925 74%,
+          #10110f 78%,
+          #393a35 80%,
+          #151614 83%,
+          #090a09 100%);
 
   border: 2px solid #171815;
   box-shadow:
-    0 3px 5px #00000070,
-    0 7px 12px #00000045,
-    inset 0 1px 2px #ffffff30,
-    inset 0 -3px 5px #000000a0;
+      0 3px 5px #00000070,
+      0 7px 12px #00000045,
+      inset 0 1px 2px #ffffff30,
+      inset 0 -3px 5px #000000a0;
 }
 
-.turntable-platter > .record-sheen {
+.turntable-platter>.record-sheen {
   inset: 2%;
   z-index: 4;
   transform: none;
@@ -1692,54 +1697,46 @@ h2 {
   overflow: hidden;
 
   background:
-    radial-gradient(
-      circle,
-      transparent 0 14%,
-      #ffffff08 14.2%,
-      transparent 14.8%
-    ),
-    repeating-radial-gradient(
-      circle,
-      #111210 0px,
-      #1c1d1b 1px,
-      #080908 2px,
-      #252623 3px,
-      #10110f 4px
-    );
+      radial-gradient(circle,
+          transparent 0 14%,
+          #ffffff08 14.2%,
+          transparent 14.8%),
+      repeating-radial-gradient(circle,
+          #111210 0px,
+          #1c1d1b 1px,
+          #080908 2px,
+          #252623 3px,
+          #10110f 4px);
 
   border: 1px solid #050605;
   box-shadow:
-    inset 0 2px 3px #ffffff16,
-    inset 0 -4px 7px #000000b0,
-    0 2px 4px #00000080;
+      inset 0 2px 3px #ffffff16,
+      inset 0 -4px 7px #000000b0,
+      0 2px 4px #00000080;
 
   animation: record-spin 4s linear infinite;
   animation-play-state: paused;
 }
 
 .turntable .record-sheen {
-  
+
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
 
   background:
-    linear-gradient(
-      112deg,
-      transparent 22%,
-      #ffffff00 30%,
-      #ffffff22 35%,
-      #ffffff09 39%,
-      transparent 46%,
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse at 25% 48%,
-      #ffffff20 0%,
-      #ffffff09 13%,
-      transparent 32%
-    );
+      linear-gradient(112deg,
+          transparent 22%,
+          #ffffff00 30%,
+          #ffffff22 35%,
+          #ffffff09 39%,
+          transparent 46%,
+          transparent 100%),
+      radial-gradient(ellipse at 25% 48%,
+          #ffffff20 0%,
+          #ffffff09 13%,
+          transparent 32%);
 
   mix-blend-mode: screen;
 }
@@ -1749,20 +1746,23 @@ h2 {
   overflow: hidden;
 
   background:
-    radial-gradient(
-      circle at 30% 25%,
-      #d7f6eb,
-      #a8dfce 65%,
-      #75bca8
-    );
+      radial-gradient(circle at 30% 25%,
+          #d7f6eb,
+          #a8dfce 65%,
+          #75bca8);
 
   box-shadow:
-    0 1px 4px #00000080,
-    inset 0 1px 2px #ffffffb0;
+      0 1px 4px #00000080,
+      inset 0 1px 2px #ffffffb0;
 }
 
-.turntable .record-label span { font-size: clamp(8px, 0.7vw, 11px); }
-.turntable .record-label small { font-size: clamp(5px, 0.48vw, 7px); }
+.turntable .record-label span {
+  font-size: clamp(8px, 0.7vw, 11px);
+}
+
+.turntable .record-label small {
+  font-size: clamp(5px, 0.48vw, 7px);
+}
 
 .turntable .record-label #turntable-cover {
   position: absolute;
@@ -1791,19 +1791,17 @@ h2 {
   border-radius: 50%;
 
   background:
-    radial-gradient(
-      circle at 35% 30%,
-      #656963,
-      #252724 38%,
-      #090a09 72%,
-      #42443f 82%,
-      #10110f 100%
-    );
+      radial-gradient(circle at 35% 30%,
+          #656963,
+          #252724 38%,
+          #090a09 72%,
+          #42443f 82%,
+          #10110f 100%);
 
   border: 2px solid #181916;
   box-shadow:
-    0 2px 4px #00000080,
-    inset 0 1px 2px #ffffff30;
+      0 2px 4px #00000080,
+      inset 0 1px 2px #ffffff30;
 }
 
 .tonearm-joint {
@@ -1825,18 +1823,16 @@ h2 {
   transform: rotate(30deg);
   transform-origin: top center;
 
-  background: linear-gradient(
-    90deg,
-    #10110f 0%,
-    #7b7d76 30%,
-    #d0d0c8 48%,
-    #484a44 70%,
-    #11120f 100%
-  );
+  background: linear-gradient(90deg,
+          #10110f 0%,
+          #7b7d76 30%,
+          #d0d0c8 48%,
+          #484a44 70%,
+          #11120f 100%);
 
   box-shadow:
-    2px 1px 3px #00000080,
-    inset 0 0 1px #ffffff70;
+      2px 1px 3px #00000080,
+      inset 0 0 1px #ffffff70;
 }
 
 .tonearm::before {
@@ -1848,13 +1844,11 @@ h2 {
   height: 35px;
   border-radius: 3px;
 
-  background: linear-gradient(
-    90deg,
-    #10110f,
-    #777a73 32%,
-    #343631 65%,
-    #0a0b0a
-  );
+  background: linear-gradient(90deg,
+          #10110f,
+          #777a73 32%,
+          #343631 65%,
+          #0a0b0a);
 
   box-shadow: 2px 2px 4px #00000070;
 }
@@ -1867,13 +1861,11 @@ h2 {
   height: 19px;
   border-radius: 2px 2px 4px 4px;
 
-  background: linear-gradient(
-    90deg,
-    #10110f,
-    #555850 40%,
-    #20221e 75%,
-    #080908
-  );
+  background: linear-gradient(90deg,
+          #10110f,
+          #555850 40%,
+          #20221e 75%,
+          #080908);
 
   transform: rotate(-18deg);
   box-shadow: 1px 2px 3px #00000080;
@@ -1919,18 +1911,16 @@ h2 {
   border: 1px solid #171815;
 
   background:
-    radial-gradient(
-      circle at 32% 25%,
-      #686b64,
-      #292b27 36%,
-      #11120f 68%,
-      #4c4e47 80%,
-      #10110f 100%
-    );
+      radial-gradient(circle at 32% 25%,
+          #686b64,
+          #292b27 36%,
+          #11120f 68%,
+          #4c4e47 80%,
+          #10110f 100%);
 
   box-shadow:
-    0 2px 4px #00000080,
-    inset 0 1px 2px #ffffff35;
+      0 2px 4px #00000080,
+      inset 0 1px 2px #ffffff35;
 }
 
 .turntable-knob span {
@@ -1989,16 +1979,25 @@ h2 {
 }
 
 @keyframes profile-change-in {
-  from { opacity: 0; transform: translateX(14px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+      opacity: 0;
+      transform: translateX(14px);
+  }
+
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
 }
 
 .turntable.is-playing .record-disc {
-   animation-play-state: running;
+  animation-play-state: running;
 }
 
 @keyframes record-spin {
-  to { transform: rotate(360deg); }
+  to {
+      transform: rotate(360deg);
+  }
 }
 
 /* --- 왼쪽: 곡 정보 --------------------------- */
@@ -2027,7 +2026,7 @@ h2 {
 }
 
 /* 노래 정보 */
-.song-now > span:last-child {
+.song-now>span:last-child {
   color: var(--muted);
   font-size: 11px;
   line-height: 1.6;
@@ -2181,8 +2180,8 @@ h2 {
 
 
 /* ==========================================================================
-   4. CALENDAR
-   ========================================================================== */
+  4. CALENDAR
+  ========================================================================== */
 
 
 .calendar-layout {
@@ -2485,8 +2484,8 @@ h2 {
 
 
 /* ==========================================================================
-   5. GALLERY
-   ========================================================================== */
+  5. GALLERY
+  ========================================================================== */
 
 .gallery-container {
   min-height: 0;
@@ -2603,8 +2602,8 @@ h2 {
 
 
 /* ==========================================================================
-   6. LINKS
-   ========================================================================== */
+  6. LINKS
+  ========================================================================== */
 
 
 .links-layout {
@@ -2728,8 +2727,8 @@ h2 {
 
 
 /* ==========================================================================
-   A. 공통 모달
-   ========================================================================== */
+  A. 공통 모달
+  ========================================================================== */
 
 
 .archive-overlay {
@@ -2816,7 +2815,7 @@ h2 {
   color: var(--muted);
 }
 
-/* --- 모달: PAIR 상세 정보 --------------------------- */
+/* --- 모달: 페어 상세 정보 --------------------------- */
 
 .dossier-modal {
   width: 60%;
@@ -2994,8 +2993,8 @@ h2 {
 
 
 /* =========================================================
-   B. 스티커 툴바
-   ========================================================= */
+  B. 스티커 툴바
+  ========================================================= */
 
 
 .sticker-toolbar {
@@ -3077,7 +3076,7 @@ h2 {
   text-align: center;
   cursor: grab;
   touch-action: none;
-  
+
 }
 
 .sticker-item.is-selected .sticker-handle {
